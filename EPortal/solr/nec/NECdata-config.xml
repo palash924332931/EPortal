@@ -1,0 +1,24 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource"
+              driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              url="jdbc:sqlserver://SYDSCLP100D;DatabaseName=ClientPortal_Dev;"
+              user="ECPUser"
+              password="Gar0mond1#"/>
+  <document>
+    <entity name="nec"
+      pk="NEC_Code"
+      query="select distinct(NEC1_Code) NEC_Code, NEC1_Desc NEC_Desc from [dbo].[DIMProduct_Expanded] WHERE NEC1_Code is not null AND NEC1_Code &lt;&gt; ''
+union
+select distinct(NEC2_Code) NEC_Code, NEC2_Desc NEC_Desc from [dbo].[DIMProduct_Expanded] WHERE NEC2_Code is not null AND NEC2_Code &lt;&gt; ''
+union
+select distinct(NEC3_Code) NEC_Code, NEC3_Desc NEC_Desc from [dbo].[DIMProduct_Expanded] WHERE NEC2_Code is not null AND NEC3_Code &lt;&gt; ''
+union
+select distinct(NEC4_Code) NEC_Code, NEC4_Desc NEC_Desc from [dbo].[DIMProduct_Expanded] WHERE NEC3_Code is not null AND NEC4_Code &lt;&gt; ''"
+      deltaImportQuery="select id, NEC_Code, NEC_Desc from dbo.NEC WHERE id='${dih.delta.id}'"
+      deltaQuery="select id, NEC_Code, NEC_Desc from NEC WHERE updated_at > '${dih.last_index_time}'"
+      >
+      <field column="NEC_Code" name="NEC_Code"/>
+      <field column="NEC_Desc" name="NEC_Desc"/>
+    </entity>
+  </document>
+</dataConfig>

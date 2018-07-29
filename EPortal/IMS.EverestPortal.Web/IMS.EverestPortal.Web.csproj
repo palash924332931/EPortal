@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1456DD6E-8637-4C96-9874-AB2659126EDD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IMS.EverestPortal.Web</RootNamespace>
+    <AssemblyName>IMS.EverestPortal.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.7</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin.html" />
+    <Content Include="admin\admincontroller.js" />
+    <Content Include="admin\adminservice.js" />
+    <Content Include="app\admin\subscriptionAndDeliverablesCreate\masterData.css" />
+    <Content Include="app\admin\subscriptionAndDeliverablesCreate\masterData.html" />
+    <Content Include="app\admin\subscriptionAndDeliverablesCreate\subsAndDeli-create.html" />
+    <Content Include="app\admin\trigger-extraction\trigger-extraction.component.css" />
+    <Content Include="app\admin\trigger-extraction\trigger-extraction.component.html" />
+    <Content Include="app\allocation\allocation.html" />
+    <Content Include="app\app.component.html" />
+    <Content Include="app\AuditVersioning\AuditVersioning.html" />
+    <Content Include="app\AuditVersioning\AuditVersioning.css" />
+    <Content Include="app\components\autocomplete\autocom.component.html" />
+    <Content Include="app\components\components.component.html" />
+    <Content Include="app\content\css\bootstrap-theme.min.css" />
+    <Content Include="app\content\css\bootstrap.min.css" />
+    <Content Include="app\content\css\HomePage.css" />
+    <Content Include="app\content\css\loader.css" />
+    <Content Include="app\content\css\market-create-table.css" />
+    <Content Include="app\content\css\marketCreate.css" />
+    <Content Include="app\content\css\marketCreateCustom.css" />
+    <Content Include="app\content\css\myClients.css" />
+    <Content Include="app\content\css\side-bar-myClients.css" />
+    <Content Include="app\content\css\territories.css" />
+    <Content Include="app\content\css_dest\style_ecp.min.css" />
+    <Content Include="app\content\css_dest\style_font.min.css" />
+    <Content Include="app\content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\content\images\bg_blue-01.png" />
+    <Content Include="app\content\images\bg_green-01.png" />
+    <Content Include="app\content\images\bg_yellow-01.png" />
+    <Content Include="app\content\images\clone.png" />
+    <Content Include="app\content\images\clone_dis.png" />
+    <Content Include="app\content\images\close_icon.png" />
+    <Content Include="app\content\images\csv.png" />
+    <Content Include="app\content\images\delete-01.png" />
+    <Content Include="app\content\images\down_arrow.png" />
+    <Content Include="app\content\images\down_blue.png" />
+    <Content Include="app\content\images\edit-01.png" />
+    <Content Include="app\content\images\everest-01.png" />
+    <Content Include="app\content\images\everest.png" />
+    <Content Include="app\content\images\iqvia.png" />
+    <Content Include="app\content\images\logo_20-01.png" />
+    <Content Include="app\content\images\logo_20.jpg" />
+    <Content Include="app\content\images\nDelete.png" />
+    <Content Include="app\content\images\nEdit.png" />
+    <Content Include="app\content\images\news-ipad.jpg" />
+    <Content Include="app\content\images\news.jpg" />
+    <Content Include="app\content\images\news_icon-01.png" />
+    <Content Include="app\content\images\qims-01.png" />
+    <Content Include="app\content\images\qims-1.png" />
+    <Content Include="app\content\images\qims.png" />
+    <Content Include="app\content\css\custom.css" />
+    <Content Include="app\content\css\menu.css" />
+    <Content Include="app\content\css\news-section.css" />
+    <Content Include="app\content\css\side-bar.css" />
+    <Content Include="app\content\images\up_arrow.png" />
+    <Content Include="app\content\images\xls.png" />
+    <Content Include="app\content\js\bootstrap.min.js" />
+    <Content Include="app\content\js\custom.js" />
+    <Content Include="app\content\js\everestMenu.js" />
+    <Content Include="app\content\js\fluidGrid.js" />
+    <Content Include="app\content\js\fluidGrid_vp.js" />
+    <Content Include="app\content\js\jquery-1.12.4.min.js" />
+    <Content Include="app\content\js\typeahead.bundle.js" />
+    <Content Include="app\content\js\typeahead.js" />
+    <Content Include="app\content\js_dest\js_ecp.min.js" />
+    <Content Include="app\deliverables\deliverables-edit.html" />
+    <Content Include="app\deliverables\deliverables.css" />
+    <Content Include="app\googlemap\googlemap.component.html" />
+    <Content Include="app\grouping\grouping-details\grouping-details.component.css" />
+    <Content Include="app\grouping\grouping-details\grouping-details.component.html" />
+    <Content Include="app\grouping\grouping-details\grouping-level-view.html" />
+    <Content Include="app\grouping\marketbase-packs\marketbase-packs.component.css" />
+    <Content Include="app\grouping\marketbase-packs\marketbase-packs.component.html" />
+    <Content Include="app\grouping\marketbase-setup\marketbase-setup.component.css" />
+    <Content Include="app\grouping\marketbase-setup\marketbase-setup.component.html" />
+    <Content Include="app\grouping\modal\grouping-modal.component.html" />
+    <Content Include="app\grouping\modal\market-attribute-modal.component.html" />
+    <Content Include="app\home\admin\admin.component.css" />
+    <Content Include="app\home\admin\admin.component.html" />
+    <Content Include="app\content\js\menu.js" />
+    <Content Include="app\importData\import.component.css" />
+    <Content Include="app\importData\import.html" />
+    <Content Include="app\login\login.component.html" />
+    <Content Include="app\login\login.component.js" />
+    <Content Include="app\market-view\clients-sidebar.css" />
+    <Content Include="app\market-view\market-create-tabular.html" />
+    <Content Include="app\market-view\market-create.html" />
+    <Content Include="app\market-view\market-view.component.js" />
+    <Content Include="app\market-view\market-view.html" />
+    <Content Include="app\marketbase\marketbase.component.css" />
+    <Content Include="app\marketdefinition\viewmarketdefinitions.html" />
+    <Content Include="app\PackDescSearch\packDesc-search.html" />
+    <Content Include="app\packSearch\pack-search.html" />
+    <Content Include="app\Report\report-filter.css" />
+    <Content Include="app\Report\report-filter.html" />
+    <Content Include="app\Report\report-view.css" />
+    <Content Include="app\Report\report-view.html" />
+    <Content Include="app\right-sidebar\right-sidebar.component.html" />
+    <Content Include="app\shared\component\drag-n-drop\drag.n.drop.component.js" />
+    <Content Include="app\shared\component\drag-n-drop\draggable.directive.js" />
+    <Content Include="app\shared\component\drag-n-drop\droppable.directive.js" />
+    <Content Include="app\shared\component\images\sort_asc.png" />
+    <Content Include="app\shared\component\images\sort_asc_disabled.png" />
+    <Content Include="app\shared\component\images\sort_both.png" />
+    <Content Include="app\shared\component\images\sort_desc.png" />
+    <Content Include="app\shared\component\images\sort_desc_disabled.png" />
+    <Content Include="app\shared\component\p-autocomplete\p-autocom.component.css" />
+    <Content Include="app\shared\component\p-autocomplete\p-autocom.component.html" />
+    <Content Include="app\shared\component\p-monthpicker\p-monthpicker.component.html" />
+    <Content Include="app\shared\component\p-multiselect\p-multiselect.component.css" />
+    <Content Include="app\shared\component\p-table\p-modal.component.js" />
+    <Content Include="app\shared\component\p-table\p-table-pagger.js" />
+    <Content Include="app\shared\component\p-table\p-table-pipe.js" />
+    <Content Include="app\shared\component\p-table\p-table.component.css" />
+    <Content Include="app\shared\component\p-table\p-table.component.html" />
+    <Content Include="app\shared\component\p-table\p-table.component.js" />
+    <Content Include="app\shared\layout.component.css" />
+    <Content Include="app\shared\models\additional-filter.js" />
+    <Content Include="app\shared\models\base-filter.js" />
+    <Content Include="app\shared\models\client-market-base.js" />
+    <Content Include="app\shared\models\client.js" />
+    <Content Include="app\shared\models\dynamic-pack-market-base.js" />
+    <Content Include="app\shared\models\filter.js" />
+    <Content Include="app\shared\models\grouping\grouping-model.js" />
+    <Content Include="app\shared\models\grouping\groupingTreeStructure.js" />
+    <Content Include="app\shared\models\market-base.js" />
+    <Content Include="app\shared\models\market-definition-base-map.js" />
+    <Content Include="app\shared\models\market-definition.js" />
+    <Content Include="app\shared\models\market-view.js" />
+    <Content Include="app\shared\models\mock-clients.js" />
+    <Content Include="app\shared\models\static-pack-market-base.js" />
+    <Content Include="app\subscriptionRelease\release.component.css" />
+    <Content Include="app\subscriptionRelease\release.component.html" />
+    <Content Include="app\subscription\subscription-view.html" />
+    <Content Include="app\subscription\subscription.component.css" />
+    <Content Include="app\subscription\subscription.css" />
+    <Content Include="app\territorydefinition\levelview.component.html" />
+    <Content Include="app\territorydefinition\groupview.component.html" />
+    <Content Include="app\territorydefinition\territory-view.html" />
+    <Content Include="app\territorydefinition\territorydefinition.component.css" />
+    <Content Include="app\territorydefinition\territorydefinition.component.html" />
+    <Content Include="app\territory\bricks-allocation\bricks.allocation.component.css" />
+    <Content Include="app\territory\bricks-allocation\bricks.allocation.component.html" />
+    <Content Include="app\territory\bricks-allocation\bricks.allocation.component.js" />
+    <Content Include="app\territory\groupview.component.html" />
+    <Content Include="app\territory\territory.html" />
+    <Content Include="app\unlock\unlock.component.html" />
+    <Content Include="app\user\user-management.css" />
+    <Content Include="app\user\user-management.html" />
+    <Content Include="Global.asax" />
+    <Content Include="Lib\angular1\angular.min.js" />
+    <Content Include="package.json" />
+    <Content Include="systemjs.config.js" />
+    <Content Include="tsconfig.json" />
+    <Content Include="typings.json" />
+    <Content Include="packages.config" />
+    <Content Include="app\shared\layout.component.html" />
+    <Content Include="LandingPage_Files\AUS_Data Summary 0416.xlsx" />
+    <Content Include="LandingPage_Files\AUS_Data Summary 0516.xlsx" />
+    <Content Include="LandingPage_Files\AUS_Data Summary 0616.xlsx" />
+    <Content Include="LandingPage_Files\AUS_Data Summary 0716.xlsx" />
+    <Content Include="LandingPage_Files\AUS_Data Summary 0816.xlsx" />
+    <Content Include="LandingPage_Files\AUS_Data Summary 0916.xlsx" />
+    <Content Include="LandingPage_Files\Hospital_Outlet_Client_Apr2016.xls" />
+    <Content Include="LandingPage_Files\Hospital_Outlet_Client_Aug2016.xls" />
+    <Content Include="LandingPage_Files\Hospital_Outlet_Client_Jun2016.xls" />
+    <Content Include="LandingPage_Files\Hospital_Outlet_Client_May2016.xls" />
+    <Content Include="LandingPage_Files\Hospital_Outlet_Client_Sep2016.xls" />
+    <Content Include="LandingPage_Files\Monthly_Report_Excel_Month1_Month2_20160804.xlsx" />
+    <Content Include="LandingPage_Files\Monthly_Report_Excel_Month1_Month2_20160907.xlsx" />
+    <Content Include="LandingPage_Files\Monthly_Report_Excel_Month1_Month2_20161013.xlsx" />
+    <Content Include="LandingPage_Files\Monthly_Report_Word_Month1_Month2_CAD_20160914.xlsx" />
+    <Content Include="LandingPage_Files\Monthly_Report_Word_Month1_Month2_CAD_20161013.xlsx" />
+    <Content Include="LandingPage_Files\PanelDataAdhoc_Sep16.xlsx" />
+    <Content Include="LandingPage_Files\Pharmacy_Outlet_Client_Apr2016.xls" />
+    <Content Include="LandingPage_Files\Pharmacy_Outlet_Client_Aug2016.xls" />
+    <Content Include="LandingPage_Files\Pharmacy_Outlet_Client_Jul2016.xls" />
+    <Content Include="LandingPage_Files\Pharmacy_Outlet_Client_Jun2016.xls" />
+    <Content Include="LandingPage_Files\Pharmacy_Outlet_Client_May2016.xls" />
+    <Content Include="LandingPage_Files\Pharmacy_Outlet_Client_Sep2016.xls" />
+    <Content Include="app\market-view\market-view.component.js.map" />
+    <Content Include="app\content\images\icons.ai" />
+    <Content Include="app\content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\login\login.component.js.map" />
+    <Content Include="app\shared\component\p-table\p-modal.component.js.map" />
+    <Content Include="app\shared\component\p-table\p-table-pagger.js.map" />
+    <Content Include="app\shared\component\p-table\p-table-pipe.js.map" />
+    <Content Include="app\shared\component\p-table\p-table.component.js.map" />
+    <Content Include="app\shared\models\additional-filter.js.map" />
+    <Content Include="app\shared\models\base-filter.js.map" />
+    <Content Include="app\shared\models\client-market-base.js.map" />
+    <Content Include="app\shared\models\client.js.map" />
+    <Content Include="app\shared\models\dynamic-pack-market-base.js.map" />
+    <Content Include="app\shared\models\filter.js.map" />
+    <Content Include="app\shared\models\market-base.js.map" />
+    <Content Include="app\shared\models\market-definition-base-map.js.map" />
+    <Content Include="app\shared\models\market-definition.js.map" />
+    <Content Include="app\shared\models\market-view.js.map" />
+    <Content Include="app\shared\models\mock-clients.js.map" />
+    <Content Include="app\shared\models\Model.zip" />
+    <Content Include="app\shared\models\static-pack-market-base.js.map" />
+    <Content Include="app\components\autocomplete\autocom.component.css" />
+    <Content Include="app\territory\bricks-allocation\bricks.allocation.component.js.map" />
+    <Content Include="app\marketbase\marketbase.component.html" />
+    <Content Include="app\shared\component\drag-n-drop\drag.n.drop.component.js.map" />
+    <Content Include="app\shared\component\drag-n-drop\draggable.directive.js.map" />
+    <Content Include="app\shared\component\drag-n-drop\droppable.directive.js.map" />
+    <Content Include="app\shared\component\p-monthpicker\p-monthpicker.component.css" />
+    <Content Include="app\shared\component\p-multiselect\p-multiselect.component.html" />
+    <Content Include="angular-cli.json" />
+    <Content Include="app\content\css_dest\fonts\-2n2p-_Y08sg57CNWQfKNvesZW2xOQ-xsNqO47m55DA.woff" />
+    <Content Include="app\content\css_dest\fonts\-L14Jk06m6pUHB-5mXQQnRJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\0eC6fl06luXEYWpBSJvXCBJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\12mE4jfMSBTmg-81EiS-Yfk_vArhqVIZ0nv9q090hN8.woff" />
+    <Content Include="app\content\css_dest\fonts\1DbO0RvWEevroPvEzA5briEAvth_LlrfE80CYdSH47w.woff" />
+    <Content Include="app\content\css_dest\fonts\1hZf02POANh32k2VkgEoUBTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\2tsd397wLxj96qwHyNIkxPesZW2xOQ-xsNqO47m55DA.woff" />
+    <Content Include="app\content\css_dest\fonts\3Y_xCyt7TNunMGg0Et2pnhJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\5z9jpDJQqVE5bmkRqplJfiEAvth_LlrfE80CYdSH47w.woff" />
+    <Content Include="app\content\css_dest\fonts\77FXFjRbGzN4aCrSFhlh3hJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\7m8l7TlFO-S3VkhHuR0at0bcKLIaa1LC45dFaAfauRA.woff" />
+    <Content Include="app\content\css_dest\fonts\7m8l7TlFO-S3VkhHuR0at2o_sUJ8uO4YLWRInS22T3Y.woff" />
+    <Content Include="app\content\css_dest\fonts\7m8l7TlFO-S3VkhHuR0at44P5ICox8Kq3LLUNMylGO4.woff" />
+    <Content Include="app\content\css_dest\fonts\7m8l7TlFO-S3VkhHuR0at76up8jxqWt8HVA3mDhkV_0.woff" />
+    <Content Include="app\content\css_dest\fonts\7m8l7TlFO-S3VkhHuR0atyYE0-AqJ3nfInTTiDXDjU4.woff" />
+    <Content Include="app\content\css_dest\fonts\7m8l7TlFO-S3VkhHuR0atzTOQ_MqJVwkKsUn0wKzc2I.woff" />
+    <Content Include="app\content\css_dest\fonts\7m8l7TlFO-S3VkhHuR0atzUj_cnvWIuuBMVgbX098Mw.woff" />
+    <Content Include="app\content\css_dest\fonts\97uahxiqZRoncBaCEI3aWxJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\9_7S_tWeGDh5Pq3u05RVkhJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\aZMswpodYeVhtRvuABJWvBTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\bmC0pGMXrhphrZJmniIZpb6up8jxqWt8HVA3mDhkV_0.woff" />
+    <Content Include="app\content\css_dest\fonts\bmC0pGMXrhphrZJmniIZpSYE0-AqJ3nfInTTiDXDjU4.woff" />
+    <Content Include="app\content\css_dest\fonts\bmC0pGMXrhphrZJmniIZpTTOQ_MqJVwkKsUn0wKzc2I.woff" />
+    <Content Include="app\content\css_dest\fonts\bmC0pGMXrhphrZJmniIZpTUj_cnvWIuuBMVgbX098Mw.woff" />
+    <Content Include="app\content\css_dest\fonts\bmC0pGMXrhphrZJmniIZpUbcKLIaa1LC45dFaAfauRA.woff" />
+    <Content Include="app\content\css_dest\fonts\bmC0pGMXrhphrZJmniIZpWo_sUJ8uO4YLWRInS22T3Y.woff" />
+    <Content Include="app\content\css_dest\fonts\bmC0pGMXrhphrZJmniIZpY4P5ICox8Kq3LLUNMylGO4.woff" />
+    <Content Include="app\content\css_dest\fonts\cDKhRaXnQTOVbaoxwdOr9xTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\cueeGLWq_s1uoQgOf76TFiEAvth_LlrfE80CYdSH47w.woff" />
+    <Content Include="app\content\css_dest\fonts\CWB0XYA8bzo0kSThX0UTuA.woff" />
+    <Content Include="app\content\css_dest\fonts\d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff" />
+    <Content Include="app\content\css_dest\fonts\dzxs_VxZUhdM2mEBkNa8siEAvth_LlrfE80CYdSH47w.woff" />
+    <Content Include="app\content\css_dest\fonts\e7MeVAyvogMqFwwl61PKhBTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\ek4gzZ-GeXAPcSbHtCeQI_esZW2xOQ-xsNqO47m55DA.woff" />
+    <Content Include="app\content\css_dest\fonts\Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff" />
+    <Content Include="app\content\css_dest\fonts\Fl4y0QdOxyyTHEGMXX8kcRJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\frNV30OaYdlFRtH2VnZZdhTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\gLfmBATgABwy0zMVv-qqhiEAvth_LlrfE80CYdSH47w.woff" />
+    <Content Include="app\content\css_dest\fonts\gwVJDERN2Amz39wrSoZ7FxTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff" />
+    <Content Include="app\content\css_dest\fonts\I3S1wsgSg9YCurV6PUkTORJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\isZ-wbCXNKAbnjo6_TwHThJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\jSN2CGVDbcVyCnfJfjSdfBJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\jyIYROCkJM3gZ4KV00YXOBJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\K23cxWVTrIFD6DJsEVi07RTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\mbmhprMH69Zi6eEPBYVFhRJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\mErvLBYg_cXG3rLvUsKT_fesZW2xOQ-xsNqO47m55DA.woff" />
+    <Content Include="app\content\css_dest\fonts\mnpfi9pxYH-Go5UiibESIltXRa8TVwTICgirnJhmVJw.woff" />
+    <Content Include="app\content\css_dest\fonts\mx9Uck6uB63VIKFYnEMXrRJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\NdF9MtnOpLzo-noMoG0miPesZW2xOQ-xsNqO47m55DA.woff" />
+    <Content Include="app\content\css_dest\fonts\NYDWBdD4gIq26G5XYbHsFBJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\oHi30kwQWvpCWqAhzHcCSBJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\OLffGBTaF0XFOW1gnuHF0b6up8jxqWt8HVA3mDhkV_0.woff" />
+    <Content Include="app\content\css_dest\fonts\OLffGBTaF0XFOW1gnuHF0SYE0-AqJ3nfInTTiDXDjU4.woff" />
+    <Content Include="app\content\css_dest\fonts\OLffGBTaF0XFOW1gnuHF0TTOQ_MqJVwkKsUn0wKzc2I.woff" />
+    <Content Include="app\content\css_dest\fonts\OLffGBTaF0XFOW1gnuHF0TUj_cnvWIuuBMVgbX098Mw.woff" />
+    <Content Include="app\content\css_dest\fonts\OLffGBTaF0XFOW1gnuHF0UbcKLIaa1LC45dFaAfauRA.woff" />
+    <Content Include="app\content\css_dest\fonts\OLffGBTaF0XFOW1gnuHF0Wo_sUJ8uO4YLWRInS22T3Y.woff" />
+    <Content Include="app\content\css_dest\fonts\OLffGBTaF0XFOW1gnuHF0Y4P5ICox8Kq3LLUNMylGO4.woff" />
+    <Content Include="app\content\css_dest\fonts\oOeFwZNlrTefzLYmlVV1UBJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\OpXUqTo0UgQQhGj_SFdLWBTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\phsu-QZXz1JBv0PbFoPmEBJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\Pru33qjShpZSmG3z6VYwnRJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\PwZc-YbIL414wB9rB1IAPRJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\rGvHdJnr2l75qb0YND9NyBJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\RxZJdnzeo3R5zSexge8UUVtXRa8TVwTICgirnJhmVJw.woff" />
+    <Content Include="app\content\css_dest\fonts\s7gftie1JANC-QmDJvMWZhJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\t6Nd4cfPRhZP44Q5QAjcC0bcKLIaa1LC45dFaAfauRA.woff" />
+    <Content Include="app\content\css_dest\fonts\t6Nd4cfPRhZP44Q5QAjcC2o_sUJ8uO4YLWRInS22T3Y.woff" />
+    <Content Include="app\content\css_dest\fonts\t6Nd4cfPRhZP44Q5QAjcC44P5ICox8Kq3LLUNMylGO4.woff" />
+    <Content Include="app\content\css_dest\fonts\t6Nd4cfPRhZP44Q5QAjcC76up8jxqWt8HVA3mDhkV_0.woff" />
+    <Content Include="app\content\css_dest\fonts\t6Nd4cfPRhZP44Q5QAjcCyYE0-AqJ3nfInTTiDXDjU4.woff" />
+    <Content Include="app\content\css_dest\fonts\t6Nd4cfPRhZP44Q5QAjcCzTOQ_MqJVwkKsUn0wKzc2I.woff" />
+    <Content Include="app\content\css_dest\fonts\t6Nd4cfPRhZP44Q5QAjcCzUj_cnvWIuuBMVgbX098Mw.woff" />
+    <Content Include="app\content\css_dest\fonts\ty9dfvLAziwdqQ2dHoyjphTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff" />
+    <Content Include="app\content\css_dest\fonts\UX6i4JxQDm3fVTc1CPuwqhJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\vPcynSL0qHq_6dX7lKVByfesZW2xOQ-xsNqO47m55DA.woff" />
+    <Content Include="app\content\css_dest\fonts\vSzulfKSK0LLjjfeaxcREhTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\VvXUGKZXbHtX_S_VCTLpGhTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\WeQRRE07FDkIrr29oHQgHBJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\content\css_dest\fonts\WxrXJa0C3KdtC7lMafG4dRTbgVql8nDJpwnrE27mub0.woff" />
+    <Content Include="app\content\css_dest\fonts\yTs8gw1HdasCzJ-B_iUwzSEAvth_LlrfE80CYdSH47w.woff" />
+    <Content Include="app\content\css_dest\fonts\ZLqKeelYbATG60EpZBSDyxJtnKITppOI_IvcXXDNrsc.woff" />
+    <Content Include="app\shared\models\grouping\grouping-model.js.map" />
+    <Content Include="app\shared\models\grouping\groupingTreeStructure.js.map" />
+    <Content Include="app\admin\subscriptionAndDeliverablesCreate\subsAndDeli-create.component.css" />
+    <None Include="Properties\PublishProfiles\ECP.pubxml" />
+    <None Include="Properties\PublishProfiles\web!4Feb.pubxml" />
+    <None Include="Properties\PublishProfiles\Web.pubxml" />
+    <None Include="Properties\PublishProfiles\WebSection.pubxml" />
+    <None Include="Properties\PublishProfiles\WepApp.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="index.html" />
+    <Content Include="scripts\ai.0.22.19-build00125.js" />
+    <Content Include="scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="styles.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app\admin\subscriptionAndDeliverablesCreate\masterData.component.ts" />
+    <TypeScriptCompile Include="app\admin\subscriptionAndDeliverablesCreate\masterData.service.ts" />
+    <TypeScriptCompile Include="app\admin\subscriptionAndDeliverablesCreate\subsAndDeli-create.component.ts" />
+    <TypeScriptCompile Include="app\admin\subscriptionAndDeliverablesCreate\subsAndDeli-create.service.ts" />
+    <TypeScriptCompile Include="app\admin\trigger-extraction\trigger-extraction.service.ts" />
+    <TypeScriptCompile Include="app\admin\trigger-extraction\trigger-extraction.component.spec.ts" />
+    <TypeScriptCompile Include="app\admin\trigger-extraction\trigger-extraction.component.ts" />
+    <TypeScriptCompile Include="app\allocation\allocation.component.ts" />
+    <TypeScriptCompile Include="app\allocation\allocation.service.ts" />
+    <TypeScriptCompile Include="app\app.component.spec.ts" />
+    <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\AuditVersioning\AuditVersioning.component.ts" />
+    <TypeScriptCompile Include="app\AuditVersioning\AuditVersioning.service.ts" />
+    <TypeScriptCompile Include="app\AuditVersioning\AuditVersioning.model.ts" />
+    <TypeScriptCompile Include="app\components\autocomplete\autocom.component.ts" />
+    <TypeScriptCompile Include="app\components\autocomplete\autocom.model.ts" />
+    <TypeScriptCompile Include="app\components\autocomplete\autocom.service.ts" />
+    <TypeScriptCompile Include="app\components\components.component.ts" />
+    <TypeScriptCompile Include="app\config.service.ts" />
+    <TypeScriptCompile Include="app\deliverables\deliverables-edit.component.ts" />
+    <TypeScriptCompile Include="app\deliverables\deliverables-edit.service.ts" />
+    <TypeScriptCompile Include="app\deliverables\deliverables.model.ts" />
+    <TypeScriptCompile Include="app\globals.ts" />
+    <TypeScriptCompile Include="app\googlemap\googlemap.component.ts" />
+    <TypeScriptCompile Include="app\grouping\grouping-details\grouping-details.component.spec.ts" />
+    <TypeScriptCompile Include="app\grouping\grouping-details\grouping-details.component.ts" />
+    <TypeScriptCompile Include="app\grouping\grouping-details\grouping-level-view.component.ts" />
+    <TypeScriptCompile Include="app\grouping\marketbase-packs\marketbase-packs.component.spec.ts" />
+    <TypeScriptCompile Include="app\grouping\marketbase-packs\marketbase-packs.component.ts" />
+    <TypeScriptCompile Include="app\grouping\marketbase-setup\marketbase-setup.component.spec.ts" />
+    <TypeScriptCompile Include="app\grouping\marketbase-setup\marketbase-setup.component.ts" />
+    <TypeScriptCompile Include="app\grouping\modal\grouping-modal.component.ts" />
+    <TypeScriptCompile Include="app\grouping\modal\market-attribute-modal.component.ts" />
+    <TypeScriptCompile Include="app\home\admin\admin.component.ts" />
+    <TypeScriptCompile Include="app\home\admin\admin.service.ts" />
+    <TypeScriptCompile Include="app\importData\import.component.ts" />
+    <TypeScriptCompile Include="app\importData\import.service.ts" />
+    <TypeScriptCompile Include="app\login\login.component.ts" />
+    <TypeScriptCompile Include="app\login\login.service.ts" />
+    <TypeScriptCompile Include="app\logout\logout.component.ts" />
+    <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\market-view\dropdown.component.ts" />
+    <TypeScriptCompile Include="app\market-view\market-create.component.ts" />
+    <TypeScriptCompile Include="app\market-view\market-view.component.ts" />
+    <TypeScriptCompile Include="app\market-view\mktPackSearch.service.ts" />
+    <TypeScriptCompile Include="app\market-view\ModalDialog.ts" />
+    <TypeScriptCompile Include="app\marketbase\marketbase.component.ts" />
+    <TypeScriptCompile Include="app\marketbase\marketbase.service.ts" />
+    <TypeScriptCompile Include="app\PackDescSearch\packDescSearch.component.ts" />
+    <TypeScriptCompile Include="app\packSearch\pack-search.component.ts" />
+    <TypeScriptCompile Include="app\packSearch\pack-search.service.ts" />
+    <TypeScriptCompile Include="app\packSearch\packSearch.columns.ts" />
+    <TypeScriptCompile Include="app\packSearch\search-pipe.ts" />
+    <TypeScriptCompile Include="app\Report\report-filter.component.ts" />
+    <TypeScriptCompile Include="app\Report\report-view.component.ts" />
+    <TypeScriptCompile Include="app\Report\report.service.ts" />
+    <TypeScriptCompile Include="app\Report\reportfilter.model.ts" />
+    <TypeScriptCompile Include="app\Report\reportfilter.service.ts" />
+    <TypeScriptCompile Include="app\Report\reportfilter.ts" />
+    <TypeScriptCompile Include="app\right-sidebar\right-sidebar.component.ts" />
+    <TypeScriptCompile Include="app\security\auth-guard.service.ts" />
+    <TypeScriptCompile Include="app\security\auth.service.ts" />
+    <TypeScriptCompile Include="app\security\deactivate-guard.ts" />
+    <TypeScriptCompile Include="app\security\everestErrorHandler.ts" />
+    <TypeScriptCompile Include="app\shared\common.ts" />
+    <TypeScriptCompile Include="app\shared\component\drag-n-drop\drag.n.drop.component.ts" />
+    <TypeScriptCompile Include="app\shared\component\drag-n-drop\draggable.directive.ts" />
+    <TypeScriptCompile Include="app\shared\component\drag-n-drop\droppable.directive.ts" />
+    <TypeScriptCompile Include="app\shared\component\p-autocomplete\p-autocom.component.ts" />
+    <TypeScriptCompile Include="app\shared\component\p-autocomplete\p-autocom.model.ts" />
+    <TypeScriptCompile Include="app\shared\component\p-autocomplete\p-autocom.service.ts" />
+    <TypeScriptCompile Include="app\shared\component\p-monthpicker\p-monthpicker.component.ts" />
+    <TypeScriptCompile Include="app\shared\component\p-multiselect\p-multiselect.component.ts" />
+    <TypeScriptCompile Include="app\shared\component\p-table\p-modal.component.ts" />
+    <TypeScriptCompile Include="app\shared\component\p-table\p-table-pagger.ts" />
+    <TypeScriptCompile Include="app\shared\component\p-table\p-table-pipe.ts" />
+    <TypeScriptCompile Include="app\shared\component\p-table\p-table.component.ts" />
+    <TypeScriptCompile Include="app\shared\CONSTANTS.ts" />
+    <TypeScriptCompile Include="app\shared\directive\onlynumber.directive.ts" />
+    <TypeScriptCompile Include="app\shared\file.interface.ts" />
+    <TypeScriptCompile Include="app\shared\layout.component.ts" />
+    <TypeScriptCompile Include="app\shared\layout.module.ts" />
+    <TypeScriptCompile Include="app\shared\layout.service.ts" />
+    <TypeScriptCompile Include="app\shared\model.ts" />
+    <TypeScriptCompile Include="app\shared\models\additional-filter.ts" />
+    <TypeScriptCompile Include="app\shared\models\base-filter-new.ts" />
+    <TypeScriptCompile Include="app\shared\models\base-filter.ts" />
+    <TypeScriptCompile Include="app\shared\models\client-market-base.ts" />
+    <TypeScriptCompile Include="app\shared\models\client.ts" />
+    <TypeScriptCompile Include="app\shared\models\dynamic-pack-market-base.ts" />
+    <TypeScriptCompile Include="app\shared\models\filter.ts" />
+    <TypeScriptCompile Include="app\shared\models\grouping\grouping-model.ts" />
+    <TypeScriptCompile Include="app\shared\models\market-base-new.ts" />
+    <TypeScriptCompile Include="app\shared\models\market-base.ts" />
+    <TypeScriptCompile Include="app\shared\models\market-definition-base-map.ts" />
+    <TypeScriptCompile Include="app\shared\models\market-definition.ts" />
+    <TypeScriptCompile Include="app\shared\models\market-view.ts" />
+    <TypeScriptCompile Include="app\shared\models\mock-clients.ts" />
+    <TypeScriptCompile Include="app\shared\models\pack.ts" />
+    <TypeScriptCompile Include="app\shared\models\static-pack-market-base.ts" />
+    <TypeScriptCompile Include="app\shared\models\territory\brick-allocation.ts" />
+    <TypeScriptCompile Include="app\shared\models\territory\group.ts" />
+    <TypeScriptCompile Include="app\shared\models\territory\level.ts" />
+    <TypeScriptCompile Include="app\shared\models\territory\mock-territory2.ts" />
+    <TypeScriptCompile Include="app\shared\models\territory\mock-territory.ts" />
+    <TypeScriptCompile Include="app\shared\models\territory\territory.ts" />
+    <TypeScriptCompile Include="app\shared\models\territory\territorydefinition.model.ts" />
+    <TypeScriptCompile Include="app\shared\pipe\camelcase-boolean.pipe.ts" />
+    <TypeScriptCompile Include="app\shared\services\client.service.ts" />
+    <TypeScriptCompile Include="app\shared\services\config.userAction.ts" />
+    <TypeScriptCompile Include="app\shared\services\date.service.ts" />
+    <TypeScriptCompile Include="app\shared\services\grouping.service.ts" />
+    <TypeScriptCompile Include="app\shared\services\marketbase.service.ts" />
+    <TypeScriptCompile Include="app\subscriptionRelease\release.component.ts" />
+    <TypeScriptCompile Include="app\subscriptionRelease\release.service.ts" />
+    <TypeScriptCompile Include="app\subscription\subscription-view.component.ts" />
+    <TypeScriptCompile Include="app\subscription\Subscription.model.ts" />
+    <TypeScriptCompile Include="app\subscription\subscription.service.ts" />
+    <TypeScriptCompile Include="app\territorydefinition\levelview.component.ts" />
+    <TypeScriptCompile Include="app\territorydefinition\groupview.component.ts" />
+    <TypeScriptCompile Include="app\territorydefinition\territory-view.component.ts" />
+    <TypeScriptCompile Include="app\territorydefinition\ModalDialog.ts" />
+    <TypeScriptCompile Include="app\territorydefinition\territorydefinition.component.ts" />
+    <TypeScriptCompile Include="app\shared\services\territorydefinition.service.ts" />
+    <TypeScriptCompile Include="app\territorydefinition\territorydefinition.model.ts" />
+    <TypeScriptCompile Include="app\territory\bricks-allocation\bricks.allocation.component.ts" />
+    <TypeScriptCompile Include="app\territory\groupview.component.ts" />
+    <TypeScriptCompile Include="app\territory\territory.component.ts" />
+    <TypeScriptCompile Include="app\unlock\unlock.component.ts" />
+    <TypeScriptCompile Include="app\unlock\unlock.model.ts" />
+    <TypeScriptCompile Include="app\unlock\unlock.service.ts" />
+    <TypeScriptCompile Include="app\user\user-management.component.ts" />
+    <TypeScriptCompile Include="app\user\user-management.model.ts" />
+    <TypeScriptCompile Include="app\user\user-management.service.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\right-sidebar\marketdefinition\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56249</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56250/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

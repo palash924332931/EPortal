@@ -1,0 +1,138 @@
+﻿.userRefreshHidden{
+    visibility: hidden;
+}
+
+.userRefreshVisible{
+    visibility: visible;
+}
+
+.textWeightBold{
+    font-weight: bold;
+}
+
+.textWeightNormal{
+    font-weight: normal;
+}
+.required .control-label:after {
+    content:"*";
+    color:red;
+}
+.required-error-mgs {
+    color:red;
+}
+.viewTable{
+    /*height: 460px;*/
+}
+.market-setup-table{
+    overflow: hidden;
+}
+.tableWidth{
+    width: 326px;
+}
+.container {
+    width: 100%;
+}
+a.disab{
+    pointer-events: none;
+}
+/* for table desing*/
+.viewTable{
+    /*height: 626px;*/
+    height: 626px;
+    overflow: hidden;
+}
+.greyShadowBox{
+    width: 100%;
+}
+.subaltButton{
+    color: #25B4FF;
+    background: none;
+    font-size: 14px;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid #25B4FF;
+}
+.subaltButton:hover{
+    background-color: #25B4FF;
+    color: white;
+     font-size: 15px;
+}
+.modal-market-base{
+    width:600px!important;
+}
+
+/*for switch css*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 18px;
+  margin-left: 8px;
+  margin-top: 2px;
+  margin-right: 10px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: red;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 0px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  margin:1px
+}
+
+
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px red;
+}
+input:checked + .slider {
+  background-color: green;
+}
+
+.switch input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.switch .slider.round {
+  border-radius: 34px;
+}
+
+.switch .slider.round:before {
+  border-radius: 50%;
+}
+/*end of switch*/
+
+.cbFilter {
+    margin-left: 3px;
+}
+
+.padding-zero{
+    padding: 0px;
+}

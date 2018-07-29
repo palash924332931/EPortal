@@ -1,0 +1,415 @@
+﻿<div id="content">
+
+    <app-right-sidebar>Loading...</app-right-sidebar>
+
+    <!-- left menu starts -->
+    <!--PREVIOUS SIDE BAR-->
+    <!--<div class="nav-side-menu">
+
+        <div class="LinksHeadingWhite">Popular Links</div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+                <li *ngFor="let popularLink of popularLinks;"><a href={{popularLink.PopularLinkDescription}} target=_blank> {{popularLink.PopularLinkTitle}}</a></li>
+
+            </ul>
+        </div>
+    </div>-->
+    <!--PREVIOUS SIDE BAR ENDS-->
+    <!--/span-->
+    <!-- left menu ends -->
+    <!--News Content starts-->
+    <div class="jumbotron noBG" style="padding-top: 0px;">
+        <div class="container-fluid newsFluid">
+
+            <div class="row" style="width:81.3%; margin-left:0.7%; margin-top: 0px; padding: 0px; margin: 0px; padding-left: 9px;">
+
+                <div class="row" style="width:100%; margin-left:0.7%; margin-top: 0px; padding: 0px; margin: 0px; padding-left: 9px;">
+                    <div class="col-sm-6" style="">
+                        <div style="background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3); border: 1px solid #DEDEDE; background-color:#fff; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px;
+			box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); ">
+                            <div style="">
+
+                                <div class="row">
+
+                                    <div class="col-md-12" style="">
+                                        <div style="background-color: #3A4F5A;height:103px;">
+                                            <div class="row">
+                                                <div class="col-sm-3" style="width: 27%;"><div style="background-color: #FFCF32; margin-top: 10px; padding-left: 20px; padding-right: 20px; font-weight: bold; font-size: 12px; color: #fff; padding-top: 3px; padding-bottom: 3px; text-align: center;">NEWS ALERT!</div></div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-9" *ngIf='homeContent!=undefined' style="color: #fff; padding-top: 0px; line-height: 25px; font-size: 22px; font-weight: 300; padding-bottom: 20px;">
+                                                <div [innerHTML]="NewsAlert1_Title"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" style="padding-left: 40px;"><div style="margin-top:-30px;"><img src="app/content/images/news_icon-01.png" width="112" height="96" alt="" /></div></div>
+                                    <div class="col-md-9" style="padding-right: 30px; padding-top: 15px; padding-bottom: 10px; font-size: 12px;">
+                                        <div [innerHTML]="NewsAlert1_Desc"> </div>
+                                        <!--<a *ngIf='newAlert1File!=""' class="archiveLink"  download href="{{newsalert1link}}{{newAlert1File}}" target="_blank"> MORE...</a>-->
+                                        <a *ngIf='newAlert1File!=""' class="archiveLink" (click)="downloadFile(newAlert1File,'NewsAlert1')" > MORE...</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-sm-6" style="">
+                        <div style="background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3); border: 1px solid #DEDEDE; background-color:#fff; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px;
+			box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); ">
+                            <div style="">
+
+                                <div class="row">
+
+                                    <div class="col-md-12" style="">
+                                        <div style="background-color: #3A4F5A;height:103px;">
+                                            <div class="row">
+                                                <div class="col-sm-3" style="width: 27%;"><div style="background-color: #FFCF32; margin-top: 10px; padding-left: 20px; padding-right: 20px; font-weight: bold; font-size: 12px; color: #fff; padding-top: 3px; padding-bottom: 3px; text-align: center;">NEWS ALERT!</div></div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-9" style="color: #fff; padding-top: 0px; line-height: 25px; font-size: 22px; font-weight: 300; padding-bottom: 20px;">
+                                                    <div  [innerHTML]="NewsAlert2_Title"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" style="padding-left: 40px;"><div style="margin-top:-30px;"><img src="app/content/images/news_icon-01.png" width="112" height="96" alt="" /></div></div>
+                                    <div class="col-md-9" style="padding-right: 30px; padding-top: 15px; padding-bottom: 10px; font-size: 12px; overflow:hidden;">
+                                        <div [innerHTML]="NewsAlert2_Desc"></div>
+                                        <!--<a *ngIf='newAlert2File!=""' class="archiveLink" download href="{{newsalert2link}}{{newAlert2File}}" target="_blank"> MORE...</a>-->
+                                        <a *ngIf='newAlert2File!=""' class="archiveLink" (click)="downloadFile(newAlert2File,'NewsAlert2')"> MORE...</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <!--News section ends-->
+
+
+            <div class="" style="margin:0px; width:79%; margin-left:1.5%; padding-bottom: 0px; margin-bottom: 0px; margin-top: 10px;">
+                <div class="row">
+                    <div class="col-md-12" id="">
+
+
+
+
+
+
+                        <div class="" id="accordion_reg" role="tablist" aria-multiselectable="true">
+
+                            <div class="" style="margin-bottom: 0px;">
+                                <div class="panel-heading" role="tab" id="headingTwo_reg" style="text-align: center">
+                                    <h4 class="panel-title">
+                                        <a class="archiveLink" role="button" data-toggle="collapse" data-parent="#accordion_reg" href="#collapseTwo_reg" aria-expanded="false" aria-controls="collapseTwo_reg" style="font-size: 14px;">
+                                            News Archive
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo_reg" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo_reg" style="background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  border: 1px solid #DEDEDE; background-color:#fff; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); margin-bottom:10px; margin-left:0px;">
+                                    <div class="panel-body">
+                                        <div class="col-md-6" style="border-right: 1px solid #666666;" *ngIf='newsFiles1!=undefined'>
+                                            <div style="padding-top: 3px; padding-bottom: 3px;" *ngFor="let file of newsFiles1; let i=index;">
+                                            <!--<a href="#" class="archiveLink" download href={{newslink}}{{file?.fileName}}>{{file?.fileName}}</a>-->
+                                                <a href="#" class="archiveLink" (click)="downloadFile(file?.fileName,'NewsAlert')">{{file?.fileName}}</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="padding-left: 30px;" *ngIf='newsFiles2!=undefined'>
+                                            <div style="padding-top: 3px; padding-bottom: 3px;" *ngFor="let file of newsFiles2; let i=index;">
+                                            <!--<a href="#" class="archiveLink" download href={{newslink}}{{file?.fileName}}>{{file?.fileName}}</a>-->
+                                                <a href="#" class="archiveLink" (click)="downloadFile(file?.fileName,'NewsAlert')">{{file?.fileName}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <!--White Shadow Box starts -->
+            <div class="" style="margin-top:-10px;">
+                <div class="row WhiteboxcontentWrapper">
+                    <div class="box col-md-6 whiteboxfullwidth" style="padding-left:20px; padding-right:10px;">
+                        <div class="box-inner whiteboxContainter">
+                            <div class="panel-group borShadowNone noMargin" id="accordionTwo">
+                                <div class="panel">
+                                    <div class="row">
+                                        <div class="col-md-6 col70"><div class="headingGrey" *ngIf='homeContent!=undefined'>{{Summary_Title}}</div></div>
+                                        <div class="col-md-6 whiteboxarchieve">
+                                            <div class="newsArchiveBox">
+                                                <a class="archiveLink accordion-toggle collapsed" data-toggle="collapse"
+                                                   data-parent="#accordionOne,#accordionTwo,#accordionThree,#accordionFour,#accordionFive" href="#MonDatSumm"></a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="dataText" *ngIf='homeContent!=undefined'>
+                                                {{Summary_Desc}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12"><div class="lightGrey">CURRENT</div></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="reportWrapper" *ngIf='summaryFiles!=undefined'>
+                                                <!--<a download href="{{link}}{{summaryFiles[0]}}">{{summaryFiles[0]}}</a>-->
+                                                <a (click)="downloadFile(summaryFiles[0],'other')">{{summaryFiles[0]}}</a>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div id="MonDatSumm" class="row collapse">
+                                        <div class="row">
+                                            <div class="col-md-12"><div class="lightGrey" style="padding-left:35px">ARCHIVE</div></div>
+                                        </div>
+
+                                        <div class="col-md-12" *ngIf='summaryFiles!=undefined'>
+                                            <div class="reportshiftWrap" *ngFor="let file of summaryFiles; let i=index">
+                                                <!--<a *ngIf='i>0' download href="{{link}}{{file}}">{{file}}</a>-->
+                                                <a *ngIf='i>0' (click)="downloadFile(file,'other')">{{file}}</a>
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="col-md-12">
+                                            <div class="reportshiftWrap">
+                                                <a href="#">August 2016 Report.xls</a>
+                                            </div>
+                                        </div>-->
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+
+                    <div class="box col-md-6 whiteboxfullwidth" style="padding-left:20px;">
+                        <div class="box-inner whiteboxContainter">
+                            <div class="panel-group borShadowNone noMargin" id="accordionThree">
+                                <div class="panel">
+                                    <div class="row">
+                                        <div class="col-md-6 col70"><div class="headingGrey" *ngIf='homeContent!=undefined'>{{Listing_Title}}</div></div>
+                                        <div class="col-md-6 whiteboxarchieve"><div class="newsArchiveBox"><a class="archiveLink accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordionOne,#accordionTwo,#accordionThree,#accordionFour,#accordionFive" href="#listing"></a></div></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12"><div class="dataText" *ngIf='homeContent!=undefined'>{{Listing_Desc}}</div></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6"><div class="lightGrey">CURRENT</div></div>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            <div class="reportWrapper" *ngIf='pharmList!=undefined'>
+                                                <!--<a download href="{{link}}{{pharmList[0]}}">{{pharmList[0]}}</a>-->
+                                                <a (click)="downloadFile(pharmList[0],'other')">{{pharmList[0]}}</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div id="listing" class="row collapse">
+                                        <div class="row">
+                                            <div class="col-md-12"><div class="lightGrey" style="padding-left:35px">ARCHIVE</div></div>
+                                        </div>
+                                        <div class="col-md-12" *ngIf='pharmList!=undefined'>
+                                            <div class="reportshiftWrap" *ngFor="let file of pharmList; let i=index">
+                                                <!--<a *ngIf='i>0' download href="{{link}}{{file}}">{{file}}</a>-->
+                                                <a *ngIf='i>0' (click)="downloadFile(file,'other')">{{file}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                </div><!--/row-->
+
+
+
+                <div class="row WhiteboxcontentWrapper">
+                    <div class="box col-md-6 whiteboxfullwidth" style="padding-left:20px; padding-right:10px;">
+                        <div class="box-inner whiteboxContainter">
+                            <div class="panel-group borShadowNone noMargin" id="accordionFour">
+                                <div class="panel">
+                                    <div class="row">
+                                        <div class="col-md-6 col70"><div class="headingGrey" *ngIf='homeContent!=undefined'>{{Product_Title}}</div></div>
+                                        <div class="col-md-6 whiteboxarchieve">
+                                            <div class="newsArchiveBox">
+                                                <a href="#" class="blueArchieve accordion-toggle collapsed" data-toggle="collapse" data-target="#monprodlist"
+                                                   data-parent="#accordionOne,#accordionTwo,#accordionThree,#accordionFour,#accordionFive">
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12"><div class="dataText" *ngIf='homeContent!=undefined'>{{Product_Desc}}</div></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12"><div class="lightGrey">CURRENT</div></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!--<div class="reportWrapper"><a href="#">September 2016 Report.xls</a></div>-->
+                                            <div class="reportWrapper" *ngIf='newproductList!=undefined'>
+                                                <!--<a download href="{{link}}{{newproductList[0]}}">{{newproductList[0]}}</a>-->
+                                                <a (click)="downloadFile(newproductList[0],'other')">{{newproductList[0]}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="monprodlist" class="row collapse">
+                                        <div class="row">
+                                            <div class="col-md-12"><div class="lightGrey" style="padding-left:35px">ARCHIVE</div></div>
+                                        </div>
+                                        <div class="col-md-12" *ngIf='newproductList!=undefined'>
+                                            <div class="reportshiftWrap" *ngFor="let file of newproductList; let i=index">
+                                                <!--<a *ngIf='i>0' download href="{{link}}{{file}}">{{file}}</a>-->
+                                                <a *ngIf='i>0' (click)="downloadFile(file,'other')">{{file}}</a>
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="col-md-12"><div class="reportshiftWrap"><a href="#">August 2016 Report.xls</a></div></div>
+                                        <div class="col-md-12"><div class="reportshiftWrap"><a href="#">July 2016 Report.xls</a></div></div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+
+                    <div class="box col-md-6 whiteboxfullwidth" style="padding-left:20px;">
+                        <div class="box-inner whiteboxContainter">
+                            <div class="panel-group borShadowNone noMargin" id="accordionFive">
+                                <div class="panel">
+                                    <div class="row">
+                                        <div class="col-md-6 col70"><div class="headingGrey" *ngIf='homeContent!=undefined'>{{CAD_Title}}</div></div>
+                                        <div class="col-md-6 whiteboxarchieve">
+                                            <div class="newsArchiveBox">
+                                                <a class="archiveLink accordion-toggle collapsed" data-toggle="collapse"
+                                                   data-parent="#accordionOne,#accordionTwo,#accordionThree,#accordionFour,#accordionFive" href="#cad"></a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="dataText" *ngIf='homeContent!=undefined'>
+                                                {{CAD_Desc}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6"><div class="lightGrey">PHARMACY</div></div>
+                                        <div class="col-md-6"><div class="lightGrey">HOSPITAL</div></div>
+                                    </div>
+                                    <div class="row">
+                                        <!--<div class="col-md-6"><div class="reportWrapper"><a href="#">September 2016 Report.xls</a></div></div>
+                                        <div class="col-md-6"><div class="reportWrapper"><a href="#">September 2016 Report.xls</a></div></div>-->
+                                        <div class="col-md-6">
+                                            <div class="reportWrapper" *ngIf='pharmCAD!=undefined'>
+                                            <!--<a download href="{{link}}{{pharmCAD[0]}}">{{pharmCAD[0]}}</a>-->
+                                                <a (click)="downloadFile(pharmCAD[0],'other')">{{pharmCAD[0]}}</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="reportWrapper" *ngIf='hospitalCAD!=undefined'>
+                                            <!--<a download href="{{link}}{{hospitalCAD[0]}}">{{hospitalCAD[0]}}</a>-->
+                                                <a (click)="downloadFile(hospitalCAD[0],'other')">{{hospitalCAD[0]}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="cad" class="row collapse">
+                                        <div class="row">
+                                            <div class="col-md-12"><div class="lightGrey" style="padding-left:35px">ARCHIVE</div></div>
+                                        </div>
+                                        <div class="col-md-6" *ngIf='pharmCAD!=undefined'>
+                                            <div class="reportshiftWrap" *ngFor="let file of pharmCAD; let i=index">
+                                                <!--<a *ngIf='i>0' download href="{{link}}{{file}">{{file}}</a>-->
+                                                <a *ngIf='i>0' (click)="downloadFile(file,'other')">{{file}}</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" *ngIf='hospitalCAD!=undefined'>
+                                            <div class="reportshiftWrap" *ngFor="let file of hospitalCAD; let i=index">
+                                                <!--<a *ngIf='i>0' download href="{{link}}{{file}}">{{file}}</a>-->
+                                                <a *ngIf='i>0' (click)="downloadFile(file,'other')">{{file}}</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                </div><!--/row--><!--White shadow box ends-->
+
+            </div>
+
+        </div><!-- #content -->
+        <!-- #footer starts-->
+        <div id="footer">
+
+            <div class="footerBar">
+                <div class="box col-md-16">
+                    <div class="footerText">IQVIA. Copyright 2016</div>
+                </div>
+
+            </div>
+
+        </div><!-- #footer -->
+
+    </div>
+
+
+
+</div>

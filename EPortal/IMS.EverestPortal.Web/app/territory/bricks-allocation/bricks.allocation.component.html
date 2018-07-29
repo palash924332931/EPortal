@@ -1,0 +1,178 @@
+<ng-modal (fnActionOnSaveBtn)="fnModalConfirmationClick($event)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="modalBtnCapton"
+    [closeBtnCaption]="modalCloseBtnCaption" [title]="modalTitle" [modalID]="modalID" [saveBtnVisibility]="modalSaveBtnVisibility"
+    [modalSaveFnParam]="modalSaveFnParameter">
+</ng-modal>
+<ng-modal (fnActionOnSaveBtn)="fnModalConfirmationClick_OK($event)" (fnActionOnCloseBtn)="fnModalCloseClick_OK($event)" [btnCaption]="modalBtnCapton_OK"
+    [closeBtnCaption]="modalCloseBtnCaption_OK" [title]="modalTitle_OK" [modalID]="modalID_OK" [saveBtnVisibility]="modalSaveBtnVisibility_OK"
+    [modalSaveFnParam]="modalSaveFnParameter_OK">
+</ng-modal>
+
+
+<div class="brick-allocation-component">
+    <div class="container-fluid">
+        <div class="container noMargin noPadding" id="mktHeadingWrap">
+            <div class="row noMargin fullWidth100">
+                <div class="col-sm-3 col-md-3 col-xs-3 noPadding">
+                    <div class="mktLabelText">Territory Definition Name</div>
+                </div>
+            </div>
+
+            <div class="row noMargin " style="padding-bottom: 40px;">
+                <div class="col-sm-3 col-md-3 col-xs-3 noPadding">
+                    <input type="text" disabled class="form-control ng-pristine ng-untouched ng-valid ng-not-empty mktDefTB" [(ngModel)]="territory.Name">
+                </div>
+            </div>
+
+            <!--<div class="row" padding-left: 130px; padding-top: 20px;>-->
+            <div class="row">
+                <div style="width: 68%;float: left">
+                    <div class="">
+                        <div class="row availPackWhhiteBox" style="height: 785px">
+                            <div class="col-sm-7 col-md-7 col-xs-7">
+                                <div class="mcHeadingBluereg brick-allocation-title">Allocate {{brickOutletType}}s</div>
+                            </div>
+                            <div class="row noMargin">
+                                <div class="col-sm-6 col-md-6 col-xs-6">
+                                </div>
+
+                                <div class="col-sm-6 col-md-6 col-xs-6">
+                                </div>
+                            </div>
+                            <div class="classavailable-bricks-table-content" style="border-right: 1px solid #8EAFBF;width: 62%;float: left">
+                                <div class="table-responsive-brick-allocation">
+                                    <div *ngIf="brickOutletType=='Brick'">
+                                        <app-p-table [pTableSetting]="availableBricksTableBind" [pTableMasterData]="availbleBricks" (checkboxCallbackFn)="fnTerritoryListTableCheckboxClick($event)"></app-p-table>
+                                    </div>
+                                    <div *ngIf="brickOutletType=='Outlet'">
+                                        <app-p-table [pTableSetting]="availableOutletTableBind" [pTableMasterData]="availbleBricks" (checkboxCallbackFn)="fnTerritoryListTableCheckboxClick($event)"></app-p-table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="territory-nodes-table" style="width: 38%;float: right">
+                                <div class="table-responsive-brick-allocation">
+                                    <app-p-table [pTableSetting]="territoryListTableBind" [pTableMasterData]="territoryNodes" (radioButtonCallbackFn)="fnTerritoryListTableRadioButtonClick($event)"
+                                        (cellClickCallbackFn)="fnTerritoryTableCellClick($event)"></app-p-table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 box text-center top-bot-10">
+                                <button type="button" class="mcBigButton noMargin mcButton" (click)="fnAllocateBricks()" [disabled]="!(enableBrickAllocationBtn && (!isIMSStandardStructure || isInternalClientAccess))">Allocate {{brickOutletType}}s</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 32%; float: right" *ngIf="selectedTerritoryRecordToShowTable.NodeName?true:false">
+                    <div class="" style="padding-left: 0px;padding-right: 0px;">
+                        <div class="availPackWhhiteBox" style="width: 100%" style="height: 785px;padding-left: 0px;padding-right: 0px;">
+                            <div class="col-sm-12 col-md-12 col-xs-12" >
+                                <div class="mcHeadingBluereg">{{selectedTerritoryRecordToShowTable.NodeName}}</div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-xs-6"><span class="greyFontSmall">Group ID:</span></div>
+                            <div class="col-sm-6 col-md-6 col-xs-6"><span class="greyFontSmall">Level Name:</span></div>
+                            <div class="col-sm-6 col-md-6 col-xs-6">{{selectedTerritoryRecordToShowTable.CustomGroupNumberSpace}}</div>
+                            <div class="col-sm-6 col-md-6 col-xs-6">{{selectedTerritoryRecordToShowTable.LevelName}}</div>
+                            <div class="" style="width: 100%;float: left;">
+                                <div class="brick-allocation-reallocate-table-1">
+                                    <app-p-table [pTableSetting]="brickDetailsTableBind" [pTableMasterData]="bricksDetailsOfSelectedTerritory" (checkboxCallbackFn)="fnBrickDetailsCheckboxClick($event)"></app-p-table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row top-bot-10" style="margin-left: 15px">
+                            <div class="col-sm-6 box mobWidth">
+                                <button type="button" id="groupFac" class="mcButtonSearch mcButton" (click)="fnReallocateBricks()" [disabled]="!(enabledReallocateBtn && (!isIMSStandardStructure || isInternalClientAccess))">Re-Allocate </button>
+                            </div>
+                            <div class="col-sm-6 col-xs-12 box mobWidthDel">
+                                <button type="button" id="remGroup" class="mcSmallButtonCancel mcButton" (click)="fnDeleteAllocatedBricks()" [disabled]="!(enabledReallocateBtn && (!isIMSStandardStructure || isInternalClientAccess))"> Delete </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row fullWidth100 martop20 fixed-footer-buttons">
+        <div class="" style="float: left;padding-left: 30px;">
+            <div class="box pull-right"><button type="button" class="mcButton" (click)="fnBackToTerritoryViewPage()">Back</button></div>
+        </div>
+        <div class="" style="padding-left: 20px">
+            <div class="box pull-left"><button type="button" class="mcButtonPScancel" (click)="fnBackToPreviousState()" [disabled]="isEditTerritoryDef && (isIMSStandardStructure && !isInternalClientAccess)">Cancel</button></div>
+        </div>
+        <div class="" style="padding-left: 20px">
+            <div class="box pull-left"><button type="button" class="mcButtonPScancel" (click)="fnBackToClientTiles()">Close</button></div>
+        </div>
+        <div class="" style="padding-left: 20px">
+            <div class="box pull-left"><button type="button" class="mcButton territroy-save-btn" (click)="fnSaveTerritoryInfo()" [disabled]="isEditTerritoryDef && (isIMSStandardStructure && !isInternalClientAccess)">Save</button></div>
+        </div>
+    </div>
+</div>
+
+
+<!--Re allocate popup starts -->
+
+<div class="modal fade terrModalWrapper" id="reallocate" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialogGroup">
+        <div class="modal-content terModalSmall">
+            <div class="modal-header borShadowNone">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="packGroupHeading">Re-allocate {{brickOutletType}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="font12">From Group</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div>
+                            <div class="row martop15">
+                                <div class="col-sm-8 col-md-8 col-xs-8 noPadTopBottom">
+                                    <div class="box noPadding">
+                                        <input type="text" class="TBNormBig" id="" value="{{selectedTerritoryRecordToShowTable.NodeName}}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row martop20">
+                                <div class="col-sm-12 ">
+                                    <span class="font12">To Group</span>
+                                </div>
+                            </div>
+
+                            <div class="row martop15">
+                                <div class="col-sm-8 col-md-8 col-xs-8 noPadTopBottom">
+                                    <div class="box noPadding">
+                                        <div class="raBrick-select fa-caret-down">
+                                            <select name="" id="destinationGroupDetailsDD">
+                                      <option value="{{territoryNode.NodeCode}}" *ngFor="let territoryNode of ddReallocationData">{{territoryNode.NodeName}}</option>
+									</select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row saveCancelWrap">
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="button" class="mcButton" (click)="fnSaveReallocateInfo()">Save</button>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <div class="box noPadding">
+                                        <button type="submit" class="mcButtonBricancel" data-dismiss="modal">Cancel</button>
+                                        <br class="clearAll" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Re allocate popup ends-->

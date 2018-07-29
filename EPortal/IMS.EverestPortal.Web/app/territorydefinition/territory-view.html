@@ -1,0 +1,238 @@
+﻿<div id="content">
+
+    <div class="nav-side-menu" *ngIf="visibeAllClientBtn">
+
+        <div class="well mcSideWell">
+            <!--<ul class="nav nav-tabs mcSideTab" *ngIf="visibeAllClientBtn && isMyClientsAccessible">
+                <li (click)="onSelectClientsType(true)" style="width:50%;" [ngClass]="{'active': isMyClientsVisible}">
+                    <a href="#home" data-toggle="tab">My Clients</a>
+                </li>
+                <li (click)="onSelectClientsType(false)" style="width:50%;" [ngClass]="{'active': !isMyClientsVisible}">
+                    <a href="#profile" data-toggle="tab">All Clients</a>
+                </li>
+            </ul>-->
+            <ul class="nav nav-tabs mcSideTab" *ngIf="visibeAllClientBtn && isMyClientsAccessible">
+                <li (click)="fnSelectMyClientAllClient('My-Client')" style="width:50%;" [ngClass]="{'active': isMyClientsVisible}">
+                    <a href="#home" data-toggle="tab">My Clients</a>
+                </li>
+                <li (click)="fnSelectMyClientAllClient('All-Client')" style="width:50%;" [ngClass]="{'active': !isMyClientsVisible}">
+                    <a href="#profile" data-toggle="tab">All Clients</a>
+                </li>
+            </ul>
+            <ul class="nav nav-tabs" *ngIf="!visibeAllClientBtn" style="border-bottom: 0px;">
+                <li (click)="onSelectClientsType(true)" style="width:50%;" [ngClass]="{'active': isMyClientsVisible}">
+                    <a href="#home" data-toggle="tab">My Territories</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="home">
+                    <div class="mcWhiteHeading">
+                        {{toggleTitle}}
+                        <!--<label id="refreshIcon" for="refresh" class="glyphicon glyphicon-repeat refreshClients" rel="refresh" title="refresh" (click)="refreshClientList(isMyclientsSelected)"></label>-->
+                    </div>
+
+                    <div class="icon-addon addon-lg">
+                        <input id="searchClient1" [(ngModel)]="stringFilter" type="text" placeholder="Search" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false">
+                        <label for="search" class="glyphicon glyphicon-remove pointer" rel="tooltip" title="search" (click)="refreshClientList(isMyClientsVisible)" style="z-index: 1"></label>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="profile">
+                    <div class="mcWhiteHeading">
+                        {{toggleTitle}}
+                        <!--<label id="refreshIcon" for="refresh" class="glyphicon glyphicon-repeat refreshClients pointer" rel="refresh" title="refresh" (click)="refreshClientList(isMyclientsSelected)"></label>-->
+                    </div>
+                    <div class="icon-addon addon-lg">
+                        <input id="searchClient2" [(ngModel)]="stringFilter" type="text" placeholder="Search" class="form-control typeahead2 tt-query" autocomplete="off" spellcheck="false">
+                        <label for="search" class="glyphicon glyphicon-remove pointer" rel="tooltip" title="search" (click)="refreshClientList(isMyClientsVisible)" style="z-index: 1"></label>
+                    </div>
+
+
+                </div>
+
+                <div id="sidebar-client-list">
+                    <ul *ngIf="clients && !isMyClientsVisible">
+                        <li *ngFor="let client of clients | filter: stringFilter; let first=first" [ngClass]="{ 'selected': selectedClientID == client.Id }" (click)="loadTerritoryDefinition(client)">{{client?.Name}}</li>
+                    </ul>
+                    <ul *ngIf="clients && isMyClientsVisible">
+                        <li *ngFor="let client of myClients | filter: stringFilter; let first=first" [ngClass]="{ 'selected': selectedClientID == client.Id }" (click)="loadTerritoryDefinition(client)">{{client?.Name}}</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div bsModal #TerritoryModal="bs-modal" class="modal fade subModalWrapper" id="SubmitTerritoryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content subModDivWrap" style="">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Territories</div></div>
+                    <table id="mytable" class="table table-stripedSub table-borderlessSub width99">
+                        <thead class="theaddark" style="">
+                            <tr>
+                                <th class="subMarketBaseTH width10" style=""></th>
+                                <th class="subMarketBaseTH">Available Territories</th>
+                                <th class="subMarketBaseTH">Submitted</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let col of territoryfDTO; let i=index">
+                                <td style="text-align:center;" class="width10">
+                                    <input type="radio" value={{col.Id}} name="abc" [(ngModel)]="col.Selected" disabled="{{col.Submitted=='Yes'}}"   />
+                                </td>
+                                <td class="">{{col.Name}}</td>
+                                <td class="">{{col.Submitted}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="row marTop20" style="display: none;" id="SuccessMessage">
+                        <div class="col-sm-12 col-md-12 col-xs-12">
+                            <span class="" style="color:orangered"> Territory version has been submitted successfully.</span>
+                        </div>
+                        </div>
+
+                    </div>
+                <div class="row marTop20">
+                    <div class="col-sm-4 col-md-4 col-xs-4">
+                        <button type="submit" class="mcButton" (click)="SubmitTerritory()">Submit</button>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-xs-4">
+                        <button type="submit" class="mcButtonCancel" (click)="CancelSubmitTerritoryPopup();">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron noBG">
+        <!--<div id="overlay" [hidden]=!loading>
+            <div class="loader"></div>
+        </div>-->
+        <div class="container-fluid">
+            <div class="container mcContainer">
+
+                <div class="row newsRowPadTop">
+                    <div class="col-md-12">
+                        <div class="mcBreadcrumbs">
+                            <a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span>
+                            <a class="mcLink">Territories</a> <span class="breadBrubGap">></span>
+                            <a [routerLink]="[breadCrumbUrl]" class="mcLink">{{toggleTitle}}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mcRow">
+                    <div class="col-sm-12 col-md-8 col-xs-12">
+                        <!--<div class="mcHeading" *ngIf="visibeAllClientBtn">Available Territories: <b>{{this.client?.Name}}</b> </div>-->
+                        <div class="mcHeading" *ngIf="visibeAllClientBtn">Available Territories: <b>{{selectedClientName}}</b> </div>
+                        <div class="mcHeading" *ngIf="!visibeAllClientBtn">My Territories </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-xs-12 mcButtonWrapper" >
+                        <button type="button" class="mcButton" *ngIf="isSubmitButtonVisible" (click)="SubmitTerritoryButton()">Submit</button>
+                        <button type="button"  [ngClass]="{'mcButton': canCreateTerrDef, 'mcButtonDisabled': !canCreateTerrDef}" [routerLink]="[createTerritoryLink]"  [disabled]="!canCreateTerrDef">Create New Territory</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Market Base Box Starts-->
+            <div class="container myCClientWrapper" id="custWrapper" *ngIf="this.territoryDefinitionsFiltered">
+                <div class="row floatWidth territory-view-page">
+                    <div class="mcHeadingBlue" [hidden]=!noTerritoryDefs>There are no territory definitions</div>
+                    <div *ngFor="let terrDef of territoryDefinitionsFiltered" class="col-md-5 white-panel" style="cursor: default" [class.align-white-panel]="territoryDefinitionsFiltered.indexOf(terrDef)%2==0">
+
+                        <div class="panel-group borShadowNone noMargin" id="accordionTwo">
+                            <div class="panel panel-default borShadowNone">
+                                <div class="col-sm-9 col-md-9 col-xs-9 cust80"><div class="mcHeadingBlue" >{{terrDef?.Name}}</div></div>
+                                <div class="col-sm-3 col-md-3 col-xs-3 custArcWrap">
+                                    <div class="" style="width:33%;float: left">
+                                        <a class="edit glyphicon glyphicon-list-alt" style="display: inline-block;" (click)="disableDiv(terrDef.Client_Id,terrDef.Id,$event)">                                            
+                                        </a>
+                                    </div>
+
+                                    <div  style="width:33%;float: left">
+                                        <a class="edit glyphicon glyphicon-edit edit-icon" style="display: inline-block;" [class.disabled]="!canEditTerrDef || !IsEditDefDependOnClientType" (click)="fnEditTerritoryDef(terrDef)">
+                                        </a>
+                                    </div>
+                                    <div  style="width:33%;float: left">
+                                        <a class="delete glyphicon glyphicon-trash delete-icon" [class.disabled]="!canDeleteTerrDef || !IsEditDefDependOnClientType || (selectedClientName.toLowerCase() == 'internal')" href="#" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" (click)="fnDeleteTerritoryDefinition(terrDef,$event)">
+                                            <!--<img src="../app/content/images/nDelete.png" alt="delete" glyphCustom />-->
+                                        </a>
+                                    </div>
+
+                                </div>
+                                <div class="row padRt25">
+                                    <div class="col-sm-12 col-md-12 col-xs-12">
+                                        <div class="dataText">{{terrDef?.IsBrickBased ? 'Brick Base' : 'Outlet Base'}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--News section ends-->
+        </div>
+       <ng-modal (fnActionOnSaveBtn)="fnModalConformationClick($event)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="modalBtnCapton" [closeBtnCaption]="modalCloseBtnCaption" [title]="modalTitle" [saveBtnVisibility]="modalSaveBtnVisibility" [modalSaveFnParam]="modalSaveFnParameter"> </ng-modal>
+        <script>
+            // sandbox disable popups
+            if (window.self !== window.top && window.Name != "view1") {;
+                window.alert = function () {/*disable alert*/ };
+                window.confirm = function () {/*disable confirm*/ };
+                window.prompt = function () {/*disable prompt*/ };
+                window.open = function () {/*disable open*/ };
+            }
+            
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                }
+                                else {
+                                    /*
+                                    var el = document.getElementById(this.hash.replace(/#/, ""));
+                                    if (el) {
+                                      el.scrollIntoView(true);
+                                    }
+                                    */
+                                }
+                            }
+                            return false;
+                        })
+                    }
+                }
+            }, false);
+        </script>
+        <!--scripts loaded here-->
+    </div>
+    <!-- #content -->
+
+    <div bsModal #tViewErrModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom:0px solid">
+                    <h4 class="modal-title pull-left">Everest Portal</h4>
+                    <button type="button" class="close pull-right" (click)="tViewErrModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Application Error has occurred. Please contact support.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- #wrapper -->

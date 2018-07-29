@@ -1,0 +1,20 @@
+﻿
+<div style="position:relative;width:100% !important;">
+    <div id="tags_tagsinput" class="tagsinput nodeHeightTable filter-container" style="cursor: pointer;width:100% !important;">
+        <span class="" *ngFor="let selected of selections;let i = index;">
+            <span class="tag">{{selected.Text}}&nbsp;&nbsp;<a (click)="remove(i)" title="Remove">x</a></span>
+        </span>
+        <div class="tags_clear"></div>
+        <div id="search-component">
+            <input placeholder="Search here" #searchBox class="search-box" [(ngModel)]="searchValue" (ngModelChange)="search(searchValue)" (blur)="clearSelection()" (click)="search(' ')" />
+        </div>
+    </div>
+    <div class="dropdown">
+        <div (click)="onSelection(item);" *ngFor="let item of values | async"
+             class="search-result">
+            {{item.Text}}
+        </div>
+    </div>
+</div>
+<!--<div *ngIf="values.length > 0"><p>No results found</p></div>-->
+

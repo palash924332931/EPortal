@@ -1,0 +1,549 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+
+.padLeft8
+{
+	padding-left: 13px;
+}
+
+.purpleBG
+{
+	background-color: #743C97;
+}
+
+.dBlueBG
+{
+	background-color: #297dfd;
+}
+
+
+.padLeft15
+{
+	padding-left: 15px;
+}
+
+.subCrtMB
+{
+	background-color: #fff; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); padding-left: 40px; padding-right: 20px; padding-top: 15px; padding-bottom: 30px;
+}
+
+
+.marLeft10
+{
+	margin-left: 10px;
+}
+
+.HeadingCharcoal
+{
+
+
+	font-family:Roboto;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	color:#3A4F5A;
+
+}
+
+
+
+.width25
+{
+	width: 25%;
+}
+
+.width15
+{
+	width: 15px;
+}
+
+.width10
+{
+	width: 10%;
+}
+
+
+.width16
+{
+	width: 16%;
+}
+
+
+.mrp-icon{
+  
+  color: #25B4FF;
+  margin-right:0px;
+}
+
+.mrp-monthdisplay{
+  display:inline-block!important;
+  padding: 5px 12px 5px 8px;
+  background-color: #fff;
+  cursor:pointer;
+  margin-left: -8px;
+	
+}
+
+.mrp-lowerMonth, .mrp-upperMonth{
+  color: #25B4FF;
+  font-size: 14px;
+  
+}
+
+.mrp-to{
+  color: #25B4FF;
+  margin-right: 0px;
+  margin-left: 0px;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 5px 3px 5px 3px;
+}
+
+.mpr-calendar{
+  display:inline-block;
+  padding: 3px 3px;
+  border-right: solid #DDDCDB 1px;
+	color:#25B4FF;
+}
+
+.mpr-calendar::last-child{
+  border-right: none;  
+}
+
+.mpr-month{
+  /*padding: 8px;*/
+	padding-top: 10px;
+	padding-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+  
+}
+
+.mpr-calendar h5{
+  width:100%;
+  text-align:center;
+  font-size:14px
+}
+
+.mpr-selected{
+  background: #F9FDFF;
+  color: #25B4FF;
+}
+
+.mpr-month:hover{
+  
+  box-shadow: 0 0 0 1px #ddd inset;
+  cursor:pointer;
+}
+
+.mpr-selected.mpr-month:hover{
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+.mpr-calendarholder .col-xs-6 {
+  max-width: 250px;
+  min-width: 250px;
+}
+
+.mpr-calendarholder .col-xs-1 {
+  max-width: 50px;
+  min-width: 150px;
+}
+
+.mpr-calendarholder .btn-info{
+  background-color: red;
+  border-color: #406670;
+  width:100%;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 10px;
+  
+}
+
+.mpr-quickset{
+  color: #25B4FF;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.mpr-yeardown, .mpr-yearup{
+  margin-left: 5px;
+  cursor: pointer;
+  color: #666;
+}
+
+.mpr-yeardown{
+  float:left;
+}
+
+.mpr-yearup{
+  float:right;
+}
+
+.mpr-yeardown:hover,.mpr-yearup:hover{
+  color: #25B4FF;
+}
+
+
+
+.popover{
+  max-width: 1920px!important;
+  margin-left: 155px!important;
+  
+}
+
+
+
+
+.subNormSmall
+{
+	color:#3A4F5A; font-size: 12px;
+}
+
+
+
+
+
+.SubTextGrey
+{
+	
+	font-family:Roboto;
+	font-weight:normal;
+	font-size: 12px;
+	font-style: normal;
+	font-variant: normal;
+	color:rgb(153, 153, 153);
+	
+}
+
+
+.ligtGreyLine
+{
+	border-bottom: 1px solid #d3d3d3; padding-bottom: 10px; width: 95%; margin-left: 10px;
+}
+
+
+.marBottom10
+{
+	margin-bottom: 10px;
+}
+
+.marLeft3
+{
+	margin-left: 3px;
+}
+
+.marTopm25
+{
+	margin-top: -25px;
+}
+
+
+.subEditIcon
+{
+	color:#25B4FF; margin-left: 15px; font-size: 16px;
+}
+
+.marTopM5
+{
+	margin-top: -5px;
+}
+
+
+.marTop5
+{
+	margin-top: 5px;
+}
+
+
+.popover.bottom .arrow {visibility:hidden;}
+
+
+
+.marLeftm10
+{
+	margin-left: -10px;
+}
+
+
+.subGlyDel
+{
+	color: #FB4F39; margin-right: 5px;
+}
+
+
+
+
+.table-borderlessSub tbody tr td,
+
+.table-borderlessSub thead tr td,
+.table-borderlessSub tfoot tr th,
+.table-borderlessSub tfoot tr td {
+    border: none; padding-left: 0px; margin-left: 10px;
+}
+
+
+
+.subTable
+{
+	color: #3A4F5A; width: 95%;
+}
+
+.padLeft30
+{
+	padding-left: 30px;
+}
+
+
+.width60
+{
+	width: 60%;
+}
+
+.width35
+{
+	width: 35%;
+}
+
+.width5
+{
+	width: 5%
+}
+
+.table-stripedSub > tbody > tr:nth-child(2n+2) > td, .table-stripedSub > tbody > tr:nth-child(2n+2) > th {
+   background-color: #F4F6F9;
+	
+   
+}
+
+
+.marTop10
+{
+	margin-top: 10px;
+}
+
+
+.marTop30
+{
+	margin-top: 30px;
+}
+
+
+.subModalWrapper
+{
+	margin-top: 150px;
+	margin-left: 230px;
+}
+
+
+
+.subModDivWrap
+{
+	width: 60%; border-radius: 0px; padding-left: 30px; padding-right: 30px; padding-top: 20px; padding-bottom: 30px;
+}
+
+
+.subModalAllocWrapper
+{
+	margin-top: 100px;
+	margin-left: 30%;
+}
+
+.subModAlloc
+{
+	width: 52%; border-radius: 0px; padding-left: 30px; padding-right: 30px; padding-top: 20px; padding-bottom: 20px;
+}
+
+
+.subaltButton {
+  color: #25B4FF;
+  background: none;
+ 
+  font-size:14px;
+ 
+ 
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  padding-left: 40px; padding-right: 40px; padding-top: 15px; padding-bottom: 15px;
+  border:2px solid #25B4FF;
+  
+}
+
+
+.subaltButton:hover {
+ color: #ffffff;
+  background-color: #25B4FF;
+}
+
+
+.width8
+{
+	width: 8%;
+}
+
+.noBorderTH
+{
+	border: none;
+}
+
+
+
+
+
+
+.theaddarkBL tbody tr td,
+
+.theaddarkBL thead tr td,
+.theaddarkBL tfoot tr th,
+.theaddarkBL tfoot tr td {
+    border: none; padding-left: 0px; margin-left: 10px;
+}
+
+
+
+.marTop20
+{
+	margin-top: 20px;
+}
+
+
+.fullwidthNoBorder
+{
+	padding: 10px; background-color: #fff; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); color:#25B4FF; padding-left: 30px;
+}
+
+
+
+
+.SubHeadingWhite
+{
+
+
+	font-family:Roboto;
+	font-weight:400;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 15px;
+	color:#fff;
+
+}
+
+.padLeft10
+{
+	padding-left: 10px;
+}
+
+
+
+.subWhiteBoxShadow
+{
+	background-color: #fff; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); padding-left: 30px; padding-right: 30px; padding-top: 20px; height: 900px; overflow: hidden;
+}
+
+
+
+.subWhiteBoxShadowRgt
+{
+	background-color: #fff; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); padding-left: 30px; padding-right: 30px; padding-top: 20px; height: 825px;  overflow: hidden;
+}
+
+
+.heightSubShad
+{
+	height: 585px; overflow: hidden;
+}
+
+.heightSubShadRgt
+{
+	height: 715px;  overflow: hidden;
+}
+
+
+.marTop40
+{
+	margin-top: 40px;
+}
+
+
+.SubTBTopWrap
+{
+	padding-left:0px; margin-top: 10px; margin-left: 0px;
+}
+
+.width12p5
+{
+	width: 12.5%;
+}
+
+
+.SubTBMktBse
+{
+	border:1px solid #8EAFBF; padding: 10px; padding-top: 15px; padding-bottom: 15px; min-height: 50px; width: 100%;
+}
+
+
+
+
+.raBrick-select:before{display:none !important;}
+
+.raBrick-select {
+	background-color: #fff;
+	
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	height: 52px;
+	border-left:none;
+	border-top: none;
+}
+
+.raBrick-select:hover {
+	border-color: #999;
+}
+
+.raBrick-select:before {
+	
+}
+
+.raBrick-select select {
+	background-color: #fff;
+	border:1px solid #8EAFBF; 
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	height: 52px;
+}
+
+.raBrick-select select::-ms-expand {
+	display: none; /* to ie 10 */
+}
+
+.raBrick-select select:focus {
+	outline: none;
+	
+}
+
+
+.subCrtMktSummLeft
+{
+	padding-right: 35px; border-right: solid #DDDCDB 1px; height: 610px; overflow: hidden;
+}
+
+
+.subCrtMktSummRight
+{
+	padding-left: 30px; height: 210px; padding-right: 20px;
+}
+

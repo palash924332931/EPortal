@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[File] (
+    [FileId] INT           IDENTITY (1, 1) NOT NULL,
+    [Name]   NVARCHAR (80) NULL,
+    CONSTRAINT [PK__File__6F0F98BFC907FC98] PRIMARY KEY CLUSTERED ([FileId] ASC) WITH (FILLFACTOR = 1)
+);
+

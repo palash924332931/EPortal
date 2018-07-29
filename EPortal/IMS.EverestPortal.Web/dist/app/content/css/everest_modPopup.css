@@ -1,0 +1,13 @@
+.center {
+    margin-top:50px;   
+}
+
+.modal-header {
+	padding-top: 15px;
+	
+}
+
+
+.modal-footer .btn-group:last-child > button {
+	border-right: 0;
+}

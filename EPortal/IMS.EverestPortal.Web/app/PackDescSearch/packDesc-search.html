@@ -1,0 +1,266 @@
+﻿<div class="col-sm-12 fullwidthWithBorder" style="margin-bottom:25px; padding:0px; margin-top:20px; z-index:0">
+    <div class="" style="">
+
+        <div class="panel-group borShadowNone noMargin flg_whtepanel" id="accordionTwo" style="">
+
+            <div class="panel panel-default borShadowNone" style="padding-left:0px; padding-right:0px;">
+                <div class="row noPadding noMargin">
+                    <div class="col-sm-11 BlueBoxHedText" style="padding-left:10px; width:70%;">
+                        <div class="mbText">Pack Search</div>
+                    </div>
+                    <div class="col-sm-1 col-md-1 col-xs-1 custArcWrap" style="margin-left:390px; width:2%;">
+                        <a class="archiveLink accordion-toggle_arrUp collapsed" data-toggle="collapse" data-parent="" href="#collapse1a" style="padding-top:13px;" (click)="Collapse()"></a>
+                    </div>
+                </div>
+                <div class="row noPadding noMargin" style="border-top:1px solid #8EAFBF; color:#3a4f5a !important;">
+                    <div class="col-sm-12">
+                        <div id="collapse1a" class="row collapse">
+                            <form #form="ngForm">
+                                <div class="row" style="">
+                                    <div class="col-sm-12" style="padding-bottom:20px; padding-right:25px; padding-left:25px; padding-top:30px;">
+                                        <div class="col-sm-4 col-md-4 col-xs-4 " style="padding-bottom:15px;">
+
+                                            <div class="box noPadding PSboxWrapper">
+                                                Pack Description
+
+                                            </div>
+                                            <div class="box noPadding">
+                                                <div id="tags_addTag" class="input-group" style="z-index:999;width:100%;" >
+                                                    <input class="PSTBNew" ng2-auto-complete
+                                                           id="model4"
+                                                           name="model4"
+                                                           [(ngModel)]="model.PackDescription"
+                                                           [source]="observableSource.bind(this)"
+                                                           no-match-found-text="No Results"
+                                                           loading-text="Loading"
+                                                           (ngModelChange)="onPackDescriptionSelected($event)"
+                                                           display-property-name="PackDescription"
+                                                           max-num-list="20" style="width:100%;" />
+                                                    <span class="input-group-btn"><a class="glyphicon glyphicon-remove cusGlyphClose" type="button" (click)="clearPackDescription()" style="color: #C6D7DF; font-size: 16px; margin-left: -30px;margin-top:8px; background: none; border: none;"></a></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-4 col-md-4 col-xs-4 " style="padding-bottom:15px;">
+
+                                            <div class="box noPadding PSboxWrapper">
+                                                Product Description
+                                            </div>
+                                            <div class="box noPadding">
+                                                <div id="tags_addTag" class="input-group" style="width:100%;">
+                                                    <input class="PSTBNew" ng2-auto-complete
+                                                           id="ProductNameModel"
+                                                           name="ProductName"
+                                                           [(ngModel)]="model.ProductName"
+                                                           [source]="observableProductName.bind(this)"
+                                                           no-match-found-text="No Results"
+                                                           loading-text="Loading"
+                                                           (ngModelChange)="onProductDescriptionSelected($event)"
+                                                           display-property-name="ProductName"
+                                                           value-property-name="ProductName"
+                                                           max-num-list="20" style="width:100%;" />
+                                                    <span class="input-group-btn"><a class="glyphicon glyphicon-remove cusGlyphClose" type="button" (click)="onProductDescriptionCleared()" style="color: #C6D7DF; font-size: 16px; margin-left: -30px;margin-top:8px; background: none; border: none;"></a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4 col-md-4 col-xs-4 " style="padding-bottom:15px; ">
+
+                                            <div class="box noPadding PSboxWrapper">
+                                                ATC
+                                            </div>
+                                            <div class="box noPadding">
+                                                <div id="tags_addTag" class="input-group" style="width:100%;">
+                                                    <input class="PSTBNew" ng2-auto-complete
+                                                           id="model5"
+                                                           name="model5"
+                                                           [(ngModel)]="model.ATC"
+                                                           [source]="getATC.bind(this)"
+                                                           no-match-found-text="No Results"
+                                                           loading-text="Loading"
+                                                           (ngModelChange)="onATCSelected($event)"
+                                                           display-property-name="ATC_Desc"
+                                                           value-property-name="ATC_Code"
+                                                           max-num-list="20" style="width:100%;" />
+                                                    <span class="input-group-btn"><a class="glyphicon glyphicon-remove cusGlyphClose" type="button" (click)="onATCCleared()" style="color: #C6D7DF; font-size: 16px; margin-left: -30px;margin-top:8px; background: none; border: none;"></a></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-4 col-md-4 col-xs-4" style="padding-bottom:15px; ">
+
+                                            <div class="box noPadding PSboxWrapper">
+                                                NEC
+                                            </div>
+                                            <div class="box noPadding">
+                                                <div id="tags_addTag" class="input-group" style="width:100%;">
+                                                    <input class="PSTBNew" ng2-auto-complete
+                                                           id="model6"
+                                                           name="model6"
+                                                           [(ngModel)]="model.NEC"
+                                                           [source]="getNEC.bind(this)"
+                                                           no-match-found-text="No Results"
+                                                           loading-text="Loading"
+                                                           (ngModelChange)="onNECSelected($event)"
+                                                           display-property-name="NEC_Desc"
+                                                           value-property-name="NEC_Code"
+                                                           max-num-list="20" style="width:100%;" />
+                                                    <span class="input-group-btn"><a class="glyphicon glyphicon-remove cusGlyphClose" type="button" (click)="onNECCleared()" style="color: #C6D7DF; font-size: 16px; margin-left: -30px;margin-top:8px; background: none; border: none;"></a></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-4 col-md-4 col-xs-4 " style="padding-bottom:15px; ">
+
+                                            <div class="box noPadding PSboxWrapper">
+                                                Manufacturer
+                                            </div>
+                                            <div class="box noPadding">
+                                                <div id="tags_addTag" class="input-group" style="z-index:999;" style="width:100%;">
+                                                    <input class="PSTBNew" ng2-auto-complete
+                                                           id="mfrModel"
+                                                           name="mfrModel"
+                                                           [(ngModel)]="model.Manufacturer"
+                                                           [source]="observableManufacturer.bind(this)"
+                                                           no-match-found-text="No Results"
+                                                           loading-text="Loading"
+                                                           (ngModelChange)="onManufacturerSelected($event)"
+                                                           display-property-name="Org_Long_Name"
+                                                           value-property-name="Org_Abbr"
+                                                           max-num-list="20" style="width:100%;" />
+                                                    <span class="input-group-btn"><a class="glyphicon glyphicon-remove cusGlyphClose" type="button" (click)="onManufacturerCleared()" style="color: #C6D7DF; font-size: 16px; margin-left: -30px;margin-top:8px; background: none; border: none;"></a></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-4 col-md-4 col-xs-4 " style="padding-bottom:15px;  ">
+
+                                            <div class="box noPadding PSboxWrapper">
+                                                Molecule
+                                            </div>
+                                            <div class="box noPadding">
+                                                <div id="tags_addTag" class="input-group" style="width:100%;">
+                                                    <input class="PSTBNew" ng2-auto-complete
+                                                           id="model7"
+                                                           name="model7"
+                                                           [(ngModel)]="model.Molecule"
+                                                           [source]="getMoleculeList.bind(this)"
+                                                           no-match-found-text="No Results"
+                                                           loading-text="Loading"
+                                                           (ngModelChange)="onMoleculeSelected($event)"
+                                                           display-property-name="Description"
+                                                           max-num-list="20" style="width:100%;" />
+                                                    <span class="input-group-btn"><a class="glyphicon glyphicon-remove cusGlyphClose" type="button" (click)="onMoleculeCleared()" style="color: #C6D7DF; font-size: 16px; margin-left: -30px;margin-top:8px; background: none; border: none;"></a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4 col-md-4 col-xs-4" style="padding-bottom:15px; ">
+
+                                            <div class="box noPadding PSboxWrapper">
+                                                PFC
+                                            </div>
+                                            <div class="box noPadding">
+                                                <div id="tags_addTag" class="input-group" style="width:100%;">
+                                                    <input type="text" class="PSTBNew" id="txtPFC" name="txtPFC" [(ngModel)]="model.PFC" OnlyNumber="true" (change)="valuechange('pfc',$event)" style="width:100%;">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-md-4 col-xs-4" style="padding-bottom:15px; ">
+
+                                            <div class="box noPadding PSboxWrapper">
+                                                APN/EAN/GTIN (barcode)
+                                            </div>
+                                            <div class="box noPadding">
+                                                <div id="tags_addTag" class="input-group" style="width:100%;">
+                                                    <input type="text" class="PSTBNew" id="txtAPN" name="txtAPN" [(ngModel)]="model.APN" (change)="valuechange('apn',$event)" OnlyNumber="true" style="width:100%;">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-4 col-md-4 col-xs-4" style="padding-top:15px;">
+
+                                            <button type="submit" class="mcButtonPSearchPack" (click)="performSearch(form.value)" style="margin-top:10px; width:30%; padding:5px;">
+                                                Search
+                                            </button>
+
+                                            <button type="submit" class="mcButtonPSearchPack" (click)="ResetFilter();" style="width:30%; padding:5px">
+                                                Clear Search
+                                            </button>
+
+                                        </div>
+
+                                        <div class="" style="">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row" style="padding-top:0px;">
+                                    <div class="col-sm-12" style="padding-bottom:20px;">
+                                        <div>
+                                            <div *ngIf="recCount == 0" class="packSearchHeading" style="color:red;font-size:14px;font-weight:normal;padding-left:30px;">
+                                                <div>
+                                                    <b> This search criteria will not return results as this is outside of your market bases</b>
+                                                </div>
+                                            </div>
+                                            <div class="row pckSearchResultWrapper" style="padding-top:0px;">
+                                               <app-p-table [pTableSetting]="packDescriptionResultTableSetting" [pTableMasterData]="packDescription"></app-p-table>
+                                                <!--<div class="col-sm-12 col-md-12 col-xs-12" style="padding-left:40px; padding-top:0px;">
+                                                    <div class="mcHeadingBluereg" style="padding-top:0px;">Results</div>
+                                                </div>
+
+                                                <div class="col-sm-12 col-xs-12 col-md-12" style="padding-left:40px; padding-right:40px; padding-bottom:0px; margin-bottom:0px;">
+
+                                                    <div class="table-responsive" style="height:400px; overflow-x:auto">
+                                                        <table id="mytable" class="table table-bordred table-striped" style="">
+                                                            <thead class="theaddark">
+                                                            <th class="text-center" style="padding-top:8px; padding-bottom:8px; border-right:1px solid #fff; width:30%; padding-left:5px; padding-right:5px;">Pack Name</th>
+                                                            <th class="text-center" style="border-right:1px solid #fff; width:70%; padding-left:5px; padding-right:5px; padding-top:8px; padding-bottom:8px; ">Market Base</th>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let res of packDescriptionByPage">
+                                                                    <td>{{res.Pack}}</td>
+                                                                    <td>{{res.MarketBase}}</td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                 
+                                                </div>
+                                                <div style="padding-left:30px; padding-right:30px; padding-top:0px;">
+                                                    <div class="col-sm-9 noPadding">
+                                                        <pagination [ngModelOptions]="{standalone: true}" [itemsPerPage]="itemsPerPage" [boundaryLinks]="true"
+                                                                    [maxSize]="5" [totalItems]="totalItems" [(ngModel)]="currentPage" class="pagination-sm"
+                                                                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" (pageChanged)="pageChanged($event)"
+                                                                    lastText="&raquo;" style="margin-left:12px; padding-top:0px;"></pagination>
+                                                    </div>
+                                                    <div class="col-sm-9" style="padding-right:10px; padding-left:10px;" *ngIf="packDescription.length > 0">
+                                                        <pre class="card card-block card-header" style="margin-top:10px">Showing records {{(currentPage - 1) * itemsPerPage + 1 }} to <span *ngIf="packDescription.length > itemsPerPage">{{currentPage * itemsPerPage}} of </span>{{packDescription.length}}</pre>
+                                                    </div>
+                                                </div>-->
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

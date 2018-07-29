@@ -1,0 +1,21 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource"
+              driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              url="jdbc:sqlserver://SYDSCLP100D;DatabaseName=ClientPortal_Dev;"
+              user="ECPUser"
+              password="Gar0mond1#"/>
+  <document>
+    <entity name="Molecule" transformer="RegexTransformer" 
+      pk="Molecule"
+      query="SELECT  Molecule, [Synonym], Parent, [Description],cast(STUFF((SELECT '~' + CAST(FCC AS VARCHAR(10)) [text()] FROM [dbo].DMMolecule WHERE Molecule = t.molecule FOR XML PATH(''), TYPE).value('.','NVARCHAR(MAX)'),1,2,' ') as varchar(max))FCC FROM [dbo].DMMolecule t WHERE [Synonym] =1 GROUP BY Molecule, [Synonym], [Parent], [Description]"
+      deltaImportQuery=""
+      deltaQuery=""
+      >
+      <field column="Molecule" name="Molecule"/>
+      <field column="Synonym" name="Synonym"/>
+      <field column="Parent" name="Parent"/>
+      <field column="Description" name="Description"/>
+      <field column="FCC" name="FCC" splitBy="~"/>
+    </entity>
+  </document>
+</dataConfig>

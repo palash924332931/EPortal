@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[CONFIG_ECP_MKT_DEF_FILTERS] (
+    [FilterValue] NVARCHAR (MAX) NULL,
+    [ColumnName]  NVARCHAR (MAX) NULL
+);
+

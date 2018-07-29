@@ -1,0 +1,18 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource"
+              driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              url="jdbc:sqlserver://SYDSCLP100D;DatabaseName=ClientPortal_Dev;"
+              user="ECPUser"
+              password="Gar0mond1#"/>
+  <document>
+    <entity name="nec1"
+      pk="NEC1_Code"
+      query="select distinct(NEC1_Code), NEC1_Desc from [dbo].[DIMProduct_Expanded] WHERE NEC1_Code is not null AND NEC1_Code &lt;&gt; ''"
+      deltaImportQuery="select id, NEC1_Code, NEC1_Desc from dbo.NEC1 WHERE id='${dih.delta.id}'"
+      deltaQuery="select id, NEC1_Code, NEC1_Desc from NEC1 WHERE updated_at > '${dih.last_index_time}'"
+      >
+      <field column="NEC1_Code" name="NEC1_Code"/>
+      <field column="NEC1_Desc" name="NEC1_Desc"/>
+    </entity>
+  </document>
+</dataConfig>

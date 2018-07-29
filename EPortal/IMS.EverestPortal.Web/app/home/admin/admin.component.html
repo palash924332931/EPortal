@@ -1,0 +1,278 @@
+﻿<div class="container" style="width:100%">
+    <div class="mcHeading">{{title}}</div>
+
+    <div class="col-sm-12 rcorners2 WhiteboxcontentWrapper row box-inner" style="width:98%; padding:20px; margin-top:20px;">
+        <div class="col-sm-6">
+            <div class="mcHeadingBlue" style="padding-top:0px;">News Alert 1</div>
+            <div class="form-group">
+                <label for="newsTitle1">News Title:</label>
+                <input type="text" class="form-control" id="newsTitle1" [(ngModel)]="newsAlerts[0].NewsAlertTitle" >
+            </div>
+            <div class="form-group">
+                <label for="newsDescription">News Description:</label>
+                <textarea rows="4" cols="50" class="form-control" placeholder="Description" [(ngModel)]="newsAlerts[0].NewsAlertDescription" style="resize:none"></textarea>
+            </div>
+            <button type="button" class="mcButton" (click)="saveNewsAlert(0,newsAlerts[0].NewsAlertId)">Save </button>
+            <button type="submit" class="mcButton" data-toggle="modal" (click)="broadcastNews('NewsAlert1')">Broadcast <span class="glyphicon glyphicon-envelope"></span></button>
+            <!--<button type="submit" class="mcButton" data-toggle="modal" [disabled]="!canAddMarketBase"
+                    (click)="ShowDialog(col.subscription.SubscriptionId,col.subscription.ClientId)">
+                Add Market Base <span class="glyphicon glyphicon-envelope"></span> data-backdrop="static" data-keyboard="false"
+            </button>-->
+            <button type="button" class="mcButton" (click)="uploadFileModal('NewsAlert1')">Upload</button>
+            <button type="button" class="mcButtonCancel" (click)='cancelNewsAlerts(0)'>Cancel</button>
+
+        </div>
+
+        <div class="col-sm-6">
+            <div class="mcHeadingBlue" style="padding-top:0px;">News Alert 2</div>
+            <div class="form-group">
+                <label for="newsTitle2">News Title:</label>
+                <input type="text" class="form-control" id="newsTitle2" [(ngModel)]="newsAlerts[1].NewsAlertTitle" >
+            </div>
+            <div class="form-group">
+                <label for="newsDescription">News Description:</label>
+                <textarea rows="4" cols="50" class="form-control" placeholder="Description" [(ngModel)]="newsAlerts[1].NewsAlertDescription" style="resize:none"></textarea>
+            </div>
+            <button type="button" class="mcButton" (click)="saveNewsAlert(1,newsAlerts[1].NewsAlertId)">Save </button>
+            <button type="submit" class="mcButton" (click)="broadcastNews('NewsAlert2')">Broadcast  <span class="glyphicon glyphicon-envelope"></span></button>
+            <button type="button" class="mcButton" (click)="uploadFileModal('NewsAlert2')">Upload</button>
+            <button type="submit" class="mcButtonCancel" (click)='cancelNewsAlerts(1)'>Cancel</button>
+
+        </div>
+        <hr />
+    </div>
+
+    <div class="col-sm-12 rcorners2 WhiteboxcontentWrapper row box-inner" style="width:98%; padding:20px; margin-top:20px;margin-bottom:20px;">
+        <form #form_link="ngForm" novalidate class="col-sm-12">
+            <div class="mcHeadingBlue" style="padding-top:0px;">Popular Links</div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Title</span> &nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <input class="form-control input-sm " type="text" name="linkTitle" [disabled]="!isModifyPopularLinks" [(ngModel)]="newLink.PopularLinkTitle" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:190px;" />
+                        </td>
+
+                        <td>&nbsp;&nbsp;</td>
+                        <td style="padding-left:20px;">
+                            &nbsp;&nbsp;<span class="lightGrey" style="padding:0; font-size:14; color:#666666; ">URL</span> &nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <input class="form-control input-sm " type="text" name="linkDesc" [disabled]="!isModifyPopularLinks" [(ngModel)]="newLink.PopularLinkDescription" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:366px;" />
+                            <input type="hidden" [(ngModel)]="newLink.PopularLinkId" name="linkID" class="ng-pristine ng-untouched ng-valid ng-empty" />
+                        </td>
+                        <td style="padding-left:20px;">
+                            &nbsp;&nbsp;<span class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Upload File </span> &nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <input type="file" name="PopularLinkFile" [disabled]="!isModifyPopularLinks"  [(ngModel)]="newLink.PopularLinkFile" (change)="popularLinkFileChange($event)" />
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>URL</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let popLink of popularLinks'>
+                        <td>
+                            <div>{{popLink.PopularLinkTitle}}</div>
+                        </td>
+                        <td>
+                            <div>{{popLink.PopularLinkDescription}}</div>
+                        </td>
+
+                        <td class="glyphicon glyphicon-edit"  (click)="isModifyPopularLinks ? editLink(popLink.PopularLinkId) : ''" style="cursor:pointer;"></td>
+                        <td class="glyphicon glyphicon-remove-circle" (click)="isModifyPopularLinks ? deleteLink(popLink.PopularLinkId) : ''" style="cursor:pointer;"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <button type="button" class="mcButton" [disabled]="!isModifyPopularLinks" (click)='saveLink()'>Save</button>
+            <!--<button type="button" class="mcButton" (click)="uploadFileModal('PopularLinks')">Upload</button>-->
+            <button type="button" class="mcButtonCancel" (click)='cancelLink()'>Cancel</button>
+        </form>
+    </div>
+
+    <div class="rcorners2 WhiteboxcontentWrapper row" style="width:98%;">
+        <form #form_sum="ngForm" novalidate class="pull-left box-inner whiteboxContainterAdmin" style="width:49%; padding:20px; ">
+            <div class="mcHeadingBlue" style="padding-top:0px;">Monthly Data Summary</div>
+            <div class="form-group">
+                <label for="sumTitle">Summary Title:</label>
+                <input type="text" class="form-control" id="sumTitle" name="sumTitle" [(ngModel)]="summaries[0].MonthlyDataSummaryTitle" [disabled]="!isModifyTileNames">
+            </div>
+            <div class="form-group">
+                <label for="newsDescription">Summary Description:</label>
+                <textarea rows="4" cols="50" class="form-control" placeholder="Description" name="sumDesc" [(ngModel)]="summaries[0].MonthlyDataSummaryDescription" style="resize:none"></textarea>
+            </div>
+            <div class="form-group">
+                <span style="color:red;">* File name must contain 'AUS_Data Summary'</span>
+            </div>
+            <button type="submit" class="mcButton" (click)='saveSummary()'>Save</button>
+            <button type="submit" class="mcButton" (click)="broadcastNews('MonthlyDataSummary')">Broadcast  <span class="glyphicon glyphicon-envelope"></span></button>
+            <button type="button" class="mcButton" (click)="uploadFileModal('MonthlyDataSummary')">Upload</button>
+            <button type="submit" class="mcButtonCancel" (click)='cancelSummary()'>Cancel </button>
+        </form>
+
+        <form #form_listing="ngForm" novalidate class="pull-right box-inner whiteboxContainterAdmin" style="width:49%; padding:20px; ">
+            <div class="mcHeadingBlue" style="padding-top:0px;">Monthly Pack Changes</div>
+            <div class="form-group">
+                <label for="ListingsTitle">Pack Change Title:</label>
+                <input type="text" class="form-control" id="ListingsTitle" name="ListingsTitle" [(ngModel)]="listings[0].ListingTitle" [disabled]="!isModifyTileNames">
+            </div>
+            <div class="form-group">
+                <label for="ListingsDescription">Pack Change Description:</label>
+                <textarea rows="4" cols="50" class="form-control" placeholder="Description" name="ListingsDescription" [(ngModel)]="listings[0].ListingDescription" style="resize:none"></textarea>
+            </div>
+            <div class="form-group">
+                <span style="color:red;">* File name must contain 'NDFChanges'</span>
+            </div>
+            <button type="submit" class="mcButton" (click)='saveListings()'>Save</button>
+            <button type="submit" class="mcButton" (click)="broadcastNews('Listings')">Broadcast  <span class="glyphicon glyphicon-envelope"></span></button>
+            <button type="button" class="mcButton" (click)="uploadFileModal('Listings')">Upload</button>
+            <button type="submit" class="mcButtonCancel" (click)='cancelListings()'>Cancel</button>
+        </form>
+
+    </div>
+
+    <div class="rcorners2 WhiteboxcontentWrapper row" style="width:98%">
+
+        <form #form_prod="ngForm" novalidate class=" pull-left box-inner whiteboxContainter" style="width:49%; padding:20px; ">
+            <div class="mcHeadingBlue" style="padding-top:0px;">Monthly New Product List</div>
+            <div class="form-group">
+                <label for="prodTitle">Product List Title:</label>
+                <input type="text" class="form-control" id="prodTitle" name="prodTitle" [(ngModel)]="newProducts[0].MonthlyNewProductTitle" [disabled]="!isModifyTileNames">
+            </div>
+            <div class="form-group">
+                <label for="prodDescription">Product List Description:</label>
+                <textarea rows="4" cols="50" class="form-control" placeholder="Description" name="prodDescription" [(ngModel)]="newProducts[0].MonthlyNewProductDescription" style="resize:none"></textarea>
+            </div>
+            <div class="form-group">
+                <span style="color:red;">* File name must contain 'MonthlyNewProductList'</span>
+            </div>
+            <button type="submit" class="mcButton" (click)='saveNewProducts()'>Save</button>
+            <button type="submit" class="mcButton" (click)="broadcastNews('MonthlyNewProductList')">Broadcast  <span class="glyphicon glyphicon-envelope"></span></button>
+            <button type="button" class="mcButton" (click)="uploadFileModal('MonthlyNewProductList')">Upload</button>
+            <button type="submit" class="mcButtonCancel" (click)='cancelNewProducts()'>Cancel</button>
+        </form>
+        <form #form_cad="ngForm" novalidate class=" pull-right box-inner whiteboxContainter" style="width:49%; padding:20px; ">
+            <div class="mcHeadingBlue" style="padding-top:0px;">CAD Pages</div>
+            <div class="form-group">
+                <label for="cadTitle">CAD Pages Title:</label>
+                <input type="text" class="form-control" id="cadTitle" name="cadTitle" [(ngModel)]="CADpages[0].CADPageTitle" [disabled]="!isModifyTileNames">
+            </div>
+            <div class="form-group">
+                <label for="cadDescription">CAD Pages Description:</label>
+                <textarea rows="4" cols="50" class="form-control" placeholder="Description" name="cadDescription" [(ngModel)]="CADpages[0].CADPageDescription" style="resize:none"></textarea>
+            </div>
+            <div class="form-group">
+                <span style="color:red;">* File name must contain 'api' for Pharmacy and 'ahi' for Hospital</span>
+            </div>
+            <button type="submit" class="mcButton" (click)='saveCADs()'>Save</button>
+            <button type="submit" class="mcButton" (click)="broadcastNews('CADPages')">Broadcast  <span class="glyphicon glyphicon-envelope"></span></button>
+            <button type="button" class="mcButton" (click)="uploadFileModal('CADPages')">Upload</button>
+            <button type="submit" class="mcButtonCancel" (click)='cancelCADPages()'>Cancel</button>
+        </form>
+    </div>
+    <br /><p></p><br />
+</div>
+<div bsModal #lgModal1="bs-modal" class="modal fade subModalWrapper" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="cancelBroadcast()" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Send Emails</h4>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    From: Everest@quintilesims.com<br />
+                    To:<br />
+                    Bcc: {{emailList}}<br />
+                    <div *ngIf='files!=undefined'>
+                        Subject: {{contentType}}
+                    </div>
+                </div>
+
+                <br /><br />
+                <div>
+                    Please do not reply to this system generated e-mail.<br /><br />
+
+                    Dear User, <br /><br />
+
+                    <div *ngIf='fileType=="NewsAlert1" || fileType=="NewsAlert2"'>
+                        A News Alert has been uploaded to the Everest Portal.<br /><br />
+                    </div>
+                    <!--<div *ngIf='fileType=="NewsAlert2"'>
+                        A News Alert has been uploaded to the Client Portal.<br /><br />
+                    </div>-->
+                    <div *ngIf='fileType=="MonthlyDataSummary" || fileType=="MonthlyNewProductList" || fileType=="Listings" || fileType=="CADPages"'>
+                        A new file for <b>{{contentDesc}}</b> has been uploaded to the Everest Portal.<br /><br />
+                    </div>
+                    <!--<div *ngIf='fileType=="MonthlyDataSummary"'>
+                        A new file for <b>{{contentDesc}}</b> has been uploaded to the Client Portal.<br /><br />
+                    </div>-->
+                    <!--<div *ngIf='fileType=="Listings" || fileType=="CADPages"'>
+                        New files for <b>{{contentDesc}}</b> have been uploaded to the Client Portal.<br /><br />
+                    </div>-->
+                    <!--<div *ngIf='fileType=="CADPages"'>
+                        New files for <b>{{contentDesc}}</b> have been uploaded to the Client Portal.<br /><br />
+                    </div>-->
+                    Please click the link below to take you directly to our Everest Portal Website. You will be prompted to sign on with your username and password before continuing.
+                    <br />
+
+                    <div *ngIf='files!=undefined'>
+                        <a download href="{{baseUrl}}">Everest Portal</a>
+                    </div>
+                    <br /><br />
+
+                    Regards, <br />
+                    IQVIA
+                    <br />
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" [class.disabled]="isClickedOnce" (click)="sendEmails()">Send</button>
+                <button type="button" class="btn btn-primary" (click)="cancelBroadcast()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #uploadModal="bs-modal" class="modal fade subModalWrapper" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="height:220px">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="cancelUpload()" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Upload File - {{fileType}}</h4>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="row col-md-12" style="line-height:10px;">
+
+                            Select File <br />&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" name="UploadFile" [(ngModel)]="fileToUpload" (change)="onChange($event)" />
+                        </div>
+                        <div class="row col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="row col-md-12">
+                            <button class="btn btn-primary"  (click)='uploadFile(fileToUpload)'>Upload</button>
+                            <button class="btn btn-primary"  (click)='cancelUpload()'>Close</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

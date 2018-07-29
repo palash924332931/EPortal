@@ -1,0 +1,51 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from "@angular/forms";
+import { RouterModule, ActivatedRoute, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
+import { AppComponent } from './app.component';
+import { AdminComponent } from './home/admin/admin.component';
+import { LayoutComponent } from './shared/layout.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from 'angular2-google-maps/core';
+import { GoogleMapComponent } from './googlemap/googlemap.component';
+import { TerritoryDefinitionComponent } from './territorydefinition/territorydefinition.component';
+import { GroupViewComponent } from './territorydefinition/groupview.component';
+import { LevelViewComponent } from './territorydefinition/levelview.component';
+
+import { MarketViewComponent } from './market-view/market-view.component';
+ 
+import { MarketCreateComponent } from './market-view/market-create.component';
+import { ModalDialog } from './market-view/ModalDialog';
+import { DropdownComponent } from './market-view/dropdown.component';
+
+import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
+
+
+@NgModule({
+    imports: [BrowserModule, FormsModule, HttpModule,
+        RouterModule.forRoot([
+            { path: 'admin', component: AdminComponent },
+            { path: 'googlemap', component: GoogleMapComponent },
+            { path: 'territories', component: TerritoryDefinitionComponent },
+            { path: 'marketCreate', component: MarketCreateComponent },
+            { path: '', component: LayoutComponent },
+            { path: 'market', component: MarketViewComponent }
+        ]),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyCQ08WGVTpLlomGBd37jCuuEA3HiQBX1ic'
+        })
+    ],
+<<<<<<< HEAD
+    declarations: [AppComponent, AdminComponent, LayoutComponent, GoogleMapComponent, TerritoryDefinitionComponent, MarketViewComponent, MarketCreateComponent, ModalDialog, DropdownComponent, RightSidebarComponent],
+=======
+    declarations: [AppComponent, AdminComponent, LayoutComponent, GoogleMapComponent,
+        TerritoryDefinitionComponent, GroupViewComponent, LevelViewComponent,
+        MarketViewComponent, MarketCreateComponent, MarketCreateComponent2, RightSidebarComponent],
+>>>>>>> 06aa682590fe15bd0e476f2ccaf0de74ae53dfcb
+    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+    bootstrap: [AppComponent]
+})
+
+export class AppModule { }

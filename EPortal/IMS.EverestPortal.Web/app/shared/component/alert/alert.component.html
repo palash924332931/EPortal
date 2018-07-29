@@ -1,0 +1,110 @@
+<div *ngIf="message?.type=='confirm'" class="modal alert-modal1 conformation-modal" tabindex="-1" role="dialog" style="display:block!important">
+    <!--<div class="modal-dialog alert-modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div *ngIf="message?.type == 'confirm'" class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center modal-text">{{message.text}}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="pull-right" style="margin-bottom:0px">
+                            <a (click)="message.siFn()">
+                                <button class="btn btn-outline-primary">Yes</button>
+                            </a>
+                            <a (click)="message.noFn()">
+                                <button class="btn btn-outline-primary">Cancel</button>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <div class="packSearchModalWrapperSave" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" [ngClass]="{'active':message?.type=='confirm'}">
+        <div class="modal-dialogSave">
+            <div class="modal-content packSearchModalPanel" style="padding: 10px 20px 18px;">
+                <div class="">
+                    <button type="button" class="close" (click)="message.noFn()">&times;</button>
+                </div>
+                <div class="row">
+                    <ng-content></ng-content>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12 filHeadingMod" style="padding-top: 5px;padding-bottom: 5px;" ><span class=""> <div innerHTML={{message.text}}></div> </span></div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 15px;padding-right: 18px;">
+                    <p class="pull-right" style="margin-bottom:0px">
+                            <a (click)="message.siFn()" style="padding-right: 5px">
+                                <button class="btn btn-outline-primary confirmationBtn">Yes</button>
+                            </a>
+                            <a (click)="message.noFn()">
+                                <button class="btn btn-outline-primary">Cancel</button>
+                            </a>
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="message?.type=='alert'|| message?.type=='alert-terminated'" class="modal alert-modal" tabindex="-1" role="dialog"
+    style="display:block!important">
+     <div class="packSearchModalWrapperSave" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" [ngClass]="{'active':message?.type=='confirm'}">
+        <div class="modal-dialogSave">
+            <div class="modal-content packSearchModalPanel" style="padding: 10px 20px 18px;">
+                <div class="">
+                    <button type="button" class="close" (click)="message.noFn()">&times;</button>
+                </div>
+                <div class="row">
+                    <ng-content></ng-content>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12 filHeadingMod" style="padding-top: 5px;padding-bottom: 5px;" ><span class=""> <div innerHTML={{message.text}}></div> </span></div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 15px;padding-right: 18px;">
+                    <p class="pull-right" style="margin-bottom:0px">                           
+                            <a (click)="message.noFn()" >
+                                <button class="btn btn-outline-primary" style="padding-left: 18px;padding-right: 18px;">OK</button>
+                            </a>
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="modal-dialog alert-modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center modal-text">{{message.text}}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="pull-right" style="margin-bottom:0px">
+                            <a (click)="message?.noFn()||null">
+                                <button class="btn btn-outline-primary">OK</button>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>
+
+<div class="loading" *ngIf="loading">
+    <div id="overlay-loading">
+        <div class="loader"></div>
+    </div>
+    <!--<div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>-->
+</div>

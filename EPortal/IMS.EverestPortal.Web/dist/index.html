@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <title>Everest Portal</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link href="https://fonts.googleapis.com/css?family=Roboto" type="text/css" rel="stylesheet" />-->
+
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <link rel="stylesheet" type="text/css" href="app/content/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="app/content/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="app/content/css_dest/style_font.min.css">
+    <link rel="stylesheet" type="text/css" href="app/content/css_dest/style_ecp.min.css">
+
+    <!--<link rel="stylesheet" type="text/css" href="app/content/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="app/content/css/menu.css">
+    <link href="app/content/css/territories.css" rel="stylesheet" type="text/css"/>  
+    <link rel="stylesheet" type="text/css" href="app/content/css/side-bar-myClients.css">
+    <link rel="stylesheet" type="text/css" href="app/content/css/news-section.css" />
+    <link rel="stylesheet" type="text/css" href="app/content/css/myClients.css"> 
+    <link rel="stylesheet" type="text/css" href="app/content/css/loader.css">-->
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.min.js"></script>   
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <script type="text/javascript" src="app/content/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="app/content/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="app/content/js_dest/js_ecp.min.js"></script>
+
+    <!--<script type="text/javascript" src="app/content/js/everestMenu.js"></script>
+    <script type="text/javascript" src="app/content/js/typeahead.bundle.js"></script>
+    <script type="text/javascript" src="app/content/js/typeahead.js"></script>
+    <script type="text/javascript" src="app/content/js/custom.js"></script>
+      <script type="text/javascript" src="app/content/js/fluidGrid.js"></script>-->
+
+    <!--<script type="text/javascript" src="node_modules/html2canvas/dist/html2canvas.js"></script>
+    <script type="text/javascript" src="node_modules/jspdf/dist/jspdf.min.js"></script>-->
+    
+    <link rel="shortcut icon" href="app/content/images/logo_20-01.png">
+
+
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import('app').catch(function (err) { console.error(err); });
+    </script>
+</head>
+
+<body style="margin:0px;">
+    <!--<div style="width:100%">
+        <my-app>Loading content...</my-app>
+    </div>-->
+    <my-app>Loading content...</my-app>
+	<div id="overlay-loading" style="display: none">
+            <div class="loader"></div>
+    </div>
+
+<script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
+</html>

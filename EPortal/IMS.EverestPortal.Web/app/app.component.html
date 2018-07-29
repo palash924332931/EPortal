@@ -1,0 +1,250 @@
+﻿
+
+<div id="wrapper" [style.display]="isUserLogged!= true?'none':'block'">
+    <!--Everest Menu-->
+    <div id="header">
+        <div class="navbar navbar-default navbar-fixed-top everestMenuWrap" role="navigation">
+            <div class="container everestmenuCont">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="logowrapper">
+                        <img src="app/content/images/iqvia.png" alt="IQVIA" width="141" height="38" class="qims" />
+                        <img src="app/content/images/everest-01.png" width="140" height="30" alt="Everest Portal" class="everestLogo" />
+                    </div>
+
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="collapse navbar-collapse nav navbar-nav top-menu everestCollapMenu">
+                        <li style="width:60px; text-align:center" *ngIf="isHomeAccessible">
+                            <a [routerLink]="['']" id="ntext"><i class="glyphicon glyphicon-home homeicon"></i> </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="menuText" id="ntext"
+                               *ngIf="isSubMyClientsAccessible || isSubAllClientsAccessible || isAllocationAccess || isReleaseAccess"
+                               >Subscription</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a *ngIf="isSubMyClientsAccessible" [routerLink]="[isSubAllClientsAccessible ?'./subscription/myclients':'./subscriptions/mysubscriptions']">{{isSubAllClientsAccessible ? 'My Clients' : 'My Subscriptions' }}</a></li>
+                                <li><a *ngIf="isSubAllClientsAccessible" [routerLink]="['./subscriptions/allclients']">All Clients</a></li>
+                                <!--<li><a *ngIf="isSubMyClientsAccessible" (click)="navigateMyclients(isSubAllClientsAccessible ? 'myclients' : 'mysubscriptions')">{{isSubAllClientsAccessible ? 'My Clients' : 'My Subscriptions' }}</a></li>-->
+                                <!--<li><a *ngIf="isSubAllClientsAccessible" (click)="navigateAllclients()">All Clients</a></li>-->
+                                <li *ngIf="isAllocationAccess"><a [routerLink]="['/subscription/allocation']" href="#">Allocation</a></li>
+                                <li *ngIf="isReleaseAccess"><a [routerLink]="['/subscription/release']" href="#">Releases</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="menuText" id="ntext"
+                               *ngIf="isMyClientsAccessible || isAllClientsAccessible || isPackSearchAccessible"
+                               >Markets</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a *ngIf="isMyClientsAccessible" [routerLink]="[isAllClientsAccessible ?'./market/My-Client':'./markets/mymarkets']">{{isAllClientsAccessible ? 'My Clients' : 'My Markets' }}</a></li>
+                                <li><a *ngIf="isAllClientsAccessible" [routerLink]="['./marketAllClient/All-Client']">All Clients</a></li>
+                                <li><a [routerLink]="['/pack']" *ngIf="isPackSearchAccessible">Pack Search</a></li>
+                                 <!--<li><a [routerLink]="['/group/5/No Lock']" *ngIf="isPackSearchAccessible">Grouping</a></li>-->
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" *ngIf="isTerMyClientsAccessible || isTerAllClientsAccessible" data-toggle="dropdown" class="menuText" id="ntext">Territories</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a *ngIf="isTerMyClientsAccessible" [routerLink]="[isTerAllClientsAccessible?'./territory/My-Client':'./territories/myterritories']">{{isTerAllClientsAccessible ? 'My Clients' : 'My Territories' }}</a></li>
+                                <li><a *ngIf="isTerAllClientsAccessible" [routerLink]="['./territoryAllClient/All-Client']">All Clients</a></li>
+                                <!--<li><a [routerLink]="['/re-alignment']" >Re-Alignment</a></li>-->
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" *ngIf="isReportsAccessible || isAuditReportsAccessible" data-toggle="dropdown" class="menuText" id="ntext">System Reporting</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a *ngIf="isReportsAccessible" [routerLink]="['/report']" href="#">Reports</a></li>
+                                <li><a *ngIf="isAuditReportsAccessible" [routerLink]="['/AuditVersioning']" href="#">Audit Trail</a></li>
+                            </ul>
+                        </li>
+
+                        <!--</li>-->
+                        <li class="dropdown">
+                            <!--<a href="http://everest.imshealth.com/admin.html" target="_blank" data-toggle="dropdown" class="menuText" id="ntext">Admin</a>-->
+                            <a *ngIf="isContentAministrationAccessible || isUserManagementAccessible || isInternalAdmin || isMasterDataAccessible" href="#" data-toggle="dropdown" class="menuText" id="ntext">Admin</a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a *ngIf="isContentAministrationAccessible" [routerLink]="['/admin']" href="#">Content Administration</a></li>
+                                <li><a *ngIf="isUserManagementAccessible" [routerLink]="['/usermanagement']" href="#">User Management</a></li>
+                                <li><a *ngIf="isInternalAdmin" [routerLink]="['/importData']" href="#">Import/Export</a></li>
+                                <li><a *ngIf="isInternalAdmin" [routerLink]="['/subscriptionAndDeliverablesCreate']" href="#">Subscription/Deliverables</a></li>
+                                <li><a *ngIf="isMasterDataAccessible" [routerLink]="['/masterData']" href="#">Master Data</a></li>
+                                <!--<li><a *ngIf="isAdminAccessible" [routerLink]="['/extraction']" href="#">Extract</a></li>-->
+                                <li><a *ngIf="isUserManagementAccessible" [routerLink]="['/unlock-module']" href="#">Unlock Module</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+
+                    <ul class="nav navbar-nav navbar-right usernav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="ntext">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="UsernamemenuText"><span class="usrNametext">Hi {{username}}</span></span>
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="navbar-login usernavLogin">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <p class="text-center">
+                                                    <span class="glyphicon glyphicon-user usericonbig"></span>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <!--<p class="text-left"><strong>{{username}}</strong></p>-->
+                                                <p class="text-left small">{{userEmail}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="navbar-login navbar-login-session userloginSession">
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-primary" (click)="changePassword()">Change Password</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul *ngIf="isMaintenanceDateAvailable" class="nav navbar-nav navbar-right">
+                        <li>
+                            <div style="background-color: #FF530D; padding: 5px 20px 5px 20px; border-radius: 10px; color: #fff; font-weight: bold; margin-top: 17px;">
+                                {{maintenanceMonth}} maintenance closes on {{maintenanceDate}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Menu ends-->
+    </div><!-- #header -->
+    <div class="bodyContent">
+        <router-outlet></router-outlet>
+    </div>
+    <!-- #footer starts-->
+    <div id="footer">
+        <div class="footerBar">
+            <div class="box col-md-16">
+                <div class="footerText">IMS Health Australia. Copyright 2017</div>
+            </div>
+        </div>
+    </div><!-- #footer -->
+</div>
+<div *ngIf='isUserLogged !== true'>
+    <login-component></login-component>
+</div>
+
+<div bsModal #pwdModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialogSave">
+        <div class="modal-content subModDivWrap" style="">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="cancelPasswordChange()" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="oldPwd">Old Password:</label>
+                        <input type="password" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="oldPwd" name="oldPwd" [(ngModel)]="m_oldPwd" />
+                        <span id="oldPwdErr" style="color:red"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newPwd">New Password (minimum length: 8)</label>
+                        <input type="password" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="newPwd" name="newPwd" [(ngModel)]="m_newPwd" />
+                        <span id="newPwdErr" style="color:red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPwd">Confirm Password (minimum length: 8):</label>
+                        <input type="password" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="confirmPwd" name="confirmPwd" [(ngModel)]="m_confirmPwd" />
+                        <span id="confirmPwdErr" style="color:red"></span>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" [class.disabled]="isClickedOnce" (click)="m_changePassword()">Change Password</button>
+                    <button type="button" class="btn btn-primary" (click)="cancelPasswordChange()">Cancel</button>
+                    <br />
+                    <span id="ResetPwdSuccess" style="color:green"></span>
+                    <span id="changePwdErr" style="color:red"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #retModal="bs-modal" class="modal fade subModalWrapper" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialogSave" style="width:500px !important">
+        <div class="modal-content subModDivWrap" style="">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="closeDialog()" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Update Password</h4>
+            </div>
+
+            <div class="modal-body">
+                <div style="line-height: 200%;">
+
+                    Password updated. <br />
+
+                </div>
+
+                <br /><br />
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="closeDialog()">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #errorModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:0px solid">
+                <h4 class="modal-title pull-left">Everest Portal</h4>
+                <button type="button" class="close pull-right" (click)="errModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Application Error has occurred. Please contact support.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="exceptionModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:0px solid">
+                <h4 class="modal-title pull-left">Everest Portal</h4>
+                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="exceptionModalContent">
+                Application Error has occurred. Please contact support.
+            </div>
+        </div>
+    </div>
+</div>
+<alert></alert>

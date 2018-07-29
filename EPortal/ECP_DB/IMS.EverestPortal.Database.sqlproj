@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>IMS.EverestPortal.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{b8dab1a3-52d6-4acf-871b-3ca3b2944ade}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ECP_DB</RootNamespace>
+    <AssemblyName>ECP_DB</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <GenerateCreateScript>True</GenerateCreateScript>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="copy\" />
+    <Folder Include="copy\Tables\" />
+    <Folder Include="IRP\" />
+    <Folder Include="IRP\Tables\" />
+    <Folder Include="SERVICE\" />
+    <Folder Include="SERVICE\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="SERVICE\Stored Procedures\" />
+    <Folder Include="dbo\User Defined Types\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\NewsAlerts.sql" />
+    <Build Include="dbo\Tables\BaseFilter_History.sql" />
+    <Build Include="dbo\Tables\OutletBrickAllocations.sql" />
+    <Build Include="dbo\Tables\deliveryterritory_Backup.sql" />
+    <Build Include="dbo\Tables\Deliverables_History.sql" />
+    <Build Include="dbo\Tables\OutletBrickAllocations_BK.sql" />
+    <Build Include="dbo\Tables\OutletBrickAllocations_old.sql" />
+    <Build Include="dbo\Tables\DeliveryClient_History.sql" />
+    <Build Include="dbo\Tables\PackMarketBases.sql" />
+    <Build Include="dbo\Tables\DeliveryMarket_History.sql" />
+    <Build Include="dbo\Tables\Period.sql" />
+    <Build Include="dbo\Tables\DeliveryTerritory_History.sql" />
+    <Build Include="dbo\Tables\PopularLinks.sql" />
+    <Build Include="dbo\Tables\DeliveryThirdParty_History.sql" />
+    <Build Include="dbo\Tables\RAW_TDW-ECP_DIM_MOLECULE.sql" />
+    <Build Include="dbo\Tables\RAW_TDW-ECP_DIM_OUTLET.sql" />
+    <Build Include="dbo\Tables\Groups_History.sql" />
+    <Build Include="dbo\Tables\RAW_TDW-ECP_DIM_PRODUCT.sql" />
+    <Build Include="dbo\Tables\ClientList_GoLive_1.0.sql" />
+    <Build Include="copy\Tables\Clients.sql" />
+    <Build Include="IRP\Tables\CLIENTEXCEPTIONS.sql" />
+    <Build Include="dbo\Tables\Levels_History.sql" />
+    <Build Include="IRP\Tables\ClientMFR.sql" />
+    <Build Include="copy\Tables\Subscription.sql" />
+    <Build Include="dbo\Tables\MarketBase_History.sql" />
+    <Build Include="dbo\Tables\MarketDefBaseMap_History.sql" />
+    <Build Include="dbo\Tables\MarketDefinitions_History.sql" />
+    <Build Include="dbo\Tables\ReportWriter.sql" />
+    <Build Include="dbo\Tables\MarketDefPack_History.sql" />
+    <Build Include="dbo\Tables\Restriction.sql" />
+    <Build Include="dbo\Tables\_BaseFilters_.sql" />
+    <Build Include="dbo\Tables\LevelTerritory.sql" />
+    <Build Include="copy\Tables\SubscriptionMarket.sql" />
+    <Build Include="dbo\Tables\AccessPrivilege.sql" />
+    <Build Include="dbo\Tables\OutletBrickAllocations_History.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\GroupLevelTerritory.sql" />
+    <Build Include="dbo\Tables\Action.sql" />
+    <Build Include="copy\Tables\ClientMarketBases.sql" />
+    <Build Include="dbo\Tables\ReportFilters_History.sql" />
+    <Build Include="dbo\Tables\RoleAction.sql" />
+    <Build Include="dbo\Tables\AdditionalFilters.sql" />
+    <Build Include="dbo\Tables\Subscription_History.sql" />
+    <Build Include="dbo\Tables\Extraction.sql" />
+    <Build Include="dbo\Tables\Section.sql" />
+    <Build Include="dbo\Tables\Excluded_DimProduct_Expanded.sql" />
+    <Build Include="dbo\Tables\aus_sales_report.sql" />
+    <Build Include="dbo\Tables\ExtractionJob.sql" />
+    <Build Include="dbo\Tables\BaseFilters.sql" />
+    <Build Include="dbo\Tables\SubscriptionMarket_History.sql" />
+    <Build Include="dbo\Tables\Service.sql" />
+    <Build Include="dbo\Tables\BaseFilters_bak.sql" />
+    <Build Include="dbo\Tables\Territories_History.sql" />
+    <Build Include="dbo\Tables\ServiceConfiguration.sql" />
+    <Build Include="dbo\Tables\Brick_XYCords.sql" />
+    <Build Include="dbo\Tables\CADPages.sql" />
+    <Build Include="dbo\Tables\ServiceTerritory.sql" />
+    <Build Include="dbo\Tables\User_History.sql" />
+    <Build Include="dbo\Tables\ExtractionJobStatus.sql" />
+    <Build Include="dbo\Tables\ClientMarketBases.sql" />
+    <Build Include="dbo\Tables\IRPImportLog.sql" />
+    <Build Include="dbo\Tables\Source.sql" />
+    <Build Include="dbo\Tables\ClientMarketBases_Extended.sql" />
+    <Build Include="dbo\Tables\Subscription.sql" />
+    <Build Include="dbo\Tables\ClientMFR.sql" />
+    <Build Include="dbo\Tables\UserClient_History.sql" />
+    <Build Include="dbo\Tables\Subscription_Extended.sql" />
+    <Build Include="dbo\Tables\IRPQCMarketExcludedPacks.sql" />
+    <Build Include="dbo\Tables\ClientNumberMap.sql" />
+    <Build Include="dbo\Tables\UserRole_History.sql" />
+    <Build Include="dbo\Tables\SubscriptionMarket.sql" />
+    <Build Include="dbo\Tables\ClientPackException.sql" />
+    <Build Include="dbo\Tables\tblBrick.sql" />
+    <Build Include="copy\Tables\ClientMap.sql" />
+    <Build Include="dbo\Tables\tblOutlet.sql" />
+    <Build Include="dbo\Tables\ClientRelease.sql" />
+    <Build Include="dbo\Tables\Market_Base_Dimension_Mapping_Prod.sql" />
+    <Build Include="IRP\Tables\DimensionBaseMap_BK.sql" />
+    <Build Include="dbo\Tables\ClientRelease_Extended.sql" />
+    <Build Include="dbo\Tables\Territories_Extended.sql" />
+    <Build Include="dbo\Tables\BrickGroupLevelTerritory.sql" />
+    <Build Include="dbo\Tables\Clients.sql" />
+    <Build Include="dbo\Tables\territories2.sql" />
+    <Build Include="dbo\Tables\SelectedClients.sql" />
+    <Build Include="dbo\Tables\Test_Table.sql" />
+    <Build Include="dbo\Tables\CONFIG_ECP_MKT_DEF_FILTERS.sql" />
+    <Build Include="dbo\Tables\marketbases_BK.sql" />
+    <Build Include="dbo\Tables\ThirdParty.sql" />
+    <Build Include="dbo\Tables\Country.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\DataType.sql" />
+    <Build Include="dbo\Tables\basefilters_BK.sql" />
+    <Build Include="dbo\Tables\SelectedMarkets.sql" />
+    <Build Include="dbo\Tables\clientmarketbases_BK.sql" />
+    <Build Include="dbo\Tables\Deliverables.sql" />
+    <Build Include="dbo\Tables\UserClient.sql" />
+    <Build Include="dbo\Tables\DeliveryClient.sql" />
+    <Build Include="IRP\Tables\OutletType.sql" />
+    <Build Include="dbo\Tables\UserLogin_History.sql" />
+    <Build Include="dbo\Tables\DeliveryClient_Extended.sql" />
+    <Build Include="dbo\Tables\deliverablesTemp.sql" />
+    <Build Include="dbo\Tables\deliveryclientTemp.sql" />
+    <Build Include="dbo\Tables\UserLogin_History1.sql" />
+    <Build Include="dbo\Tables\DeliveryMarket.sql" />
+    <Build Include="dbo\Tables\IRG_Deliverables_NonIAM.sql" />
+    <Build Include="dbo\Tables\UserRole.sql" />
+    <Build Include="dbo\Tables\DeliveryTerritory.sql" />
+    <Build Include="IRP\Tables\OutletLimitedOwnData.sql" />
+    <Build Include="dbo\Tables\UserType.sql" />
+    <Build Include="dbo\Tables\Groups.sql" />
+    <Build Include="dbo\Tables\DeliveryThirdParty.sql" />
+    <Build Include="dbo\Tables\BrickIncorrectLookup.sql" />
+    <Build Include="dbo\Tables\z_Items.sql" />
+    <Build Include="dbo\Tables\BrickIncorrectNullLookup.sql" />
+    <Build Include="dbo\Tables\DeliveryType.sql" />
+    <Build Include="dbo\Tables\z_UserList.sql" />
+    <Build Include="IRP\Tables\Bases.sql" />
+    <Build Include="dbo\Tables\DIMProduct_Expanded.sql" />
+    <Build Include="dbo\Tables\Levels.sql" />
+    <Build Include="IRP\Tables\BasesFields.sql" />
+    <Build Include="IRP\Tables\CLD.sql" />
+    <Build Include="dbo\Tables\MarketDefinitionBaseMaps.sql" />
+    <Build Include="dbo\Tables\DIMOutlet.sql" />
+    <Build Include="IRP\Tables\Client.sql" />
+    <Build Include="dbo\Tables\DIMProduct_Expanded_BK.sql" />
+    <Build Include="IRP\Tables\ClientMap.sql" />
+    <Build Include="dbo\Tables\DMMolecule.sql" />
+    <Build Include="dbo\Tables\Territories.sql" />
+    <Build Include="IRP\Tables\Dimension.sql" />
+    <Build Include="dbo\Tables\DMMolecule_BK.sql" />
+    <Build Include="IRP\Tables\DimensionBaseMap.sql" />
+    <Build Include="IRP\Tables\DimensionType.sql" />
+    <Build Include="dbo\Tables\MarketBases.sql" />
+    <Build Include="dbo\Tables\File.sql" />
+    <Build Include="IRP\Tables\GeographyDimOptions.sql" />
+    <Build Include="dbo\Tables\t2.sql" />
+    <Build Include="IRP\Tables\GroupNumberMap.sql" />
+    <Build Include="dbo\Tables\FileType.sql" />
+    <Build Include="IRP\Tables\IMSBrickMaster.sql" />
+    <Build Include="IRP\Tables\IMSBrickOutletMaster.sql" />
+    <Build Include="dbo\Tables\Frequency.sql" />
+    <Build Include="IRP\Tables\IMSOutletMaster.sql" />
+    <Build Include="IRP\Tables\Items.sql" />
+    <Build Include="dbo\Tables\FrequencyType.sql" />
+    <Build Include="IRP\Tables\dimensionbasemap_backup.sql" />
+    <Build Include="IRP\Tables\Levels.sql" />
+    <Build Include="IRP\Tables\OutletMaster.sql" />
+    <Build Include="dbo\Tables\GoogleMapBricks.sql" />
+    <Build Include="IRP\Tables\RD.sql" />
+    <Build Include="dbo\Tables\GoogleMapTerritories.sql" />
+    <Build Include="IRP\Tables\Report.sql" />
+    <Build Include="dbo\Tables\MarketGroups.sql" />
+    <Build Include="IRP\Tables\ReportParameter.sql" />
+    <Build Include="IRP\Tables\Writer.sql" />
+    <Build Include="dbo\Tables\MarketGroupPacks.sql" />
+    <Build Include="SERVICE\Tables\AU9_CLIENT_MKT_PACK.sql" />
+    <Build Include="dbo\Tables\Groups_old.sql" />
+    <Build Include="SERVICE\Tables\AU9_CLIENT_TERR.sql" />
+    <Build Include="dbo\Tables\MarketGroupMappings.sql" />
+    <Build Include="dbo\Tables\groups2.sql" />
+    <Build Include="dbo\Tables\DeliveryReport.sql" />
+    <Build Include="dbo\Tables\MarketGroupFilters.sql" />
+    <Build Include="SERVICE\Tables\AU9_CLIENT_TERR_RAW.sql" />
+    <Build Include="dbo\Tables\HISTORY_TDW-ECP_DIM_MOLECULE.sql" />
+    <Build Include="SERVICE\Tables\AU9_CLIENT_TERR_TYP.sql" />
+    <Build Include="dbo\Tables\HISTORY_TDW-ECP_DIM_OUTLET.sql" />
+    <Build Include="dbo\Tables\HISTORY_TDW-ECP_DIM_PRODUCT.sql" />
+    <Build Include="dbo\Tables\subscription11dec.sql" />
+    <Build Include="dbo\Tables\ReportFieldList.sql" />
+    <Build Include="dbo\Tables\MarketAttributes.sql" />
+    <Build Include="dbo\Tables\HISTORY_TDW-ECP_DIM_PRODUCTx.sql" />
+    <Build Include="dbo\Tables\BrickIncorrectLookup_additional.sql" />
+    <Build Include="dbo\Tables\IRG_CAT_SEL.sql" />
+    <Build Include="dbo\Tables\ReportFieldsByModule.sql" />
+    <Build Include="dbo\Tables\IRG_Deliverables_IAM.sql" />
+    <Build Include="dbo\Tables\ReportFilters.sql" />
+    <Build Include="dbo\Tables\AU9_CLIENT_TERR_TEMP.sql" />
+    <Build Include="dbo\Tables\IRG_ExtractionType.sql" />
+    <Build Include="dbo\Tables\ReportModules.sql" />
+    <Build Include="dbo\Tables\ReportSection.sql" />
+    <Build Include="dbo\Tables\levels2.sql" />
+    <Build Include="dbo\Tables\Listings.sql" />
+    <Build Include="dbo\Tables\LockHistories.sql" />
+    <Build Include="dbo\Tables\MarketBaseMapQuery.sql" />
+    <Build Include="dbo\Tables\Maintenance_Calendar.sql" />
+    <Build Include="dbo\Tables\TxR_305.sql" />
+    <Build Include="dbo\Tables\PasswordHistory.sql" />
+    <Build Include="dbo\Tables\Maintenance_Calendar_Staging.sql" />
+    <Build Include="dbo\Tables\Market_Base_Dimension_Mapping_Prod_U.sql" />
+    <Build Include="dbo\Tables\PackExclusionQuery.sql" />
+    <Build Include="dbo\Tables\Market_Base_Dimension_Mapping_Prod_Backup.sql" />
+    <Build Include="dbo\Tables\ResetToken.sql" />
+    <Build Include="dbo\Tables\MarketDefinitionPacks.sql" />
+    <Build Include="dbo\Tables\ExcludedPacksReport.sql" />
+    <Build Include="dbo\Tables\MarketDefinitions.sql" />
+    <Build Include="dbo\Tables\Dimension_12Dec.sql" />
+    <Build Include="dbo\Tables\AU9_HOLIDAY.sql" />
+    <Build Include="dbo\Tables\Market_Base_Dimension_Mapping_Prod_U5.sql" />
+    <Build Include="dbo\Tables\Market_Base_Dimension_Mapping_Prod_U2.sql" />
+    <Build Include="dbo\Tables\MarketDefinitions_Extended.sql" />
+    <Build Include="dbo\Tables\DeliveryReportName.sql" />
+    <Build Include="dbo\Tables\MarketDefinitionsPackTest.sql" />
+    <Build Include="dbo\Tables\excluded_dimproduct_expanded_19012018.sql" />
+    <Build Include="dbo\Tables\MarketDefWithMarketBase.sql" />
+    <Build Include="dbo\Tables\MatrketDefinition.sql" />
+    <Build Include="dbo\Tables\Module.sql" />
+    <Build Include="dbo\Tables\QCDataRefresh.sql" />
+    <Build Include="dbo\Tables\DMMoleculeConcat.sql" />
+    <Build Include="dbo\Tables\MonthlyDataSummaries.sql" />
+    <Build Include="dbo\Tables\QCTDWWriteback.sql" />
+    <Build Include="dbo\Tables\MonthlyNewproducts.sql" />
+    <Build Include="dbo\Tables\AdditionalFilter_History.sql" />
+    <Build Include="dbo\Views\GoogleMapStates.sql" />
+    <Build Include="dbo\Views\vw_GroupsLevelWise.sql" />
+    <Build Include="dbo\Views\vw_Outlet_Combined.sql" />
+    <Build Include="dbo\Views\vw_OutletBrickAll.sql" />
+    <Build Include="dbo\Views\vwGroupView.sql" />
+    <Build Include="dbo\Views\vwBrick.sql" />
+    <Build Include="dbo\Views\vwOutlet.sql" />
+    <Build Include="dbo\Views\vwTerritories.sql" />
+    <Build Include="dbo\Views\vw_UserRoleMapping.sql" />
+    <Build Include="dbo\Views\vwDeliverables.sql" />
+    <Build Include="Security\INTERNAL_SYDG-SQL_SYDSCLP100P_RW.sql" />
+    <Build Include="Security\ECPUser.sql" />
+    <Build Include="Security\ECPUser_Read.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Functions\fnGetDefaultStartDate.sql" />
+    <Build Include="dbo\Functions\GetStateFromBrick.sql" />
+    <Build Include="dbo\Stored Procedures\SP_LevelTerritory.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportDuplicateTerritoryDefinition.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportMarketDefinition.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GroupLevelTerritory.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportMarketDefinitionMultipleMBAndPack.sql" />
+    <Build Include="dbo\Stored Procedures\SP_BrickGroupLevelTerritory.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportPackBaseMarketDefinition.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportTerritoryCustomGroupNumber.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportTerritoryDefinition.sql" />
+    <Build Include="dbo\Stored Procedures\IRPProcessDeliverablesIAM.sql" />
+    <Build Include="dbo\Stored Procedures\IRPProcessDeliverablesNonIAM.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_TERRITORY_OUTPUT.sql" />
+    <Build Include="dbo\Stored Procedures\EditOutletBrickAllocations.sql" />
+    <Build Include="dbo\Stored Procedures\z_ChangeFieldLength.sql" />
+    <Build Include="dbo\Stored Procedures\EditMarketDefinition.sql" />
+    <Build Include="dbo\Stored Procedures\CombineMultipleMarketBasesForAll.sql" />
+    <Build Include="dbo\Stored Procedures\RevalidateMarketDefinitionV2.sql" />
+    <Build Include="dbo\Stored Procedures\CopyMarketBase.sql" />
+    <Build Include="dbo\Stored Procedures\CreateUser.sql" />
+    <Build Include="dbo\Stored Procedures\CreateUserFromList.sql" />
+    <Build Include="dbo\Stored Procedures\CreateUserRolefromList.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteMarketBase.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteMarketDefinition.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteMarketDefinitionBaseMap.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteSubscibedID.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportTerritoryDefinitionForClient.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllBricks.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllOutlets.sql" />
+    <Build Include="dbo\Stored Procedures\GetBroadcast_Emails.sql" />
+    <Build Include="dbo\Stored Procedures\GetClientMarketBase.sql" />
+    <Build Include="dbo\Stored Procedures\GetClientMarketBaseDetails.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportMarketQC.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportLogStatus.sql" />
+    <Build Include="dbo\Stored Procedures\GetEffectedMarketDefName.sql" />
+    <Build Include="dbo\Stored Procedures\GetLandingPageContents.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportMarketDefinitionForClient.sql" />
+    <Build Include="dbo\Stored Procedures\GetLandingPageContents_bk.sql" />
+    <Build Include="dbo\Stored Procedures\GetMarketBaseForMarketDef.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportTerritoryQC.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportDeliveryMarketAndTerritory.sql" />
+    <Build Include="dbo\Stored Procedures\GetPacksFromClientMarketBase.sql" />
+    <Build Include="dbo\Stored Procedures\GetPacksFromMarketBase.sql" />
+    <Build Include="dbo\Stored Procedures\GetPacksFromMarketBaseMap.sql" />
+    <Build Include="dbo\Stored Procedures\GetUpdatedBricks.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportMarketDefinitionMultipleMBAndPack_TEMP.sql" />
+    <Build Include="dbo\Stored Procedures\GetUpdatedOutlets.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessDelta.sql" />
+    <Build Include="dbo\Stored Procedures\InsertTerritoryIdGroupTable.sql" />
+    <Build Include="dbo\Stored Procedures\IRPDeleteGroupsLevelsBricks.sql" />
+    <Build Include="dbo\Stored Procedures\IRPDeleteMarketDefinitionFromDimensionID.sql" />
+    <Build Include="dbo\Stored Procedures\IRPDeleteTerritory.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_AU9_CLIENT_MKT_PACK_CLIENT_SPECIFIC.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportDeliverablesIAM.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_TERRITORY_OUTPUT_1.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportDeliverablesNonIAM.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportMarketDefinition_singleMB.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_TERRITORY_OUTPUT_2.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportMarketDefinition2.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportPackBaseMarketDefinitionV2.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportPackBaseMarketDefinitionV3.sql" />
+    <Build Include="dbo\Stored Procedures\UnsubscribeMarketBase.sql" />
+    <Build Include="dbo\Stored Procedures\PopulateMaintenanceCalendar.sql" />
+    <Build Include="dbo\Stored Procedures\prGetMarketBase.sql" />
+    <Build Include="dbo\Stored Procedures\procBuildQueryFromMarketBase.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessAllMarketDefinitionsForDelta.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessMarketDefinitionForNewDataLoad.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessPacksFromMarketBaseMap.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessTerritoryForDelta.sql" />
+    <Build Include="dbo\Stored Procedures\RemoveExpiredMarketBases.sql" />
+    <Build Include="dbo\Stored Procedures\RevalidateMarketDefinition.sql" />
+    <Build Include="dbo\Stored Procedures\SP_TEST.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateBricks_AfterImport.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCustomGroupNumberForAllTerritories.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateDataRefreshType.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateMarketBaseId.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateMarketDefinitionId.sql" />
+    <Build Include="dbo\Stored Procedures\z_ECP_AddExtendedTables.sql" />
+    <Build Include="dbo\Stored Procedures\z_QC.sql" />
+    <Build Include="dbo\Stored Procedures\z_QC_1.sql" />
+    <Build Include="dbo\Stored Procedures\z_WebpageSecurity.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_AU9_CLIENT_MKT_PACK.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_AU9_CLIENT_TERR.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_AU9_CLIENT_TERR_TYP.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportDeliverablesNonIAM_TEST.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_CT_LVL1.sql" />
+    <Build Include="dbo\Stored Procedures\MaintenanceCalendarRemainder.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_CT_LVL2.sql" />
+    <Build Include="dbo\Stored Procedures\SendPasswordExpiryNotificationEmail.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_CT_LVL3.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_CT_LVL4.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportMarketDefinitionMultipleMBAndPack_prev.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_CT_LVL5.sql" />
+    <Build Include="dbo\Stored Procedures\CombineMultipleMarketBasesForMarket.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_CT_LVL6.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportDeliverablesIAM_TEST.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_CT_LVL7.sql" />
+    <Build Include="dbo\Stored Procedures\SaveMarketGroupPacks.sql" />
+    <Build Include="SERVICE\Stored Procedures\CREATE_CT_LVL8.sql" />
+    <Build Include="dbo\Stored Procedures\GetMarketGroup.sql" />
+    <Build Include="dbo\Stored Procedures\DBScript_InitTables.sql" />
+    <Build Include="dbo\Stored Procedures\GetMarketGroupPacks.sql" />
+    <Build Include="dbo\Stored Procedures\CreateDMMoleculeConcat.sql" />
+    <Build Include="dbo\Stored Procedures\GENERATE_DIM_MOLECULE.sql" />
+    <Build Include="dbo\Stored Procedures\SaveMarketGroupFilters.sql" />
+    <Build Include="dbo\Stored Procedures\GENERATE_DIM_OUTLET.sql" />
+    <Build Include="dbo\Stored Procedures\GENERATE_DIM_PROD.sql" />
+    <Build Include="dbo\Stored Procedures\GenerateBricksAndOutlets.sql" />
+    <Build Include="dbo\Stored Procedures\GenerateTerritoryStructureReport.sql" />
+    <Build Include="dbo\Stored Procedures\SaveMarketGroup.sql" />
+    <Build Include="dbo\Stored Procedures\BuildQueryForMarketBaseMap.sql" />
+    <Build Include="dbo\Stored Procedures\BuildQueryForNewDataLoad.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteMarketBase_old.sql" />
+    <Build Include="dbo\Stored Procedures\BuildQueryForDelta.sql" />
+    <Build Include="dbo\Stored Procedures\GetPacksFromMarketBaseHistory.sql" />
+    <Build Include="dbo\Stored Procedures\BuildQueryForExclusionMarketBaseMap.sql" />
+    <Build Include="dbo\Stored Procedures\BuildQueryForExclusionMarketDef.sql" />
+    <Build Include="dbo\Stored Procedures\IRPProcessDeliverablesIAM_TEMP.sql" />
+    <Build Include="dbo\Stored Procedures\BuildQueryForExclusion.sql" />
+    <Build Include="dbo\Stored Procedures\GenerateExcludedPacksReport.sql" />
+    <Build Include="dbo\Stored Procedures\IRPProcessDeliverablesNonIAM_TEMP.sql" />
+    <Build Include="dbo\Stored Procedures\CheckUserLogin.sql" />
+    <Build Include="dbo\User Defined Types\TYP_MarketDefinitionPacks.sql" />
+    <Build Include="dbo\User Defined Types\TYP_OutletBrickAllocations.sql" />
+    <Build Include="dbo\User Defined Types\typGroupView.sql" />
+    <Build Include="dbo\User Defined Types\typMarketGroupPack.sql" />
+    <Build Include="dbo\User Defined Types\typMarketGroupFilter.sql" />
+    <Build Include="Security\copy.sql" />
+    <Build Include="Security\group.sql" />
+    <Build Include="Security\IRP.sql" />
+    <Build Include="Security\SERVICE.sql" />
+    <Build Include="IRP\Tables\WriterParameterValue.sql" />
+    <Build Include="IRP\Tables\WriterParameter.sql" />
+    <Build Include="dbo\Tables\MarketBaseQueue.sql" />
+    <Build Include="dbo\Stored Procedures\PutInMarketBaseQueue.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessMarketBaseQueue.sql" />
+    <Build Include="dbo\Stored Procedures\ImportNONIAMDeliverablesFromIRG.sql" />
+    <Build Include="dbo\Stored Procedures\ImportIAMDeliverablesFromIRG.sql" />
+    <Build Include="dbo\Stored Procedures\GetIRPDimensionsForMarketbase.sql" />
+    <Build Include="dbo\Stored Procedures\GetDimensionBaseMaps.sql" />
+    <Build Include="dbo\Stored Procedures\GenerateQCForDataRefresh.sql" />
+    <Build Include="dbo\Stored Procedures\EditDimensionBaseMap.sql" />
+    <Build Include="dbo\Stored Procedures\CREATE_TERRITORY_OUTPUT_2.sql" />
+    <Build Include="dbo\Stored Procedures\CREATE_TERRITORY_OUTPUT_1.sql" />
+    <Build Include="dbo\User Defined Types\TYPDimensionBaseMap.sql" />
+    <Build Include="dbo\Tables\LogMarketDataRefresh.sql" />
+    <Build Include="dbo\Stored Procedures\GenerateMarketDefinitionsReport.sql" />
+    <Build Include="dbo\Views\vwMarketDefinitionPacks.sql" />
+    <Build Include="dbo\Views\vwTerritories_LO.sql" />
+    <Build Include="dbo\Views\vwMarket_LO.sql" />
+    <Build Include="dbo\Tables\territories_Backup.sql" />
+    <Build Include="dbo\Tables\Tdw_export_history.sql" />
+    <Build Include="dbo\Tables\tbloutlet_temp.sql" />
+    <Build Include="dbo\Tables\tblBrick_temp.sql" />
+    <Build Include="dbo\Tables\subscription_bkup.sql" />
+    <Build Include="dbo\Tables\reportfieldsBymodule_temp.sql" />
+    <Build Include="dbo\Tables\reportFieldList_temp.sql" />
+    <Build Include="dbo\Tables\QCLog.sql" />
+    <Build Include="dbo\Tables\outletbrickallocations_Backup.sql" />
+    <Build Include="dbo\Tables\nielsentemp.sql" />
+    <Build Include="dbo\Tables\MDefG2.sql" />
+    <Build Include="dbo\Tables\MDefG.sql" />
+    <Build Include="dbo\Tables\MarketGroups_History.sql" />
+    <Build Include="dbo\Tables\MarketGroupPacks_History.sql" />
+    <Build Include="dbo\Tables\MarketGroupMappings_History.sql" />
+    <Build Include="dbo\Tables\MarketGroupFilters_History.sql" />
+    <Build Include="dbo\Tables\MarketDefinitionReport.sql" />
+    <Build Include="dbo\Tables\MarketDefinitionPacksAuditReport.sql" />
+    <Build Include="dbo\Tables\MarketBaseDeleteQueue.sql" />
+    <Build Include="dbo\Tables\MarketAttributes_History.sql" />
+    <Build Include="dbo\Tables\AuditMarketDefGroupingReport.sql" />
+    <Build Include="dbo\Functions\GetServiceType.sql" />
+    <Build Include="dbo\Stored Procedures\TransferGroupInfoToNewStructure_1.sql" />
+    <Build Include="dbo\Stored Procedures\PutInMarketBaseDeleteQueue.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessMarketBaseDeleteQueue.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessAllMarketDefinitionsForDelta_PREV.sql" />
+    <Build Include="dbo\Stored Procedures\MaintenanceCalendar_EmailNotification.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportDeliveryMarketAndTerritory_backup.sql" />
+    <Build Include="dbo\Stored Procedures\GetPacksFromMarketBaseMap_OLD.sql" />
+    <Build Include="dbo\Stored Procedures\GenerateMarketDefinitionReport.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteMarketBaseFinal.sql" />
+    <Build Include="dbo\Stored Procedures\CombineMultipleMarketBasesForAll_test.sql" />
+    <Build Include="dbo\Stored Procedures\AuditSubmitMarketDefinition.sql" />
+    <Build Include="dbo\Stored Procedures\AuditMarketDefSubmitStatus.sql" />
+    <Build Include="dbo\Stored Procedures\AuditMarketDefPacksReport.sql" />
+    <Build Include="dbo\Stored Procedures\AuditMarketDefNameReport.sql" />
+    <Build Include="dbo\Stored Procedures\AuditMarketDefGroupReport.sql" />
+    <Build Include="dbo\Stored Procedures\AuditMarketDefBaseMapReport.sql" />
+    <Build Include="dbo\Stored Procedures\AuditMarketBaseSettingsReport.sql" />
+    <Build Include="dbo\Stored Procedures\AuditMarketBaseNameReport.sql" />
+    <Build Include="dbo\Stored Procedures\AuditDeleteHistoryOfMarket.sql" />
+    <Build Include="dbo\Tables\PeriodForFrequency.sql" />
+    <Build Include="dbo\Tables\SubChannels.sql" />
+    <Build Include="dbo\Tables\EntityType.sql" />
+    <Build Include="dbo\Views\vw_Client.sql" />
+    <Build Include="dbo\Views\vw_Market.sql" />
+    <Build Include="dbo\Views\vw_MarketBase.sql" />
+    <Build Include="dbo\Views\vw_Territory.sql" />
+    <Build Include="dbo\Tables\vw_Everest_TXR_FeedOUT.sql" />
+    <Build Include="dbo\Tables\TerritoryList.sql" />
+    <Build Include="dbo\Tables\MarketGroupQuery.sql" />
+    <Build Include="dbo\Tables\DeleteLogTable_1.sql" />
+    <Build Include="dbo\Stored Procedures\sp_WhoIsActive.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessPacksFromMarketGroup.sql" />
+    <Build Include="dbo\Stored Procedures\ProcessMarketGroupForDelta.sql" />
+    <Build Include="dbo\Stored Procedures\MIPImportTerritoryDefinitionForClient.sql" />
+    <Build Include="dbo\Stored Procedures\MIPImportTerritoryDefinition.sql" />
+    <Build Include="dbo\Stored Procedures\MIPDeleteTerritory.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportTerritoryDefinitionForAll.sql" />
+    <Build Include="dbo\Stored Procedures\IRPImportMarketDefinitionForAll.sql" />
+    <Build Include="dbo\Stored Procedures\IRPDeleteTerritory_WithAudit_1.sql" />
+    <Build Include="dbo\Stored Procedures\GenerateTerritoryStructureReportForAll.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteMarketDefinition_WithAudit_1.sql" />
+    <Build Include="dbo\Stored Procedures\BuildQueryForMarketGroup.sql" />
+    <Build Include="dbo\Stored Procedures\BuildQueryForGroupDelta.sql" />
+    <Build Include="dbo\Stored Procedures\AuditSubmitMarketDefinition-back.sql" />
+    <Build Include="dbo\Stored Procedures\CreateUnassignedGroup.sql" />
+    <Build Include="dbo\Tables\UnassignedBrickOutlet.sql" />
+    <Build Include="dbo\Stored Procedures\SyncroniseUnassignedBricksOutlets.sql" />
+    <Build Include="dbo\Stored Procedures\SyncAllTerritoriesUnassigned.sql" />
+    <Build Include="dbo\Views\vw_EverestTXR.sql" />
+    <Build Include="dbo\Tables\SubmittedDimensionsForReport.sql" />
+    <Build Include="dbo\Tables\SubmissionsForReport.sql" />
+    <Build Include="dbo\Tables\MaintenacePeriodType.sql" />
+    <Build Include="dbo\Tables\DimensionType.sql" />
+    <Build Include="dbo\Views\vw_EverestPXR.sql" />
+    <Build Include="dbo\Stored Procedures\ImportDeliverablesforAllClients.sql" />
+    <Build Include="dbo\Stored Procedures\CreateUnassignedGroupsForAll.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="dbo\Script.PostDeployment.ReferenceData.sql" />
+  </ItemGroup>
+</Project>

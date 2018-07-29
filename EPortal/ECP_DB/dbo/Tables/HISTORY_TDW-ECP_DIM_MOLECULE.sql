@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[HISTORY_TDW-ECP_DIM_MOLECULE] (
+    [FCC]              INT          NULL,
+    [PACK_DESCRIPTION] VARCHAR (80) NULL,
+    [CHANGE_FLAG]      VARCHAR (1)  NULL,
+    [TIME_STAMP]       DATETIME     NULL
+);
+

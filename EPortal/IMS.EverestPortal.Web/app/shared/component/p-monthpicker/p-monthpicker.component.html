@@ -1,0 +1,40 @@
+﻿<div style="display:inline-block;">
+    <!--<span>{{selectedMonthYear}}<a class="glyphicon glyphicon-edit" (click)="showPopUp()"></a></span>-->
+    <a class="glyphicon glyphicon-edit" (click)="showPopUp()"></a>
+</div>
+
+<div bsModal #lgMonthpickerModal="bs-modal" class="modal fade packSearchModalWrapper" id="SubscriptionDateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="width:65%">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Select Expiry Date</div></div>
+            </div>
+            <div class="row">
+               
+                    <div class="row noPadding">
+                        <div class="col-sm-12 subCalWrapper">
+                            <div class="header">
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-left" (click)="previousYear()"></i>
+                                </a>
+                                <span>{{currentYear}}</span>
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-right" (click)="nextYear()"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="mrp-monthdisplayCal" *ngFor="let p of months" [ngClass]="{'selectedMonth': p.selected, 'month': !p.selected}" style="margin-top:-5px;width:32%">
+                        <div class="col-md-3" (click)="selectMonth(p);" style="text-transform:uppercase;width:100%;padding-top:15px;padding-bottom:15px;">
+                            {{p.name}}
+                        </div>
+                    </div>
+            </div>
+            <div class="row marTop10">
+                    <button type="submit" class="mcButton" (click)="save();lgMonthpickerModal.hide();">Save</button>
+                    <button type="submit" class="mcButtonCancel" (click)="lgMonthpickerModal.hide();">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

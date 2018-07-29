@@ -1,0 +1,141 @@
+<div class="container crtMarkTabWrapper" style="padding-bottom: 75px;">
+  <!--Title of Market-->
+  <div class="row mcRow" style="padding-left: 22px;">
+    <div class="col-sm-12 col-md-12 col-xs-12">
+      <div class="mcHeadingVM" style="padding: 0px;margin: 0px;"><span class="market-title">{{IsActiveGrouping==true?marketDefId>0 ? 'Edit Attributes and Groups': 'Create Attributes and Groups':marketDefId>0 ? 'Edit Content': 'Create Content'}}</span>        : {{marketDefinition?.Name}} </div>
+    </div>
+  </div>
+  <!--End of Title of Market-->
+  <div class="row padleftright20 MDequal" *ngIf="!IsActiveGrouping">
+    <!--Available Pack List Table-->
+    <div class=" noPadding mob4col" style="width: 34%">
+      <div [ngClass]="{'custom-reflow-modal': activeReflowAvailablePackContent}">
+        <div class="greyShadowBox" style="padding-left:15px;padding-right: 15px;padding-top: 0px;padding-bottom: 5px" [ngClass]="{'custom-reflow-market-definition-content': activeReflowAvailablePackContent}">
+          <div class="row">
+            <!-- Adding p-table-->
+            <div class="table-responsive viewTable">
+              <app-p-table 
+                    [pTableSetting]="staticTableBind" 
+                    [pTableMasterData]="staticPackMarketBase" 
+                    (checkboxCallbackFn)="fnCheckboxStaticTableClick($event)"
+                    (customReflowFn)="fnCustomReflowSetting($event)">
+              </app-p-table>
+            </div>
+          </div>
+          <div class="row" style="margin-left: 60px;padding-top: 5px;">
+            <div class="col-sm-8 box noPadding">
+              <button type="button" id="AddMktDef" [ngClass]="{'mcBigButton': canpackListFromMarketbase,'mcButtonNext':true}" [disabled]="!enabledStaticTableFooterBtns ||islockDef"
+                (click)="fnAddtoMktDef()">Add to Market Definition</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Available Pack List Table ends-->
+    <!--Market Definition Table-->
+
+    <div class="noPadding mob12col" style="width: 66%">
+      <div [ngClass]="{'custom-reflow-modal': activeReflowMarketDefContent}">
+        <div class="availPackWhhiteBox" style="width: 100%;padding-left: 15px; padding-right: 15px;padding-top: 0px;padding-bottom: 5px;"
+          [ngClass]="{'custom-reflow-market-definition-content': activeReflowMarketDefContent}">
+          <div class="row">
+            <div class="table-responsive viewTable">
+              <app-p-table [pTableSetting]="dynamicTableBind" 
+                    [pTableMasterData]="dynamicPackMarketBase" 
+                    (checkboxCallbackFn)="fnCheckboxDynamicTableClick($event)"
+                    (customReflowFn)="fnCustomReflowSetting($event)">
+              </app-p-table>      
+            </div>
+          </div>
+
+          <div class="row" style="margin-left: 28px;padding-top: 5px;">
+            <div class="col-sm-4 box noPadding">
+              <button type="button" id="groupFac" 
+                      [style.background-color]="groupingDetails.marketGroupView.length>0?'#20C22F':''"
+                      [ngClass]="{'mcBigButtonGrpng': canfactorToGroup, 'mcButtonNext':true}" (click)="fnMoveToGroupSetup()">Grouping</button>
+            </div>
+            <div class="col-sm-3 box noPadding">
+              <button type="button" id="groupFac" [ngClass]="{'mcBigButtonGrpng': canfactorToGroup, 'mcButtonNext':true}" [disabled]="!enabledDynamicTableFooterBtns || islockDef"
+                (click)="fnAddOrEditFactor()">Factor </button>
+            </div>
+            <div class="col-sm-5 noPadding">
+              <button type="button" id="delMktDef" [ngClass]="{'mcBigButtonRemove': canpackListFromMarketbase,'mcButtonNext':true}" (click)="fnDeleteFromMktDef()"
+                [disabled]="!enabledDynamicTableFooterBtns ||islockDef">Delete From Market Definition </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Market Definition Table ends-->
+  </div>
+
+
+  <!-- Filter ends -->
+  <!--white Box Table-->
+  <!--News section ends-->
+
+  <div [ngStyle]="{display:IsActiveGrouping==true?'block':'none'}">
+    <app-grouping-details 
+          [dynamicPacks]="dynamicPackMarketBase" 
+          [marketDefId]="marketDefId"
+          [loadGroupView]="loadGroupView" 
+          (fnToCheckModificatoinOnGroupingScreen)="fnToCheckModificatoinOnGroupingScreen($event)"
+          #groupingDetails>
+      </app-grouping-details>
+  </div>
+</div>
+
+
+<div class="row noMargin padLeft20 fixed-footer-buttons market-button-groups" style="margin-left: 0px;">
+  <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper">
+    <button type="button" class="mcButtonNext" (click)="fnBackToMarketSetupComponent()">Back </button>
+  </div>
+  <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width">
+    <button type="button" class="mcButtonPScancel" [disabled]="(!isViewMode()||!changeDetectionInPackComponent) && !changeDetectionInGroupingComponent"
+      (click)="fnBacktoPreviousState()">Cancel </button>
+  </div>
+  <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width" style="margin-left:20px;">
+    <button type="button" class="mcButtonPScancel" (click)="fnRelocateMarketTiles()" title="Click here back to available Market">Close </button>
+  </div>
+  <!--<div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width" *ngIf="isEditMarketDef">
+    <button type="button" class="mcButtonPScancel" (click)="fnSaveMarketName()" [disabled]="!marketDefNameChangedDetected ||islockDef" title="Click here to save Market Name">Save </button>
+  </div>-->
+  <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width">
+    <button type="button" class="mcButtonNext" [disabled]="islockDef" (click)="fnSaveMarketGroupDetails()">Save </button>
+  </div>
+</div>
+
+
+<!--Grouping Modal Begins -->
+<div class="modal fade packSearchModalWrapper" id="factorModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialogGroup noPadding grouping-factoring" style="width: 450px!important">
+    <div class="modal-content packSearchModalPanel">
+      <div class="modal-header borShadowNone">
+        <div class="packGroupHeading"> Factor</div>
+      </div>
+
+      <!-- content goes here -->
+      <!--<form>         -->
+      <div class="row">
+        <div class="col-sm-12" style="margin-bottom: 20px;">
+          <div class="input-group">
+            <span class="input-group-addon">
+                <label type="label">Factor Value:</label>
+               </span>
+            <input type="number" step='0.0001' value='1.0000' placeholder='1.0000' class="form-control" aria-label="Text input with checkbox" (keyup)="fnOnChangeFactorValue()" [(ngModel)]="factorVal">
+          </div>
+        </div>
+        <div *ngIf="factorErrorMgs!=''" style="padding: 15px; padding-left: 25px;color:red;">
+              {{factorErrorMgs}}
+        </div>
+        <div class="btn-toolbar" style="margin-bottom: 20px; margin-left: 15px;">
+          <button type="button" class=" btn btn-primary btn-md" [disabled]="factorVal==''||factorErrorMgs!=''" (click)="fnApplyFactor()"> Save </button>
+          <button type="button" data-dismiss="modal" class="btn btn-default btn-md "> Cancel </button>
+        </div>
+      </div>
+      <!--</form>-->
+    </div>
+  </div>
+  <!--Grouping Modal ends-->

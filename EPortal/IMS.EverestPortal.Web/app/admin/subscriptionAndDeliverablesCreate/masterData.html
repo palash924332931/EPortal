@@ -1,0 +1,787 @@
+﻿<div class="container mcContainer" style="height:1500px">
+      
+        <div class="noPadding">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="availPackWhhiteBox" style="margin-top:50px">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 noPadding">
+                                <div class="HeadingCharcoal" style="padding-bottom:5px;">
+                                    <p>Master Data</p>
+                                </div>
+                            </div>  
+                            <div class="col-sm-12 col-md-12 col-xs-12 noPadding">
+                                <div class="col-sm-4 col-md-4 col-xs-4 noPadding" style="margin-bottom:10px">
+                                     <select [(ngModel)]="selectedOption" (ngModelChange) ="onMasterOptionsChange($event)" style="height: 33px;width:50%">
+                                                    <option *ngFor="let i of options" [ngValue]="i">{{i}}</option>
+                                                </select>   
+                                </div>
+                            </div>
+
+
+
+                            <div *ngIf="selectedOption == 'Country'">                               
+                                <div *ngIf="deleteMessage" style="font-size:20px" class="col-sm-12 col-xs-12 col-md-12 noPadding">
+                                    <p [style.color]="isSuccess ?'green':'red'"> {{deleteMessage}}</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-7 col-md-7 noPadding">                                   
+                                    <div class="table-responsive">
+                                        <table id="" class="apTable">
+                                            <thead class="theaddark">
+                                                <tr>
+                                                    <th class="" style="width: 15%; padding-left: 20px;">CountryId</th>
+                                                    <th class="" style="width: 50%; padding-left: 20px;">Name</th>
+                                                    <th class="" style="width: 12%; padding-left: 20px;">ISOCode</th>
+                                                    <th class="" style="width: 15%; padding-left: 20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of countries">
+                                                    <td class="text-center" style="width: 0%; padding-left: 0px; padding-right: 0px;">
+                                                        {{m.CountryId}}
+                                                    </td>
+                                                    <td><span class="padLeft10">{{m.Name}}</span></td>
+                                                    <td><span class="padLeft10">{{m.ISOCode}}</span></td>
+                                                    <td>
+                                                        <a>
+                                                            <span class="glyphicon glyphicon-edit subEditIcon" (click)="setCountry(m)" style="padding-right: 30px;">
+                                                            </span>
+                                                        </a><a><span class="glyphicon glyphicon-trash subGlyDel" (click)="updateCountry('delete',m.CountryId)" ></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                                    
+                                </div>
+                                <div id="createCountry" class="col-sm-5 col-xs-5 col-md-5" style="font-size:20px">
+                                    <div *ngIf="message" class="col-sm-12 col-xs-12 col-md-12">
+                                        <p [style.color]="isSuccess ?'green':'red'"> {{message}}</p>
+                                    </div>
+                                    <div  class="col-sm-11 col-xs-11 col-md-11">
+                                        <div *ngIf="country.countryId" class="form-group">
+                                            <label>Country Id</label>
+                                            <input type="text" [(ngModel)]="country.countryId" id="countryId" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Country</label>
+                                            <input type="text" [(ngModel)]="country.CountryName" id="countryName" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>ISOCode</label>
+                                            <input [(ngModel)]="country.isocode" class="form-control" id="isocode">
+                                        </div>
+                                        <button (click)="updateCountry()" [disabled]="!(country.CountryName && country.isocode)" class="btn btn-primary">{{country.countryId ? 'Update':'Create' }}</button>
+                                        <button (click)="country.CountryName ='';country.isocode='';country.countryId='';" class="btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="selectedOption == 'Service'">
+                                <div *ngIf="deleteMessage" style="font-size:20px" class="col-sm-12 col-xs-12 col-md-12 noPadding">
+                                    <p [style.color]="isSuccess ?'green':'red'"> {{deleteMessage}}</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-7 col-md-7 noPadding">
+                                    <div class="table-responsive">
+                                        <table id="" class="apTable">
+                                            <thead class="theaddark">
+                                                <tr>
+                                                    <th class="" style="width: 15%; padding-left: 20px;">ServiceId</th>
+                                                    <th class="" style="width: 50%; padding-left: 20px;">Name</th>                                                   
+                                                    <th class="" style="width: 15%; padding-left: 20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of services">
+                                                    <td class="text-center" style="width: 0%; padding-left: 0px; padding-right: 0px;">
+                                                        {{m.ServiceId}}
+                                                    </td>
+                                                    <td><span class="padLeft10">{{m.Name}}</span></td>
+                                                    <td>
+                                                        <a>
+                                                            <span class="glyphicon glyphicon-edit subEditIcon" (click)="setService(m)" style="padding-right: 30px;">
+                                                            </span>
+                                                        </a><a><span class="glyphicon glyphicon-trash subGlyDel" (click)="updateService('delete',m.ServiceId)"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="createService" class="col-sm-5 col-xs-5 col-md-5" style="font-size:20px">
+                                    <div *ngIf="message" class="col-sm-12 col-xs-12 col-md-12">
+                                        <p [style.color]="isSuccess ?'green':'red'"> {{message}}</p>
+                                    </div>
+                                    <div class="col-sm-11 col-xs-11 col-md-11">
+                                        <div *ngIf="service.ServiceId" class="form-group">
+                                            <label>Service Id</label>
+                                            <input type="text" [(ngModel)]="service.ServiceId" id="ServiceId" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" [(ngModel)]="service.ServiceName" id="ServiceName" class="form-control">
+                                        </div>                                       
+                                        <button (click)="updateService()" [disabled]="!service.ServiceName" class="btn btn-primary">{{service.ServiceId ? 'Update':'Create' }}</button>
+                                        <button (click)="service.ServiceName ='';service.ServiceId='';" class="btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div *ngIf="selectedOption == 'TerritoryBase'">
+                                <div *ngIf="deleteMessage" style="font-size:20px" class="col-sm-12 col-xs-12 col-md-12 noPadding">
+                                    <p [style.color]="isSuccess ?'green':'red'"> {{deleteMessage}}</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-7 col-md-7 noPadding">
+                                    <div class="table-responsive">
+                                        <table id="" class="apTable">
+                                            <thead class="theaddark">
+                                                <tr>
+                                                    <th class="" style="width: 15%; padding-left: 20px;">Service Territory Id</th>
+                                                    <th class="" style="width: 50%; padding-left: 20px;">Territory Base</th>
+                                                    <th class="" style="width: 15%; padding-left: 20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of serviceTerritories">
+                                                    <td class="text-center" style="width: 0%; padding-left: 0px; padding-right: 0px;">
+                                                        {{m.ServiceTerritoryId}}
+                                                    </td>
+                                                    <td><span class="padLeft10">{{m.TerritoryBase}}</span></td>
+                                                    <td>
+                                                        <a>
+                                                            <span class="glyphicon glyphicon-edit subEditIcon" (click)="setTerritoryBase(m)" style="padding-right: 30px;">
+                                                            </span>
+                                                        </a><a><span class="glyphicon glyphicon-trash subGlyDel" (click)="updateTerritoryBase('delete',m.ServiceTerritoryId)"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="createService" class="col-sm-5 col-xs-5 col-md-5" style="font-size:20px">
+                                    <div *ngIf="message" class="col-sm-12 col-xs-12 col-md-12">
+                                        <p [style.color]="isSuccess ?'green':'red'"> {{message}}</p>
+                                    </div>
+                                    <div class="col-sm-11 col-xs-11 col-md-11">
+                                        <div *ngIf="serviceTerritory.ServiceTerritoryId" class="form-group">
+                                            <label>Service Territory Id</label>
+                                            <input type="text" [(ngModel)]="serviceTerritory.ServiceTerritoryId" id="ServiceTerritoryId" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Territory Base</label>
+                                            <input type="text" [(ngModel)]="serviceTerritory.TerritoryBase" id="TerritoryBase" class="form-control">
+                                        </div>
+                                        <button (click)="updateTerritoryBase()" [disabled]="!serviceTerritory.TerritoryBase" class="btn btn-primary">{{serviceTerritory.ServiceTerritoryId ? 'Update':'Create' }}</button>
+                                        <button (click)="serviceTerritory.TerritoryBase ='';serviceTerritory.ServiceTerritoryId='';" class="btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="selectedOption == 'DataType'">
+                                <div *ngIf="deleteMessage" style="font-size:20px" class="col-sm-12 col-xs-12 col-md-12 noPadding">
+                                    <p [style.color]="isSuccess ?'green':'red'"> {{deleteMessage}}</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-7 col-md-7 noPadding">
+                                    <div class="table-responsive">
+                                        <table id="" class="apTable">
+                                            <thead class="theaddark">
+                                                <tr>
+                                                    <th class="" style="width: 15%; padding-left: 20px;">Id</th>
+                                                    <th class="" style="width: 50%; padding-left: 20px;">Name</th>
+                                                    <th class="" style="width: 20%; padding-left: 20px;">IsChannel</th>
+                                                    <th class="" style="width: 15%; padding-left: 20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of dataTypes">
+                                                    <td class="text-center" style="width: 0%; padding-left: 0px; padding-right: 0px;">
+                                                        {{m.DataTypeId}}
+                                                    </td>
+                                                    <td><span class="padLeft10">{{m.Name}}</span></td>
+                                                    <td><span class="padLeft10">{{m.IsChannel == true ? 'True' : 'False'}}</span></td>
+                                                    <td>
+                                                        <a>
+                                                            <span class="glyphicon glyphicon-edit subEditIcon" (click)="setDataType(m)" style="padding-right: 30px;">
+                                                            </span>
+                                                        </a><a class="glyphicon glyphicon-trash subGlyDel" [class.disabled]="m.IsChannel || !DeleteDataChannel" (click)="updateDataType('delete',m.DataTypeId)"></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="createService" class="col-sm-5 col-xs-5 col-md-5" style="font-size:20px">
+                                    <div *ngIf="message" class="col-sm-12 col-xs-12 col-md-12">
+                                        <p [style.color]="isSuccess ?'green':'red'"> {{message}}</p>
+                                    </div>
+                                    <div class="col-sm-11 col-xs-11 col-md-11">
+                                        <div *ngIf="dataType.DataTypeId" class="form-group">
+                                            <label>DataType  Id</label>
+                                            <input type="text" [(ngModel)]="dataType.DataTypeId" id="DataTypeId" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" [(ngModel)]="dataType.DataTypeName" [disabled]="dataType.DataTypeId && !ModifyNameOfChannel" id="DataTypeName" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>IsChannel</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" [disabled]="IsChannelSaved" [(ngModel)]="dataType.IsChannel" id="DataTypeIsChannel">
+                                        </div>
+                                        <button (click)="updateDataType()" [disabled]="!dataType.DataTypeName || (!dataType.DataTypeId && !AddDataChannel)" class="btn btn-primary">{{dataType.DataTypeId ? 'Update':'Create' }}</button>
+                                        <button (click)="dataType.DataTypeName =null;dataType.DataTypeId=null;" class="btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div *ngIf="selectedOption == 'Source'">
+                                <div *ngIf="deleteMessage" style="font-size:20px" class="col-sm-12 col-xs-12 col-md-12 noPadding">
+                                    <p [style.color]="isSuccess ?'green':'red'"> {{deleteMessage}}</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-7 col-md-7 noPadding">
+                                    <div class="table-responsive">
+                                        <table id="" class="apTable">
+                                            <thead class="theaddark">
+                                                <tr>
+                                                    <th class="" style="width: 15%; padding-left: 20px;">Id</th>
+                                                    <th class="" style="width: 50%; padding-left: 20px;">Name</th>
+                                                    <th class="" style="width: 15%; padding-left: 20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of sources">
+                                                    <td class="text-center" style="width: 0%; padding-left: 0px; padding-right: 0px;">
+                                                        {{m.SourceId}}
+                                                    </td>
+                                                    <td><span class="padLeft10">{{m.Name}}</span></td>
+                                                    <td>
+                                                        <a>
+                                                            <span class="glyphicon glyphicon-edit subEditIcon" (click)="setSource(m)" style="padding-right: 30px;">
+                                                            </span>
+                                                        </a><a><span class="glyphicon glyphicon-trash subGlyDel" (click)="updateSource('delete',m.SourceId)"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="source" class="col-sm-5 col-xs-5 col-md-5" style="font-size:20px">
+                                    <div *ngIf="message" class="col-sm-12 col-xs-12 col-md-12">
+                                        <p [style.color]="isSuccess ?'green':'red'"> {{message}}</p>
+                                    </div>
+                                    <div class="col-sm-11 col-xs-11 col-md-11">
+                                        <div *ngIf="dataType.DataTypeId" class="form-group">
+                                            <label>Source Id</label>
+                                            <input type="text" [(ngModel)]="source.SourceId" id="SourceId" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" [(ngModel)]="source.SourceName" id="SourceName" class="form-control">
+                                        </div>
+                                        <button (click)="updateSource()" [disabled]="!source.SourceName" class="btn btn-primary">{{source.SourceId ? 'Update':'Create' }}</button>
+                                        <button (click)="source.SourceName ='';source.SourceId='';" class="btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div *ngIf="selectedOption == 'Delivery Type'">
+                                <div *ngIf="deleteMessage" style="font-size:20px" class="col-sm-12 col-xs-12 col-md-12 noPadding">
+                                    <p [style.color]="isSuccess ?'green':'red'"> {{deleteMessage}}</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-7 col-md-7 noPadding">
+                                    <div class="table-responsive">
+                                        <table id="" class="apTable">
+                                            <thead class="theaddark">
+                                                <tr>
+                                                    <th class="" style="width: 10%; padding-left: 20px;">Delivery Type Id</th>
+                                                    <th class="" style="width: 50%; padding-left: 20px;">Name</th>
+                                                    <th class="" style="width: 15%; padding-left: 20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of deliveryTypes">
+                                                    <td class="text-center" style="width: 0%; padding-left: 0px; padding-right: 0px;">
+                                                        {{m.DeliveryTypeId}}
+                                                    </td>
+                                                    <td><span class="padLeft10">{{m.Name}}</span></td>
+                                                    <td>
+                                                        <a>
+                                                            <span class="glyphicon glyphicon-edit subEditIcon" (click)="setDeliveryType(m)" style="padding-right: 30px;">
+                                                            </span>
+                                                        </a><a><span class="glyphicon glyphicon-trash subGlyDel" (click)="updateDeliveryType('delete',m.DeliveryTypeId)"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="source" class="col-sm-5 col-xs-5 col-md-5" style="font-size:20px">
+                                    <div *ngIf="message" class="col-sm-12 col-xs-12 col-md-12">
+                                        <p [style.color]="isSuccess ?'green':'red'"> {{message}}</p>
+                                    </div>
+                                    <div class="col-sm-11 col-xs-11 col-md-11">
+                                        <div *ngIf="deliveryType.DeliveryTypeId" class="form-group">
+                                            <label>Delivery Type Id</label>
+                                            <input type="text" [(ngModel)]="deliveryType.DeliveryTypeId" id="DeliveryTypeId" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" [(ngModel)]="deliveryType.DeliveryTypeName" id="DeliveryTypeName" class="form-control">
+                                        </div>
+                                        <button (click)="updateDeliveryType()" [disabled]="!deliveryType.DeliveryTypeName" class="btn btn-primary">{{deliveryType.DeliveryTypeId ? 'Update':'Create' }}</button>
+                                        <button (click)="deliveryType.DeliveryTypeName ='';deliveryType.DeliveryTypeId='';" class="btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div *ngIf="selectedOption == 'Period'">
+                                <div *ngIf="deleteMessage" style="font-size:20px" class="col-sm-12 col-xs-12 col-md-12 noPadding">
+                                    <p [style.color]="isSuccess ?'green':'red'"> {{deleteMessage}}</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-7 col-md-7 noPadding">
+                                    <div class="table-responsive">
+                                        <table id="" class="apTable">
+                                            <thead class="theaddark">
+                                                <tr>
+                                                    <th class="" style="width: 10%; padding-left: 20px;">Period Id</th>
+                                                    <th class="" style="width: 50%; padding-left: 20px;">Name</th>
+                                                    <th class="" style="width: 20%; padding-left: 20px;">Number</th>
+                                                    <th class="" style="width: 15%; padding-left: 20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of periods">
+                                                    <td class="text-center" style="width: 0%; padding-left: 0px; padding-right: 0px;">
+                                                        {{m.PeriodId}}
+                                                    </td>
+                                                    <td><span class="padLeft10">{{m.Name}}</span></td>
+                                                    <td><span class="padLeft10">{{m.Number}}</span></td>
+                                                    <td>
+                                                        <a>
+                                                            <span class="glyphicon glyphicon-edit subEditIcon" (click)="setPeriod(m)" style="padding-right: 30px;">
+                                                            </span>
+                                                        </a><a><span class="glyphicon glyphicon-trash subGlyDel" (click)="updatePeriod('delete',m.PeriodId)"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="Period" class="col-sm-5 col-xs-5 col-md-5" style="font-size:20px">
+                                    <div *ngIf="message" class="col-sm-12 col-xs-12 col-md-12">
+                                        <p [style.color]="isSuccess ?'green':'red'"> {{message}}</p>
+                                    </div>
+                                    <div class="col-sm-11 col-xs-11 col-md-11">
+                                        <div *ngIf="period.PeriodId" class="form-group">
+                                            <label>Delivery Type Id</label>
+                                            <input type="text" [(ngModel)]="period.PeriodId" id="periodId" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" [(ngModel)]="period.PeriodName" id="periodName" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Number</label>
+                                            <input type="text" [(ngModel)]="period.Number" (keypresss)="onlyNumberKey($event)" maxlength="5" id="Number" class="form-control">
+                                        </div>
+                                        <button (click)="updatePeriod()" [disabled]="!(period.PeriodName && period.Number)" class="btn btn-primary">{{period.PeriodId ? 'Update':'Create' }}</button>
+                                        <button (click)="period.PeriodName ='';period.PeriodId='';period.Number =''" class="btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div *ngIf="selectedOption == 'Frequency Type'">
+                                <div *ngIf="deleteMessage" style="font-size:20px" class="col-sm-12 col-xs-12 col-md-12 noPadding">
+                                    <p [style.color]="isSuccess ?'green':'red'"> {{deleteMessage}}</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-7 col-md-7 noPadding">
+                                    <div class="table-responsive">
+                                        <table id="" class="apTable">
+                                            <thead class="theaddark">
+                                                <tr>
+                                                    <th class="" style="width: 10%; padding-left: 20px;">Frequency Type Id</th>
+                                                    <th class="" style="width: 50%; padding-left: 20px;">Name</th>
+                                                    <th class="" style="width: 20%; padding-left: 20px;">Default Years</th>
+                                                    <th class="" style="width: 15%; padding-left: 20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of frequencyTypes">
+                                                    <td class="text-center" style="width: 0%; padding-left: 0px; padding-right: 0px;">
+                                                        {{m.FrequencyTypeId}}
+                                                    </td>
+                                                    <td><span class="padLeft10">{{m.Name}}</span></td>
+                                                    <td><span class="padLeft10">{{m.DefaultYears}}</span></td>
+                                                    <td>
+                                                        <a>
+                                                            <span class="glyphicon glyphicon-edit subEditIcon" (click)="setFrequencyType(m)" style="padding-right: 30px;">
+                                                            </span>
+                                                        </a><a><span class="glyphicon glyphicon-trash subGlyDel" (click)="updateFrequencyType('delete',m.FrequencyTypeId)"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="frequencyType" class="col-sm-5 col-xs-5 col-md-5" style="font-size:20px">
+                                    <div *ngIf="message" class="col-sm-12 col-xs-12 col-md-12">
+                                        <p [style.color]="isSuccess ?'green':'red'"> {{message}}</p>
+                                    </div>
+                                    <div class="col-sm-11 col-xs-11 col-md-11">
+                                        <div *ngIf="frequencyType.FrequencyTypeId" class="form-group">
+                                            <label>Frequency Type Id</label>
+                                            <input type="text" [(ngModel)]="frequencyType.FrequencyTypeId" id="FrequencyTypeId" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" [(ngModel)]="frequencyType.FrequencyTypeName" id="FrequencyTypeName" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Default Years</label>
+                                            <input type="text" [(ngModel)]="frequencyType.DefaultYears" (keypress)="onlyNumberKey($event)" maxlength="5" id="DefaultYears" class="form-control">
+                                        </div>
+                                        <button (click)="updateFrequencyType()" [disabled]="!(frequencyType.FrequencyTypeName && frequencyType.DefaultYears)" class="btn btn-primary">{{frequencyType.FrequencyTypeId ? 'Update':'Create' }}</button>
+                                        <button (click)="frequencyType.FrequencyTypeName ='';frequencyType.FrequencyTypeId='';frequencyType.DefaultYears =''" class="btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="selectedOption == 'Frequency'">
+                                <div *ngIf="deleteMessage" style="font-size:20px" class="col-sm-12 col-xs-12 col-md-12 noPadding">
+                                    <p [style.color]="isSuccess ?'green':'red'"> {{deleteMessage}}</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-7 col-md-7 noPadding">
+                                    <div class="table-responsive">
+                                        <table id="" class="apTable">
+                                            <thead class="theaddark">
+                                                <tr>
+                                                    <th class="" style="width: 10%; padding-left: 20px;">Frequency Id</th>
+                                                    <th class="" style="width: 50%; padding-left: 20px;">Name</th>
+                                                    <th class="" style="width: 20%; padding-left: 20px;">Frequency Type</th>
+                                                    <th class="" style="width: 15%; padding-left: 20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of frequencies">
+                                                    <td class="text-center" style="width: 0%; padding-left: 0px; padding-right: 0px;">
+                                                        {{m.FrequencyId}}
+                                                    </td>
+                                                    <td><span class="padLeft10">{{m.Name}}</span></td>
+                                                    <td><span class="padLeft10">{{m.FrequencyTypeName}}</span></td>
+                                                    <td>
+                                                        <a>
+                                                            <span class="glyphicon glyphicon-edit subEditIcon" (click)="setFrequency(m)" style="padding-right: 30px;">
+                                                            </span>
+                                                        </a><a><span class="glyphicon glyphicon-trash subGlyDel" (click)="updateFrequency('delete',m.FrequencyId)"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="frequency" class="col-sm-5 col-xs-5 col-md-5" style="font-size:20px">
+                                    <div *ngIf="message" class="col-sm-12 col-xs-12 col-md-12">
+                                        <p [style.color]="isSuccess ?'green':'red'"> {{message}}</p>
+                                    </div>
+                                    <div class="col-sm-11 col-xs-11 col-md-11">
+                                        <div *ngIf="frequency.FrequencyId" class="form-group">
+                                            <label>Frequency Id</label>
+                                            <input type="text" [(ngModel)]="frequency.FrequencyId" id="FrequencyId" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" [(ngModel)]="frequency.FrequencyName" id="FrequencyName" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Frequency Type</label>
+                                            <!--<input type="text" [(ngModel)]="frequency.FrequencyTypeId" (keypress)="onlyNumberKey($event)" maxlength="5" id="FrequencyTypeId" class="form-control">-->
+
+                                            <select [(ngModel)]="frequency.FrequencyTypeId" class="form-control" style="height: 33px;">
+                                                <option *ngFor="let i of frequencyTypes" [ngValue]="i.FrequencyTypeId">{{i.Name}}</option>
+                                            </select>
+                                        </div>
+                                        <button (click)="updateFrequency()" [disabled]="!(frequency.FrequencyName && frequency.FrequencyTypeId)" class="btn btn-primary">{{frequency.FrequencyId ? 'Update':'Create' }}</button>
+                                        <button (click)="frequency.FrequencyName ='';frequency.FrequencyId='';frequency.FrequencyTypeId =''" class="btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="ViewDataChannel" class="row" style="margin-top:20px">
+                <div class="col-sm-6">
+                    <div class="subCrtMB">
+                        <form #subChannelForm="ngForm" (submit)="saveSubchannel(subChannelForm)" novalidate>
+                            <div class="row">
+                                <div class="col-sm-9 col-md-9 col-xs-9 noPadding">
+                                    <div class="HeadingCharcoal">Channel-Subchannel</div>
+                                </div>
+                                <div class="col-sm-12 noPadding">
+                                    <div>
+                                        <tabset [justified]="true">
+                                            <tab heading="Create" (select)="subchannelScreenSelection(subChannelForm,false)">
+                                            </tab>
+                                            <tab heading="Update" (select)="subchannelScreenSelection(subChannelForm, true)">
+                                            </tab>
+                                        </tabset>
+                                    </div>
+                                </div>
+
+                                <div style="font-size:18px"
+                                     [style.color]="isSuccess ?'green':'red'"
+                                     class="col-sm-9 col-md-9 col-xs-9 noPadding"
+                                     *ngIf="subChannelMessage">
+                                    <p>{{subChannelMessage}}</p>
+                                </div>
+                            </div>
+
+                            <div class="row" *ngIf="isSubchannelUpdate">
+                                <div class="col-sm-6 padRt25">
+                                    <div class="row">
+                                        <div class="col-sm-8 noPaddingLeft">Name</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <div class="raBrick-select fa-caret-down">
+                                                <select [(ngModel)]="selectedEntityType.EntityTypeId"
+                                                        name="entityTypeId"
+                                                        #entityTypeIdModel="ngModel"
+                                                        (change)="entityTypeNameChange()"
+                                                        required
+                                                        style="height: 33px;">
+                                                    <option *ngFor="let entityType of entityTypes" [ngValue]="entityType.EntityTypeId">
+                                                        {{entityType.EntityTypeName}}
+                                                    </option>
+                                                </select>
+                                                <br />
+                                                <span style="color:red;" *ngIf="entityTypeIdModel.invalid && entityTypeIdModel.dirty">
+                                                    <span *ngIf="entityTypeIdModel.errors.required">
+                                                        <span class="font12">Name cannot be blank.</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row marTop5">
+                                <div class="col-sm-4 padRt25">
+                                    <div class="row">
+                                        <div class="col-sm-8 noPaddingLeft">Type</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <div class="raBrick-select fa-caret-down">
+                                                <input type="text"
+                                                       name="entityTypeCode"
+                                                       #entityTypeCodeModel="ngModel"
+                                                       required
+                                                       [(ngModel)]="selectedEntityType.EntityTypeCode"
+                                                       (input)="subchannelChanges('EntityTypeCode', subChannelForm)"
+                                                       autocomplete="off"
+                                                       maxlength="50" />
+                                                <br />
+                                                <span style="color:red;" *ngIf="entityTypeCodeModel.invalid && entityTypeCodeModel.dirty">
+                                                    <span *ngIf="entityTypeCodeModel.errors.required">
+                                                        <span class="font12">Type cannot be blank.</span>
+                                                    </span>
+                                                    <span *ngIf="entityTypeCodeModel.errors.incorrect">
+                                                        <span class="font12">{{selectedEntityType.EntityTypeCode}} already exists. Please review.</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 padRt25">
+                                    <div class="row">
+                                        <div class="col-sm-12 noPaddingLeft">Outlet Type</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <div class="raBrick-select fa-caret-down">
+                                                <input type="text"
+                                                       name="abbrev"
+                                                       #abbrevModel="ngModel"
+                                                       required
+                                                       [(ngModel)]="selectedEntityType.Abbrev"
+                                                       (input)="subchannelChanges('abbrev', subChannelForm)"
+                                                       autocomplete="off"
+                                                       maxlength="50" />
+                                                <br />
+                                                <span style="color:red;" *ngIf="abbrevModel.invalid && abbrevModel.dirty">
+                                                    <span *ngIf="abbrevModel.errors.required">
+                                                        <span class="font12">Outlet type cannot be blank.</span>
+                                                    </span>
+                                                    <span *ngIf="abbrevModel.errors.incorrect">
+                                                        <span class="font12">{{selectedEntityType.Abbrev}} already exists. Please review.</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 padRt25">
+                                    <div class="row">
+                                        <div class="col-sm-12 noPaddingLeft">Display</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <input type="text"
+                                                   name="display"
+                                                   #displayModel="ngModel"
+                                                   required
+                                                   [(ngModel)]="selectedEntityType.Display"
+                                                   (input)="subchannelChanges('display', subChannelForm)"
+                                                   autocomplete="off"
+                                                   maxlength="200" 
+                                                   [style.width.px]="210" />
+                                            <br />
+                                            <span style="color:red;" *ngIf="displayModel.invalid && displayModel.dirty">
+                                                <span *ngIf="displayModel.errors.required">
+                                                    <span class="font12">Display cannot be blank.</span>
+                                                </span>
+                                                <span *ngIf="displayModel.errors.incorrect">
+                                                    <span class="font12">{{selectedEntityType.Display}} already exists. Please review.</span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row marTop5">
+                                <div class="col-sm-4 padRt25">
+                                    <div class="row">
+                                        <div class="col-sm-8 noPaddingLeft">Description</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <div class="raBrick-select fa-caret-down">
+                                                <input type="text"
+                                                       name="description"
+                                                       #descriptionModel="ngModel"
+                                                       required
+                                                       [(ngModel)]="selectedEntityType.Description"
+                                                       (input)="subchannelChanges('description', subChannelForm)"
+                                                       autocomplete="off"
+                                                       maxlength="200" />
+                                                <br />
+                                                <span style="color:red;" *ngIf="descriptionModel.invalid && descriptionModel.dirty">
+                                                    <span *ngIf="descriptionModel.errors.required">
+                                                        <span class="font12">Description cannot be blank.</span>
+                                                    </span>
+                                                    <span *ngIf="descriptionModel.errors.incorrect">
+                                                        <span class="font12">{{selectedEntityType.Description}} already exists. Please review.</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 padRt25">
+                                    <div class="row">
+                                        <div class="col-sm-12 noPaddingLeft">Channel</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <div class="raBrick-select fa-caret-down">
+                                                <select [(ngModel)]="selectedEntityType.DataTypeId"
+                                                        name="dataTypeId"
+                                                        #dataTypeIdModel="ngModel"
+                                                        required
+                                                        style="height:26px;">
+                                                    <option *ngFor="let dataType of dataTypesForSuchannel"
+                                                            [ngValue]="dataType.DataTypeId">
+                                                        {{dataType.Name}}
+                                                    </option>
+                                                </select>
+                                                <br />
+                                                <span style="color:red;" *ngIf="dataTypeIdModel.invalid && dataTypeIdModel.dirty">
+                                                    <span *ngIf="dataTypeIdModel.errors.required">
+                                                        <span class="font12">Channel cannot be blank.</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 padRt25" style="margin-top:31px">
+                                    <div class="row">
+                                        <div class="col-sm-12 noPaddingLeft"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 form-switcher form-switcher-sm form-switcher-lg-phone">
+                                            <input type="checkbox" name="IsActive" id="IsActive" [(ngModel)]="selectedEntityType.IsActive">
+                                            <label class="switcher" for="IsActive"></label>
+                                        </div>
+                                        <div class="col-sm-8 noPaddingLeft">Active/Inactive</div>
+                                    </div>
+                                </div>
+                           </div>
+
+
+                            <div class="row" style="margin-top:10px">
+                                <button type="submit" class="mcButton btn"
+                                        [disabled]="(!AddNewSubchannel && !isSubchannelUpdate) || subChannelForm.form.invalid"
+                                        style="margin-top: 0px;
+                                                 min-height: 0px;
+                                                 padding-left: 10px;
+                                                 padding-right: 10px;
+                                                 min-width: 130px;
+                                                 padding-top: 5px;
+                                                 padding-bottom: 7px;">
+                                    {{isSubchannelUpdate ? 'Update' : 'Create'}}
+                                </button>
+                                <button type="button" class="mcButton btn"
+                                        [disabled]="!DeleteSubchannel || subChannelForm.form.invalid"
+                                        style="margin-top: 0px;
+                                                 min-height: 0px;
+                                                 padding-left: 10px;
+                                                 padding-right: 10px;
+                                                 min-width: 130px;
+                                                 padding-top: 5px;
+                                                 padding-bottom: 7px;"
+                                        (click)="deleteSubchannel(subChannelForm)"
+                                        *ngIf="isSubchannelUpdate">
+                                    Delete
+                                </button>
+                                <button type="button" 
+                                        (click)="cancelSubchannel(subChannelForm)"
+                                        class="mcButtonPScancel btn"
+                                        style="margin-top: 0px; min-height: 0px; padding-left: 10px; padding-right: 10px;
+                                                 min-width: 100px; padding-top: 5px; padding-bottom: 5px;">
+                                    Cancel
+                                </button>
+                              
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>   
+  </div>
+   
+
+    
+
+
+
+
+

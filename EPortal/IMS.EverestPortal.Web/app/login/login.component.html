@@ -1,0 +1,159 @@
+﻿<div id="wrapper">
+    <div id="header">
+        <div class="navbar navbar-default navbar-fixed-top everestMenuWrap" role="navigation">
+            <div class="container everestmenuCont">
+                <div class="navbar-header">
+
+                    <div class="logowrapper">
+                        <img src="../app/content/images/iqvia.png" alt="IQVIA" style="margin-bottom: 10px;" width="141" height="38" class="qims" />
+                        <img src="../app/content/images/everest-01.png" width="140" height="30" alt="Everest Portal" class="everestLogo" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="bodyContent">
+        <div class="col-md-4 col-md-offset-1" style="margin-top:30px; font-family: Helvetica, sans-serif, Arial">
+            <form *ngIf="!isForgotPasswordVisible && !isResetPasswordVisible">
+                <div class="form-group">
+                    <label for="email">User Name</label>
+                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="email" name="email" [(ngModel)]="userName" />
+                    <span id="EmailErr" style="color:red" ></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="pwd">Password</label>
+                    <input type="password" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="pwd" name="pwd" [(ngModel)]="passwd"/>
+                    <span id="PwdErr" style="color:red"></span>
+
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" class="" id="rememeberMe" name="rememeberMe" [(ngModel)]="rememeberMe" />
+                    <label for="rememeberMe">Remember Me?</label>
+                </div>
+                <div class="form-group">
+                    <a (click)="isForgotPasswordVisible = true;isPasswordResetDisabled = false;">Forgot Password?</a>
+                    <span id="userErr" style="color:red"></span>
+                </div>
+                <button (click)="logIn()" class="btn btn-primary">Login</button>
+                <br /><br /><span id="LoginErr" style="color:red"></span>
+            </form>
+
+            <form *ngIf="isForgotPasswordVisible">
+                <div class="form-group">
+                    <label for="email">User Name</label>
+                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="emailForForgotPwd" name="emailForForgotPwd" [(ngModel)]="userNameForForgotPwd" autocomplete="off" />
+                    <span id="EmailForForgotErr" style="color:red"></span>
+                </div>
+                <div class="form-group">
+                    <a (click)="isForgotPasswordVisible = false">Login</a>
+                </div>
+                <button (click)="SendPasswordResetEmail()" class="btn btn-primary" [disabled]="isPasswordResetDisabled">Send Password Reset Email</button>
+                <br /><br />
+                <span id="SendPwdForForgotSuccess" style="color:green"></span>
+                <span id="SendPwdForForgotErr" style="color:red"></span>
+            </form>
+
+            <form *ngIf="isResetPasswordVisible">
+                <div class="form-group">
+                    <label for="email">User Name</label>
+                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="emailForResetPwd" name="emailForResetPwd" [(ngModel)]="userNameForResetPwd" readonly />
+                    <span id="EmailForResetPwdErr" style="color:red"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="pwd">New Password</label>
+                    <input type="password" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="pwdForResetPwd" name="pwdForResetPwd" [(ngModel)]="passwordForResetPwd" />
+                    <span id="PwdForResetPwdErr" style="color:red"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="pwd">Confirm Password</label>
+                    <input type="password" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="conpwdForResetPwd" name="conpwdForResetPwd" [(ngModel)]="confirmPasswordForResetPwd" />
+                    <span id="ConfirmPwdForResetPwdErr" style="color:red"></span>
+                </div>
+                <div class="form-group">
+                    <a (click)="redirectToLogin()">Login</a>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button (click)="resetPassword()" class="btn btn-primary" [disabled]="isResetButtonDisabled">Reset Password</button>
+                        </div>
+                        <div class="col-md-8">
+                            <span id="ResetPwdSuccess" style="color:green"></span>
+                            <span id="ResetPwdErr" style="color:red"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="color:#25b4ff">
+                    The password must contain characters from at least three of the following character types i.e. lowercase letters, uppercase letters, numbers and symbols.
+                    The minimum password length is eight characters and cannot be the same as your previous 13 passwords.
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footerBar">
+            <div class="box col-md-16">
+                <div class="footerText">IQVIA. Copyright 2017</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div bsModal #lgModalLogin="bs-modal" class="modal fade subModalWrapper" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialogSave">
+        <div class="modal-content subModDivWrap" style="">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="cancelPasswordRetrieve()" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Send Password</h4>
+            </div>
+
+            <div class="modal-body">
+                <div style="line-height: 200%;">
+
+                    Your password will be sent to the email address: <br />
+                    {{emailAddress}}
+
+                </div>
+
+                <br /><br />
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" [class.disabled]="isClickedOnce" (click)="sendPassword()">Send Password</button>
+                    <button type="button" class="btn btn-primary" (click)="cancelPasswordRetrieve()">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #replyModal="bs-modal" class="modal fade subModalWrapper" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialogSave" style="width:500px !important">
+        <div class="modal-content subModDivWrap" style="">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="closeDialog()" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Send Password by Email</h4>
+            </div>
+
+            <div class="modal-body">
+                <div style="line-height: 200%;">
+
+                    An email has been sent to {{emailAddress}} successfully. <br />
+
+                </div>
+
+                <br /><br />
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="closeDialog()">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

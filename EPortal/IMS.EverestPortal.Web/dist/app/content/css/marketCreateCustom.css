@@ -1,0 +1,2077 @@
+/*@import url('https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700');*/
+
+@-ms-viewport{
+width:auto!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*View Market */
+
+
+/*22 Noc*/
+
+
+
+.noPaddingRight
+{
+	padding-right: 0px;
+}
+
+
+.noPaddingLeft
+{
+	padding-left: 0px;
+}
+
+
+.saveMarketDefWrapButt
+{
+	padding: 0 10px 0 10px; padding-left: 35px; padding-top: 35px; padding-bottom: 20px;
+}
+
+.saveCancelWrap
+{
+	margin-top: 40px; margin-bottom: 20px;
+}
+
+
+.martop20
+{
+	margin-top: 20px;
+}
+
+
+.boxRefPackListButt
+{
+	padding: 0 10px 0 10px; padding-left: 26px; padding-bottom: 60px;
+}
+
+
+
+
+
+
+
+.crtRefWrap
+{
+	padding-bottom: 10px; padding-top: 30px;
+}
+
+.clearAll
+{
+	clear: both;
+}
+
+.paddLeft50
+{
+	padding-left: 50px;
+}
+
+
+.pckSearchResultWrapper
+{
+	margin-top: 20px;
+}
+
+
+.padLeft5
+{
+	padding-left: 5px;
+}
+
+
+.packSearchModalWrapper
+{
+	margin-top: 100px;
+}
+
+
+.packSearchModalPanel
+{
+	border-radius: 0px; padding-left: 10px; padding-right: 10px;
+}
+
+
+.searchWhiteBig
+{
+	margin-left: 10px; font-size: 25px;
+}
+
+
+.packSearchButtWrapper
+{
+	padding-left: 0px; padding-bottom: 60px;
+}
+
+
+.floatLeft
+{
+	float: left;
+}
+
+
+.pckSrchTextLeft
+{
+	float: left; margin-top: 6px; margin-right: 10px;
+}
+
+
+.padLeft20
+{
+	padding-left: 20px;
+}
+
+.marLeft15
+{
+	margin-left: 15px;
+}
+
+
+.selectAll checkbox::before {
+	
+	margin-right: 15px;
+}
+
+
+
+
+.theaddark
+{background-color: #3A4F5A; color: #fff;}
+
+.availPackWhhiteBox
+{
+	background-color: #fff; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); padding-left: 30px; padding-right: 30px; padding-top: 20px; padding-bottom: 20px;
+}
+
+
+.packSearchWhiteBox
+{
+	background-color: #fff; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); padding-left: 30px; padding-right: 30px; padding-top: 20px; padding-bottom: 30px;
+}
+
+.martop1
+{
+	margin-top: 1px;
+}
+
+
+.padBottom10
+{
+	padding-bottom:10px;
+}
+
+
+
+
+.accordion-toggle_yell {
+  position: relative;
+}
+
+
+.accordion-toggle_yell::after {
+  content: 'Collapse';
+  font-family:Roboto;
+	font-weight:normal;
+	font-size:14px;
+	color:#FFCF32;
+	
+  
+}
+
+.accordion-toggle_yell.collapsed::after {
+  content: 'Archive';
+  font-family:Roboto;
+	font-weight:normal;
+	font-size:14px;
+	color:#FFCF32;
+	
+}
+
+
+
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #F4F6F9;
+   
+}
+
+
+
+
+.modal {
+  text-align: center;
+	
+}
+
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+	width: 1000px;
+}
+
+
+.modal-dialogGroup {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+	width: 750px;
+}
+
+.togMktHead
+{
+	width: 30%
+}
+
+.togMktBase
+{
+	width: 22%;
+}
+
+
+.togMktFil
+{
+	width: 19%;
+}
+
+.cbFilter
+{
+	margin-left: 20px;
+}
+
+
+.normText
+{
+	margin-left: 0px;
+}
+
+
+.cbFilterSrch
+{
+	margin-left: 10px;
+}
+
+.box
+{
+	padding: 0 10px 0 10px;
+}
+
+
+
+.TwentyPaddTop
+{
+	padding:20px; padding-top: 15px; padding-left: 25px; padding-bottom: 20px;
+}
+
+
+.TwentyPadd
+{
+	padding:20px; padding-top: 20px; padding-left: 25px; padding-bottom: 0px;
+}
+
+
+
+.table thead > tr > th{ border: 1px solid #fff; }
+
+
+.radWrap
+{
+	padding-left:3px; margin-top: 5px;
+}
+
+.TBPackSearch
+{
+	width: 390px;
+}
+
+.TBFilter
+{
+	border:1px solid #8EAFBF; padding: 10px; padding-top: 15px; padding-bottom: 15px; width: 140px; min-height: 50px;
+}
+
+
+
+.TBNormBig
+{
+	border:1px solid #8EAFBF; padding: 10px; padding-top: 15px; padding-bottom: 15px; width: 455px; height: 52px;
+}
+
+
+.TBPackSearch
+{
+	border:1px solid #8EAFBF; padding: 10px; padding-top: 15px; padding-bottom: 15px; width: 325px; height: 52px;
+}
+
+
+.ETBPackSearch
+{
+	border:1px solid #8EAFBF; padding: 10px; padding-top: 15px; padding-bottom: 15px; width: 390px; height: 52px;
+}
+
+
+.PackSearchTB
+{
+	border:1px solid #8EAFBF; padding: 10px; padding-top: 15px; padding-bottom: 15px; width: 320px; height: 52px;
+}
+
+
+.TBNormSmall
+{
+	border:1px solid #8EAFBF; padding: 10px; padding-top: 15px; padding-bottom: 15px; width: 90px; height: 52px;
+}
+
+/*
+select {
+    background: #fff !important;
+    color:#000;
+    
+	width:150px !important; border:1px solid #8EAFBF !important; height: 45px !important; border-radius: 0px !important;
+}
+option:not(:checked) {
+    background-color: #fff;border-bottom: 1px solid #8EAFBF;
+	
+}
+
+*/
+.custom-select:before{display:none !important;}
+
+.custom-select {
+	background-color: #fff;
+	
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	width:140px; height: 53px;
+	border-left:none;
+	border-top: none;
+}
+
+.custom-select:hover {
+	border-color: #999;
+}
+
+.custom-select:before {
+	
+}
+
+.custom-select select {
+	background-color: #fff;
+	border:1px solid #8EAFBF; 
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	width:140px; height: 53px;
+}
+
+.custom-select select::-ms-expand {
+	display: none; /* to ie 10 */
+}
+
+.custom-select select:focus {
+	outline: none;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.packSearch-select:before{display:none !important;}
+
+.packSearch-select {
+	background-color: #fff;
+	
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	width:320px; height: 53px;
+	border-left:none;
+	border-top: none;
+}
+
+.packSearch-select:hover {
+	border-color: #999;
+}
+
+.packSearch-select:before {
+	
+}
+
+.packSearch-select select {
+	background-color: #fff;
+	border:1px solid #8EAFBF; 
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	width:320px; height: 53px;
+}
+
+.packSearch-select select::-ms-expand {
+	display: none; /* to ie 10 */
+}
+
+.packSearch-select select:focus {
+	outline: none;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.small-select:before{display:none !important;}
+
+.small-select {
+	background-color: #fff;
+	
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	width:90px; height: 53px;
+	border-left:none;
+	border-top: none;
+}
+
+.small-select:hover {
+	border-color: #999;
+}
+
+.small-select:before {
+	
+}
+
+.small-select select {
+	background-color: #fff;
+	border:1px solid #8EAFBF; 
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	width:90px; height: 53px;
+}
+
+.small-select select::-ms-expand {
+	display: none; /* to ie 10 */
+}
+
+.small-select select:focus {
+	outline: none;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* little trick for custom select elements in mozilla firefox  17/06/2014 @rodrigoludgero */
+
+/* pseudo class https://developer.mozilla.org/en-US/docs/Web/CSS/:any */
+
+-moz-any(.custom-select):before {
+	background-color: #fff; /* this is necessary for overcome the caret default browser */
+	pointer-events: none; /* https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events  */
+	z-index: 1; /* this is necessary for overcome the pseudo element */
+}
+
+
+
+
+.TBTopWrap
+{
+	padding-left:0px; margin-top: 10px; margin-left: -2px;
+}
+
+.TBTopWrap1
+{
+	padding-left:3px; margin-top: 5px; margin-left: 15px;
+}
+
+
+.noPaddingTop
+{
+	padding-top: 0px;
+}
+
+.padLeftThree
+{
+	padding-left: 3px;
+}
+
+#padLeftFive
+{
+	padding-left: 15px;
+}
+
+#vmTextBoxWrap
+{
+	margin-top: 20px; padding-left: 0px;
+}
+
+#vmOpButWrap
+{
+	margin-top: 20px; padding-left: 10px;
+}
+
+
+.mktDef
+{
+	width: 23%; margin-top: 5px; font-weight: normal; padding-right: 20px;
+}
+
+.mktDefMore
+{
+	color: #25B4FF; font-weight: normal;
+}
+
+.width26
+{
+	width: 26%;
+}
+
+.FilterRow
+{
+	
+	height: 30px; padding-left: 10px; padding-right: 10px;
+}
+
+
+#everestPinMktSection {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+	left:1%;
+}
+
+.padTop10
+{
+	padding-top: 10px;
+}
+
+
+.mktHeadingBlue
+{
+
+
+	font-family:Roboto;
+	font-weight:normal;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	padding-top: 10px;
+	color:#25B4FF;
+	margin-top:30px; 
+	padding-left:0px; 
+	padding-bottom:20px;
+
+}
+
+
+
+
+.packGroupHeading
+{
+
+
+	font-family:Roboto;
+	font-weight:normal;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	
+	color:#25B4FF;
+	padding-top: 10px;
+	padding-left:0px; 
+	
+
+}
+
+
+
+.packSearchHeading
+{
+
+
+	font-family:Roboto;
+	font-weight:normal;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	
+	color:#25B4FF;
+	padding-top: 10px;
+	padding-left:0px; 
+	
+
+}
+
+
+
+.BCBreak
+{
+	
+	padding-left:15px; padding-right:15px;
+}
+
+#mktHeadingWrap
+{
+	width: 100%; padding:25px; padding-top: 10px; padding-bottom: 0px;
+}
+
+.fullWidth100
+{
+	width: 100%;
+}
+
+.mktLabelText
+{
+	font-family:Roboto;
+	font-weight:normal; font-size: 12px; padding-left:16px;	padding:0; color:#666666; padding-bottom:8px;
+}
+
+.mktDefTB
+{
+	
+	border-radius:0px; box-shadow:none; border:1px solid #8EAFBF; width:350px; height: 45px;
+}
+
+
+
+/*22 Nov*/
+
+
+
+
+
+
+.mcButton {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  min-width:120px;
+  min-height: 40px;
+  
+}
+
+
+.mcButton:hover {
+  color: #ffffff;
+  background-color: #297DFD;
+  border-color: none;
+}
+
+
+
+
+.mcButtonApply {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  min-width:155px;
+  min-height: 40px;
+  margin-left: 15px;
+
+  
+}
+
+
+.mcButtonApply:hover {
+  color: #ffffff;
+  background-color: #297DFD;
+  border-color: none;
+}
+
+
+
+.mcButtonSearch {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  
+  min-height: 40px;
+  margin-left: 15px;
+ padding-left: 50px; padding-right: 50px; font-weight: bold;
+
+  
+}
+
+
+.mcButtonSearch:hover {
+  color: #ffffff;
+  background-color: #297DFD;
+  border-color: none;
+}
+
+
+
+
+
+
+
+
+
+.mcButtonPSearch {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  margin-right: 25px;
+  min-height: 40px;
+	margin-top: 15px;
+ padding-left: 50px; padding-right: 50px; font-weight: bold;
+
+  
+}
+
+
+.mcButtonPSearch:hover {
+  color: #ffffff;
+  background-color: #297DFD;
+  border-color: none;
+}
+
+
+
+
+
+
+
+.mcBigButton {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  width: 300px;
+  min-height: 40px;
+  margin-left: 5px;
+ padding-left: 50px; padding-right: 50px; font-weight: bold; margin-bottom: 20px;
+	
+
+  
+}
+
+
+.mcBigButton:hover {
+  color: #ffffff;
+  background-color: #297DFD;
+  border-color: none;
+}
+
+
+.mcBigButton.disabled {
+  background-color: #CFCDCD;
+  color:#fff;opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+
+.mcBigButton.disabled:hover {
+  opacity: 0.65; 
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mcBigButtonGrpng {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  width: 300px;
+  min-height: 40px;
+  margin-left: 5px;
+ padding-left: 50px; padding-right: 50px; font-weight: bold; margin-bottom: 20px;
+	
+
+  
+}
+
+
+.mcBigButtonGrpng:hover {
+  color: #ffffff;
+  background-color: #297DFD;
+  border-color: none;
+}
+
+
+.mcBigButtonGrpng.disabled {
+  background-color: #CFCDCD;
+  color:#fff;opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+
+.mcBigButtonGrpng.disabled:hover {
+  opacity: 0.65; 
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mcBigButtonRemove {
+  color: #FB4F39;
+  background-color: #fff;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  width: 290px;
+  min-height: 40px;
+  margin-left: 5px;
+ padding-left: 40px; padding-right: 40px; font-weight: bold; margin-bottom: 20px;
+	border: 1px solid #FB4F39;
+	
+
+  
+}
+
+
+
+.mcBigButtonRemove:hover {
+  color: #ffffff;
+  background-color: #FB4F39;
+  border-color: none;
+}
+
+
+.mcBigButtonRemove.disabled {
+  background-color: #CFCDCD;
+  color:#fff;opacity: 0.65;
+  cursor: not-allowed;
+	border: none;
+}
+
+
+
+.mcBigButtonRemove.disabled:hover {
+  opacity: 0.65; 
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mcSmallButton {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  width: 200px;
+  min-height: 40px;
+  margin-left: 5px;
+ padding-left: 30px; padding-right: 30px; font-weight: bold; margin-bottom: 20px;
+	
+
+  
+}
+
+
+.mcSmallButton:hover {
+  color: #ffffff;
+  background-color: #297DFD;
+  border-color: none;
+}
+
+
+.mcSmallButton.disabled {
+  background-color: #CFCDCD;
+  color:#fff;opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+
+.mcSmallButton.disabled:hover {
+  opacity: 0.65; 
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mcSmallButtonCancel {
+  color: #ffffff;
+  background-color: #FB4F39;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  width: 180px;
+  min-height: 40px;
+  margin-left: 5px;
+ padding-left: 20px; padding-right: 20px; font-weight: bold; margin-bottom: 20px;
+	
+
+  
+}
+
+
+.mcSmallButtonCancel:hover {
+  color: #ffffff;
+  background-color: #E63923;
+  border-color: none;
+}
+
+
+.mcSmallButtonCancel.disabled {
+  background-color: #CFCDCD;
+  color:#fff;opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+
+.mcSmallButtonCancel.disabled:hover {
+  opacity: 0.65; 
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mcButtonCancel {
+  color: #25B4FF;
+  background:none;
+  font-size:14px;
+  padding-left:15px;
+  padding-right:15px;
+  padding:5px;
+  min-height: 40px;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  min-width:100px;
+  border:1px solid #25B4FF;
+}
+
+
+.mcButtonCancel:hover {
+  color: #ffffff;
+  background-color: #25B4FF;
+
+}
+
+/*View Market */
+
+
+
+
+/*Grid Home*/
+
+.col82
+{
+	
+	width: 82%;
+}
+
+.pinWrap
+{
+	position:relative; left:1.3%;	
+}
+
+
+.minPadd
+{
+	
+margin-left:-15px;
+}
+
+
+/*Grid Home*/
+
+
+
+
+/*WaterLevel Grid*/
+
+
+#everestPin {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+}
+
+.white-panel {
+  position: absolute;
+  background: white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  
+  border: 1px solid #DEDEDE; background-color:#fff;
+    border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); max-width:48%; padding-bottom:10px; padding-left:0px; padding-top:0px;
+}
+
+
+.white-panelnoPos {
+  position: absolute;
+  background: white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  
+  border: 1px solid #DEDEDE; background-color:#fff;
+    border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); max-width:48%; height: auto;
+  
+}
+
+
+.white-panelnoPos:hover {
+ box-shadow:0px 4px 8px rgba(0, 0, 0, 0.349019607843137);
+  
+}
+
+
+ 
+
+
+/*WaterLevel Grid*/
+
+
+
+
+
+.accordion-toggle {
+  position: relative;
+}
+
+
+.accordion-toggle::after {
+  content: 'Collapse';
+  font-family:Roboto;
+	font-weight:normal;
+	font-size:14px;
+	
+  
+}
+
+.accordion-toggle.collapsed::after {
+  content: 'Archive';
+  font-family:Roboto;
+	font-weight:normal;
+	font-size:14px;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*View Market CSS*/
+
+.accordionVP .panel-heading { padding: 0;}
+.accordionVP .panel-title > a {
+	display: block;
+	
+    outline: none;
+    font-weight: none;
+    text-decoration: none;
+	
+}
+
+.accordionVP .panel-title > a.accordionVP-toggle::after, .accordionVP a[data-toggle="collapse"]::before  {
+    content:"\e113";
+    float: right;
+	margin-top:21px;
+    font-family: 'Glyphicons Halflings';
+	margin-right :1em;
+	color:#25B4FF;
+	
+}
+.accordionVP .panel-title > a.accordionVP-toggle.collapsed::before, .accordionVP a.collapsed[data-toggle="collapse"]::before  {
+    content:"\e114";
+}
+
+
+
+
+
+
+
+.padTop5
+{
+	padding-top: 6px;
+}
+
+
+.padTop3
+{
+	padding-top: 3px;
+}
+
+.viewCollap-inner {
+    
+    
+	height:100%;
+	padding:10px;
+	background-color:none;
+}
+
+#noColor
+{
+	background:none; border:none; box-shadow:none;	
+}
+
+#noColorpadFive
+{
+	background:none; border:none; box-shadow:none; padding-left: 15px; padding-bottom: 0px; 
+}
+
+
+
+.vmCustWrapperToggle
+{
+	padding-top: 0px; box-shadow: none; border: none;
+}
+
+#BordRadNone
+{
+	border-radius: 0px;
+}
+
+
+.vmCustWrapperToggle:hover
+{
+	
+   
+   
+    	
+}
+
+
+
+.vmTogWrap
+{
+	height:20px; font-weight:normal;	
+}
+
+.vmCB
+{
+	padding-left:10px; font-weight:normal; width: 28%;
+}
+
+.vmMarDefTit
+{
+	width:20%; margin-top:5px; font-weight:normal;	
+}
+
+.vmFilter
+{
+	margin-top:5px; font-weight:normal;	width: 12%;  padding-left: 0px; 
+}
+
+.filterSel
+{
+	color:#FF940C; font-weight:normal; padding-left: 10px; padding-right: 5px;
+}
+
+
+
+.filterDis
+{
+	color:#DEDEDE; font-weight:normal; padding-left: 10px; padding-right: 5px; margin-left: 36px;
+}
+
+
+
+
+
+
+/*View Market CSS*/
+
+
+
+
+
+
+
+
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+	font-family:Roboto;
+	font-weight:normal;
+	font-size:14px;	
+	color:#3A4F5A;
+	background-color:#F7F5F4;
+	color:#3a4f5a
+}
+
+a
+{
+	font-family:Roboto;
+	font-weight:normal;
+	font-size:14px;	
+	line-height:12px;
+	color:#25b4ff;	
+}
+
+
+
+.box-inner {
+    border: 1px solid #DEDEDE;
+	background-color:#fff;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137);
+	max-width:49%;
+	
+    min-height:180px;
+	padding-right:2%;
+	padding-bottom:3%;
+	padding:0px;
+}
+
+
+
+a.archiveLink
+{
+	font-family:Roboto;
+	font-weight:normal;
+	font-size:12px;	
+	color:#25b4ff;	
+}
+
+
+#custWrapper
+{
+	margin-top:40px; background:none; padding:0px; box-shadow:none	
+}
+
+
+.noMargin
+{
+	margin:0px; 	
+}
+
+.noPadding
+{
+	padding:0px;	
+}
+
+.custArcWrap
+{
+	padding:0px; text-align:right; padding-top:15px; padding-bottom: 20px; width:15%;
+}
+
+.rBoxWrap
+{
+	margin-left:2%;	
+}
+
+.custTopRow
+{
+	margin:0px; margin-top:20px;	
+}
+
+
+#wrapper {
+	min-height:100%;
+	position:relative;
+}
+#header {
+	background:#ededed;
+	padding:0px;
+}
+#content {
+	padding-bottom:10px; /* Height of the footer element */
+}
+#footer {
+	background:#ffab62;
+	width:100%;
+	
+	position:fixed;
+	bottom:0;
+	left:0;
+}
+
+
+
+.noBG
+{
+	background:none; padding-top:3%; padding-bottom:1%; 
+}
+
+.mtop
+{
+	margin-top:2.5%;	
+}
+
+.col70
+{
+	width:80%;	
+}
+
+.lightGrey
+{
+	color:#8EAFBF; font-family:Roboto;
+	font-weight:normal; font-size: 12px; padding-left:16px;	
+}
+
+.reportWrapper
+{
+	padding-bottom:10px;	padding-left:16px;
+}
+
+.reportshiftWrap
+{
+	padding-bottom:10px;	padding-left:16px;
+}
+
+
+
+
+.WhiteboxcontentWrapper
+{
+	width:80.5%; margin-left:0.5%; margin-top:1.5%; 
+		
+}
+
+.footerBar
+{
+	background-color:#3A4F5A; margin-top:0px;width:100%; margin-right:0px;
+	
+	
+	
+}
+
+.footerText
+{
+	font-family:Roboto;
+	font-weight:normal;
+	
+	font-size:10px;
+	color:#fff;
+	padding-top:5px; padding-bottom:5px; text-align:right; padding-right:20px;
+}
+
+
+
+
+
+
+.whiteBoxshadow
+{
+box-shadow: 0px 2px 4px #5F5F5F;
+
+}
+
+
+
+.headingGrey
+{
+	font-family:Roboto;
+	font-weight:200;
+	font-size: 28px;
+	font-style: normal;
+	font-variant: normal;
+	padding-top: 10px; padding-bottom: 15px;
+	color:#3A4F5A;
+	padding-left:0px; margin:0px;
+	
+}
+
+
+
+
+.whiteboxContainter
+{
+	margin-top:0px;
+	
+}
+
+.whiteboxarchieve
+{
+	text-align:right; padding-right:20px; width:20%; padding-top:20px; 
+}
+
+
+.dataText
+{
+	
+	font-family:Roboto;
+	font-weight:normal;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	color:#3A4F5A;
+	padding-bottom:20px;
+	padding-left:16px; padding-right:0px;
+
+	
+
+}
+
+.whiteboxfullwidth
+{
+	
+}
+
+
+.LinksHeadingWhite
+{
+	
+	
+	font-family:Roboto;
+	font-weight:100;
+	font-size: 28px;
+	font-style: normal;
+	font-variant: normal;
+	color:#fff;
+	padding-bottom:20px;
+	padding-top:30px;
+	padding-left:20px;
+	
+	
+	
+}
+
+.breadBrubGap
+{
+	padding-left:15px; padding-right:15px;	
+}
+
+.mcButtonWrapper
+{
+	margin-top:25px;  text-align:right; padding-right:0px; padding-top: 5px;	
+}
+
+.mcWhiteHeading
+{
+	
+	
+	font-family:Roboto;
+	font-weight:100;
+	font-size: 28px;
+	font-style: normal;
+	font-variant: normal;
+	color:#fff;
+	padding-bottom:20px;
+	padding-top:15px;
+	padding-left:0px;
+	
+	
+	
+}
+
+
+.boxwidth
+{
+	
+}
+
+.borShadowNone
+{
+	border:none;
+	box-shadow:none;	
+}
+
+
+
+
+
+
+
+
+/** Tablet Landscape **/
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+
+
+/*View Market Def*/
+	
+	
+/*Nov 24 */
+
+	
+	
+	
+.packSearchModalPanel
+{
+	border-radius: 0px; padding-left: 10px; padding-right: 20px;
+}
+	
+	
+.packGroupHeading
+{
+
+
+	font-family:Roboto;
+	font-weight:normal;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	
+	color:#25B4FF;
+	padding-top: 10px;
+	padding-left:0px; 
+	
+
+}
+	
+	
+
+.packSearchWhiteBox
+{
+	background-color: #fff; box-shadow:0px 2px 4px rgba(0, 0, 0, 0.349019607843137); padding-left: 20px; padding-right: 30px; padding-top: 20px; padding-bottom: 30px;
+}
+	
+	
+	
+.mcButtonPSearch {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  margin-right: 5px;
+  min-height: 40px;
+	margin-top: 15px;
+ padding-left: 20px; padding-right: 20px; font-weight: bold;
+
+  
+}
+
+
+.mcButtonPSearch:hover {
+  color: #ffffff;
+  background-color: #297DFD;
+  border-color: none;
+}
+
+	
+	
+	
+	
+	
+
+
+.packSearch-select:before{display:none !important;}
+
+.packSearch-select {
+	background-color: #fff;
+	
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	width:202px; height: 53px;
+	border-left:none;
+	border-top: none;
+}
+
+.packSearch-select:hover {
+	border-color: #999;
+}
+
+.packSearch-select:before {
+	
+}
+
+.packSearch-select select {
+	background-color: #fff;
+	border:1px solid #8EAFBF; 
+	
+	padding: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	width:202px; height: 53px;
+}
+
+.packSearch-select select::-ms-expand {
+	display: none; /* to ie 10 */
+}
+
+.packSearch-select select:focus {
+	outline: none;
+	
+}
+	
+	
+	
+	
+	
+	
+.PackSearchTB
+{
+	border:1px solid #8EAFBF; padding: 10px; padding-top: 15px; padding-bottom: 15px; width: 200px; height: 52px;
+}
+
+	
+	
+	
+.saveMarketDefWrapButt
+{
+	padding: 0 10px 0 10px; padding-left: 45px; padding-top: 35px; padding-bottom: 20px;
+}
+	
+	
+.boxRefPackListButt
+{
+	padding: 0 10px 0 10px; padding-left: 32px; padding-bottom: 60px;
+}
+	
+
+
+.mcBigButtonRemove {
+  color: #FB4F39;
+  background-color: #fff;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  width: 230px;
+  min-height: 40px;
+  margin-left: 5px;
+ padding-left: 40px; padding-right: 40px; font-weight: bold; margin-bottom: 20px;
+	border: 1px solid #FB4F39; text-align: center; line-height: 18px; padding-top: 8px; padding-bottom: 8px; text-align: center; margin-left: -40px;
+	
+
+  
+}
+	
+	
+	
+
+
+.mcSmallButtonCancel {
+  color: #ffffff;
+  background-color: #FB4F39;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  width: 140px;
+  min-height: 40px;
+  margin-left: 5px;
+ font-weight: bold; margin-bottom: 20px; text-align: center; line-height: 18px; padding-top: 8px; padding-bottom: 8px; text-align: center; margin-left: -10px;
+	
+
+  
+}
+	
+	
+	
+	
+.mcBigButtonGrpng {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  width: 160px;
+  min-height: 40px;
+  margin-left: -5px;
+ padding-left: 10px; padding-right: 10px; font-weight: bold; margin-bottom: 20px; line-height: 18px; padding-top: 8px; padding-bottom: 8px;
+	text-align: center;
+	
+
+  
+}
+	
+	
+	
+
+.mcBigButton {
+  color: #ffffff;
+  background-color: #25B4FF;
+  border-color: none;
+  font-size:14px;
+ 
+  border:none;
+  font-family:Roboto; 
+  font-weight:normal; 
+  font-size:14px;
+  width: 252px;
+  min-height: 40px;
+  margin-left: -5px;
+ padding-left: 40px; padding-right: 40px; font-weight: bold; margin-bottom: 20px;
+	
+
+  
+}
+	
+	
+	
+	
+
+	
+.TwentyPadd
+{
+	padding:20px; padding-top: 15px; padding-left: 25px; padding-bottom: 0px; 
+}
+
+	
+	
+	
+.col60
+	{
+		width: 50%;
+	}
+
+.TBFilter
+{
+	border:1px solid #8EAFBF; padding: 10px; padding-top: 10px; padding-bottom: 10px; width: 195px; min-height: 44px;
+}
+	
+	
+
+.box
+{
+	padding: 0 5px 0 5px;
+}
+	
+	
+.cbFilter
+{
+	margin-left: 5px;
+}
+	
+	
+
+	
+.togMktHead
+{
+	width: 30%
+}
+
+.togMktBase
+{
+	width: 30%;
+}
+
+
+.togMktFil
+{
+	width: 28%;
+}
+	
+.fil2
+	{
+		display: none;
+	}
+	
+
+	
+/*Nov 24*/
+	
+
+
+.vmTogWrap
+{
+	height:20px;	
+	
+}
+
+.vmCB
+{
+	width:20%; padding-left:0px; padding-top:2px; font-size:12px;	
+}
+
+.vmCBWrap
+{
+	width:20%;
+}
+
+.vmMolWrap
+{
+	width: 80%;
+}
+	
+.marginTop5
+	{
+		margin-top:5px;
+	}
+
+.vmMarDefTit
+{
+	width:25%; margin-top:6px; font-size:12px;
+}
+	
+.vmMarDefTitR2
+{
+	width:35%; margin-top:6px; font-size:12px; background-color: aqua
+}
+
+.vmFilter
+{
+	display:none;
+}
+
+.filWrap
+{
+background-color:green; text-align:left;
+}
+
+
+.filterSel
+{
+	color:#FF940C;
+}
+
+
+
+
+/*View Market Def*/
+
+
+
+
+
+
+.box-inner {
+    
+	
+    min-height:220px;
+	
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 480px) {
+	
+	.WhiteboxcontentWrapper
+	{
+		background-color:blue;	
+	}
+}
+
+
+@media only screen and (max-width : 768px) {
+	
+	
+.LinksHeadingWhite
+{
+	
+	font-size: 20px;
+	padding-top:0px;
+	padding-left:20px;
+	padding-bottom:10px;
+	
+	
+	
+	
+	
+	
+}
+	
+}

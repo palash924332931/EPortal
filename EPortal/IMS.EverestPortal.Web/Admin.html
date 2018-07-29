@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Everest Portal</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/content/css/custom.css">
+    <link rel="stylesheet" href="app/content/css/menu.css">
+    <link rel="stylesheet" href="app/content/css/news-section.css">
+    <link rel="stylesheet" href="app/content/css/side-bar.css">
+
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="app/content/js/menu.js"></script>
+    <script src="Lib/angular1/angular.min.js"></script>
+    <script src="admin/admincontroller.js"></script>
+    <script src="admin/adminservice.js"></script>
+
+</head>
+<body ng-app="adminapp" >
+
+
+
+    <div id="wrapper" ng-controller="admincontroller" >
+        <!--Everest Menu-->
+        <div id="header">
+
+            <div class="navbar navbar-default navbar-fixed-top everestMenuWrap" role="navigation">
+                <div class="container everestmenuCont">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <div class="logowrapper">
+                            <img src="app/content/images/qims-01.png" alt="IQVIA" width="141" height="38" class="qims">
+
+                            <img src="app/content/images/everest-01.png" width="140" height="30" alt="Everest Portal" class="everestLogo">
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="collapse navbar-collapse nav navbar-nav top-menu everestCollapMenu">
+                            <li style="width:60px; text-align:center"><a href="#" id="ntext"><i class="glyphicon glyphicon-home homeicon"></i> </a></li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="menuText" id="ntext">Subscription</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Menu 1</a></li>
+                                    <li><a href="#">Menu 2</a></li>
+                                    <li><a href="#">Menu 3</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 4</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 5</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="menuText" id="ntext">Markets</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Menu 1</a></li>
+                                    <li><a href="#">Menu 2</a></li>
+                                    <li><a href="#">Menu 3</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 4</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 5</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="menuText" id="ntext">Territories</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Menu 1</a></li>
+                                    <li><a href="#">Menu 2</a></li>
+                                    <li><a href="#">Menu 3</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 4</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 5</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="menuText" id="ntext">Pack Manager</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Menu 1</a></li>
+                                    <li><a href="#">Menu 2</a></li>
+                                    <li><a href="#">Menu 3</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 4</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 5</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="menuText" id="ntext">Reports</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Menu 1</a></li>
+                                    <li><a href="#">Menu 2</a></li>
+                                    <li><a href="#">Menu 3</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 4</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Menu 5</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" routerlink="/admin" routerlinkactive="active" class="menuText" id="ntext">Admin</a>
+                            </li>
+
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right usernav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="ntext">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <span class="UsernamemenuText"><span class="usrNametext">Hi User Name</span></span>
+                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="navbar-login usernavLogin">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <p class="text-center">
+                                                        <span class="glyphicon glyphicon-user usericonbig"></span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <p class="text-left"><strong>User Name</strong></p>
+                                                    <p class="text-left small">username@quintilesims.com</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <div class="navbar-login navbar-login-session userloginSession">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p>
+                                                        <a href="#" class="btn btn-danger btn-block">Logout</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--Menu ends-->
+
+        </div><!-- #header -->
+
+        <div id="content">
+            <div class="container" style="width:100%">
+                <h2 style="">
+                    <div class="mcHeading">{{title}}</div>
+
+
+
+
+
+                    <div class="col-sm-12 box-inner" style="width:98%; margin-left:10px; padding:20px; margin-top:20px;">
+                        <div class="col-sm-6" style="width:50%;  padding:0px;">
+                            <div class="mcHeadingBlue" style="padding-top:0px;">News Alert 1</div>
+                            <div class="form-group">
+                                <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">News Title:</div>
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="newsTitle" ng-model="newsAlert.NewsAlertTitle" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:677px;">
+                            </div>
+                            <div class="form-group">
+                                <div class="lightGrey" style="padding:0;  font-size:14; color:#666666; padding-bottom:8px;">News Description:</div>
+                                <textarea rows="5" cols="50" class="form-control ng-pristine ng-valid ng-not-empty ng-touched" placeholder="" ng-model="newsAlert.NewsAlertDescription" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:677px; height: 114px; resize:none;"></textarea>
+                            </div>
+
+                            <button type="button" class="mcButton" ng-click="saveNewsAlert()">Save </button>
+                            <button type="submit" class="mcButton">Broadcast </button>
+                            <button type="submit" class="mcButtonCancel" ng-click="cancelNewsAlert()">Cancel</button>
+                        </div>
+
+
+                        <div class="col-sm-6" style="width:50%; ">
+                            <div class="mcHeadingBlue" style="padding-top:0px;">News Alert 2</div>
+                            <div class="form-group">
+                                <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">News Title:</div>
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" id="newsTitle" ng-model="newsAlert2.NewsAlertTitle" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:677px;">
+                            </div>
+                            <div class="form-group">
+                                <div class="lightGrey" style="padding:0;  font-size:14; color:#666666; padding-bottom:8px;">News Description:</div>
+                                <textarea rows="5" cols="50" class="form-control ng-pristine ng-valid ng-not-empty ng-touched" placeholder="" ng-model="newsAlert2.NewsAlertDescription" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:677px; height: 114px; resize:none;"></textarea>
+                            </div>
+
+                            <button type="button" class="mcButton" ng-click="saveNewsAlert2()">Save </button>
+                            <button type="submit" class="mcButton">Broadcast </button>
+                            <button type="submit" class="mcButtonCancel" ng-click="cancelNewsAlert2()">Cancel</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+                <div class="col-sm-12 rcorners2 WhiteboxcontentWrapper row" style="width:98%">
+                    <form class="col-sm-6 pull-left box-inner whiteboxContainter ng-valid ng-dirty" style="width:49%; height:360px; padding:20px; padding-top:0px; padding-bottom:10px;">
+                        <div class="mcHeadingBlue">Popular Links</div>
+                        <br>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Title</span> &nbsp;&nbsp;
+                                    </td>
+
+
+                                    <td>
+                                        <input class="form-control input-sm " type="text" name="name" ng-model="newLink.PopularLinkTitle" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:190px;">
+                                    </td>
+
+
+                                    <td style="padding-left:20px;">
+                                        &nbsp;&nbsp;<span class="lightGrey" style="padding:0; font-size:14; color:#666666; ">URL</span> &nbsp;&nbsp;
+                                    </td>
+                                    <td>
+                                        <input class="form-control input-sm " type="text" name="name" ng-model="newLink.PopularLinkDescription" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:366px;">
+                                        <input type="hidden" ng-model="newLink.PopularLinkId" class="ng-pristine ng-untouched ng-valid ng-empty">
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <div style="height:172px;overflow:auto;">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>URL</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="popLink in popularLinks">
+                                        <td>
+                                            <div>{{popLink.PopularLinkTitle}}</div>
+                                        </td>
+                                        <td>
+                                            <div>{{popLink.PopularLinkDescription}}</div>
+                                        </td>
+
+                                        <td class="glyphicon glyphicon-edit" ng-click="editLink(popLink.PopularLinkId)" style="cursor:pointer;"></td>
+                                        <td class="glyphicon glyphicon-remove-circle" ng-click="deleteLink(popLink.PopularLinkId)" style="cursor:pointer;"></td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <br>
+                        <button type="button" class="mcButton" ng-click="saveLink()">Save</button>
+                        <button type="button" class="mcButtonCancel" ng-click="cancelLink()">Cancel</button>
+                    </form>
+
+                    <form class="col-sm-6 pull-right box-inner whiteboxContainter ng-pristine ng-valid" style="width:49%; height:360px; padding:20px; padding-top:0px;">
+                        <div class="mcHeadingBlue">Monthly Data Summary</div>
+                        <div class="form-group">
+                            <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Summary Title:</div>
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="" id="newsTitle" ng-model="summary.MonthlyDataSummaryTitle" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:657px;">
+                        </div>
+                        <div class="form-group">
+                            <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Summary Description:</div>
+                            <textarea rows="1" cols="50" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="" ng-model="summary.MonthlyDataSummaryDescription" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:657px; height: 114px; resize:none;"></textarea>
+                        </div>
+                        <button type="submit" class="mcButton" ng-click="saveSummary()">Save</button>
+                        <button type="submit" class="mcButton">Broadcast </button>
+                        <button type="submit" class="mcButtonCancel" ng-click="cancelSummary()">Cancel</button>
+                    </form>
+                </div>
+                <br><br><p>.</p>
+                <div class="col-sm-12 rcorners2 WhiteboxcontentWrapper" style="width:98%">
+                    <form class="col-sm-6 pull-left box-inner whiteboxContainter ng-pristine ng-valid" style="width:49%; height:360px; padding:20px; padding-top:0px;">
+                        <div class="mcHeadingBlue">Listings</div>
+                        <div class="form-group">
+                            <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Listings Title:</div>
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="" id="listingsTitle" ng-model="listing.ListingTitle" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:657px;">
+                        </div>
+                        <div class="form-group">
+                            <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Listings Description:</div>
+                            <textarea rows="1" cols="50" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="" ng-model="listing.ListingDescription" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:657px; height: 114px; resize:none;"></textarea>
+                        </div>
+                        <button type="submit" class="mcButton" ng-click="saveListings()">Save</button>
+                        <button type="submit" class="mcButton">Broadcast</button>
+                        <button type="submit" class="mcButtonCancel" ng-click="cancelListings()">Cancel</button>
+                    </form>
+
+                    <form class="col-sm-6 pull-right box-inner whiteboxContainter ng-pristine ng-valid" style="width:49%; height:360px; padding:20px; padding-top:0px;">
+                        <div class="mcHeadingBlue">Monthly New Product List</div>
+                        <div class="form-group">
+                            <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Product List Title:</div>
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="" id="newsTitle" ng-model="MonthlyNewProduct.MonthlyNewProductTitle" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:657px;">
+                        </div>
+                        <div class="form-group">
+                            <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Product List Description:</div>
+                            <textarea rows="1" cols="50" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="" ng-model="MonthlyNewProduct.MonthlyNewProductDescription" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:657px; height: 114px; resize:none;"></textarea>
+                        </div>
+                        <button type="submit" class="mcButton" ng-click="saveMonthlyNewProducts()">Save</button>
+                        <button type="submit" class="mcButton">Broadcast  </button>
+                        <button type="submit" class="mcButtonCancel" ng-click="cancelMonthlyNewProducts()">Cancel</button>
+                    </form>
+
+                </div>
+                <br><br><p>.</p>
+                <div class="col-sm-12 rcorners2 WhiteboxcontentWrapper" style="width:98%">
+                    <form class="col-sm-6 pull-left box-inner whiteboxContainter ng-pristine ng-valid" style="width:49%; height:355px; padding:20px; padding-top:0px;">
+                        <div class="mcHeadingBlue">CAD Pages</div>
+                        <div class="form-group">
+                            <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">CAD Pages Title:</div>
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="" id="pharmacyTitle" ng-model="CADPage.CADPageTitle" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:657px;">
+                        </div>
+                        <div class="form-group">
+                            <div class="lightGrey" style="padding:0; font-size:14; color:#666666; padding-bottom:8px;">Pharmacy Description:</div>
+                            <textarea rows="1" cols="50" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="" ng-model="CADPage.CADPageDescription" style="border-radius:0px; border: none; box-shadow:none; border:1px solid #8EAFBF; width:657px; height: 114px; resize:none;"></textarea>
+                        </div>
+                        <button type="submit" class="mcButton" ng-click="saveCADPages()">Save</button>
+                        <button type="submit" class="mcButton">Broadcast </button>
+                        <button type="submit" class="mcButtonCancel" ng-click="cancelCADPages()">Cancel</button>
+                    </form>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- #footer starts-->
+    <div id="footerInPages" style="">
+
+        <div class="footerBar">
+            <div class="box col-md-16">
+                <!--<div class="footerTextinPages">IQVIA. Copyright 2016</div>-->
+            </div>
+
+        </div>
+
+    </div><!-- #footer -->
+    </div>
+
+
+
+</body>
+</html>

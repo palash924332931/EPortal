@@ -1,0 +1,407 @@
+﻿
+
+<div class="container noMargin noPadding" id="mktHeadingWrap">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="subCrtMB">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Import Clients</div></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 padRt25">
+                        <div class="row">
+                            <div class="col-sm-10 noPaddingLeft">Clients</div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" class="form-check-input" id="selectAllIRPClients" [(ngModel)]="selectAllIRPClients">
+                                <span style="margin-left: 8px;">Select all</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <p-multiselect [(ngModel)]="selectedIRPClients" [options]="clientIRPOptions"></p-multiselect>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-6 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Clients</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <select [(ngModel)]="client" class="SubTBMktBse" style="min-height: 10px; padding-top: 5px; padding-bottom: 5px;">
+                                    <option *ngFor="let c  of clients" [ngValue]="c">{{c.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <!--<button (click)="importSelectedClients()" class="mcButton" style="width: 150px;">Import</button>-->
+                                <button (click)="importSelectedClients()" class="mcButton" style="margin-top: 10px; min-height: 0px;
+                                padding-left: 10px; padding-right: 10px; min-width: 100px; padding-top: 5px; padding-bottom: 7px;">
+                                    Import
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="showMessage" [style.color]="isSuccessMessage ?'green':'red'" class="col-md-12 noPadding">
+                        <p>{{message}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="subCrtMB">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Create Clients</div></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 padRt25">
+                        <div class="row">
+                            <div class="col-sm-10 noPaddingLeft">Name</div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <input type="text" class="SubTBMktBse"
+                                       style="min-height: 10px; padding-top: 5px; padding-bottom: 5px;" [(ngModel)]="clientName" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 padRt25">
+                        <div class="row">
+                            <div class="col-sm-10 noPaddingLeft">ClientNo</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <input type="text" class="SubTBMktBse"
+                                       style="min-height: 10px; padding-top: 5px; padding-bottom: 5px;" [(ngModel)]="clientNo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <button (click)="createClient()" class="mcButton" style="margin-top: 10px; min-height: 0px;
+                                padding-left: 10px; padding-right: 10px; min-width: 100px; padding-top: 5px; padding-bottom: 7px;">
+                                    Create
+                                </button>
+                            </div>
+                            <div class="col-md-12 noPadding" *ngIf="showCreateMessage" [style.color]="isSuccessCreateClient ?'green':'red'">
+                                <p>{{clientCreateMsg}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row marTop30">
+        <div class="col-sm-6">
+            <div class="subCrtMB">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Export to TDW</div></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 padRt25">
+                        <div class="row">
+                            <div class="col-sm-10 noPaddingLeft">Clients</div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" class="form-check-input" id="selectAllExportToTdw"
+                                       [(ngModel)]="selectAllExportToTdw"><span style="margin-left: 8px;">Select all</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <p-multiselect style="min-height: 10px; padding-top: 5px; padding-bottom: 5px;"
+                                               [(ngModel)]="tdwClients" [options]="clientOptions"></p-multiselect>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <button (click)="ExportToTdw()" class="mcButton" style="margin-top: 10px; min-height: 0px;
+padding-left: 10px; padding-right: 10px; min-width: 100px; padding-top: 5px; padding-bottom: 7px;">
+                                    Export
+                                </button>
+                            </div>
+                            <div class="col-md-12 noPadding" *ngIf="showExportTDWMessage" [style.color]="isSuccessExportTDW ?'green':'red'">
+                                <p>{{ExportTDWMsg}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="subCrtMB">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Import Deliverables and Subscription</div></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 padRt25">
+                        <div class="row">
+                            <div class="col-sm-10 noPaddingLeft">Clients</div>
+                            <div class="col-sm-2"><input type="checkbox" class="form-check-input" id="selectAllDeliAndSubs" [(ngModel)]="selectAllDeliAndSubs"><span style="margin-left: 8px;">Select all</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <p-multiselect [(ngModel)]="deliClients"
+                                               style="min-height: 10px; padding-top: 5px; padding-bottom: 5px;"
+                                               [options]="clientOptions"></p-multiselect>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <button (click)="importDeliverablesAndSubscription()" class="mcButton"
+                                        style="margin-top: 10px; min-height: 0px;
+                                            padding-left: 10px; padding-right: 10px; min-width: 100px; padding-top: 5px; padding-bottom: 7px;">
+                                    Import
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12 noPadding" [style.color]="isSuccessDeli ?'green':'red'">
+                        <p>{{deliMessage}}</p>
+                    </div>
+
+                    <div class="col-md-12 noPadding">
+                        <p style="color:red" *ngIf="subscriptionsImportMessage">{{subscriptionsImportMessage}}</p>
+                        <p [style.color]="isSuccessDeli ?'green':'red'" *ngIf="AllClientsImportMessage">{{AllClientsImportMessage}}</p>
+                        <div *ngIf="importedSubscriptions.length > 0">
+                            <p>Imported subscriptions</p>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>Subscription Id</th>
+                                        <th>Country</th>
+                                        <th>TerritoryBase</th>
+                                        <th>DataType</th>
+                                        <th>ClienId</th>
+                                        <th>Service</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    <tr *ngFor="let lg of importedSubscriptions">
+                                        <th>{{lg.SubscriptionId}}</th>
+                                        <th>{{lg.Country}}</th>
+                                        <th>{{lg.TerritoryBase}}</th>
+                                        <th>{{lg.DataType}}</th>
+                                        <th>{{lg.ClienId}}</th>
+                                        <th>{{lg.Service}}</th>
+                                        <th>{{lg.Status}}</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 noPadding">
+                        <p style="color:red" *ngIf="deliverablesImportMessage">{{deliverablesImportMessage}}</p>
+                        <div *ngIf="importedDeliverables.length > 0">
+                            <p>Imported Deliverables</p>
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>DeliverableId Id</th>
+                                    <th>Subscription Id</th>
+                                    <th>Frequency</th>
+                                    <th>Frequency Type</th>
+                                    <th>Period</th>
+                                    <th>Status</th>
+                                </tr>
+                                <tr *ngFor="let lg of importedDeliverables">
+                                    <th>{{lg.DeliverableId}}</th>
+                                    <th>{{lg.SubscriptionId}}</th>
+                                    <th>{{lg.Frequency}}</th>
+                                    <th>{{lg.FrequencyType}}</th>
+                                    <th>{{lg.Period}}</th>
+                                    <th>{{lg.Status}}</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row marTop30">
+        <div class="col-sm-6">
+            <div class="subCrtMB">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Import Territories</div></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 padRt25">
+                        <div class="row">
+                            <div class="col-sm-10 noPaddingLeft">Clients</div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" class="form-check-input"
+                                       id="selectAllTerritories" [(ngModel)]="selectAllTerritories"><span style="margin-left: 8px;">Select all</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <p-multiselect [(ngModel)]="territoriesClients"
+                                               style="min-height: 10px; padding-top: 5px; padding-bottom: 5px;"
+                                               [options]="clientOptions"></p-multiselect>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <button (click)="importTerritories()" class="mcButton" style="margin-top: 10px; min-height: 0px; padding-left: 10px; padding-right: 10px; min-width: 100px;
+                                    padding-top: 5px; padding-bottom: 7px;">
+                                    Import
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 noPadding" *ngIf="showTerritoryMessage" [style.color]="isSuccessTerritory ?'green':'red'">
+                        <p>{{territoryMessage}}</p>
+                    </div>
+                    <div class="col-md-12 noPadding" *ngIf="territoryImportLog.length > 0">
+                        <table class="table">
+                            <tr>
+                                <th>Client Id</th>
+                                <th>Client Name</th>
+                                <th>Dimension Id</th>
+                                <th>Territory Definition</th>
+                                <th>Status</th>
+                                <th>Time Of Import</th>
+                                <th>Username</th>
+                            </tr>
+                            <tr *ngFor="let lg of territoryImportLog">
+                                <th>{{lg.clientId}}</th>
+                                <th>{{lg.clientName}}</th>
+                                <th>{{lg.dimensionId}}</th>
+                                <th>{{lg.territoryDefinition}}</th>
+                                <th>{{lg.status}}</th>
+                                <th>{{lg.timeOfImport}}</th>
+                                <th>{{lg.username}}</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="subCrtMB">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Import Markets</div></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 padRt25">
+                        <div class="row">
+                            <div class="col-sm-10 noPaddingLeft">Clients</div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" class="form-check-input" id="selectAllMarkets" [(ngModel)]="selectAllMarkets">
+                                <span style="margin-left: 8px;">Select all</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <p-multiselect [(ngModel)]="marketClients"
+                                               style="min-height: 10px; padding-top: 5px; padding-bottom: 5px;" [options]="clientOptions"></p-multiselect>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <button (click)="importMarkets()" class="mcButton" style="margin-top: 10px; min-height: 0px; padding-left: 10px;
+                                    padding-right: 10px; min-width: 100px; padding-top: 5px; padding-bottom: 7px;">
+                                    Import
+                                </button>
+                            </div>
+                            <div class="col-md-12 noPadding" *ngIf="showMarketMessage" [style.color]="isSuccessMarket ?'green':'red'">
+                                <p>{{marketMessage}}</p>
+                            </div>
+                            <div class="col-md-12 noPadding" *ngIf="marketImportLog.length > 0">
+                                <table class="table">
+                                    <tr>
+                                        <th>Client Id</th>
+                                        <th>Client Name</th>
+                                        <th>Dimension Id</th>
+                                        <th>Market Definition</th>
+                                        <th>Status</th>
+                                        <th>Time Of Import</th>
+                                        <th>Username</th>
+                                    </tr>
+                                    <tr *ngFor="let lg of marketImportLog">
+                                        <th>{{lg.clientId}}</th>
+                                        <th>{{lg.clientName}}</th>
+                                        <th>{{lg.dimensionId}}</th>
+                                        <th>{{lg.marketDefinition}}</th>
+                                        <th>{{lg.status}}</th>
+                                        <th>{{lg.timeOfImport}}</th>
+                                        <th>{{lg.username}}</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row marTop30" style="padding-bottom:60px">
+        <div class="col-sm-6">
+            <div class="subCrtMB">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Extraction</div></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-xs-3 noPadding">
+                        <button (click)="extractMarkets()" class="mcButton" style="margin-top: 10px; min-height: 0px; padding-left: 10px;
+                                    padding-right: 10px; min-width: 100px; padding-top: 5px; padding-bottom: 7px;">
+                            Extract Market Definitions
+                        </button>
+                    </div>
+
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding">
+                        <button (click)="extractTerritories()" class="mcButton" style="margin-top: 10px; min-height: 0px; padding-left: 10px;
+                                    padding-right: 10px; min-width: 100px; padding-top: 5px; padding-bottom: 7px;">
+                            Extract Territories
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

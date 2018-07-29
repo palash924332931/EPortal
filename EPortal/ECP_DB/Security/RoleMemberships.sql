@@ -1,0 +1,14 @@
+﻿ALTER ROLE [db_owner] ADD MEMBER [ECPUser];
+
+
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [INTERNAL\SYDG-SQL_SYDSCLP100P_RW];
+
+
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ECPUser_Read];
+
+
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [INTERNAL\SYDG-SQL_SYDSCLP100P_RW];
+

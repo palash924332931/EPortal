@@ -1,0 +1,1153 @@
+﻿<div id="content">
+
+    <!-- Content starts-->
+    <div class="jumbotron noBG">
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs starts -->
+            <div class="container mcContainer">
+
+                <div class="row newsRowPadTop">
+                    <div class="col-md-12">
+                        <div class="mcBreadcrumbsVM">
+                            <a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span>
+                            <a [routerLink]="['../../market/My-Client']" class="mcLink">My Clients</a><span class="BCBreak">></span>
+                            <a [routerLink]="[createMarketLink]" class="mcLink">Create Market</a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row mcRow">
+                    <div class="col-sm-12 col-md-12 col-xs-12"><div class="mcHeadingVM">Create Market </div></div>
+
+
+                </div>
+
+            </div>
+            <!-- Breadcrumbs starts -->
+            <!-- Container section-->
+
+            <div class="container noMargin noPadding" id="mktHeadingWrap">
+                <!-- Text section-->
+                <div class="row noMargin fullWidth100">
+                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding">
+                        <div class="mktLabelText">Label for Market Definition</div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding marBottom20">
+                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty mktDefTB" id="newsTitle" ng-model="newsAlert.NewsAlertTitle" Value="">
+                    </div>
+
+
+
+                </div>
+                <!-- Text section-->
+                <!--Pack Description Search Modal Begins -->
+
+
+
+
+                <div class="modal fade packSearchModalWrapper" id="SearchMarketbaseModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog noPadding modalHorizont">
+                        <div class="modal-content packSearchModalPanel">
+                            <div class="modal-header borShadowNone">
+
+                                <div class="packSearchHeading">Pack Description Search</div>
+                            </div>
+                            <div class="modal-body borShadowNone">
+
+                                <!-- content goes here -->
+                                <form>
+                                    <div class="form-group">
+                                        <input type="radio" name="ref2" /><span class="cbFilterSrch">Starts with</span><span class="cbFilterSrch"> </span><input type="radio" name="ref2" /><span class="cbFilterSrch">Contains</span>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="row">
+                                            <div class="col-sm-5 box">
+
+                                                <div class="icon-addon addon-lg padLeft5">
+
+                                                    <input type="text" placeholder="Search" class="form-control ETBPackSearch" id="" name="" autocomplete="off" spellcheck="false">
+                                                    <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
+                                                </div>
+                                                <!--<script type="text/javascript" src="js/searchAutoCom.js"></script>-->
+
+                                            </div>
+
+                                            <div class="col-sm-2 box">
+
+                                                <button type="submit" class="mcButtonSearchNw" data-toggle="modal" data-target="#SearchMarketbaseModal">Search</button>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-sm-12">
+                                            <div>
+                                                <div class="row pckSearchResultWrapper">
+
+
+                                                    <div class="col-sm-12 col-md-12 col-xs-12"><div class="mcHeadingBluePS">Results</div></div>
+
+
+
+
+
+
+
+                                                    <div class="col-sm-12 col-xs-12 col-md-12">
+
+                                                        <div class="table-responsive">
+                                                            <table id="mytable" class="table table-bordred table-striped">
+
+                                                                <thead class="theaddark">
+
+
+                                                                <th class="text-center">Pack Name</th>
+                                                                <th class="text-center">Market Base</th>
+
+
+                                                                </thead>
+                                                                <tbody>
+
+
+
+                                                                    <tr>
+
+                                                                        <td><span class="paddLeft50">Pack 2</span></td>
+                                                                        <td><span class="paddLeft50">ATC N02B</span></td>
+
+
+                                                                    </tr>
+
+                                                                    <tr>
+
+                                                                        <td><span class="paddLeft50">Pack 3</span></td>
+                                                                        <td><span class="paddLeft50">ATC N02B</span></td>
+
+                                                                    </tr>
+
+
+                                                                    <tr>
+
+                                                                        <td><span class="paddLeft50">Pack 4</span></td>
+                                                                        <td><span class="paddLeft50">ATC N02B</span></td>
+
+                                                                    </tr>
+
+
+
+                                                                    <tr>
+
+                                                                        <td><span class="paddLeft50">Pack 5</span></td>
+                                                                        <td><span class="paddLeft50">ATC N02B</span></td>
+
+                                                                    </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                </tbody>
+
+                                                            </table>
+                                                        </div>
+
+
+
+
+                                                    </div>
+
+
+                                                    <div class="row noMargin">
+                                                        <button type="submit" class="mcButtonModClose pull-right" data-dismiss="modal">Close</button>
+                                                        <br class="clearAll" />
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!--Pack Description Search Modal ends-->
+                <!--Filter Modal Begins -->
+
+
+
+
+                <div class="modal fade packSearchModalWrapper" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content packSearchModalPanel filPSMod">
+
+
+                            <div class="row">
+
+                                <div class="col-sm-9 noPadding marlefm5"><div class="col-sm-8 filHeadingMod"><span class="cbFilter">ATC N02B</span></div></div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">ATC 1</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">ATC 2</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">ATC 3</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">ATC 4</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">MFR</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                            <div class="row">
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">NEC1</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">NEC2</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">NEC 3</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">NEC 4</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">Molecule</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+
+                            <div class="row">
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">Flagging</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+
+                                                <div class="custom-selectNwFil fa-caret-down">
+                                                    <select name="" id="">
+                                                        <option value="">Ethical</option>
+                                                        <option value="">Proprietary</option>
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">Branding</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+
+                                                <div class="custom-selectNwFil fa-caret-down">
+                                                    <select name="" id="">
+                                                        <option value="">Branded</option>
+                                                        <option value="">Generic</option>
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">Product</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+
+
+                            <div class="row">
+
+
+                                <div class="col-sm-3 box width60">
+
+                                </div>
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <span class="cbFilter"></span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <button type="submit" class="mcButtonNwSearch">Apply / Update Filter</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <span class="cbFilter"></span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <button type="submit" class="mcButtonNwSearch" data-dismiss="modal">Close</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--Filter Modal ends-->
+                <!--Edit Filter Modal Begins -->
+
+
+
+
+                <div class="modal fade packSearchModalWrapper" id="filterModalEdit" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+                    <div class="modal-dialog">
+
+                        <div class="modal-content packSearchModalPanel filPSMod">
+
+
+                            <div class="row">
+
+                                <div class="col-sm-9 noPadding marlefm5"><div class="col-sm-8 filHeadingMod"><span class="cbFilter">ATC N02B</span></div></div>
+
+
+
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value="" checked><span class="cbFilter">ATC 1</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="N02B1">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value="" checked><span class="cbFilter">ATC 2</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="N02B1">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value="" checked><span class="cbFilter">ATC 3</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="N02B1">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value="" checked><span class="cbFilter">ATC 4</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="N02B1">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">MFR</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                            <div class="row">
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">NEC1</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">NEC2</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">NEC 3</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">NEC 4</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">Molecule</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="row">
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">Flagging</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+
+                                                <div class="custom-selectNwFil fa-caret-down">
+                                                    <select name="" id="">
+                                                        <option value="">Ethical</option>
+                                                        <option value="">Proprietary</option>
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">Branding</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+
+                                                <div class="custom-selectNwFil fa-caret-down">
+                                                    <select name="" id="">
+                                                        <option value="">Branded</option>
+                                                        <option value="">Generic</option>
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <input type="checkbox" value=""><span class="cbFilter">Product</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <input type="text" class="TBNwFilter" id="" value="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+
+
+                            <div class="row">
+
+
+                                <div class="col-sm-3 box width60">
+
+                                </div>
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <span class="cbFilter"></span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <button type="submit" class="mcButtonNwSearch">Apply / Update Filter</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-3 box width20">
+                                    <div class="TwentyPadd">
+                                        <div class="row">
+                                            <span class="cbFilter"></span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                                <button type="submit" class="mcButtonNwSearch" data-dismiss="modal">Close</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Edit Filter Modal ends-->
+                <!--Save modal popup-->
+
+
+                <div class="modal fade packSearchModalWrapperSave" id="SaveModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+                    <div class="modal-dialogSave">
+
+                        <div class="modal-content packSearchModalPanel filPSMod">
+                            <div class="">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-12"><div class="col-sm-12 filHeadingMod"><span class="">Changes made to the market base selection criteria have been saved and will apply to the pack allocation</span></div></div>
+
+
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <!-- Save modal ends-->
+                <!--Cancel modal popup-->
+
+
+                <div class="modal fade packSearchModalWrapperSave" id="CancelModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+                    <div class="modal-dialogSave">
+
+                        <div class="modal-content packSearchModalPanel filPSMod">
+                            <div class="">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-12"><div class="col-sm-12 filHeadingMod"><span class="">Changes made to the market base selection criteria have not been applied to the pack allocation</span></div></div>
+
+
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <!-- Cancel modal ends-->
+                <!--Next modal popup-->
+
+
+                <div class="modal fade packSearchModalWrapperSave" id="nextModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+                    <div class="modal-dialogSave">
+
+                        <div class="modal-content packSearchModalPanel filPSMod">
+                            <div class="">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-12"><div class="col-sm-12 filHeadingMod"><span class="">Do you want to save changes made to the market base selection?</span></div></div>
+
+                            </div>
+
+
+                            <div class="row padTop20">
+
+
+                                <div class="col-sm-3 box noPadding noMargin">
+
+                                </div>
+
+                                <div class="col-sm-3 box noPadding">
+
+                                </div>
+
+                                <div class="col-sm-3 box">
+                                    <button type="submit" class="mcButtonSearch pull-right" onclick="location.href = 'marketDefenition.html';">Save</button>
+                                </div>
+
+
+                                <div class="col-sm-3 box">
+                                    <button type="submit" class="mcButtonPScancel pull-right" data-dismiss="modal">Close</button>
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Next modal ends-->
+                <!--Filter begin-->
+                <div class="container crtMarkTabWrapper">
+
+                    <!--Tab 1 contents-->
+                    <div class="row noMargin">
+                        <div class="col-sm-12 noPadding CrtHeading">Market Base</div>
+
+                    </div>
+
+                    <div class="row NoMarTop">
+                        <div class="col-sm-12 col-md-12 col-xs-12 packSearchButtWrapper"><button type="submit" class="mcButtonSearch" data-toggle="modal" data-target="#SearchMarketbaseModal"><div class="pckSrchTextLeft">Pack Description Search</div>  <div class="floatLeft"><label for="search" class="glyphicon glyphicon-search searchWhiteBig" rel="tooltip" title="search"></label></div></button></div>
+                    </div>
+
+                    <div class="row">
+
+
+                        <div class="col-sm-12">
+                            <div class="col-sm-12 fullwidthWithBorder">
+
+
+                                <div class="col-sm-12 noPadding BlueBoxHedText"><div class="mbText">Select Market Base </div></div>
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="col-sm-12">
+                            <div class="col-sm-12 fullwidthWithBorder">
+
+
+                                <div class="table-responsive">
+                                    <table id="" class="filTable" style="margin-top: 20px;">
+
+
+                                        <tbody *ngIf="marketBases">
+
+                                            <tr>
+                                                <td class="" style="width: 32%; padding-left: 10px;"><span class="blueTextColor">Market Base</span></td>
+                                                <td class="" style="width: 18%; padding-left: 10px;"><span class="greenTextColor">User Refresh Settings</span></td>
+                                                <td class="" style="width: 50%; padding-left: 10px;"><span class="orrangeTextColor">Base Filter Settings</span></td>
+                                            </tr>
+
+                                            <tr *ngFor="let marketBase of marketBases" id="row{{marketBase?.Id}}">
+
+                                                <td>
+                                                    <div class="col-sm-12 noPadding noMargin">
+
+
+                                                        <div class="col-sm-12 NewnodeShadowBox">
+                                                            <div class="col-sm-11 nodTabWid"><input id="chkbox_{{marketBase?.Id}}" type="checkbox" class="" (change)="activateMarketBase( ('chkbox_' + marketBase.Id), marketBase?.Id)"><span class="nodeCBWrap">{{marketBase?.MarketBaseName}}</span></div>
+
+                                                            <div class="col-sm-1 nodTabWid1"><a href="#" class="purpLink"><i id="icon_{{marketBase?.Id}}" class="glyphicon glyphicon-filter filterDis" data-toggle="modal" data-target="#filterModal"></i></a></div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="col-sm-12 noPadding noMargin userRefreshHidden" id="col2_{{marketBase?.Id}}">
+                                                        <div class="col-sm-12 NewGreennodeShadowBox">
+                                                            <div class="col-sm-6 noPadding mobWidth">
+                                                                <input type="radio" name="ref" /><span class="cbFilter1">Dynamic</span>
+                                                            </div>
+                                                            <div class="col-sm-6 noPadding mobWidth"><input type="radio" name="ref" /><span class="cbFilter1">Static</span></div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                                <td>
+
+
+                                                    <div class="NewOrrangenodeShadowBox">
+
+
+                                                        <div class="nodeEqual">ATC1=N02B1</div>
+                                                        <div class="nodeEqual">ATC2=N02B1</div>
+                                                        <div class="nodeEqual">ATC3=N02B1</div>
+                                                        <div class="nodeEqual">ATC4=N02B1</div>
+                                                        <div class="nodeEqualMore"><a href="#" data-toggle="modal" data-target="#filterModalEdit">more...</a></div>
+                                                        <div class="clearAll"></div>
+
+                                                    </div>
+
+                                                </td>
+
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+
+                                    <div class="row noMargin padLeft20">
+                                        <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper padTop20"><button type="button" class="mcButton" data-toggle="modal" data-target="#SaveModal">Save </button></div>
+                                        <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper padTop20"><button type="button" class="mcButtonPScancel" data-toggle="modal" data-target="#CancelModal">Cancel </button></div>
+                                        <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper padTop20"><button type="button" class="mcButtonNext" data-toggle="modal" data-target="#nextModal">Next </button></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!--Tab 1 Content ends-->
+
+                </div>
+
+
+
+                <div class="container noMargin noPadding fullWidth100" id="">
+                    <div class="row">
+
+
+                    </div>
+
+                </div>
+
+                <!-- Filter ends -->
+                <!--white Box Table-->
+                <!--News section ends-->
+            </div>
+
+            <!-- Save Market starts -->
+            <!-- Save Market starts ends -->
+            <!--Filter ends-->
+            <!--White Shadow Box starts -->
+
+
+        </div>
+        <!-- Save Market starts -->
+        <!-- Save Market starts ends -->
+        <!--Filter ends-->
+        <!--White Shadow Box starts -->
+        <!--</div>-->
+        <!-- #content -->
+        <!-- #footer starts-->
+        <div id="footer">
+
+            <div class="footerBar">
+                <div class="box col-md-16">
+                    <div class="footerText">IQVIA. Copyright 2016</div>
+                </div>
+
+            </div>
+
+        </div><!-- #footer -->
+
+    </div>
+</div>

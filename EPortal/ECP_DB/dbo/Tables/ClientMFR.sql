@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[ClientMFR] (
+    [Id]       INT IDENTITY (1, 1) NOT NULL,
+    [ClientId] INT NULL,
+    [MFRId]    INT NULL,
+    CONSTRAINT [PK__ClientMF__3214EC0732E411A2] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 1),
+    CONSTRAINT [FK__ClientMFR__Clien__46B27FE2] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[Clients] ([Id])
+);
+

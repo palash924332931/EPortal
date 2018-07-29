@@ -1,0 +1,700 @@
+﻿<div bsModal #lgDelMktModal="bs-modal" class="modal fade subModalWrapper" id="modelmarketdef" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="width:65%">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Add Market Definition</div></div>
+            </div>
+
+            <div class="row">               
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                    <button type="submit" class="subaltButton" [routerLink]="[createMarketLink]">Create New Market Definition</button>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchMarketDef" (keyup)="searchClientMarketDef()" />
+                    <span class="glyphicon glyphicon-search form-control-feedback" style="z-index: 1; padding: 0 38px 0 0;"></span>
+                </div>
+            </div>
+
+            <div class="row marTop30">
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="table-responsive scrollxDiv" style="">
+                        <table id="mytable" class="table table-stripedSub table-borderlessSub width99">
+                            <thead class="theaddark" style="">
+                                <!--<th class="text-center width8" style="">-->
+                            <th class="subMarketBaseTH width10" style="">
+                                <input type="checkbox" id="chkAll" name="all" (change)="checkAll($event,'market')" [disabled]="!IsCheckAllMktEnabled" [(ngModel)]="IsCheckAllMktSelected" />
+                            </th>
+
+                            <th class="text-center">Available Market Definitions</th>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let mkt of MarketDefsByPage; let i=index">
+                                    <td style="text-align:center;" class="width10">
+                                        <input type="checkbox" value={{mkt.Id}} [(ngModel)]="mkt.selected" [disabled]="mkt.isSaved">
+                                    </td>
+                                    <td class="">{{mkt.Name}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <pagination *ngIf="MarketDefsByPage.length > 0" [boundaryLinks]="true" [totalItems]="mktDeftotalItems" [(ngModel)]="CurrentPage" (pageChanged)="PageChangedMarket($event)"
+                                [itemsPerPage]="itemsPerPage" class="pagination-sm" [maxSize]="5"
+                                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                </div>
+            </div>
+
+            <div class="row marTop20">
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButton" (click)="AddToDelivery('market')" [disabled]="buttonState('market')">Add to Deliverable</button>
+                </div>
+
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButtonCancel" (click)="CancelMarketPopup()">Cancel</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div bsModal #lgDelTerModal="bs-modal" class="modal fade subModalWrapper" id="modelTerritory" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="width:65%" >
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Add Territory Definition</div></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                <button type="submit" class="subaltButton" [routerLink]="[createTerritoryLink]">Create New Territory Definition</button></div>
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerritory" (keyup)="searchTerritories()" />
+                    <span class="glyphicon glyphicon-search form-control-feedback" style="z-index: 1; padding: 0 38px 0 0;"></span>
+                </div>
+            </div>
+            
+            <!--<div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12"><button type="submit" class="subaltButton" onClick="location.href='Create_marketBase.html'">Create New Market Definition</button></div>
+            </div>-->
+
+            <div class="row marTop30">
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="table-responsive scrollxDiv" style="">
+                        <table id="mytable" class="table table-stripedSub table-borderlessSub width99">
+                            <thead class="theaddark" style="">
+                                <!--<th class="text-center width8" style="">-->
+                            <th class="subMarketBaseTH width10" style="">
+                                <input type="checkbox" id="chkAll" name="all" (change)="checkAll($event,'territory')" [disabled]="!IsCheckAllTerEnabled" [(ngModel)]="IsCheckAllTerSelected" />
+                            </th>
+
+                            <th class="text-center">Available Territory Definitions</th>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let tr of TerritoryByPage; let i=index">
+                                    <td style="text-align:center;" class="width10">
+                                        <input type="checkbox" value={{tr.Id}} [(ngModel)]="tr.selected" [disabled]="tr.isSaved">
+                                    </td>
+                                    <td class="">{{tr.Name}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <pagination *ngIf="TerritoryByPage.length > 0" [boundaryLinks]="true" [totalItems]="territorytotalItems" [(ngModel)]="CurrentPage" (pageChanged)="PageChangedTerritory($event)"
+                                [itemsPerPage]="itemsPerPage" class="pagination-sm" [maxSize]="5"
+                                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                </div>
+            </div>
+
+            <div class="row marTop20">
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButton" (click)="AddToDelivery('territory')" [disabled]="buttonState('territory')">Add to Deliverable</button>
+                </div>
+
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButtonCancel" (click)="CancelTerritoryPopup()">Cancel</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div bsModal #lgDelClntModal="bs-modal" class="modal fade subModalWrapper" id="modelClient" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="">
+            <div class="row">
+                <div class="col-sm-5 col-md-5 col-xs-5">
+                    <div class="HeadingCharcoal">Add Client</div>
+                </div>
+                <div class="col-sm-7 col-md-7 col-xs-7">
+                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchClient" (keyup)="searchClients()" />
+                    <span class="glyphicon glyphicon-search form-control-feedback" style="z-index: 1; padding: 0 38px 0 0;"></span>
+                </div>
+            </div>
+            <!--<div>{{ClientByPage|json}}</div>-->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="table-responsive scrollxDiv" style="">
+
+                        <table id="mytable" class="table table-stripedSub table-borderlessSub width99">
+                            <thead class="theaddark" style="">
+                                <!--<th class="text-center width8" style="">-->
+                            <th class="subMarketBaseTH width10" style="">
+                                <input type="checkbox" id="chkAll" name="all" (change)="checkAll($event,'client')" [disabled]="!IsCheckAllClientEnabled" [(ngModel)]="IsCheckAllClientSelected" />
+                            </th>
+
+                            <th class="text-center">Available Clients</th>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let tr of ClientByPage; let i=index">
+                                    <td style="text-align:center;" class="width10">
+                                        <input type="checkbox" value={{tr.Id}} [(ngModel)]="tr.selected" [disabled]="tr.isSaved">
+                                    </td>
+                                    <td class="">{{tr.Name}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <pagination *ngIf="ClientByPage.length > 0" [boundaryLinks]="true" [totalItems]="ClienttotalItems" [(ngModel)]="CurrentPage" (pageChanged)="PageChangedClient($event)"
+                                [itemsPerPage]="itemsPerPage" class="pagination-sm" [maxSize]="5"
+                                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                </div>
+            </div>
+
+            <div class="row marTop20">
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButton" (click)="AddToDelivery('client')" [disabled]="buttonState('client')">Add to Deliverable</button>
+                </div>
+
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButtonCancel" (click)="CancelClientPopup()">Cancel</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div bsModal #lgDelDateModal="bs-modal" class="modal fade packSearchModalWrapper" id="DeliverableDateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Data Delivery Period</div></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 noPadding subcalStart">
+                    <div class="row noPadding">
+                        <div class="col-sm-12  subCalstartEnd">
+                            START
+                        </div>
+                        <div class="col-sm-12 subCalWrapper">
+                            <div class="header">
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-left" (click)="previousYearFrom()"></i>
+                                </a>
+                                <span>{{curFromYear}}</span>
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-right" (click)="nextYearFrom()"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div style="width: 12%">-->
+                    <div class="mrp-monthdisplayCal" *ngFor="let p of monthsFrom" [ngClass]="{'selectedMonth': p.selected, 'month': !p.selected}" style="margin-top:-5px">
+                        <!--<div>-->
+                        <div class="col-md-5" (click)="FromMonthClick(p);" style="text-transform:uppercase;width:100%;padding-top:15px;padding-bottom:15px;">
+                            {{p.name}}
+                        </div>
+                        <!--</div>-->
+                    </div>
+                    <!--</div>-->
+                </div>
+
+                <div class="col-sm-6 noPadding subCalEndWrapper" style="">
+                    <div class="row noPadding">
+                        <div class="col-sm-12 subCalstartEnd">
+                            END
+                        </div>
+                        <div class="col-sm-12 subCalWrapper">
+                            <div class="header">
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-left" (click)="previousYearTo()"></i>
+                                </a>
+                                <span>{{curToYear}}</span>
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-right" (click)="nextYearTo()"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row subCalRowWrap">-->
+                    <div class="mrp-monthdisplayCal" *ngFor="let p1 of monthsTo" [ngClass]="{'selectedMonth': p1.selected, 'month': !p1.selected}">
+                        <div class="col-md-5" (click)="ToMonthClick(p1);" style="text-transform:uppercase;width:100%;padding-top:15px;padding-bottom:15px;">
+                            {{p1.name}}
+                        </div>
+                    </div>
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="row" *ngIf="Invalid" style="color:red;"><b> {{validationMsg}}</b></div>
+            <div class="row marTop10">
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButton" (click)="UpdateDespatchPeriod();">Save</button>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButtonCancel" (click)="lgDelDateModal.hide();">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!------popup ends-------------------------->
+
+
+<div id="wrapper">
+    <!--Everest Menu-->
+
+
+    <div id="content">
+        <!-- Content starts-->
+        <div class="jumbotron noBG">
+            <div class="container-fluid">
+                <!-- Breadcrumbs starts -->
+                <div class="container mcContainer">
+                    <div class="row newsRowPadTop">
+                        <div class="col-md-12">
+                            <div class="mcBreadcrumbs">
+                                <a [routerLink]="['']" class="mcLink">Home</a>
+                                <span class="breadBrubGap">></span>
+                                <a  class="mcLink">Subscription</a> <span class="breadBrubGap">></span>
+                                <!--<a [routerLink]="[breadCrumbLink]" class="mcLink">{{bredCrumbName}}</a> <span class="breadBrubGap">></span>-->
+                                <a (click)="NavigateToBack()" class="mcLink">{{bredCrumbName}}</a> <span class="breadBrubGap">></span> 
+
+                                <a  class="mcLink">Edit Deliverable</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row mcRow">
+                        <div class="col-sm-12 col-md-12 col-xs-12">
+                            <div class="mcHeadingVM">
+                                Edit Deliverable: {{deliverablesList.ClientName}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breadcrumbs ends -->
+                <!-- Container section-->
+                <div class="container noMargin noPadding" id="mktHeadingWrap">
+                    
+                    <!--Market Base Type & Criteria-->
+                    <div class="row padleftright20 ">
+                        <div class="col-sm-12 noPadding">
+                            <div class="subCrtMB" style="padding-right: 40px; ">
+                                <div class="row">
+                                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">{{deliverablesList.DisplayName}}</div></div>
+                                </div>
+                                <!--<div>
+                                    {{ ClientMarketDefList | json }}
+                                </div>-->
+                                
+
+                                <div class="row marTop20 greyLineBottom" style="">
+                                    <div class="col-sm-2 noPadding width15P" style="">
+                                        <div class="charcText">Data Delivery Period</div>
+                                        <!--<div class="marTop20"><a href="#">Dec'16 - Jan'17 <span class="glyphicon glyphicon-edit subEditIcon"></span></a></div>-->
+                                        <div class="col-sm-12 col-md-12 col-xs-12 marTopM5">
+                                            <div id="sla-data-range" class="mrp-container nav navbar-nav">
+                                                <div class="mrp-monthdisplay" style="margin-left:-25px !important">
+                                                    <span class="mrp-lowerMonth">{{deliverablesList.StartDate | date: 'MMM'}}-{{deliverablesList.StartDate | date: 'yyyy'}}</span>
+                                                    <span class="mrp-to"> - </span>
+                                                    <span class="mrp-upperMonth">{{deliverablesList.EndDate | date: 'MMM'}}-{{deliverablesList.EndDate | date: 'yyyy'}}</span>
+                                                    <a class="glyphicon glyphicon-edit subEditIcon"  [class.disabled]="!CanEditContent"
+                                                       (click)="setDefaultMonthYear(deliverablesList.StartDate,deliverablesList.EndDate)">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-2 noPadding width10 padRt25" style="">
+                                        <div class="charcText">Frequency</div>
+                                        <div class="delBrick-select fa-caret-down marTop10">
+                                            <select name="lstFrequency" id="lstFrequency" (change)="dropdownChange($event.target.value,'frequency');" [disabled]="!CanEditContent">
+                                                <option *ngIf="FrequncyList.length<2" value="0"></option>
+                                                <option *ngFor="let freq of FrequncyList" value={{freq.FrequencyId}} [selected]="freq.FrequencyId == deliverablesList.FrequencyId">
+                                                    {{freq.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-2 noPadding width10 padRt25" style="">
+                                        <div class="charcText">Period</div>
+                                        <div class="delBrick-select fa-caret-down marTop10">
+                                            <select name="lstPeriod" id="lstPeriod" (change)="dropdownChange($event.target.value,'period');" [disabled]="!CanEditContent">
+                                                <option *ngIf="PeriodList.length<2" value="0"></option>
+                                                <option *ngFor="let prd of PeriodList" value={{prd.PeriodId}} [selected]="prd.PeriodId == deliverablesList.PeriodId">
+                                                    {{prd.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-2 noPadding width20 padRt25" style="">
+                                        <div class="charcText">Report Level Restriction</div>
+                                        <div class="delBrick-select fa-caret-down marTop10">
+                                            <select name="lstRestriction" id="lstRestriction" (change)="dropdownChange($event.target.value,'restriction');" [disabled]="!CanEditContent">
+                                                <option  value="0" >
+                                                   
+                                                </option>
+                                                <option *ngFor="let res of RestrictionList" value={{res.Id}} [selected]="res.Id == deliverablesList.RestrictionId">
+                                                    {{res.Id}}-{{res.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-4 noPadding width20 padRt25" style="">
+                                        <div class="charcText">Report Writer</div>
+                                        <div class="delBrick-select fa-caret-down marTop10">
+                                            <select name="lstRepoWriter" id="lstRepoWriter" (change)="dropdownChange($event.target.value,'reportwriter');" [disabled]="!CanEditContent">
+                                                <option  value="0"></option>
+                                                <option *ngFor="let rw of ReportWriterList" value={{rw.ReportWriterId}} [selected]="rw.ReportWriterId == deliverablesList.ReportWriterId">
+                                                    {{rw.Code}} {{rw.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 noPadding width10" style="">
+                                        <div class="charcText">IRP Report No</div>
+                                        <div class="marTop10" >
+                                            <input style="height:52px; width:120px;" type="number" name="irpReportNo" id="irpReportNo" [disabled]="!CanEditIRPReportNumber" [(ngModel)]="deliverablesList.ReportNo"/>
+                                            <div *ngIf="deliverableMessage" [style.color]="isSuccess ?'green':'red'">{{deliverableMessage}}</div>
+
+                                        </div>
+                                    </div>
+                                    <div *ngIf="deliverablesList.DeliveryTypeId == 3" class="col-sm-1 noPadding width10 padRt25 greyLineBottom marLeft20">
+                                        <div class="charcText">Mask</div>
+                                        <div class="marTop20 form-switcher form-switcher-sm form-switcher-lg-phone">
+                                            <input type="checkbox" name="probe" id="probe" [(ngModel)]="deliverablesList.Mask">
+                                            <label class="switcher" for="probe"></label>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+
+                                <div class="row marTop30 greyLineBottom" style="">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding" style="">
+                                        <div class="table-responsive" style="width: 70%;">
+                                            <table  id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                <thead class="" style="">
+                                                    <tr>
+                                                        <td class="SubTextGrey width25" style="">Market Definition </td>                                                        
+                                                        <td class="SubTextGrey width50" style="">Market Base</td>
+                                                        <td class="SubTextGrey" style="">Duration</td>
+                                                        <td class="SubTextGrey width10"></td>
+                                                    </tr>
+                                                    
+                                                </thead>
+                                                <tbody *ngFor="let res of deliverablesList.marketDefs; let i=index; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
+                                                        <tr *ngFor="let r of res.marketBaseDTOs;let j=index; ">
+                                                            <td><span *ngIf="j==0">{{res.Name}}</span><span *ngIf="j>0"></span></td>                                                            
+                                                            <td>{{r.Name}}</td>
+                                                            <td class="">{{r.DurationFrom  | date: 'MMM yyyy'}} - {{r.DurationTo  | date: 'MMM yyyy'}}</td>
+                                                            <td class=""><a *ngIf="j==0" class="glyphicon glyphicon-trash subGlyDel" (click)="DeleteMarketDef(res.Id,res.Name)"
+                                                                                [class.disabled]="!CanDelMktDef"></a><span *ngIf="j>0"></span></td>
+                                                        </tr>
+                                                </tbody>
+                                               
+                                            </table>
+                                            <div *ngIf="mktDeflistCount==0" style="color:red;">This deliverable requires market definition(s) to be added to it</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row noPadding noMargin">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <button type="submit" class="mcButton" style="width: 175px;margin-left:-15px;" (click)="ShowMarketDialog()" [disabled]="!CanAddMktDef">Add Market Definition</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row marTop30 greyLineBottom" style="">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding" style="">
+                                        <div class="table-responsive" style="width: 60%;">
+                                            <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                <thead class="" style="">
+                                                <td class="SubTextGrey width30" style="">Territory Definition </td>
+                                                <td class="SubTextGrey width25" style="">Territory Base</td>
+                                                <td class="SubTextGrey width5" style=""></td>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let res of deliverablesList.territories">
+                                                        <td class="">{{res.Name}}</td>
+                                                        <td class="">{{res.TerritoryBase}} </td>
+                                                        <td style="text-align:center"><a class="glyphicon glyphicon-trash subGlyDel" (click)="DeleteTerritory(res.Id,res.Name)"
+                                                                                             [class.disabled]="!CanDelTerDef"></a></td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                            <div *ngIf="isTerrMandatory && terDeflistCount==0" style="color:red;">This deliverable requires territory definition(s) to be added to it</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row noPadding noMargin">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <button type="submit" class="mcButton" style="width: 175px;margin-left:-15px;" (click)="ShowTerritoryDialog()" [disabled]="!CanAddTerDef || isTerrMandatory== false">Add Territory Definition</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row marTop30 greyLineBottom" style="">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding" style="">
+                                        <div class="table-responsive" style="width: 60%;">
+                                            <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                <thead class="" style="">
+                                                <td class="SubTextGrey width30" style="">Deliver To </td>
+                                                <td class="SubTextGrey width25" style=""> </td>
+                                                <td class="SubTextGrey width5" style=""> </td>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let res of deliverablesList.clients">
+                                                        <td class="">{{res.Name}}</td>
+                                                        <td></td>
+                                                        <td style="text-align:center"><a class="glyphicon glyphicon-trash subGlyDel" 
+                                                                              [class.disabled]="!CanAddClient"   (click)="DeleteClient(res.Id,res.Name,res.IsThirdparty)"></a></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="row noPadding noMargin">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <button type="submit" [disabled]="!CanAddClient" class="mcButton" style="width: 175px;margin-left:-15px;" (click)="ShowClientDialog()">Add Client</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row marTop30 greyLineBottom" style="">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding" style="">
+                                        <div class="table-responsive" style="width: 60%;">
+                                            <table id="mytable" class="table table-stripedSub table-borderlessSub subTable" >
+                                                <!--<thead>
+                                                    <td class="SubTextGrey width30" >Releases Summary </td>
+                                                <td></td>
+                                                </thead>-->
+                                                <thead class="" style="">
+                                                <td class="SubTextGrey width99" style="">Releases Summary </td>
+                                                <td class="SubTextGrey " style=""> </td>
+                                                <td class="SubTextGrey width5" style=""> </td>
+                                                </thead>
+                                                <tbody>
+                                                    <tr >
+                                                        <td class="" >PROBE</td>
+                                                        <td class="text-center" >
+                                                            <div class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20" >
+                                                                <input type="checkbox" name="probe" id="probe" [(ngModel)]="deliverablesList.probe" [disabled]="!CanEditContent">
+                                                                <label class="switcher" for="probe"></label>
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td class="">Pack Exception</td>
+                                                        <td class="" >
+                                                            <div class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                                <input type="checkbox" name="PackException" id="PackException" [(ngModel)]="deliverablesList.PackException" [disabled]="!CanEditContent">
+                                                                <label class="switcher" for="PackException"></label>
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td class="">Census</td>
+                                                        <td class="">
+                                                            <div class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                                <input type="checkbox" name="Census" id="Census" [(ngModel)]="deliverablesList.Census" [disabled]="!CanEditContent">
+                                                                <label class="switcher" for="Census"></label>
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td class="">One Key</td>
+                                                        <td class="">
+                                                            <div class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                                <input type="checkbox" name="OneKey" id="OneKey" [(ngModel)]="deliverablesList.OneKey" [disabled]="!CanEditContent">
+                                                                <label class="switcher" for="OneKey"></label>
+                                                                <!--<div>{{deliverablesList.OneKey}}</div>-->
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Subchannel start-->
+                                <div class="row marTop30 greyLineBottom" style="">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding" style="">
+                                        <div class="SubTextGrey" style="padding-bottom: 20px;">Sub-Channel Setup</div>
+                                        <div *ngFor="let subChannel of deliverablesList.SubChannelsDTO;let i = index" style="width: 40%;">
+                                            <div class="row">
+                                                <div class="col-sm-12 panel-group" id="accordionTwo" style="">
+                                                    <div class="panel panel-default borShadowNone" style="background-color: #fff; padding-top: 10px; padding-bottom: 10px; box-shadow:0px 1px 4px #BABABA !important;">
+                                                        <div class="col-sm-1 col-md-1 col-xs-1 " style="padding-right: 0px; padding-top: 3px; padding-bottom: 0px;">
+                                                            <a class="archiveLink accordion-toggle_arrUp collapsed" data-toggle="collapse" data-parent="" 
+                                                               href="#{{i}}"></a>
+                                                        </div>
+                                                        <div  class="row noPadding noMargin">
+                                                            <div class="col-sm-11 col-md-11 col-xs-11 noPadding">
+                                                                <div class="row">
+                                                                    <div class="col-sm-1 col-md-1 col-xs-1" style="width: 5%;">
+                                                                        <input type="checkbox" 
+                                                                               [(ngModel)]="subChannel.DataType.IsSelected"
+                                                                               (change)="toggleDataType(subChannel)"
+                                                                               [disabled]="!CanEditSubchannel">
+                                                                    </div>
+                                                                    <div class="col-sm-11 col-md-11 col-xs-11">{{subChannel.DataType.Name}}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div  class="col-sm-12" style="">
+                                                                <div id="{{i}}" class="row collapse" style="padding-left: 80px; padding-top: 10px; ">
+                                                                    <div *ngFor="let entityType of subChannel.EntityTypes" class="row noPadding noMargin" style="padding-top: 5px; padding-bottom: 5px;">
+                                                                        <div class="col-sm-1 col-md-1 col-xs-1" style="width: 5%;">
+                                                                            <input type="checkbox" 
+                                                                                   [(ngModel)]="entityType.IsSelected"
+                                                                                   (change)="toggleEntityType(subChannel)"
+                                                                                   [disabled]="!CanEditSubchannel">
+                                                                        </div>
+                                                                        <div class="col-sm-9 col-md-9 col-xs-9" style="">{{entityType.Display}}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Subchannel end-->
+                                <div class="row marTop30">
+                                    <div class="col-sm-1 col-md-1 col-xs-1 noPadding width12p5" style="width:11%">
+                                        <button type="submit" class="mcButton" [disabled]="!CanEditContent || GetDeliveryList() == initialvalue" (click)="UpdateDeliverables()"  
+                                                [ngClass]="{Buttondisabled: !CanEditContent || GetDeliveryList() == initialvalue}">Save</button>
+                                    </div>
+                                    <!--<div class="col-sm-1 col-md-1 col-xs-1 noPadding width12p5" style="width:11%">
+                                        <button type="submit" class="mcButton" (click)="SubmitDeliverables()">
+                                            Submit
+                                        </button>
+                                    </div>-->
+                                    <div class="col-sm-1 col-md-1 col-xs-1 ">
+                                        <button type="submit" class="mcButtonCancel" [disabled]="GetDeliveryList() == initialvalue" (click)="ResetDeliverables();"
+                                                [ngClass]="{mcButtonCancelDisabled:!CanEditContent || GetDeliveryList() == initialvalue}">Cancel</button>
+                                    </div>
+
+                                    <div class="col-sm-1 col-md-1 col-xs-1">
+                                        <button type="submit" class="mcButtonCancel" (click)="NavigateToBack()">Close</button>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div bsModal #lgDelSaveModal="bs-modal" class="modal fade packSearchModalWrapper" id="DeliverySaveModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialogSave">
+                            <div class="modal-content packSearchModalPanel filPSMod">
+                                <!--<div class="">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>-->
+
+                                <div class="row">
+
+                                    <div class="col-sm-12"><div class="col-sm-12 filHeadingMod">
+                                        <span class="">
+                                        {{SaveMessage}}
+                                        <!--Deliverable settings have been saved, Please note: Market Definition must be added before producing this deliverable-->
+                                        </span></div></div>
+                                    <div class="col-sm-12 box">
+                                        <button type="submit" class="mcButtonPScancel pull-right"  (click)="lgDelSaveModal.hide();"
+                                                data-dismiss="modal" style="padding-left: 10px; padding-right: 10px; min-width: 100px;">OK</button>
+                                    </div>
+
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+               
+            </div>
+        </div><!-- #containerfluid -->
+
+        <div id="footer">
+            <div class="footerBar">
+                <div class="box col-md-16">
+                    <div class="footerText">IQVIA. Copyright 2016</div>
+                </div>
+            </div>
+        </div><!-- #footer -->
+
+
+    </div><!-- #wrapper -->
+</div>
+<ng-modal (fnActionOnSaveBtn)="btnModalSaveClick($event,breadCrumbLink)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="modalBtnCapton" [closeBtnCaption]="modalCloseBtnCaption" [title]="modalTitle" [saveBtnVisibility]="modalSaveBtnVisibility" [modalSaveFnParam]="modalSaveFnParameter"> </ng-modal>
+<div bsModal #DelErrorModal="bs-modal" id="SuberrorModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:0px solid">
+                <h4 class="modal-title pull-left">Everest Portal</h4>
+                <button type="button" class="close pull-right" (click)="DelErrorModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Application Error has occurred. Please contact support.
+            </div>
+        </div>
+    </div>
+</div>

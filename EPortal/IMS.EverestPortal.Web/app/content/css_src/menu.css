@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic&subset=latin,latin-ext,cyrillic,cyrillic-ext,greek-ext,greek,vietnamese');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext,cyrillic-ext,cyrillic,greek-ext,greek,vietnamese');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,latin-ext,greek-ext,greek,vietnamese,cyrillic,cyrillic-ext');
+
+
+
+.dropdown:hover .dropdown-menu, .btn-group:hover .dropdown-menu{
+        display: block;
+    }
+    .dropdown-menu{
+        margin-top: 0;
+    }
+    .dropdown-toggle{
+        margin-bottom: 2px;
+    }
+    .navbar .dropdown-toggle, .nav-tabs .dropdown-toggle{
+        margin-bottom: 0;
+    }
+
+
+
+
+
+.dropdown-menu > li > a:hover {
+    background-color: #D3F0FF;
+    background-image: none;
+}
+
+
+
+.UsernamemenuText
+{
+	font-family:Roboto;
+	font-weight:300;
+	font-size:14px;	
+}
+
+.usrNametext
+{
+	font-family:Roboto;
+	font-weight:300;
+	font-size:12px;	
+}
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+
+.usrNametxt
+{
+	width:65%; text-align:right; float:left; margin-top:-8px; line-height:14px; margin-left:-10px;	
+}
+
+.usrIcon
+{
+	float:right	
+}
+
+.iconuser
+{
+	font-size:32px; margin-top:-10px;
+}
+
+.everestMenuWrap
+{
+	z-index:2; position:relative; margin:0px; border:0px;	
+}
+
+.everestmenuCont
+{
+	margin:0px; width:100%; background-color:#25B4FF; box-shadow: 0 5px 12px #454545;
+}
+
+.everestCollapMenu
+{
+	
+}
+
+.menuPadTop
+{
+	padding-top:23px;	
+}
+
+
+.homeicon
+{
+	font-size:16px;	
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu .open  > .dropdown-menu {
+    display: block;
+}
+.dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu .open  > a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+
+.qimsLogoWrap
+{
+width:200px; float:left; 
+}
+
+.everestWrap
+{
+	width:180px; float:left;  
+}
+
+.logowrapper
+{
+	width:350px; padding-left:10px; margin-top:15px;
+}
+
+
+a.menuText
+{
+	font-family:Roboto;
+	font-weight:300;
+	font-size:14px;
+	
+		
+}
+
+#ntext{
+ color: #fff;
+height:62px;
+padding-top:24px;
+
+  }
+  
+  
+  
+  
+.navbar-default .navbar-nav > li > a:hover   {
+    background-color: #0099ff;
+    color: #fff;
+	
+	
+}
+
+.navbar-default .navbar-nav > li > a:focus
+{
+	
+}
+
+.navbar-default .navbar-nav > li > a:active
+{
+	
+}
+
+
+.usernav
+{
+	
+	
+}
+
+.usernavLogin
+{
+	width:300px; padding:20px;	
+}
+
+.usericonbig
+{
+	font-size:70px;	
+}
+
+.userloginSession
+{
+	padding-left:20px; padding-right:20px;	padding-bottom: 10px;
+}
+
+
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+    background-image:none;
+    color: #fff;
+    background-color: #0099ff;
+}
+
+
+
+/* Dropdown menu background color*/
+
+.navbar-nav > li > .dropdown-menu {     border: 1px solid #8EAFBF; padding-top: 0px; padding-bottom: 0px; border-radius: 0px;  }
+
+/* Dropdown menu font color*/ 
+
+ .navbar-nav > li > .dropdown-menu a{   color: #25B4FF; padding-top: 18px; padding-bottom: 18px; border-bottom: 1px solid #8EAFBF;   }
+
+
+
+.everestLogo
+{
+	margin-left:4%;	
+}
+
+
+
+/** Tablet Landscape **/
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+a.menuText
+{
+	font-family:Roboto;
+	font-weight:300;
+	font-size:14px;
+	padding:15px;	
+}
+
+.qims
+{
+	display:none;
+}
+
+.everestLogo
+{
+	margin-left:0px; margin-top:0px;	
+}
+
+.logowrapper
+{
+	width:20%;
+}
+
+.UsernamemenuText
+{
+	
+	display:none;	
+}
+
+
+#ntext{
+ 
+ font-family:Roboto;
+	font-weight:300;
+ padding-top:20px;
+ font-size:14px;
+  }
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus   {
+   
+	height:60px;
+	
+}
+
+
+
+	
+
+}
+
+
+
+@media only screen and (min-width : 768px) and (max-width : 1366px) {
+
+.qims
+{
+	display:none;	
+}
+
+.logowrapper
+{
+	width:200px;	
+}
+	
+}

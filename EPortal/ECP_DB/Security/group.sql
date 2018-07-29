@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [group]
+    AUTHORIZATION [ECPUser];
+

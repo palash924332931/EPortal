@@ -1,0 +1,20 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource"
+              driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              url="jdbc:sqlserver://SYDSCLP100D;DatabaseName=ClientPortal_Dev;"
+              user="ECPUser"
+              password="Gar0mond1#"/>
+  <document>
+    <entity name="manufacturer"
+      pk="Org_Code"
+      query="select distinct(Org_Code), Org_Abbr, Org_Short_Name, Org_Long_Name from [dbo].[DIMProduct_Expanded] WHERE Org_Code is not null AND Org_Code &lt;&gt; ''"
+      deltaImportQuery="select id, Org_Code, Org_Abbr, Org_Short_Name, Org_Long_Name WHERE id='${dih.delta.id}'"
+      deltaQuery="select id, Org_Code, Org_Abbr, Org_Short_Name, Org_Long_Name from ORG WHERE updated_at > '${dih.last_index_time}'"
+      >
+      <field column="Org_Code" name="Org_Code"/>
+      <field column="Org_Abbr" name="Org_Abbr"/>
+      <field column="Org_Short_Name" name="Org_Short_Name"/>
+      <field column="Org_Long_Name" name="Org_Long_Name"/>
+    </entity>
+  </document>
+</dataConfig>

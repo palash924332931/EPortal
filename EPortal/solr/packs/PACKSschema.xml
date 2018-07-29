@@ -1,0 +1,134 @@
+<schema name="refdata" version="1.6">
+  
+  <uniqueKey>PackID</uniqueKey>
+  <field name="PackID" type="packstring" indexed="true" stored="true" />
+  <field name="Prod_cd" type="int" indexed="true" stored="true" />
+  <field name="Pack_cd" type="int" indexed="true" stored="true" />
+  <field name="PFC" type="string" indexed="true" stored="true" />
+  <field name="ProductName" type="string" indexed="true" stored="true" />
+  <field name="Product_Long_Name" type="text" indexed="true" stored="true" />
+  <field name="Pack_Description" type="text" indexed="true" stored="true" />
+  <field name="Pack_Long_Name" type="text" indexed="true" stored="true" />
+  <field name="FCC" type="string" indexed="true" stored="true" />
+  <field name="ATC1_Code" type="string" indexed="true" stored="true" />
+  <field name="ATC1_Desc" type="text" indexed="true" stored="true" />
+  <field name="ATC2_Code" type="string" indexed="true" stored="true" />
+  <field name="ATC2_Desc" type="text" indexed="true" stored="true" />
+  <field name="ATC3_Code" type="string" indexed="true" stored="true" />
+  <field name="ATC3_Desc" type="text" indexed="true" stored="true" />
+  <field name="ATC4_Code" type="string" indexed="true" stored="true" />
+  <field name="ATC4_Desc" type="text" indexed="true" stored="true" />
+  <field name="NEC1_Code" type="string" indexed="true" stored="true" />
+  <field name="NEC1_Desc" type="text" indexed="true" stored="true" />
+  <field name="NEC1_LongDesc" type="text" indexed="true" stored="true" />
+  <field name="NEC2_Code" type="string" indexed="true" stored="true" />
+  <field name="NEC2_desc" type="text" indexed="true" stored="true" />
+  <field name="NEC2_LongDesc" type="text" indexed="true" stored="true" />
+  <field name="NEC3_Code" type="string" indexed="true" stored="true" />
+  <field name="NEC3_Desc" type="text" indexed="true" stored="true" />
+  <field name="NEC3_LongDesc" type="text" indexed="true" stored="true" />
+  <field name="NEC4_Code" type="string" indexed="true" stored="true" />
+  <field name="NEC4_Desc" type="text" indexed="true" stored="true" />
+  <field name="NEC4_LongDesc" type="text" indexed="true" stored="true" />
+  <field name="CH_Segment_Code" type="string" indexed="true" stored="true" />
+  <field name="CH_Segment_Desc" type="text" indexed="true" stored="true" />
+  <field name="WHO1_Code" type="string" indexed="true" stored="true" />
+  <field name="WHO1_Desc" type="text" indexed="true" stored="true" />
+  <field name="WHO2_Code" type="string" indexed="true" stored="true" />
+  <field name="WHO2_Desc" type="text" indexed="true" stored="true" />
+  <field name="WHO3_Code" type="string" indexed="true" stored="true" />
+  <field name="WHO3_Desc" type="text" indexed="true" stored="true" />
+  <field name="WHO4_Code" type="string" indexed="true" stored="true" />
+  <field name="WHO4_Desc" type="text" indexed="true" stored="true" />
+  <field name="WHO5_Code" type="string" indexed="true" stored="true" />
+  <field name="WHO5_Desc" type="text" indexed="true" stored="true" />
+  <field name="FRM_Flgs1" type="string" indexed="true" stored="true" />
+  <field name="FRM_Flgs1_Desc" type="text" indexed="true" stored="true" />
+  <field name="FRM_Flgs2" type="string" indexed="true" stored="true" />
+  <field name="FRM_Flgs2_Desc" type="text" indexed="true" stored="true" />
+  <field name="FRM_Flgs3" type="string" indexed="true" stored="true" />
+  <field name="Frm_Flgs3_Desc" type="text" indexed="true" stored="true" />
+  <field name="FRM_Flgs4" type="string" indexed="true" stored="true" />
+  <field name="FRM_Flgs4_Desc" type="text" indexed="true" stored="true" />
+  <field name="FRM_Flgs5" type="string" indexed="true" stored="true" />
+  <field name="FRM_Flgs5_Desc" type="text" indexed="true" stored="true" />
+  <field name="FRM_Flgs6" type="string" indexed="true" stored="true" />
+  <field name="Compound_Indicator" type="string" indexed="true" stored="true" />
+  <field name="Compound_Ind_Desc" type="text" indexed="true" stored="true" />
+  <field name="PBS_Formulary" type="string" indexed="true" stored="true" />
+  <field name="PBS_Formulary_Date" type="date" indexed="true" stored="true" />
+  <field name="Poison_Schedule" type="string" indexed="true" stored="true" />
+  <field name="Poison_Schedule_Desc" type="text" indexed="true" stored="true" />
+  <field name="Stdy_Ind1_Code" type="string" indexed="true" stored="true" />
+  <field name="Study_Indicators1" type="text" indexed="true" stored="true" />
+  <field name="Stdy_Ind2_Code" type="string" indexed="true" stored="true" />
+  <field name="Study_Indicators2" type="text" indexed="true" stored="true" />
+  <field name="Stdy_Ind3_Code" type="string" indexed="true" stored="true" />
+  <field name="Study_Indicators3" type="text" indexed="true" stored="true" />
+  <field name="Stdy_Ind4_Code" type="string" indexed="true" stored="true" />
+  <field name="Study_Indicators4" type="text" indexed="true" stored="true" />
+  <field name="Stdy_Ind5_Code" type="string" indexed="true" stored="true" />
+  <field name="Study_Indicators5" type="text" indexed="true" stored="true" />
+  <field name="Stdy_Ind6_Code" type="string" indexed="true" stored="true" />
+  <field name="Study_Indicators6" type="text" indexed="true" stored="true" />
+  <field name="PackLaunch" type="date" indexed="true" stored="true" />
+  <field name="Prod_lch" type="date" indexed="true" stored="true" />
+  <field name="Org_Code" type="int" indexed="true" stored="true" />
+  <field name="Org_Abbr" type="string" indexed="true" stored="true" />
+  <field name="Org_Short_Name" type="text" indexed="true" stored="true" />
+  <field name="Org_Long_Name" type="text" indexed="true" stored="true" />
+  <field name="Out_td_dt" type="date" indexed="true" stored="true" />
+  <field name="Prtd_Price" type="decimal" indexed="true" stored="true" />
+  <field name="pk_size" type="int" indexed="true" stored="true" />
+  <field name="vol_wt_uns" type="decimal" indexed="true" stored="true" />
+  <field name="vol_wt_meas" type="string" indexed="true" stored="true" />
+  <field name="strgh_uns" type="decimal" indexed="true" stored="true" />
+  <field name="strgh_meas" type="string" indexed="true" stored="true" />
+  <field name="Conc_Unit" type="decimal" indexed="true" stored="true" />
+  <field name="Conc_Meas" type="string" indexed="true" stored="true" />
+  <field name="Additional_Strength" type="string" indexed="true" stored="true" />
+  <field name="Additional_Pack_Info" type="text" indexed="true" stored="true" />
+  <field name="Recommended_Retail_Price" type="decimal" indexed="true" stored="true" />
+  <field name="Ret_Price_Effective_Date" type="date" indexed="true" stored="true" />
+  <field name="Editable_Pack_Description" type="text" indexed="true" stored="true" />
+  <field name="APN" type="string" indexed="true" stored="true" />
+  <field name="Form_Desc_Abbr" type="text" indexed="true" stored="true" />
+  <field name="Form_Desc_Short" type="text" indexed="true" stored="true" />
+  <field name="Form_Desc_Long" type="text" indexed="true" stored="true" />
+  <field name="NFC1_Code" type="string" indexed="true" stored="true" />
+  <field name="NFC1_Desc" type="text" indexed="true" stored="true" />
+  <field name="NFC2_Code" type="string" indexed="true" stored="true" />
+  <field name="NFC2_Desc" type="text" indexed="true" stored="true" />
+  <field name="NFC3_Code" type="string" indexed="true" stored="true" />
+  <field name="NFC3_Desc" type="text" indexed="true" stored="true" />
+  <field name="Price_Effective_Date" type="date" indexed="true" stored="true" />
+  <field name="Last_amd" type="date" indexed="true" stored="true" />
+  <field name="PBS_Start_Date" type="date" indexed="true" stored="true" />
+  <field name="PBS_End_Date" type="date" indexed="true" stored="true" />
+  <field name="Supplier_Code" type="int" indexed="true" stored="true" />
+  <field name="Supplier_Product_Code" type="string" indexed="true" stored="true" />
+  <field name="MOLECULES" type="string" indexed="true" stored="true" multiValued="true"/>  
+
+  <types>
+    <fieldType name="int" class="solr.TrieIntField" precisionStep="0" omitNorms="true" positionIncrementGap="0"/>
+    <fieldType name="long" class="solr.TrieLongField" precisionStep="0" omitNorms="true" positionIncrementGap="0" />
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
+    <fieldType name="text" class="solr.StrField" sortMissingLast="true" omitNorms="false"/>
+    <fieldType name="decimal" class="solr.TrieDoubleField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="date" class="solr.StrField" />
+
+    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+    <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>    
+    <fieldType name="double" class="solr.TrieDoubleField" precisionStep="0" positionIncrementGap="0"/>
+
+    <fieldType name="packstring" class="solr.TextField"
+        sortMissingLast="true" omitNorms="true">
+        <analyzer>
+            <tokenizer class="solr.KeywordTokenizerFactory"/>           
+            <filter class="solr.LowerCaseFilterFactory" />
+        </analyzer>
+    </fieldType>
+    
+    
+  </types>
+</schema>

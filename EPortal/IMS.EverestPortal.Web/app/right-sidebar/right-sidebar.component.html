@@ -1,0 +1,31 @@
+<!-- left menu starts -->
+<div class="nav-side-menu">
+
+    <div class="LinksHeadingWhite">Popular Links</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+
+        <ul id="menu-content" class="menu-content collapse out" *ngIf="popularLinks">
+            
+            <li *ngFor="let popularLink of popularLinks;">
+                <a *ngIf="!popularLink.PopularLinkFilePath" (click)="openLink(popularLink.PopularLinkDescription)">{{popularLink.PopularLinkTitle}}</a>
+                <a *ngIf="popularLink.PopularLinkFilePath" download href={{popularLinksFolderPath}}{{popularLink.PopularLinkFilePath}} (click)="openLink(popularLink.PopularLinkDescription)" target=_blank>{{popularLink.PopularLinkTitle}}</a>
+            </li>
+            <!--<li><a href="#"> Delivery Schedule</a></li>
+            <li><a href="#"> FAQ on Client Portal</a></li>
+            <li><a href="#"> How to Use Document</a></li>
+            <li><a href="#"> CBG/SFE/Marketing Dashboard</a></li>
+            <li><a href="#"> MiPortal Log in</a></li>
+            <li><a href="#"> IMS Analysis Manager Login</a></li>
+            <li><a href="#"> Cegedim</a></li>
+            <li><a href="#"> Channel Dynamics</a></li>
+            <li><a href="#"> Nostra Data</a></li>
+            <li><a href="#"> Direct Marketing</a></li>
+            <li><a href="#"> IQVIA Website</a></li>-->
+        </ul>
+    </div>
+</div>
+<!--/span-->
+<!-- left menu ends -->
+

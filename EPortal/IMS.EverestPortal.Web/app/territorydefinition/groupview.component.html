@@ -1,0 +1,28 @@
+﻿<div *ngIf="rootgroup!= undefined && rootgroup.Children!=undefined && rootgroup.Children.length>0">
+    <ul class="tree">
+    <li *ngFor="let g of rootgroup.Children"> {{g.Name}}
+        <div>
+            <div class="nodeLevOneBoxWrapper">
+                <div class="row">
+                    <div class="col-sm-9 nodeLevelOneHeading">{{g.Name}}</div>
+                    <div class="col-sm-3 arrowIconWrapper">
+                        <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                </div>
+                <div class="row padTop5">
+                    <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                    <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                    <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 width40"><div class="grpIdTxt">{{GroupId(g)}}</div></div>
+                    <div class="col-sm-4 width38"><div class="levlNameTextBig">Level: {{g.Level}}</div></div>
+                    <div class="col-sm-4 width22"><a href="#" class="purpLink pointer">Add Group</a></div>
+                </div>
+            </div>
+        </div>
+        <groupview [rootgroup]="g"></groupview>
+    </li>
+    </ul>
+</div>

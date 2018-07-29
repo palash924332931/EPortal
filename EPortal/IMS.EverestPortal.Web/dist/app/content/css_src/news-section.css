@@ -1,0 +1,418 @@
+.newsFluid
+{
+	padding-right:0px; padding-left:0px	
+	
+}
+
+
+.panelWrapper
+{
+	background-color:#25B4FF; padding:0px; padding-bottom:0px; padding-left:10px;	
+}
+
+
+a.newsarchivelink
+{
+	color:#fff;
+	text-decoration:none;	
+}
+
+
+a.newsarchivelink:hover
+{
+	color:#fff;
+	text-decoration:underline;	
+}
+
+
+.newsRowPadTop
+{
+	padding-top:15px;	
+}
+
+.newsRowHeading
+{
+	width:70%;	
+}
+
+.newsBorderTop
+{
+	padding-left:22px; border-top: 1px solid #fff; width:100%; margin:0px; padding-bottom:0px; margin-bottom:0px; padding-top:10px; margin-top:20px;	
+}
+
+
+.margin5px
+{
+	margin:5px;	
+}
+
+.newRowPadLeft
+{
+	padding-left:10px;	
+}
+
+.newsimageWrap
+{
+	margin:0px; padding:0px; width:20%; 	
+}
+
+.NewsheadingWhite
+{
+	font-family:Roboto;
+	font-weight:100;
+	font-size: 28px;
+	font-style: normal;
+	color:#fff;
+	padding-bottom:20px;
+	padding-left:10px;
+}
+
+.nwsHtop
+{
+padding-bottom:10px;	
+}
+
+
+.newsLinkWrapper
+{
+	width:50%; margin-left:5px;	
+}
+
+.newsLinkWrapper2
+{
+	width:49%; border-left:1px solid #fff;
+}
+
+
+
+.npadlef
+{
+	padding-left:0px;	
+}
+
+#img1 {display:block; }
+#img2 {display:none}
+
+.newsWrapper
+{
+background-color:#25B4FF; margin-top:40px; margin-left:30px; padding:20px; padding-top:20px; margin-right:40px; box-shadow: 0 4px 10px #939393;
+}
+
+
+
+
+.newsText
+{
+	font-family:Roboto;
+	font-weight:normal;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	color:#fff;
+	width:80%;
+	padding-left:20px;
+	line-height:normal;
+
+	
+	
+	
+}
+
+.newsbox
+{
+	
+}
+
+.newsArchWrap
+{
+	text-align:right; padding-right:20px; width:30%;
+}
+
+a.news
+{
+	color:#FFCF32;
+	text-decoration:none;
+}
+
+a.news:hover
+{
+	text-decoration:underline;	
+}
+
+
+a.newsArchieve
+{
+	color:#FFCF32;
+	text-decoration:none;
+	font-size:12px;
+	font-family:Roboto;
+	font-weight:normal;
+	font-weight:normal;
+	cursor:pointer;
+
+	
+}
+
+a.newsArchieve:hover
+{
+	text-decoration:underline;	
+}
+
+.newsImage
+{
+	width:100%;
+}
+
+
+
+.newsbox
+{
+	
+}
+
+.newsContainer
+{
+	margin:0px; background-color:#25B4FF; width:78.6%; padding-bottom:20px; margin-left:1.5%; box-shadow: 0 3px 8px #AFAFAF;
+}
+
+
+.newsimgecol
+{
+		
+
+		
+}
+
+
+
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+
+
+.newsLinkWrapper
+{
+	width:49%; margin-left:5px;	
+}
+
+.newsLinkWrapper2
+{
+	width:49%; border-left:1px solid #fff;
+}
+
+
+
+
+
+.newsWrapper
+{
+width:85%;
+margin:0px;
+
+margin-left:20px;
+
+
+}
+
+
+
+.NewsheadingWhite
+{
+	
+	font-size: 28px;
+	padding-bottom:0px;
+	
+	
+	
+}
+
+.newsText
+{
+	
+	
+	width:100%;
+	
+	padding:0px;
+	padding-top:20px;
+	
+	
+	
+	
+}
+
+
+.newsimgecol
+{
+		width:330px;
+		height:100px;
+		
+		
+		min-height:20%;
+		
+		
+		
+}
+
+
+
+
+.newsbox
+{
+	
+}
+
+
+.newsContainer
+{
+	margin:0px; background-color:#25B4FF; width:73%; padding-bottom:2%; margin-left:2%; padding-right:2.5%;	
+}
+
+a.newsArchieve
+{
+	
+	font-size:12px;
+	
+	
+}
+
+
+.newsImage
+{
+	width:100%;
+	
+}
+
+
+.newsArchWrap
+{
+	padding-right:10px; padding-top:10px;
+}
+
+
+
+#img1 {display:none;}
+#img2 {display:block; padding-top:10px; padding-bottom:10px;}
+
+.newsimageWrap
+{
+	width:100%;
+}
+
+
+a.news
+{
+	font-size:12px;
+}
+
+
+}
+
+
+
+
+
+
+
+
+@media only screen and (max-width : 768px) {
+	
+
+
+
+
+
+
+
+
+
+
+.newsText
+{
+	
+	
+	
+	width:100%;
+	background-color:#25B4FF;
+	padding:0px;
+	padding-top:20px;
+	
+	
+	
+	
+}
+
+
+.newsimgecol
+{
+		width:100px;
+		height:100px;
+		
+		
+		min-height:10%;
+		
+		
+		
+}
+
+
+
+
+.newsbox
+{
+	width:100%
+}
+
+
+.newsContainer
+{
+	margin:0px; background-color:#25B4FF; width:96%; padding-bottom:2%; margin-left:2%; padding-right:2.5%;	
+}
+
+a.newsArchieve
+{
+	
+	font-size:12px;
+	
+	
+}
+
+
+.newsImage
+{
+	
+	
+}
+
+
+.newsArchWrap
+{
+	padding-right:10px; padding-top:10px;
+}
+
+
+
+#img1 {display:none;}
+#img2 {display:block; padding-top:10px; padding-bottom:10px;}
+
+.newsimageWrap
+{
+	width:100%;
+}
+
+
+a.news
+{
+	font-size:12px;
+}
+
+.newsArchWrap
+{
+	padding-right:20px; width:30%; float:right;
+}
+
+.newsRowHeading
+{
+	width:40%;	 float:left;
+}
+
+}

@@ -1,0 +1,1033 @@
+﻿<div id="content">
+    <div class="nav-side-menu" *ngIf="visibeAllClientBtn">
+        <div class="well mcSideWell">
+            <ul class="nav nav-tabs mcSideTab" *ngIf="visibeAllClientBtn">
+                <li (click)="navigate(true)" style="width:50%;" [ngClass]="{'active': isMyClientsVisible}">
+                    <a href="#home" data-toggle="tab">My Clients</a>
+                </li>
+                <li (click)="navigate(false)" style="width:50%;" [ngClass]="{'active': !isMyClientsVisible}">
+                    <a href="#profile" data-toggle="tab">All Clients</a>
+                </li>
+            </ul>
+            <ul class="nav nav-tabs" *ngIf="!visibeAllClientBtn" style="border-bottom: 0px;">
+                <li (click)="onSelectClientsType(true)" style="width:50%;" [ngClass]="{'active': isMyClientsVisible}">
+                    <a href="#home" data-toggle="tab">My Markets</a>
+                </li>
+            </ul>
+            <div id="myTabContent1" class="tab-content">
+                <div class="tab-pane active in" id="home">
+                    <div class="mcWhiteHeading">
+                        {{toggleTitle}}
+                        <!--<label id="refreshIcon" for="refresh" class="glyphicon glyphicon-repeat refreshClients" rel="refresh" title="refresh" (click)="refreshClientList(isMyclientsSelected)"></label>-->
+                    </div>
+                    <div class="icon-addon addon-lg">
+                        <input id="searchClient1" [(ngModel)]="stringFilter" type="text" placeholder="Search" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false">
+                        <label for="search" class="glyphicon glyphicon-remove pointer" rel="tooltip" title="search" (click)="refreshClientList(isMyClientsVisible)" style="z-index: 1"></label>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile">
+                    <div class="mcWhiteHeading">
+                        {{toggleTitle}}
+                        <!--<label id="refreshIcon" for="refresh" class="glyphicon glyphicon-repeat refreshClients pointer" rel="refresh" title="refresh" (click)="refreshClientList(isMyclientsSelected)"></label>-->
+                    </div>
+                    <div class="icon-addon addon-lg">
+                        <input id="searchClient2" [(ngModel)]="stringFilter" type="text" placeholder="Search" class="form-control typeahead2 tt-query" autocomplete="off" spellcheck="false">
+                        <label for="search" class="glyphicon glyphicon-remove pointer" rel="tooltip" title="search" (click)="refreshClientList(isMyClientsVisible)" style="z-index: 1"></label>
+                    </div>
+
+                </div>
+                <div id="sidebar-client-list">
+                    <ul *ngIf="clients && !isMyClientsVisible">
+                        <li *ngFor="let client of clients | filter: stringFilter; let first=first" [ngClass]="{ 'selected': currentClientId == client.Id }" (click)="loadSubscription(client,true)">{{client?.Name}}</li>
+                    </ul>
+                    <ul *ngIf="clients && isMyClientsVisible">
+                        <li *ngFor="let client of myClients | filter: stringFilter; let first=first" [ngClass]="{ 'selected': currentClientId == client.Id }" (click)="loadSubscription(client,true)">{{client?.Name}}</li>
+                    </ul>
+                    <!--<ul *ngIf="searchedClients && isSearch">
+                        <li *ngFor="let client of searchedClients; let first=first" (click)="loadMarketDefinition(client)">{{client?.Name}}</li>
+                    </ul>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron noBG">
+        <div class="container-fluid" id="DeliverablePrint">
+            <!--News sectionstarts--><!--News section ends-->
+            <div class="container mcContainer">
+                <div class="row newsRowPadTop">
+                    <div class="col-md-12">
+                        <div class="mcBreadcrumbs">
+                            <a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span>
+                            <a class="mcLink">Subscription</a> <span class="breadBrubGap">></span>
+                            <a [routerLink]="[breadCrumbUrl]" class="mcLink">{{toggleTitle}}</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="sampleDiv"></div>
+                <div class="row mcRow" id="SubName">
+                    <div class="col-sm-6 col-md-6 col-xs-6">
+                        <div class="mcHeading" *ngIf="visibeAllClientBtn">Subscriptions:<b> {{selectedClientName}} </b></div>
+                        <div class="mcHeading" *ngIf="!visibeAllClientBtn">My Subscriptions </div>
+                    </div>
+                    <!--<div class="col-sm-8 col-md-6 col-xs-6 padTop20 " data-html2canvas-ignore="true" *ngIf="canDownload">
+                        <div (click)="exportXLS()" class="col-sm-3 noPadding pull-right" style="cursor:pointer; width: 37px; " >
+                            <img src="app/content/images/xls.png" alt="" style="height: 40px;" />
+                        </div>
+                        <a [class.disabled]="!canPrintContent" style="cursor:pointer;">
+                            <i class="glyphicon glyphicon-print pull-right" style="font-size:20px;" (click)="PrintSubscription()"></i>
+                        </a>
+
+                    </div>-->
+                </div>
+
+                <div class="row mcRow" data-html2canvas-ignore="true">
+                    <div class="col-sm-4 col-md-4 col-xs-4 padTop20 marLeft10" style="width:40%;">
+                        <ul class="nav nav-tabs mcSideTab" style="width:70%;">
+                            <li style="width:50%;" (click)="selectTab('subscription');" class="nav active"><a href="#subsTab" data-toggle="tab">Subscription</a></li>
+                            <li style="width:50%;" class="nav" (click)="selectTab('deliverables');"><a href="#delivTab" data-toggle="tab">Deliverables</a></li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-sm-7 col-md-7 col-xs-7 margintop22 noPadding" style="">
+                        <div *ngIf="!IsSubscriptionTab">
+
+                            <img src="app/content/images/clone.png" class="pull-right" alt="Copy Deliverable" title="Copy Deliverable" *ngIf="canCloneDeliverable"
+                                 style="cursor:pointer;" (click)="ShowCloneDeliverableList()" />
+
+                            <img src="app/content/images/clone_dis.png" class="pull-right" alt="Copy Deliverable" title="Copy Deliverable" *ngIf="!canCloneDeliverable" />
+
+                        </div>
+
+                    </div>
+                </div>
+                <div bsModal #lgSubSubmitModal="bs-modal" class="modal fade subModalWrapper" id="SubmitSubScripModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content subModDivWrap" style="">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Subscriptions</div></div>
+                                <table id="mytable" class="table table-stripedSub table-borderlessSub width99">
+                                    <thead class="theaddark" style="">
+                                        <tr>
+                                                <th class="subMarketBaseTH width10" style="">
+                                                    <input type="checkbox" [(ngModel)]="selectAllSubscription" (ngModelChange)="selectAllSubscriptionChange($event)"/>
+                                                </th>
+                                                <th class="subMarketBaseTH">Available Subscriptions</th>
+                                                <th class="subMarketBaseTH">Submitted</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let col of sortedSubscription; let i=index" >
+                                            <td style="text-align:center;" class="width10">
+                                                <input type="checkbox" name="options" (ngModelChange)="subscriptionChange(col.subscription.Selected = $event)" disabled ="{{col.subscription.Submitted == 'Yes'}}"
+                                                         [(ngModel)]="col.subscription.Selected"/>
+                                                      <!-- value={{col.subscription.SubscriptionId}} [(ngModel)]="col.subscription.SubscriptionId" />-->
+                                            </td>
+                                            <td class="">{{getSubscriptionName(col.subscription)}}</td>
+                                            <td class="">{{col.subscription.Submitted}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div class="row marTop20" style="display: none;" id="SuccessMessage">
+                                    <div class="col-sm-12 col-md-12 col-xs-12">
+                                        <span class="" style="color:red"> Subscription version(s) has been submitted successfully.</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row marTop20">
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButton" [disabled]="noneSelected()" (click)="SubmitSubscription(selectedSubscription)">Submit</button>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButtonCancel" (click)="CancelSubmitSubscriptionPopup();">Cancel</button>
+                                </div>
+                            </div>
+
+                            <div class="row" *ngIf ="SubscriptionHistories.count > 0" >
+                                <div class="col-sm-12 col-md-12 col-xs-12" ><div class="HeadingCharcoal">Subscriptions</div></div>
+                                <table id="mytable" class="table table-stripedSub table-borderlessSub width99" >
+                                    <thead class="theaddark" style="">
+                                    <th class="subMarketBaseTH width10" style=""></th>
+                                    <th class="subMarketBaseTH"> Subscription Name</th>
+                                    <th class="subMarketBaseTH">Latest Version</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let sHistroy of SubscriptionHistories; let i=index">
+                                            <td class="">{{getSubscriptionName(sHistroy)}}</td>
+                                            <td class="">{{SHistory.Version}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div bsModal #lgDelSubmitModal="bs-modal" class="modal fade subModalWrapper" id="SubmitDeliveryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content subModDivWrap" style="">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Deliverables</div></div>
+                                <table id="mytable" class="table table-stripedSub table-borderlessSub width99">
+                                    <thead class="theaddark" style="">
+                                        <tr>
+                                            <th class="subMarketBaseTH width10" style=""><input type="checkbox" [(ngModel)]="selectAllDeliverable"     (ngModelChange)="selectAllDeliverableChange($event)"/></th>
+                                            <th class="subMarketBaseTH">Available Deliverables</th>
+                                            <th class="subMarketBaseTH">Submitted</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let col of sortedDeliverables; let i=index">
+                                            <td style="text-align:center;" class="width10">
+                                                <input type="checkbox" name="delOptions" disabled ="{{col.Submitted == 'Yes'}}" (ngModelChange)="deliverableChange(col.Selected = $event)" [(ngModel)]="col.Selected"  />
+                                            </td>
+                                            <td class="">{{col.DisplayName}}</td>
+                                            <td class="">{{col.Submitted}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div class="row marTop20" style="display: none;" id="SuccessMessageDelivery">
+                                    <div class="col-sm-12 col-md-12 col-xs-12">
+                                        <span class="" style="color:red"> Deliverable Version(s) has been submitted successfully.</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row marTop20">
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButton" [disabled]="NoDeliverablesSelected()" (click)="SubmitDeliverables(selectedDelivery)">Submit</button>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButtonCancel" (click)="CancelSubmitDeliveryPopup();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div bsModal #lgBaseSubmitModal="bs-modal" class="modal fade subModalWrapper" id="SubmitBaseModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content subModDivWrap" style="">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Market Base</div></div>
+                                <table id="mytable" class="table table-stripedSub table-borderlessSub width99">
+                                    <thead class="theaddark" style="">
+                                    <th class="subMarketBaseTH width10" style=""></th>
+                                    <th class="subMarketBaseTH">Available Market Base</th>
+                                    <th class="subMarketBaseTH">Submitted</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let col of MarketBaseList; let i=index">
+                                            <td style="text-align:center;" class="width10">
+                                                <input type="checkbox" value={{col.Id}} [(ngModel)]="col.selected" [disabled]="col.Submitted=='Yes'" class="marketbase-submission-checkbox" />
+                                            </td>
+                                            <td class="">{{col.Name}} {{col.Suffix}}</td>
+                                            <td class="">{{col.Submitted}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div class="row marTop20" style="display: none;" id="mktmessage">
+                                    <div class="col-sm-12 col-md-12 col-xs-12">
+                                        <span class="" style="color:orangered"> Market Base version has been submitted successfully.</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row marTop20">
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButton" (click)="SubmitMarketBase(selectedMarketBase)">Submit</button>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButtonCancel" (click)="CancelSubmiBasePopup();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div bsModal #lgSubModal="bs-modal" class="modal fade subModalWrapper" id="SearchMarketbaseModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content subModDivWrap" style="">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Add Market Base</div></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-xs-6">
+                                    <button type="submit" class="subaltButton" (click)="router.navigate(['./marketbase/'+currentClientId]);">Create New Market Base</button>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6">
+                                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchMarketase" (keyup)="searchClientMarketBase()" />
+                                    <span class="glyphicon glyphicon-search form-control-feedback" style="z-index: 1; padding: 0 38px 0 0;"></span>
+                                </div>
+                            </div>
+                            <div class="row marTop30">
+                                <div class="col-sm-12 col-md-12 col-xs-12">
+                                    <div class="table-responsive">
+                                        <!--<div> {{ clientMarketBase | json }} </div>-->
+
+                                        <table id="mytable" class="table table-stripedSub table-borderlessSub width99">
+
+                                            <thead class="theaddark" style="">
+                                            <th class="subMarketBaseTH width10" style="">
+                                                <input type="checkbox" id="chkAll" name="all" (change)="checkAll($event)" [disabled]="!IsCheckAllEnabled" [(ngModel)]="IsCheckAllSelected" />
+                                            </th>
+                                            <th class="subMarketBaseTH">Available Market Bases</th>
+                                            <!--<th class="subMarketBaseTH">Edit Market Bases</th>-->
+                                            </thead>
+
+                                            <tbody>
+                                                <tr *ngFor="let mkt of MarketBaseByPage; let i=index" [ngClass]="{'deleted-record':mkt.DeleteStatus=='Deleted'}">
+                                                    <td style="text-align:center;" class="width10">
+                                                        <input type="checkbox" value={{mkt.MarketBaseId}} [(ngModel)]="mkt.selected" [disabled]="mkt.isSaved||mkt.DeleteStatus=='Deleted'" >
+                                                    </td>
+                                                    <td class=""><a (click)="redrictToURL('./marketbase/',currentClientId+'|'+mkt.MarketBaseId)" >{{mkt.MarketBaseName}} </a></td>
+                                                    <!--(click)="router.navigate(['./marketbase/'+mkt.MarketBaseId]);">{{mkt.MarketBaseName}} </a></td>-->
+                                                    <!--<td>
+                                                        <a (click)="redrictToURL('./marketbase/',currentClientId+'|'+mkt.MarketBaseId)">Edit</a>
+                                                    </td>-->
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <pagination *ngIf="MarketBaseByPage.length > 0" [boundaryLinks]="true" [totalItems]="usertotalItems" [(ngModel)]="CurrentPage" (pageChanged)="PageChanged($event)"
+                                                [itemsPerPage]="itemsPerPage" class="pagination-sm" [maxSize]="5"
+                                                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                </div>
+                            </div>
+                            <div class="row marTop20">
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButton" [disabled]="buttonState()" (click)="AddToService()">Add to Service</button>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButtonCancel" (click)="CancelSubscriptionPopup();">Cancel</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div bsModal #lgSubDateModal="bs-modal" class="modal fade packSearchModalWrapper" id="SubscriptionDateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content subModDivWrap" style="">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Data Subscription Period</div></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 noPadding subcalStart">
+                                    <div class="row noPadding">
+                                        <div class="col-sm-12  subCalstartEnd">
+                                            START
+                                        </div>
+                                        <div class="col-sm-12 subCalWrapper">
+                                            <div class="header">
+                                                <a>
+                                                    <i class="glyphicon glyphicon-chevron-left" (click)="previousYearFrom()"></i>
+                                                </a>
+                                                <span>{{curFromYear}}</span>
+                                                <a>
+                                                    <i class="glyphicon glyphicon-chevron-right" (click)="nextYearFrom()"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div style="width: 12%">-->
+                                    <div class="mrp-monthdisplayCal" *ngFor="let p of monthsFrom" [ngClass]="{'selectedMonth': p.selected, 'month': !p.selected}" style="margin-top:-5px">
+                                        <!--<div>-->
+                                        <div class="col-md-5" (click)="FromMonthClick(p);" style="text-transform:uppercase;width:100%;padding-top:15px;padding-bottom:15px;">
+                                            {{p.name}}
+                                        </div>
+                                        <!--</div>-->
+                                    </div>
+                                    <!--</div>-->
+                                </div>
+                                <div class="col-sm-6 noPadding subCalEndWrapper" style="">
+                                    <div class="row noPadding">
+                                        <div class="col-sm-12 subCalstartEnd">
+                                            END
+                                        </div>
+                                        <div class="col-sm-12 subCalWrapper">
+                                            <div class="header">
+                                                <a>
+                                                    <i class="glyphicon glyphicon-chevron-left" (click)="previousYearTo()"></i>
+                                                </a>
+                                                <span>{{curToYear}}</span>
+                                                <a>
+                                                    <i class="glyphicon glyphicon-chevron-right" (click)="nextYearTo()"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="row subCalRowWrap">-->
+                                    <div class="mrp-monthdisplayCal" *ngFor="let p1 of monthsTo" [ngClass]="{'selectedMonth': p1.selected, 'month': !p1.selected}">
+                                        <div class="col-md-5" (click)="ToMonthClick(p1);" style="text-transform:uppercase;width:100%;padding-top:15px;padding-bottom:15px;">
+                                            {{p1.name}}
+                                        </div>
+                                    </div>
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="Invalid" style="color:red;"><b> {{validationMsg}}</b></div>
+                            <div class="row marTop10">
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButton" (click)="UpdateSubscription();">Save</button>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButtonCancel" (click)="lgSubDateModal.hide();">Cancel</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div bsModal #lgDeliveryModal="bs-modal" class="modal fade subModalWrapper" id="CloneDeliverableModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content subModDivWrap" style="">
+                            <div class="row marTop30">
+                                <div class="col-sm-12 col-md-12 col-xs-12">
+                                    <div class="table-responsive">
+
+                                        <table id="myDeliverytable" class="table table-stripedSub table-borderlessSub width99">
+                                            <thead class="theaddark" style="">
+                                            <th class="subMarketBaseTH width10" style=""></th>
+                                            <th class="subMarketBaseTH">Available Deliverables</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let it of DeliverablesByPage; let i=index">
+                                                    <td style="text-align:center;" class="width10">
+                                                        <input type="checkbox" value={{it.DeliverableId}} [(ngModel)]="it.selected" disabled={{it.disabled}}>
+                                                    </td>
+                                                    <td class="">{{it.DisplayName}}</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <pagination *ngIf="DeliverablesByPage.length > 0" [boundaryLinks]="true" [totalItems]="deliverytotalItems" [(ngModel)]="CurrentPage" (pageChanged)="PageChangedDelivery($event)"
+                                                [itemsPerPage]="itemsPerPage" class="pagination-sm" [maxSize]="5"
+                                                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                </div>
+                            </div>
+                            <div class="row marTop20">
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButton" [disabled]="buttonDeliveryCloneState()" (click)="CloneDeliverables()">Save</button>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <button type="submit" class="mcButtonCancel" (click)="lgDeliveryModal.hide()">Cancel</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div bsModal #lgSubSaveModal="bs-modal" class="modal fade packSearchModalWrapper" id="DeliverySaveModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialogSave">
+                        <div class="modal-content packSearchModalPanel filPSMod">
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div [innerHTML]="SaveMessage" class="col-sm-12 filHeadingMod">
+                                        <!--<span class="">
+                                            {{SaveMessage}}
+                                        </span>-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 box">
+                                    <button type="submit" class="mcButtonPScancel pull-right" (click)="lgSubSaveModal.hide();"
+                                            data-dismiss="modal" style="padding-left: 10px; padding-right: 10px; min-width: 100px;">
+                                        OK
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--subscription view starts-->
+            <div id="myTabContent" class="tab-content " style="overflow:auto">
+                <div class="tab-pane active in" id="subsTab">
+                    <div class="mcHeadingBlue marLeft10" [hidden]=!noSubscription>There are no subscriptions available</div>
+                    <div [hidden]=noSubscription style="margin-left:20px;">
+                        <button type="submit" class="mcButton" (click)="SubmitSubButton()">
+                            Submit
+                        </button>
+                    </div>
+
+                    <br />
+                    <div style="width:80%; margin-left:20px; margin-top:40px;" id="custWrapper">
+
+                        <!--<div> {{ clientSubscription | json }} </div>-->
+
+                        <div class="col-sm-6 noMargin" style="padding-left:0px; padding-right:35px;">
+                            <div *ngFor="let col of clientSubscription;let i = index; let index=index; let odd=odd; let even=even;">
+
+                                <div *ngIf="index%2 == 0" class="panel-group borShadowNone noMargin flg_whtepanel" id="accordionTwo" style="margin-bottom:20px;">
+                                    <div class="panel panel-default borShadowNone">
+                                        <div class="col-sm-11 col-md-11 col-xs-11">
+                                            <div class="HeadingCharcoal" style="padding-top: 20px;font-size:22px">{{getSubscriptionName(col.subscription)}}</div>
+                                        </div>
+                                        <div class="col-sm-1 col-md-1 col-xs-1" style="padding-top:25px; padding-left:18px;">
+                                            <a class="accordion-toggle_arrUp collapsed" data-toggle="collapse" data-parent="" href="#collapse1a-{{i}}"></a>
+                                        </div>
+                                        <div class="row noPadding noMargin">
+                                            <div class="col-sm-12">
+                                                <div id="collapse1a-{{i}}" class="row collapse">
+                                                    <div class="row noPadding noMargin">
+                                                        <div class="col-sm-12 col-md-12 col-xs-12"><div class="SubTextGrey">Data Subscription Period</div></div>
+                                                        <div class="col-sm-12 col-md-12 col-xs-12 marTopM5">
+                                                            <div id="sla-data-range" class="mrp-container nav navbar-nav">
+                                                                <div class="mrp-monthdisplay" style="">
+                                                                    <span [ngClass]="{ 'mrp-lowerMonth' : canEditMarketBase,'textDisabled' : !canEditMarketBase }">{{col.subscription.StartDate | date: 'MMM'}}-{{col.subscription.StartDate | date: 'yyyy'}}</span>
+                                                                    <span [ngClass]="{ 'mrp-to' : canEditMarketBase,'textDisabled' : !canEditMarketBase }"> - </span>
+                                                                    <span [ngClass]="{ 'mrp-upperMonth' : canEditMarketBase,'textDisabled' : !canEditMarketBase }">{{col.subscription.EndDate | date: 'MMM'}}-{{col.subscription.EndDate | date: 'yyyy'}}</span>
+                                                                    <a [class.disabled]="!canEditMarketBase" class="glyphicon glyphicon-edit subEditIcon"
+                                                                       (click)="setDefaultMonthYear(col.subscription.ClientId,col.subscription.SubscriptionId,col.subscription.StartDate,col.subscription.EndDate)">
+                                                                        <!--<span class="glyphicon glyphicon-edit subEditIcon">
+                                                                        </span>-->
+                                                                    </a>
+                                                                </div>
+                                                                <input type="hidden" value="201702" id="mrp-lowerDate" />
+                                                                <input type="hidden" value="201803" id="mrp-upperDate" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row marTop10" style="">
+                                                        <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="">
+
+                                                            <div class="table-responsive">
+                                                                <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                    <thead class="" style="">
+                                                                    <td class="SubTextGrey" style="width:70%">Market Base </td>
+                                                                    <td class="SubTextGrey width30" style="">Duration</td>
+                                                                    <td class="SubTextGrey width5" style=""></td>
+                                                                    </thead>
+
+                                                                    <tbody>
+
+                                                                        <tr *ngFor="let res of col.MarketBase">
+                                                                            <td class="">
+                                                                                <a [class.disabled]="!canEditMarketBase" (click)="editValid(col.ClientId,res.Id)">
+                                                                                    <strong>{{res.Name}} {{res.Suffix}}</strong>
+                                                                                </a><a class="glyphicon glyphicon-edit subEditIcon" [class.disabled]="!canEditMarketBase" (click)="editValid(col.ClientId,res.Id)"><span></span></a>
+                                                                            </td>
+                                                                            <td class="">{{res.DurationFrom  | date: 'MMM yyyy'}} - {{res.DurationTo  | date: 'MMM yyyy'}}</td>
+                                                                            <td>
+                                                                                <a class="glyphicon glyphicon-trash subGlyDel" [class.disabled]="!canDelMarketBase" (click)="deleteMarketBase(res.Id,col.subscription.SubscriptionId,col.ClientId,res.Name+' '+res.Suffix)">
+                                                                                    <!--<span ></span>-->
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row marTop10">
+                                                        <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="">
+                                                            <div class="table-responsive" *ngIf="VisibleTerritoryBase(col.subscription.serviceTerritory)">
+                                                                <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                    <thead class="" style="">
+                                                                    <td class="SubTextGrey width60">Territory Base </td>
+                                                                    <!--<td class="SubTextGrey width40">Duration</td>-->
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr *ngIf="CheckTerritoryBase(col.subscription.serviceTerritory.TerritoryBase);">
+                                                                            <td class="">
+                                                                                {{col.subscription.serviceTerritory.TerritoryBase}}
+                                                                            </td>
+                                                                            <!--<td class="">Feb 2017 TO Mar 2018 </td>-->
+                                                                        </tr>
+                                                                        <tr *ngIf="!CheckTerritoryBase(col.subscription.serviceTerritory.TerritoryBase);">
+                                                                            <td class="">
+                                                                                <div>Outlet</div>
+                                                                                <div>Brick</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="row marBottom10">
+                                                                <div class="col-sm-12 col-md-12 col-xs-12" style="">
+                                                                    <button type="submit" class="mcButton" data-toggle="modal" [disabled]="!canAddMarketBase"
+                                                                            (click)="ShowDialog(col.subscription.SubscriptionId,col.subscription.ClientId)">
+                                                                        Add Market Base
+                                                                    </button>
+                                                                    <!--<button type="submit" class="mcButton" [disabled]="!canAddMarketBase"
+                                                                            (click)="SubmitMarketBaseButton(col.subscription.SubscriptionId)">
+                                                                        Submit Market Base
+                                                                    </button>-->
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6 noMargin" style="padding-left:20px; padding-right:0px;">
+                            <div *ngFor="let col of clientSubscription;let i = index; let index=index; let odd=odd; let even=even;">
+
+                                <div *ngIf="index%2 !=0" class="panel-group borShadowNone noMargin flg_whtepanel" id="accordionTwo" style="margin-bottom:20px;">
+                                    <div class="panel panel-default borShadowNone" style="">
+                                        <div class="col-sm-11 col-md-11 col-xs-11">
+                                            <div class="HeadingCharcoal" style="padding-top: 20px;font-size:22px">{{getSubscriptionName(col.subscription)}}</div>
+                                        </div>
+                                        <div class="col-sm-1 col-md-1 col-xs-1" style="padding-top:25px; padding-left:18px;">
+                                            <a class="accordion-toggle_arrUp collapsed" data-toggle="collapse" data-parent="" href="#collapse1b-{{i}}"></a>
+                                        </div>
+                                        <div class="row noPadding noMargin">
+                                            <div class="col-sm-12">
+                                                <div id="collapse1b-{{i}}" class="row collapse">
+                                                    <div class="row noPadding noMargin">
+                                                        <div class="col-sm-12 col-md-12 col-xs-12"><div class="SubTextGrey">Data Subscription Period</div></div>
+                                                        <div class="col-sm-12 col-md-12 col-xs-12 marTopM5">
+                                                            <div id="sla-data-range" class="mrp-container nav navbar-nav">
+                                                                <div class="mrp-monthdisplay" style="">
+                                                                    <span [ngClass]="{ 'mrp-lowerMonth' : canEditMarketBase,'textDisabled' : !canEditMarketBase }">{{col.subscription.StartDate | date: 'MMM'}}-{{col.subscription.StartDate | date: 'yyyy'}}</span>
+                                                                    <span [ngClass]="{ 'mrp-to' : canEditMarketBase,'textDisabled' : !canEditMarketBase }"> - </span>
+                                                                    <span [ngClass]="{ 'mrp-upperMonth' : canEditMarketBase,'textDisabled' : !canEditMarketBase }">{{col.subscription.EndDate | date: 'MMM'}}-{{col.subscription.EndDate | date: 'yyyy'}}</span>
+                                                                    <a [class.disabled]="!canEditMarketBase" class="glyphicon glyphicon-edit subEditIcon"
+                                                                       (click)="setDefaultMonthYear(col.subscription.ClientId,col.subscription.SubscriptionId,col.subscription.StartDate,col.subscription.EndDate)">
+                                                                        <!--<span class="glyphicon glyphicon-edit subEditIcon">
+                                                                        </span>-->
+                                                                    </a>
+                                                                </div>
+                                                                <input type="hidden" value="201702" id="mrp-lowerDate" />
+                                                                <input type="hidden" value="201803" id="mrp-upperDate" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row marTop10" style="">
+                                                        <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="">
+
+                                                            <div class="table-responsive">
+                                                                <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                    <thead class="" style="">
+                                                                    <td class="SubTextGrey" style="width:70%">Market Base </td>
+                                                                    <td class="SubTextGrey width30" style="">Duration</td>
+                                                                    <td class="SubTextGrey width5" style=""></td>
+                                                                    </thead>
+
+                                                                    <tbody>
+
+                                                                        <tr *ngFor="let res of col.MarketBase">
+                                                                            <td class="">
+                                                                                <a [class.disabled]="!canEditMarketBase" (click)="editValid(col.ClientId,res.Id)">
+                                                                                    <strong>{{res.Name}} {{res.Suffix}}</strong>
+                                                                                </a><a class="glyphicon glyphicon-edit subEditIcon" [class.disabled]="!canEditMarketBase" (click)="editValid(col.ClientId,res.Id)"><span></span></a>
+                                                                            </td>
+                                                                            <td class="">{{res.DurationFrom  | date: 'MMM yyyy'}} - {{res.DurationTo  | date: 'MMM yyyy'}}</td>
+                                                                            <td>
+                                                                                <a class="glyphicon glyphicon-trash subGlyDel" [class.disabled]="!canDelMarketBase" (click)="deleteMarketBase(res.Id,col.subscription.SubscriptionId,col.ClientId,res.Name+' '+res.Suffix)">
+                                                                                    <!--<span ></span>-->
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row marTop10">
+                                                        <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="">
+                                                            <div class="table-responsive" *ngIf="VisibleTerritoryBase(col.subscription.serviceTerritory)">
+                                                                <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                    <thead class="" style="">
+                                                                    <td class="SubTextGrey width60">Territory Base </td>
+                                                                    <!--<td class="SubTextGrey width40">Duration</td>-->
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr *ngIf="CheckTerritoryBase(col.subscription.serviceTerritory.TerritoryBase);">
+                                                                            <td class="">
+                                                                                {{col.subscription.serviceTerritory.TerritoryBase}}
+                                                                            </td>
+                                                                            <!--<td class="">Feb 2017 TO Mar 2018 </td>-->
+                                                                        </tr>
+                                                                        <tr *ngIf="!CheckTerritoryBase(col.subscription.serviceTerritory.TerritoryBase);">
+                                                                            <td class="">
+                                                                                <div>Outlet</div>
+                                                                                <div>Brick</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="row marBottom10">
+                                                                <div class="col-sm-12 col-md-12 col-xs-12" style="">
+                                                                    <button type="submit" class="mcButton" data-toggle="modal" [disabled]="!canAddMarketBase"
+                                                                            (click)="ShowDialog(col.subscription.SubscriptionId,col.subscription.ClientId)">
+                                                                        Add Market Base
+                                                                    </button>
+                                                                    <!--<button type="submit" class="mcButton" [disabled]="!canAddMarketBase"
+                                                                            (click)="SubmitMarketBaseButton(col.subscription.SubscriptionId)">
+                                                                        Submit Market Base
+                                                                    </button>-->
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!--</div>-->
+                    </div>
+                </div>
+                <!--deliverable below-->
+                <div class="tab-pane fade" id="delivTab">
+                    <div class="mcHeadingBlue marLeft10" [hidden]="noDeliverables">There are no deliverables available</div>
+                    <div style="margin-left:20px;" [hidden]=!noDeliverables>
+                        <button type="submit" class="mcButton" (click)="SubmitDeliveryButton()">
+                            Submit
+                        </button>
+                    </div>
+
+                    <br />
+                    <div style="width:80%; margin-left:20px; margin-top:40px;" id="custWrapper">
+                        <div class="row">
+                            <div class="col-sm-6 noMargin" style="padding-left:0px; padding-right:35px;">
+                                <div *ngFor="let delivery of deliverablesList; let i = index; let index=index; let odd=odd; let even=even;" class="" style="">
+                                    <div *ngIf="index%2 == 0" class="panel-group borShadowNone noMargin" id="accordionTwo" style="margin-bottom:20px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);">
+                                        <div class="panel-group borShadowNone " id="">
+                                            <div class="panel panel-default borShadowNone ">
+                                                <div class="col-sm-10 col-md-10 col-xs-10"><div class="HeadingCharcoal" style="padding-top: 20px;font-size:22px">{{delivery.DisplayName}}</div></div>
+                                                <div class="col-sm-1 col-md-1 col-xs-1" style="padding-top: 25px;">
+                                                    <a class="edit glyphicon glyphicon-list-alt" style="display: inline-block;" (click)="ViewDeliverables(delivery.ClientId,delivery.DeliverableId);">
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-1 col-md-1 col-xs-1 custArcWrap" style="padding-right: 30px;padding-top: 27px;width:8%;">
+                                                    <a class="archiveLink accordion-toggle_arrUp collapsed" data-toggle="collapse" data-parent="" href="#collapse-{{i}}"></a>
+                                                </div>
+                                                <div class="row noPadding noMargin">
+                                                    <div class="col-sm-12">
+                                                        <div id="collapse-{{i}}" class="row collapse">
+                                                            <div class="row noPadding noMargin">
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Data Delivery Period</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Frequency</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Period</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Restriction</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Report Writter</div></div>
+                                                            </div>
+                                                            <div class="row noMargin marTop5">
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20">
+                                                                    <div class="subNormSmall">{{delivery.StartDate | date: 'MMM'}}-{{delivery.StartDate | date: 'yyyy'}} - {{delivery.EndDate | date: 'MMM'}}-{{delivery.EndDate | date: 'yyyy'}}</div>
+                                                                </div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="subNormSmall">{{delivery.FrequencyName}}</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="subNormSmall">{{delivery.PeriodName}}</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="subNormSmall">{{delivery.RestrictionId == 0 ? 'N/A' : delivery.RestrictionName}}</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="subNormSmall">{{delivery.ReportWriterName}}</div></div>
+                                                            </div>
+                                                            <div class="row noMargin marTop5 ligtGreyLine" style=""></div>
+                                                            <div class="row marTop10" style="">
+                                                                <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="">
+                                                                    <div class="table-responsive">
+                                                                        <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                            <thead class="" style="">
+                                                                            <td class="SubTextGrey width25" style="">Market Definition </td>
+                                                                            <td class="SubTextGrey width50" style="">Market Base</td>
+                                                                            <td class="SubTextGrey width25" style="">Duration</td>
+                                                                            </thead>
+                                                                            <tbody *ngFor="let res of delivery.marketDefs; let i=index;let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
+                                                                                <!--<template let-res ngFor [ngForOf]="delivery.marketDefs ">-->
+                                                                                <tr *ngFor="let r of res.marketBaseDTOs;let j=index; ">
+                                                                                    <td class=""><span *ngIf="j==0">{{res.Name}}</span><span *ngIf="j>0"></span></td>
+                                                                                    <!--<td class="">{{res.Name}}</td>-->
+                                                                                    <td class=""><strong>{{r.Name}} </strong> </td>
+                                                                                    <td class=""><small>{{r.DurationFrom  | date: 'MMM yyyy'}} - {{r.DurationTo  | date: 'MMM yyyy'}}</small></td>
+                                                                                </tr>
+                                                                                <!--</template>-->
+
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                            <div class="row ligtGreyLine marTopm25" style=""></div>
+
+                                                            <div class="row marTop10">
+                                                                <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="" *ngIf="delivery.SubServiceTerritoryId == 1 ||delivery.SubServiceTerritoryId == 2 ||delivery.SubServiceTerritoryId == 3 ">
+                                                                    <div class="table-responsive">
+                                                                        <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                            <thead class="" style="">
+                                                                            <td class="SubTextGrey width50" style="">Territory  Definition </td>
+                                                                            <td class="SubTextGrey width25" style="">Territory  Base</td>
+                                                                            <!--<td class="SubTextGrey width25" style="">Duration</td>-->
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr *ngFor="let res of delivery.territories">
+                                                                                    <td class="">{{res.Name}}</td>
+                                                                                    <td class="">{{res.TerritoryBase}}</td>
+                                                                                    <!--<td class="">Dec '16 - Jan '18</td>-->
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="row ligtGreyLine marTopm25" style=""></div>
+
+                                                            <div class="row marTop10">
+                                                                <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="">
+                                                                    <div class="table-responsive">
+                                                                        <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                            <thead class="" style="">
+                                                                            <td class="SubTextGrey" style="">Deliver to </td>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr *ngFor="let res of delivery.clients">
+                                                                                    <td class="">{{res.Name}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                    <div class="table-responsive">
+                                                                        <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                            <thead class="" style="">
+                                                                            <td class="SubTextGrey" style="">Releases Summary </td>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr *ngIf="delivery.IsProbeAvailable">
+                                                                                    <td class="">Probe</td>
+                                                                                </tr>
+                                                                                <tr *ngIf="delivery.IsPackExcAvailable">
+                                                                                    <td class="">Pack Exception</td>
+                                                                                </tr>
+                                                                                <tr *ngIf="delivery.IsCensusAvailable">
+                                                                                    <td class="">Census</td>
+                                                                                </tr>
+                                                                                <tr *ngIf="delivery.IsOneKeyAvailable">
+                                                                                    <td class="">OneKey</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+
+                                                                    <div class="row marBottom10">
+                                                                        <div class="col-sm-12 col-md-12 col-xs-12" style="">
+                                                                            <button [disabled]="!canEditDeliverable" type="submit" class="mcButton" (click)="EditDeliverables(delivery.ClientId,delivery.DeliverableId);">Edit Deliverable</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6 noMargin" style="padding-left:0px; padding-right:35px;">
+                                <div *ngFor="let delivery of deliverablesList; let i = index; let index=index; let odd=odd; let even=even;" class="" style="">
+                                    <div *ngIf="index%2 != 0" class="panel-group borShadowNone noMargin" id="accordionTwo" style="margin-bottom:20px; box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);">
+                                        <div class="panel-group borShadowNone " id="">
+                                            <div class="panel panel-default borShadowNone ">
+                                                <div class="col-sm-10 col-md-10 col-xs-10"><div class="HeadingCharcoal" style="padding-top: 20px;font-size:22px">{{delivery.DisplayName}}</div></div>
+                                                <div class="col-sm-1 col-md-1 col-xs-1" style="padding-top: 25px;">
+                                                    <a class="edit glyphicon glyphicon-list-alt" style="display: inline-block;" (click)="ViewDeliverables(delivery.ClientId,delivery.DeliverableId);">
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-1 col-md-1 col-xs-1 custArcWrap" style="padding-right: 30px;padding-top: 27px;width:8%;">
+                                                    <a class="archiveLink accordion-toggle_arrUp collapsed" data-toggle="collapse" data-parent="" href="#collapse-{{i}}"></a>
+                                                </div>
+                                                <div class="row noPadding noMargin">
+                                                    <div class="col-sm-12">
+                                                        <div id="collapse-{{i}}" class="row collapse">
+                                                            <div class="row noPadding noMargin">
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Data Delivery Period</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Frequency</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Period</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Restriction</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="SubTextGrey">Report Writter</div></div>
+                                                            </div>
+                                                            <div class="row noMargin marTop5">
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20">
+                                                                    <div class="subNormSmall">{{delivery.StartDate | date: 'MMM'}}-{{delivery.StartDate | date: 'yyyy'}} - {{delivery.EndDate | date: 'MMM'}}-{{delivery.EndDate | date: 'yyyy'}}</div>
+                                                                </div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="subNormSmall">{{delivery.FrequencyName}}</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="subNormSmall">{{delivery.PeriodName}}</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="subNormSmall">{{delivery.RestrictionId == 0 ? 'N/A' : delivery.RestrictionName}}</div></div>
+                                                                <div class="col-sm-3 col-md-3 col-xs-3 width20"><div class="subNormSmall">{{delivery.ReportWriterName}}</div></div>
+                                                            </div>
+                                                            <div class="row noMargin marTop5 ligtGreyLine" style=""></div>
+                                                            <div class="row marTop10" style="">
+                                                                <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="">
+                                                                    <div class="table-responsive">
+                                                                        <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                            <thead class="" style="">
+                                                                            <td class="SubTextGrey width25" style="">Market Definition </td>
+                                                                            <td class="SubTextGrey width50" style="">Market Base</td>
+                                                                            <td class="SubTextGrey width25" style="">Duration</td>
+                                                                            </thead>
+                                                                            <tbody *ngFor="let res of delivery.marketDefs; let i=index;let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
+                                                                                <!--<template let-res ngFor [ngForOf]="delivery.marketDefs ">-->
+                                                                                <tr *ngFor="let r of res.marketBaseDTOs;let j=index; ">
+                                                                                    <td class=""><span *ngIf="j==0">{{res.Name}}</span><span *ngIf="j>0"></span></td>
+                                                                                    <!--<td class="">{{res.Name}}</td>-->
+                                                                                    <td class=""><strong>{{r.Name}} </strong> </td>
+                                                                                    <td class=""><small>{{r.DurationFrom  | date: 'MMM yyyy'}} - {{r.DurationTo  | date: 'MMM yyyy'}}</small></td>
+                                                                                </tr>
+                                                                                <!--</template>-->
+
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                            <div class="row ligtGreyLine marTopm25" style=""></div>
+
+                                                            <div class="row marTop10">
+                                                                <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="" *ngIf="delivery.SubServiceTerritoryId == 1 ||delivery.SubServiceTerritoryId == 2 ||delivery.SubServiceTerritoryId == 3 ">
+                                                                    <div class="table-responsive">
+                                                                        <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                            <thead class="" style="">
+                                                                            <td class="SubTextGrey width50" style="">Territory  Definition </td>
+                                                                            <td class="SubTextGrey width25" style="">Territory  Base</td>
+                                                                            <!--<td class="SubTextGrey width25" style="">Duration</td>-->
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr *ngFor="let res of delivery.territories">
+                                                                                    <td class="">{{res.Name}}</td>
+                                                                                    <td class="">{{res.TerritoryBase}}</td>
+                                                                                    <!--<td class="">Dec '16 - Jan '18</td>-->
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="row ligtGreyLine marTopm25" style=""></div>
+
+                                                            <div class="row marTop10">
+                                                                <div class="col-sm-12 col-md-12 col-xs-12 padLeft30" style="">
+                                                                    <div class="table-responsive">
+                                                                        <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                            <thead class="" style="">
+                                                                            <td class="SubTextGrey" style="">Deliver to </td>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr *ngFor="let res of delivery.clients">
+                                                                                    <td class="">{{res.Name}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                    <div class="table-responsive">
+                                                                        <table id="mytable" class="table table-stripedSub table-borderlessSub subTable">
+                                                                            <thead class="" style="">
+                                                                            <td class="SubTextGrey" style="">Releases Summary </td>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr *ngIf="delivery.IsProbeAvailable">
+                                                                                    <td class="">Probe</td>
+                                                                                </tr>
+                                                                                <tr *ngIf="delivery.IsPackExcAvailable">
+                                                                                    <td class="">Pack Exception</td>
+                                                                                </tr>
+                                                                                <tr *ngIf="delivery.IsCensusAvailable">
+                                                                                    <td class="">Census</td>
+                                                                                </tr>
+                                                                                <tr *ngIf="delivery.IsOneKeyAvailable">
+                                                                                    <td class="">OneKey</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+
+                                                                    <div class="row marBottom10">
+                                                                        <div class="col-sm-12 col-md-12 col-xs-12" style="">
+                                                                            <button [disabled]="!canEditDeliverable" type="submit" class="mcButton" (click)="EditDeliverables(delivery.ClientId,delivery.DeliverableId);">Edit Deliverable</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Market Base Box Starts-->
+        <!--CSS gridbox starts-->
+        <!--CSS gridbox ends-->
+        <!--News sectionstarts-->
+        <!--News section ends-->
+    </div>
+</div>
+<ng-modal (fnActionOnSaveBtn)="btnModalSaveClick($event)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="modalBtnCapton" [closeBtnCaption]="modalCloseBtnCaption" [title]="modalTitle" [saveBtnVisibility]="modalSaveBtnVisibility" [modalSaveFnParam]="modalSaveFnParameter"> </ng-modal>
+<div bsModal #SubErrorModal="bs-modal" id="SuberrorModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:0px solid">
+                <h4 class="modal-title pull-left">Everest Portal</h4>
+                <button type="button" class="close pull-right" (click)="SubErrorModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Application Error has occurred. Please contact support.
+            </div>
+        </div>
+    </div>
+</div>

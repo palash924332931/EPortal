@@ -1,0 +1,116 @@
+﻿<div class="row noMargin fullWidth100" *ngIf="multiSelect=='true'" [ngClass]="['autocom-content-'+AutoComType,'autocom-content']">
+    <div id="tags_tagsinput" class="tagsinput nodeHeightTable filter-container" style="cursor: pointer;min-width:100%;" [class.disabled-content]="isDisabled">
+        <span class="" *ngFor="let a of autoComSelected">
+            <!--<span style="cursor: pointer; cursor: hand;">-->
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='atc' && a.FilterName.toLowerCase()=='atc'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.ATC_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='atc1' && a.FilterName.toLowerCase()=='atc1'" (click)="removeFilter(a)" title="{{a.ATC1_Desc}}">{{a.Code}}&nbsp;&nbsp;<a  title="Remove">x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='atc2' && a.FilterName.toLowerCase()=='atc2'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.ATC2_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='atc3' && a.FilterName.toLowerCase()=='atc3'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.ATC3_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='atc4' && a.FilterName.toLowerCase()=='atc4'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.ATC4_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='nec' && a.FilterName.toLowerCase()=='nec'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.NEC_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='nec1' && a.FilterName.toLowerCase()=='nec1'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.NEC1_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='nec2' && a.FilterName.toLowerCase()=='nec2'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.NEC2_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='nec3' && a.FilterName.toLowerCase()=='nec3'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.NEC3_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='nec4' && a.FilterName.toLowerCase()=='nec4'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.NEC4_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='manufacturer' && a.FilterName.toLowerCase()=='mfr'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.Code}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='molecule' && a.FilterName.toLowerCase()=='molecule'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.Code}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+           <span class="tag" *ngIf="AutoComType.toLowerCase()=='packdescription' && a.FilterName.toLowerCase()=='packdescription'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.PackDescription}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='product' && a.FilterName.toLowerCase()=='product'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='dimension' && a.FilterName.toLowerCase()=='dimension'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)">{{a.Code}} {{a.DimensionId}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='poisonschedule' && a.FilterName.toLowerCase()=='poisonschedule'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)">{{a.Code}} {{a.Poison_Schedule_Desc}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='form' && a.FilterName.toLowerCase()=='form'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)">{{a.Code}} {{a.Form_Desc_Short}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='pxrcode' && a.FilterName.toLowerCase()=='pxrcode'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)">{{a.Code}} {{a.Form_Desc_Short}}&nbsp;&nbsp;<a>x</a></span>
+            <!--</span>-->
+        </span>
+        <div class="tags_clear"></div>
+        <!--<div class="box noPadding" [hidden]="!textVisible" onblur="hideText()">-->
+        <!--</div>-->
+        <div id="tags_addTag" class="input-group" style="margin-top:5px;width:100%"
+             *ngIf="!(singleselect != undefined && singleselect == AutoComType.toLowerCase() && autoComSelected.length > 0)">
+            <input [ngClass]="['autocom-'+AutoComType,'PSTBNewAuto-v1']" ng2-auto-complete [source]="getAutoComList.bind(this)"
+                   [disabled]="isDisabled" style="width:100%; border:0px;"
+                   [(ngModel)]="selectedItem"
+                   placeholder="Search here"
+                   (ngModelChange)="onAutoTextSelection($event)"
+                   value-property-name={{valuePropertyName}}
+                   display-property-name={{displayPropertyName}}
+                   max-num-list="20"
+                   min-chars="0"
+                   no-match-found-text="No Results"
+                   loading-text="Loading" />
+            <span class="input-group-btn">
+                <button [ngClass]="['autocom-clear-text-'+AutoComType,'glyphicon glyphicon-remove cusGlyphClose-v1']" type="button" (click)="clearText()" style="color: #C6D7DF; font-size: 14px; margin-left: -25px; background: none; border: none;margin-top:-4px;"></button>
+            </span>
+        </div>
+    </div>
+    <!--<div id="tags_addTag" class="input-group" style="margin-top:-10px;width:100%">
+               <input *ngIf="multiSelect" [ngClass]="['autocom-'+AutoComType,'PSTBNewAuto']" ng2-auto-complete [source]="getAutoComList.bind(this)" [disabled]="isDisabled" style="width:100%; display: none"
+                      [(ngModel)]="selectedItem"
+                      placeholder={{placeHolder}}
+                      (ngModelChange)="onAutoTextSelection($event)"
+                      value-property-name={{valuePropertyName}}
+                      display-property-name={{displayPropertyName}}
+                      max-num-list="20"
+                      min-chars="0"
+                      no-match-found-text="No Results"
+                      loading-text="Loading"
+                      />
+               <input *ngIf="!multiSelect" class="PSTBNewAuto" ng2-auto-complete [source]="autoComList" [disabled]="isDisabled"
+                      [(ngModel)]="selectedItem"
+                      placeholder={{placeHolder}}
+                      (ngModelChange)="onAutoTextSelection($event)"
+                      value-property-name={{valuePropertyName}}
+                      display-property-name={{displayPropertyName}}
+                      max-num-list="20"
+                      min-chars="0"
+                      no-match-found-text="No Results"
+                      loading-text="Loading"
+                       />
+
+               <span class="input-group-btn">
+                   <button  [ngClass]="['autocom-clear-text-'+AutoComType,'glyphicon glyphicon-remove cusGlyphClose']" type="button" (click)="clearText()" style="color: #C6D7DF; font-size: 14px; margin-left: -25px; background: none; border: none;margin-top:20px;display: none;"></button>
+               </span>
+           </div>-->
+</div>
+
+<div class="row noMargin fullWidth100" *ngIf="multiSelect=='false'" [ngClass]="['autocom-content-'+AutoComType,'autocom-content']">
+    <div id="tags_tagsinput" class="tagsinput nodeHeightTable filter-container" style="cursor: pointer;min-width:100%;" [class.disabled-content]="isDisabled">
+        <span class="" *ngFor="let a of autoComSelected">
+            <!--<span style="cursor: pointer; cursor: hand;">-->
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='atc1' && a.FilterName.toLowerCase()=='atc1'" (click)="removeFilter(a)" title="{{a.ATC1_Desc}}">{{a.Code}}&nbsp;&nbsp;<a title="Remove">x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='atc2' && a.FilterName.toLowerCase()=='atc2'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.ATC2_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='atc3' && a.FilterName.toLowerCase()=='atc3'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.ATC3_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='atc4' && a.FilterName.toLowerCase()=='atc4'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.ATC4_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='nec1' && a.FilterName.toLowerCase()=='nec1'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.NEC1_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='nec2' && a.FilterName.toLowerCase()=='nec2'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.NEC2_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='nec3' && a.FilterName.toLowerCase()=='nec3'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.NEC3_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='nec4' && a.FilterName.toLowerCase()=='nec4'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.NEC4_Desc}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='manufacturer' && a.FilterName.toLowerCase()=='mfr'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.Code}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='molecule' && a.FilterName.toLowerCase()=='molecule'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.Code}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='product' && a.FilterName.toLowerCase()=='product'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='dimension' && a.FilterName.toLowerCase()=='dimension'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)">{{a.Code}} {{a.DimensionId}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='poisonschedule' && a.FilterName.toLowerCase()=='poisonschedule'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)">{{a.Code}} {{a.Poison_Schedule_Desc}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='form' && a.FilterName.toLowerCase()=='form'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.Code}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <span class="tag" *ngIf="AutoComType.toLowerCase()=='pxrcode' && a.FilterName.toLowerCase()=='pxrcode'" (click)="removeFilter(a)" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" title="{{a.Code}}">{{a.Code}}&nbsp;&nbsp;<a>x</a></span>
+            <!--</span>-->
+        </span>
+        <div class="tags_clear"></div>
+        
+        <div id="tags_addTag" class="input-group" style="margin-top:5px;width:100%"
+             *ngIf="!(singleselect != undefined && singleselect == AutoComType.toLowerCase() && autoComSelected.length > 0)">
+            <input [ngClass]="['autocom-'+AutoComType,'PSTBNewAuto-v1']" 
+                   [disabled]="isDisabled" 
+                   style="width:100%; border:0px;"
+                   [(ngModel)]="selectedItem"
+                   placeholder="Search here"
+                   (keyup.enter)="onEnterClick($event)"
+                   (blur)="selectedItem = ''"
+                   max-num-list="20"
+                   min-chars="0"
+                   loading-text="Loading" />
+            <span class="input-group-btn">
+                <button [ngClass]="['autocom-clear-text-'+AutoComType,'glyphicon glyphicon-remove cusGlyphClose-v1']" type="button" (click)="clearText()" style="color: #C6D7DF; font-size: 14px; margin-left: -25px; background: none; border: none;margin-top:-4px;"></button>
+            </span>
+        </div>
+    </div>
+</div>

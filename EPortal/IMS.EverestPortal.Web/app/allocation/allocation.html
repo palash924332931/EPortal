@@ -1,0 +1,302 @@
+﻿
+<div id="content">
+    <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="row newsRowPadTop">
+            <div class="col-md-12">
+                <div class="mcBreadcrumbsAllocations">
+                    <a [routerLink]="['']" class="mcLink">Home</a>
+                    <span class="BCBreak">></span> <a class="mcLink">Subscription</a>
+                    <span class="BCBreak">></span> <a class="mcLink">Allocation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron noBG">
+        <div class="container-fluid">
+            <div class="container noMargin noPadding" id="mktHeadingWrap">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="subWhiteBoxShadow">
+                            <div class="row" style="height: 650px;">
+                                <div class="col-sm-7 col-md-7 col-xs-7"><div class="HeadingCharcoal">Allocate Users & Clients</div></div>
+                                <div class="row noMargin">
+                                    <div class="col-sm-6 col-md-6 col-xs-6">
+                                        <div class="row noMargin fullWidth100">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 noPadding">
+                                                <div  class="col-sm-12 avlBrickHead">IQVIA Users</div>
+                                            </div>
+                                        </div>
+                                        <div class="row noMargin fullWidth100">
+                                            <div class="col-sm-8 col-md-8 col-xs-8 noPadding">
+                                                <div>
+                                                    <div class="icon-addonBA addon-lgBA">
+                                                        <input type="text" placeholder="Search by User" [(ngModel)]="searchUser" (keyup)="searchUsers()" class="form-control" id="txtSearchUser">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 col-md-6 col-xs-6">
+                                        <div class="row noMargin fullWidth100">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 noPadding">
+                                                <div class="col-sm-12 avlBrickHead  padLeft15">Clients</div>
+                                            </div>
+                                        </div>
+                                        <div class="row noMargin fullWidth100">
+                                            <div class="col-sm-8 col-md-8 col-xs-8 noPadding">
+                                                <div class="form-group">
+                                                    <div class="icon-addonBA addon-lgBA padLeft15">
+                                                        <input type="text" placeholder="Search by Client" [(ngModel)]="searchClient" (keyup)="searchClients()" class="form-control" id="txtSearchClient">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-xs-6 col-md-6" style="border-right: 1px solid #8EAFBF; padding-right: 30px;">
+                                    <div class="table-responsive">
+                                        <table id="allocatedClients" class="table table-stripedSub table-borderlessSub">
+                                            <thead class="theaddark purpleBG">
+                                                <tr>
+                                                    <th class="text-center width5"></th>
+                                                    <th class="text-center width60">User</th>
+                                                    <th class="text-center">Allocated Clients</th>
+                                                </tr>
+                                            </thead> 
+                                            <tbody>
+                                                <tr  *ngFor="let user of userByPage">
+                                                    <td style="padding: 2px;"><span class="padLeft8"><input type="checkbox" (ngModelChange)="updateSelection(user.selected=$event)" [(ngModel)]="user.selected"></span></td>
+                                                    <td style="padding: 2px;"><span class="padLeft8">{{user.userName}}</span></td>
+                                                    <td style="padding: 2px;" class="text-center"><a *ngIf="user.count > 0" style="text-decoration:underline;cursor:pointer" (click)="getClientsByUser(user)">{{user.count}}</a>
+                                                    <span *ngIf="!user.count > 0">0</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <pagination *ngIf="userByPage.length > 0" [boundaryLinks]="true" [totalItems]="usertotalItems" [(ngModel)]="userCurrentPage" (pageChanged)="userPageChanged($event)" [itemsPerPage]="itemsPerPage" class="pagination-sm"
+                                                previousText="&lsaquo;" [rotate]="false" [maxSize]="4" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                </div>
+                                <div class="col-sm-6 col-xs-6 col-md-6 padLeft30">
+                                    <div  class="table-responsive">
+                                        <table id="allocatedUsers" class="table table-stripedSub table-borderlessSub">
+                                            <thead class="theaddark dBlueBG">
+                                                <tr>
+                                                    <th class="text-center width5"></th>
+                                                    <th class="text-center width60">Client</th>
+                                                    <th class="text-center">User Allocated</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let client of clientByPage">
+                                                    <td style="padding: 2px;"><span class="padLeft8"><input type="checkbox" (ngModelChange)="updateSelection(client.selected=$event)" [(ngModel)]="client.selected"></span></td>
+                                                    <td style="padding: 2px;"><span class="padLeft8">{{client.clientName}}</span></td>
+                                                    <td style="padding: 2px;" class="text-center"><a  *ngIf="client.count > 0" style="text-decoration:underline;cursor:pointer" (click)="getUsersByClient(client)">{{client.count}}</a>
+                                                        <span *ngIf="!client.count > 0">0</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <pagination *ngIf="clientByPage.length > 0" [boundaryLinks]="true" [totalItems]="clienttotalItems" [(ngModel)]="clientCurrentPage" (pageChanged)="clientPageChanged($event)" [itemsPerPage]="itemsPerPage" class="pagination-sm"
+                                                previousText="&lsaquo;" [rotate]="false" [maxSize]="4" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-12 box text-center marTopBot20">
+                                    <button type="button" [disabled]="!(selectedUsers.length > 0 && selectedClients.length > 0)" [ngClass]="{allocationButtondisabled: !(selectedUsers.length > 0 && selectedClients.length > 0)}" id="btnAllocate" class="allocationButton noMargin" (click)="Allocate()">Allocate </button>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4" *ngIf="showDetails && !showClientDetails">
+                        <div class="row purpleBG noMargin">
+                            <div class="col-sm-12 col-md-12 col-xs-12"><div class="SubHeadingWhite">{{selectedUser.userName}}</div></div>
+                        </div>
+                        <div class="subWhiteBoxShadowRgt">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 padTop20">
+                                    <div class="table-responsive heightSubShadRgt">
+                                        <table id="clients" class="table table-stripedSub table-borderlessSub">
+                                            <thead class="theaddark dBlueBG">
+                                                <tr>
+                                                    <th class="text-center width5"><input type="checkbox" (ngModelChange)="updateAllSummaryClient(selectAllSummaryClient=$event)" [(ngModel)]="selectAllSummaryClient" /></th>
+                                                    <th class="text-center width60">Clients</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let client of clientsByUserPerPage">
+                                                    <td><span class="padLeft15"><input (ngModelChange)="updateDetailClientSelection(client.selected=$event)" type="checkbox" [(ngModel)]="client.selected"></span></td>
+                                                    <td><span class="padLeft8">{{client.clientName}}</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <pagination *ngIf="clientsByUserPerPage.length > 0" [boundaryLinks]="true" 
+                                          [totalItems]="clientsByUsertotalItems" [(ngModel)]="clientsByuserCurrentPage"
+                                          (pageChanged)="clientsByUserPageChanged($event)" [itemsPerPage]="clientsByitemsPerPage" class="pagination-sm"
+                                                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-6 box mobWidth">
+                                    <button type="button" id="btnReallocateUser" [ngClass]="{allocationButtondisabled: isClientDeleteDisabled}" [disabled]="isClientDeleteDisabled" class="mcButtonSearch" (click)="setToReallocateUser()">Re-Allocate </button>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 box mobWidthDel">
+                                    <button type="button" id="btnDelete" [ngClass]="{allocationButtondisabled: isClientDeleteDisabled}" [disabled]="isClientDeleteDisabled" (click)="RemoveClientsFromUser(selectedUser)" class="mcSmallButtonCancel">Delete </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4" *ngIf="showDetails && showClientDetails">
+                        <div class="row dBlueBG noMargin">
+                            <div class="col-sm-12 col-md-12 col-xs-12"><div class="SubHeadingWhite">{{selectedClient.clientName}}</div></div>
+                        </div>
+                        <div class="subWhiteBoxShadowRgt">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 padTop20">
+                                    <div class="table-responsive heightSubShadRgt">
+                                        <table id="users" class="table table-stripedSub table-borderlessSub">
+                                            <thead class="theaddark  purpleBG">
+                                                <tr>
+                                                    <th class="text-center width5"><input type="checkbox" (ngModelChange)="updateAllSummaryUser(selectAllSummaryUser=$event)" [(ngModel)]="selectAllSummaryUser"/></th>
+                                                    <th class="text-center width60">Users</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let user of usersByClientPerPage">
+                                                    <td><span class="padLeft15"><input type="checkbox" (ngModelChange)="updateDetailUserSelection(user.selected=$event)" [(ngModel)]="user.selected"></span></td>
+                                                    <td><span class="padLeft8">{{user.userName}}</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <pagination *ngIf="usersByClientPerPage.length > 0" [boundaryLinks]="true"
+                                                    [totalItems]="usersByClienttotalItems" [(ngModel)]="usersByClientCurrentPage"
+                                                    (pageChanged)="usersByClientPageChanged($event)" [itemsPerPage]="usersByClientitemsPerPage" class="pagination-sm"
+                                                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-6 box mobWidth">
+                                    <button type="button" id="btnReallocateClient" [ngClass]="{allocationButtondisabled: isUserDeleteDisabled}" [disabled]="isUserDeleteDisabled" class="mcButtonSearch" (click)="setToReallocateClient()">Re-Allocate </button>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 box mobWidthDel">
+                                    <button type="button" id="remGroup" [disabled]="isUserDeleteDisabled" [ngClass]="{allocationButtondisabled: isUserDeleteDisabled}" (click)="RemoveUsersFromClient(selectedClient)" class="mcSmallButtonCancel">Delete </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #lgModalAllocation="bs-modal" class="modal subModalAllocWrapper" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content subModAlloc" *ngIf="!showClientDetails" style="">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Re-allocate Client</div></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="SubTextGrey">From User</span>
+                </div>
+            </div>
+            <div class="row martop15">
+                <div class="col-sm-8 col-md-8 col-xs-8 noPadTopBottom">
+                    <div class="box noPadding">
+                        <input type="text" class="TBNormBig" id="" [(ngModel)]="reAllocateUserName" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="row marTop20">
+                <div class="col-sm-12">
+                    <span class="SubTextGrey">To User</span>
+                </div>
+            </div>
+            <div class="row martop15">
+                <div class="col-sm-8 col-md-8 col-xs-8 noPadTopBottom">
+                    <div class="box noPadding">
+                        <div class="raBrick-select fa-caret-down">
+                            <select [(ngModel)]="toUser" id="sltUser">
+                                <option *ngFor="let user of reallocateUsers" [value]="user.userId">{{user.userName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row saveCancelWrap">
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButton" [ngClass]="{allocationButtondisabled:!toUser}" [disabled]="!toUser" (click)="reallocateUser()">Save</button>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <div class="box noPadding">
+                        <button type="submit" class="mcButtonBricancel" (click)="lgModalAllocation.hide()">Cancel</button>
+                        <br class="clearAll" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-content subModAlloc" *ngIf="showClientDetails" style="">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12"><div class="HeadingCharcoal">Re-allocate User</div></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="SubTextGrey">From Client</span>
+                </div>
+            </div>
+            <div class="row martop15">
+                <div class="col-sm-8 col-md-8 col-xs-8 noPadTopBottom">
+                    <div class="box noPadding">
+                        <input type="text" class="TBNormBig" id="" [(ngModel)]="reAllocateClientName" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="row marTop20">
+                <div class="col-sm-12">
+                    <span class="SubTextGrey">To Client</span>
+                </div>
+            </div>
+            <div class="row martop15">
+                <div class="col-sm-8 col-md-8 col-xs-8 noPadTopBottom">
+                    <div class="box noPadding">
+                        <div class="raBrick-select fa-caret-down">
+                            <select [(ngModel)]="toClient" id="sltUser">
+                                <option *ngFor="let client of reallocateClients" [value]="client.clientId">{{client.clientName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row saveCancelWrap">
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButton" [ngClass]="{allocationButtondisabled:!toClient}" [disabled]="!toClient" (click)="reallocateClient()">Save</button>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <div class="box noPadding">
+                        <button type="submit" class="mcButtonBricancel" (click)="lgModalAllocation.hide()">Cancel</button>
+                        <br class="clearAll" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

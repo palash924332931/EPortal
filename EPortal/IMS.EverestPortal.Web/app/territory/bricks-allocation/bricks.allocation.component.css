@@ -1,0 +1,44 @@
+.brick-allocation-title{
+    padding-bottom:0px!important;
+}
+.availPackWhhiteBox{
+    padding-left:15px;
+    padding-right: 15px;
+}
+
+.available-bricks-table-content{
+    padding: 0px;
+}
+.territory-nodes-table{
+    padding: 0px;
+}
+a{
+	cursor: pointer;
+}
+.modal-backdrop.in {
+    opacity: 0 !important;
+}
+#territory-brick-details th{
+    background: #3b4f5a;
+    color: #fff;
+    border: none;
+    padding: 0px;
+    padding-top: 9px;
+    padding-bottom: 8px;
+    border-right: 1px solid #fff;
+    text-align: center;
+    font-size: 14px;
+}
+.table-responsive-brick-allocation{
+    height: 500px;
+    /*overflow: auto;*/
+}
+.brick-allocation-reallocate-table{
+    /*height: 445px;*/
+    height: 557px;
+    overflow: auto;
+}
+.top-bot-10{
+    margin-top: 10px;
+    margin-bottom: 10px; 
+}

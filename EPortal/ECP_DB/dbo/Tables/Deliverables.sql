@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[Deliverables] (
+    [DeliverableId]   INT      IDENTITY (1, 1) NOT NULL,
+    [SubscriptionId]  INT      NULL,
+    [ReportWriterId]  INT      NULL,
+    [FrequencyTypeId] INT      NULL,
+    [RestrictionId]   INT      NULL,
+    [PeriodId]        INT      NULL,
+    [Frequencyid]     INT      NULL,
+    [StartDate]       DATETIME NULL,
+    [EndDate]         DATETIME NULL,
+    [probe]           BIT      NULL,
+    [PackException]   BIT      NULL,
+    [Census]          BIT      NULL,
+    [OneKey]          BIT      NULL,
+    [LastModified]    DATETIME NULL,
+    [ModifiedBy]      INT      NULL,
+    [DeliveryTypeId]  INT      NULL,
+    [Mask] BIT NULL DEFAULT 0, 
+    CONSTRAINT [PK__Delivera__71A9170EE89621A3] PRIMARY KEY CLUSTERED ([DeliverableId] ASC) WITH (FILLFACTOR = 1),
+    CONSTRAINT [FK__Deliverab__Deliv__498EEC8D] FOREIGN KEY ([DeliveryTypeId]) REFERENCES [dbo].[DeliveryType] ([DeliveryTypeId]),
+    CONSTRAINT [FK__Deliverab__Frequ__4A8310C6] FOREIGN KEY ([FrequencyTypeId]) REFERENCES [dbo].[FrequencyType] ([FrequencyTypeId]),
+    CONSTRAINT [FK__Deliverab__Perio__4B7734FF] FOREIGN KEY ([PeriodId]) REFERENCES [dbo].[Period] ([PeriodId]),
+    CONSTRAINT [FK__Deliverab__Repor__4C6B5938] FOREIGN KEY ([ReportWriterId]) REFERENCES [dbo].[ReportWriter] ([ReportWriterId]),
+    CONSTRAINT [FK__Deliverab__Subsc__4D5F7D71] FOREIGN KEY ([SubscriptionId]) REFERENCES [dbo].[Subscription] ([SubscriptionId])
+);
+

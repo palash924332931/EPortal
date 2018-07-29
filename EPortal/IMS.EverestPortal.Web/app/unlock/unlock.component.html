@@ -1,0 +1,37 @@
+﻿<div class="container" style="width:100%">
+    <!--<div class="mcHeading">Unlock Definitions</div>-->
+    <div class="col-sm-12 rcorners2 WhiteboxcontentWrapper row box-inner" style="width:98%; padding:20px; margin-top:20px;">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-1">
+                    <label for="newsTitle1" style="margin-left:17px;">Client:</label>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control"
+                            id="client"
+                            name="client"
+                            [(ngModel)]="selectedClientID"
+                            (change)="loadUnlockTable()">
+                        <option [value]="0">Select</option>
+                        <option *ngFor="let client of clients" [value]="client.ClientID">{{client.ClientName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-p-table [pTableSetting]="unlockTableSetting" 
+                                 [pTableMasterData]="unlockModuleDetails" 
+                                 (checkboxCallbackFn)="fnIndividualCheckboxAction($event)">
+                    </app-p-table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="mcButton" style="margin-left:17px;" 
+                            (click)="unlockDeliverables()"
+                            [disabled]="isUnlockDisabled">Unlock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

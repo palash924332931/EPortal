@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.EverestPortal", "IMS.EverestPortal\IMS.EverestPortal.csproj", "{3BD4553D-AC94-405B-966D-5DC065616AB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.EverestPortal.Web", "IMS.EverestPortal.Web\IMS.EverestPortal.Web.csproj", "{1456DD6E-8637-4C96-9874-AB2659126EDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.EverestPortal.Web.Tests", "IMS.EverestPortal.Web.Tests\IMS.EverestPortal.Web.Tests.csproj", "{7E933F17-3F40-4CD1-A6A5-579A62A470D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.EverestPortal.API", "IMS.EverestPortal.API\IMS.EverestPortal.API.csproj", "{78B541E3-8AD5-4C26-9E8A-D64E1C9A77E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.EverestPortal.API.Tests", "IMS.EverestPortal.API.Tests\IMS.EverestPortal.API.Tests.csproj", "{2C784A22-9DBB-4C5C-894E-164C50800124}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IMS.EverestPortal.Database", "ECP_DB\IMS.EverestPortal.Database.sqlproj", "{B8DAB1A3-52D6-4ACF-871B-3CA3B2944ADE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BD4553D-AC94-405B-966D-5DC065616AB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BD4553D-AC94-405B-966D-5DC065616AB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BD4553D-AC94-405B-966D-5DC065616AB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BD4553D-AC94-405B-966D-5DC065616AB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1456DD6E-8637-4C96-9874-AB2659126EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1456DD6E-8637-4C96-9874-AB2659126EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1456DD6E-8637-4C96-9874-AB2659126EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1456DD6E-8637-4C96-9874-AB2659126EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E933F17-3F40-4CD1-A6A5-579A62A470D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E933F17-3F40-4CD1-A6A5-579A62A470D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E933F17-3F40-4CD1-A6A5-579A62A470D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E933F17-3F40-4CD1-A6A5-579A62A470D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B541E3-8AD5-4C26-9E8A-D64E1C9A77E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B541E3-8AD5-4C26-9E8A-D64E1C9A77E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B541E3-8AD5-4C26-9E8A-D64E1C9A77E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B541E3-8AD5-4C26-9E8A-D64E1C9A77E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C784A22-9DBB-4C5C-894E-164C50800124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C784A22-9DBB-4C5C-894E-164C50800124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C784A22-9DBB-4C5C-894E-164C50800124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C784A22-9DBB-4C5C-894E-164C50800124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DAB1A3-52D6-4ACF-871B-3CA3B2944ADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DAB1A3-52D6-4ACF-871B-3CA3B2944ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DAB1A3-52D6-4ACF-871B-3CA3B2944ADE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B8DAB1A3-52D6-4ACF-871B-3CA3B2944ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DAB1A3-52D6-4ACF-871B-3CA3B2944ADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DAB1A3-52D6-4ACF-871B-3CA3B2944ADE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

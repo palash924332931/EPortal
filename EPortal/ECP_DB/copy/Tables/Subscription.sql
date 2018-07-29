@@ -1,0 +1,27 @@
+﻿CREATE TABLE [copy].[Subscription] (
+    [SubscriptionId]     INT            IDENTITY (1, 1) NOT NULL,
+    [Name]               NVARCHAR (MAX) NULL,
+    [ClientId]           INT            NULL,
+    [Country]            NVARCHAR (MAX) NULL,
+    [Service]            NVARCHAR (MAX) NULL,
+    [Data]               NVARCHAR (MAX) NULL,
+    [Source]             NVARCHAR (MAX) NULL,
+    [StartDate]          DATETIME       NULL,
+    [EndDate]            DATETIME       NULL,
+    [ServiceTerritoryId] INT            NULL,
+    [Active]             BIT            NULL,
+    [LastModified]       DATETIME       NULL,
+    [ModifiedBy]         INT            NULL,
+    [CountryId]          INT            NULL,
+    [ServiceId]          INT            NULL,
+    [DataTypeId]         INT            NULL,
+    [SourceId]           INT            NULL,
+    CONSTRAINT [PK__Subscrip__9A2B249DACFF9B1C] PRIMARY KEY CLUSTERED ([SubscriptionId] ASC) WITH (FILLFACTOR = 1),
+    CONSTRAINT [FK__Subscript__Clien__662B2B3B] FOREIGN KEY ([ClientId]) REFERENCES [copy].[Clients] ([Id]),
+    CONSTRAINT [FK__Subscript__Count__671F4F74] FOREIGN KEY ([CountryId]) REFERENCES [dbo].[Country] ([CountryId]),
+    CONSTRAINT [FK__Subscript__DataT__681373AD] FOREIGN KEY ([DataTypeId]) REFERENCES [dbo].[DataType] ([DataTypeId]),
+    CONSTRAINT [FK__Subscript__Servi__690797E6] FOREIGN KEY ([ServiceId]) REFERENCES [dbo].[Service] ([ServiceId]),
+    CONSTRAINT [FK__Subscript__Servi__69FBBC1F] FOREIGN KEY ([ServiceTerritoryId]) REFERENCES [dbo].[ServiceTerritory] ([ServiceTerritoryId]),
+    CONSTRAINT [FK__Subscript__Sourc__6AEFE058] FOREIGN KEY ([SourceId]) REFERENCES [dbo].[Source] ([SourceId])
+);
+

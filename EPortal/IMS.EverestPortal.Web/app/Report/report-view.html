@@ -1,0 +1,248 @@
+﻿
+<div class="modal fade packSearchModalWrapperSave" id="nextModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+    <div class="modal-dialogSave">
+        <div class="modal-content packSearchModalPanel filPSMod">
+            <div class="row">
+                <div class="col-sm-12"><div class="col-sm-12 "><div class="HeadingCharcoal">Save Preset</div></div></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" style="padding-left: 30px; padding-right: 30px;">
+                    <div class="charcText" style="color: #8EAFBF;">Enter file name (max 100 characters)</div>
+                    <div class="raBrick-select fa-caret-down marTop10">
+                        <input type="text" class="" id="" value="" style="padding: 10px; padding-right: 0px; width: 100%;">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row padTop20">
+                <div class="col-sm-3 box noPadding noMargin">
+
+                </div>
+
+                <div class="col-sm-3 box noPadding">
+
+                </div>
+
+                <div class="col-sm-3 box noPadding">
+                    <button type="submit" class="mcButtonSearch pull-right marLeft20">Save</button>
+                </div>
+
+
+                <div class="col-sm-3 box">
+                    <button type="submit" class="mcButtonPScancel pull-left" data-dismiss="modal">Cancel</button>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<div id="wrapper">
+    <div id="content">
+        <!-- Content starts-->
+        <div class="jumbotron noBG">
+            <div class="container-fluid">
+                <!-- Breadcrumbs starts -->
+                <div class="container mcContainer">
+                    <div class="row newsRowPadTop" style="margin-left: 0px;">
+                        <div class="col-md-12" style="padding-left: 10px;"><div class="mcBreadcrumbs"><a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span> <a [routerLink]="['/report']" class="mcLink">Reports</a></div></div>
+                    </div>
+                    <div class="row" style="margin-left: 0px;">
+                        <div class="col-sm-12 col-md-12 col-xs-12"><div class="mcHeadingVM" style="padding-left: 0px;">Reports</div></div>
+                    </div>
+                </div>
+
+                               
+                <div class="container noMargin noPadding" id="mktHeadingWrap">
+                    <!--Market Base Type & Criteria-->
+                    <div class="row padleftright20 ">
+                        <div class="col-sm-3" style="padding-left: 0px;">
+                            <div class="subCrtMB">
+                                <div class="row">
+                                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Applied Filter</div></div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-12 noPadding" style="padding-right: 20px;">
+
+                                        <div class="table-responsive">
+                                            <table id="mytable" class="table " style="border: none;">
+                                                <tbody>
+                                                    <tr *ngFor="let field of appliedFilters">                                                        
+                                                        <td class="" style="vertical-align: middle; border: none; width: 80%">
+                                                            <span style="font-size: 12px; color: #8EAFBF;">{{field.FieldDescription}}</span><br>
+                                                            {{field.selectedValues}}
+                                                        </td>
+
+                                                        <td class="text-center" style="vertical-align: middle; border: none; width: 20%">
+                                                            <div class="form-switcher form-switcher-sm form-switcher-lg-phone" style="">
+                                                                <input type="checkbox" [ngModel]="field.include" name="switcher-sm" id="switcher-sm1" disabled>
+                                                                <label class="switcher" for="switcher-sm1" style="margin-left: auto; margin-right: auto;"></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     
+
+                        <div class="col-sm-9" style="padding-right: 0px;">
+                            <div class="subCrtMB">
+                                <div class="row">
+                                    <div class="col-sm-10 col-md-10 col-xs-10 noPadding" style=""><div class="HeadingCharcoal"></div></div>
+                                    <div *ngIf="!gridData.length > 0" class="col-xs-12" style="font-size: 20px;padding: 0px;"></div>
+                                    
+                                    <div *ngIf="gridData.length > 0" class="col-sm-2 col-md-2 col-xs-2 noPadding" style="padding-right: 10px;">
+                                        <div class="col-sm-7 noPadding" style="padding-right: 10px">
+                                            <div (click)="exportXLS()" class="col-sm-6 noPadding " style="cursor:pointer"><img src="app/content/images/xls.png" alt="" style="height: 40px;" /></div>
+                                            <div  (click)="exportCSV()" class="col-sm-6 noPadding" style="cursor:pointer"><img src="app/content/images/csv.png" alt="" style="height: 40px;" /></div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="gridData.length > 0" class="col-sm-1 col-md-1 col-xs-1 SubTBTopWrap" style="">
+                                        <button type="submit" class="mcButton" (click)="back()" style="width: 155px; height: 32px;">Back</button>
+                                    </div>
+                                </div>
+
+
+                                <!--<div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-1 col-md-1 col-xs-1 SubTBTopWrap" style="">
+                                                <button type="submit" class="mcButton" (click)="back()" style="width: 155px; height: 32px;">Back</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+                               <!--  <div *ngIf="gridData.length > 0" class="row marTop20">
+                                    <div class="col-sm-12 noPadding" style="padding-right: 20px;">
+                                        <div class="table-responsive" style="max-height:600px; overflow-y:auto; ">
+                                            <table id="mytable" class="p-table table table-striped table-bordered table-list">
+                                                <thead>
+                                                    <tr class="theaddark">
+                                                        <th *ngFor="let col of columns" class="text-center">
+                                                            <div  style="padding-left:8px;margin-top:14px;">
+                                                                <div (click)="Sort(col.name,isAsc)" class="whitelink">
+                                                                    <div style="float:left;">
+                                                                        {{col.name}}
+                                                                    </div>
+                                                                    <div style="float:right;">
+                                                                        <i  class="sort-both" style="padding:8px;"></i>
+                                                                        <i *ngIf="!col.sorted" class="sort-both" style="padding:8px;"></i>
+                                                                        <i *ngIf="!isAsc && col.sorted" class="sort-down" style="padding:8px;"></i>
+                                                                        <i *ngIf="isAsc && col.sorted" class="sort-up" style="padding:8px;"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                                                        
+                                                        </th>
+                                                    </tr>
+                                                </thead>                                                
+                                                <tbody>
+                                                    <tr *ngFor="let res of gridData">
+                                                        <td *ngFor="let col of columns" class="">
+                                                            <span class="padLeft10">{{res[col.name] | camelcaseBoolean }}</span>
+                                                        </td>                                                       
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <pagination *ngIf="gridData.length > 0" [boundaryLinks]="true" [totalItems]="totalRecordCounts"
+                                                        [(ngModel)]="recordCurrentPage" (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage" class="pagination-sm"
+                                                        previousText="&lsaquo;" [rotate]="false" [maxSize]="4" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                            <pre class="card card-block card-header" style="margin-top:10px">Showing records {{(recordCurrentPage - 1) * itemsPerPage + 1 }} to <span *ngIf="totalRecordCounts > itemsPerPage && !((recordCurrentPage * itemsPerPage) >= totalRecordCounts ) ">{{recordCurrentPage * itemsPerPage}} of </span><span *ngIf="totalRecordCounts > itemsPerPage && ((recordCurrentPage * itemsPerPage) >= totalRecordCounts ) ">{{totalRecordCounts}} of </span>{{totalRecordCounts}}</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <!--<app-p-table [pTableSetting]="reportTableBind"
+                                             [pTableMasterData]="gridData"></app-p-table>-->
+
+                                <!-- New Changes -  Frozen Header-->
+
+
+                                <app-p-table [pTableSetting]="ReportTableSettings" [pTableMasterData]="gridData"
+                                             (serversideCallbackFn)="serversideFuntion($event)"></app-p-table>
+                                <div class="p-table-footer" style="height: 44px; width: 99%; border-radius: 0 0 4px 4px; border-bottom: 1px solid transparent; border-color: #ddd;    background-color: #E8F5E9!important;">
+                                    <div style="float:left;">
+                                        <span *ngIf="gridData.length > 0" class="card card-block card-header" style="margin-top:10px">Showing records {{(recordCurrentPage - 1) * itemsPerPage + 1 }} to <span *ngIf="totalRecordCounts > itemsPerPage && !((recordCurrentPage * itemsPerPage) >= totalRecordCounts ) ">{{recordCurrentPage * itemsPerPage}} of </span><span *ngIf="totalRecordCounts > itemsPerPage && ((recordCurrentPage * itemsPerPage) >= totalRecordCounts ) ">{{totalRecordCounts}} of </span>{{totalRecordCounts}}</span>
+                                    </div>
+                                    <div style="float:right; height:44px; margin-top:-22px;">
+                                        <pagination *ngIf="gridData.length > 0" [ngModelOptions]="{standalone: true}" [itemsPerPage]="itemsPerPage" [boundaryLinks]="true"
+                                                    [totalItems]="totalRecordCounts" [(ngModel)]="recordCurrentPage" class="pagination-sm"
+                                                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" [maxSize]="3" [rotate]="false"
+                                                    (pageChanged)="pageChanged($event)"
+                                                    lastText="&raquo;"></pagination>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <!--End of New Changes - Frozen Header -->
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-1 col-md-1 col-xs-1 SubTBTopWrap" style="">
+                                                <button type="submit" class="mcButton" (click)="back()" style="width: 155px; height: 32px;">Back</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div bsModal #warningAboutReportModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" style="width: 50%;">
+                                        <div class="modal-content packSearchModalPanel filPSMod" style="margin-top:10%">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-12 filHeadingMod">
+                                                        <span>There are no Filters applied for this request and  might return more number of records than the System can handle. Please apply the filter(s) to proceed further. </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row padTop20" style="padding-left:20px">
+                                                <!--<button (click)="view(false)" class="mcButton">Yes</button>-->
+                                                <button type="submit" class="mcButton" (click)="warningAboutReportModal.hide()">OK</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--</div>
+        </div>-->
+                            </div>
+
+
+
+
+
+
+                </div>
+                <!--Market Base Type & Criteria ends-->
+            </div>
+        </div><!-- #containerfluid -->
+
+      
+
+
+    </div><!-- #wrapper -->
+        </div>
+    </div>
+</div>
+
+

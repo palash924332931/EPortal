@@ -1,0 +1,42 @@
+﻿<div *ngIf="rootgroup.Children!= undefined && rootgroup.Children!=null && rootgroup.Children.length>0">
+    <ul>
+        <li *ngFor="let g of rootgroup.Children|order:'CustomGroupNumber':'asc'" [ngStyle]="{'padding-left': g.PaddingLeft+'px', 'padding-top':'15px'}" [ngClass]="{'groupLineHide': g.IsOrphan , 'groupLineVisable': (g.IsOrphan && groupVisualCountInLevel(getLevelFromGroup(g.GroupNumber).LevelNumber, g.ParentGroupNumber)>0) }">
+            <div>
+                <div class="nodeLevOneBoxWrapper" [ngStyle]="{'border-left-color': getLevelFromGroup(g.GroupNumber).LevelColor}">
+                    <div class="row">
+                        <div class="col-sm-9 nodeLevelOneHeading">{{g.Name}}</div>
+                        <div class="col-sm-3 arrowIconWrapper">
+                            <div class="col-sm-4">
+                                <a (click)="fnActionOnGroup('edit',g, 0)" data-target="#editGroup" [ngClass]="{'node-disabled': getGlobalDisableFlag()}">
+                                    <!--<img src="app/content/images/nEdit.png" width="16" height="16" alt="" />                                    -->
+                                    <a class="glyphicon glyphicon-edit edit-icon" width="17" height="16"></a>
+                                </a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a (click)="fnActionOnGroup('delete',g, 0)" [ngClass]="{'node-disabled': getGlobalDisableFlag()}">
+                                    <!--<img src="app/content/images/nDelete.png" width="16" height="16" alt="">-->
+                                     <a class="glyphicon glyphicon-trash delete-icon" width="17" height="16"></a>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row padTop5">
+                        <div class="col-sm-2 arrowIcon noPadding">
+                            <img [src]="g?.collapse==true?'../app/content/images/up_arrow.png':'../app/content/images/down_arrow.png'" width="17" height="10" alt="" (click)="fnTerritoryCollapseExpand(g)" [style.visibility]="nodehasChild(g)==false?'hidden':'visible'" />
+                          </div>
+                        <div class="col-sm-3 noPadding"><div class="groupIdTxt">Group ID</div></div>
+                        <div class="col-sm-4 noPadding"><div class="levlNameTxt">Level Name</div></div>
+                        <div class="col-sm-2 noPadding"><a (click)="fnActionOnGroup('linkToParent',g, 0)" class="purpLink pointer" [ngStyle]="{'color': getNextLevelFromGroup(g.GroupNumber)}" [ngClass]="{'node-disabled': getGlobalDisableFlag()}">Link to Parent</a></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 noPadding"></div>
+                        <div class="col-sm-3 noPadding"><div class="grpIdTxt">{{g.CustomGroupNumberSpace}}</div></div>
+                        <div class="col-sm-4 noPadding"><div class="levlNameTextBig">{{getLevelFromGroup(g.GroupNumber).Name}}</div></div>
+                        <div class="col-sm-2 noPadding"><a (click)="fnActionOnGroup('add',g, orphanGroupsCountInNextLevel(getLevelFromGroup(g.GroupNumber).LevelNumber),isNodeDisabled(g.GroupNumber))" class="purpLink pointer" [ngClass]="{'node-disabled': isNodeDisabled(g.GroupNumber) || getGlobalDisableFlag()}" [ngStyle]="{'color': getNextLevelFromGroup(g.GroupNumber)}">Add Group</a></div>
+                    </div>
+                </div>
+            </div>
+            <groupview [rootgroup]="g" *ngIf="g?.collapse==false || g?.collapse==null"></groupview>
+        </li>
+    </ul>
+</div>

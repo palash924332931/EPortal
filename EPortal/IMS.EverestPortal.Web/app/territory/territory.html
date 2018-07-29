@@ -1,0 +1,439 @@
+﻿<ng-modal (fnActionOnSaveBtn)="fnModalConfirmationClick($event)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="getModalBtnCapton()"
+    [closeBtnCaption]="getModalCloseBtnCaption()" [title]="getModalTitle()" [saveBtnVisibility]="getModalSaveBtnVisibility()"
+    [modalSaveFnParam]="getModalSaveFnParameter()">
+</ng-modal>
+
+<ng-modal (fnActionOnSaveBtn)="fnModalConfirmationClick($event)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="getModalBtnCapton()"
+    [closeBtnCaption]="getModalCloseBtnCaption()" [modalID]="'customModal'" [title]="getModalTitle()" [saveBtnVisibility]="getModalSaveBtnVisibility()"
+    [modalSaveFnParam]="getModalSaveFnParameter()">
+</ng-modal>
+
+
+<div id="content">
+    <div class="jumbotron noBG">
+        <div class="container-fluid">
+
+            <!--<div class="container mcContainer">
+                <div class="row newsRowPadTop">
+                    <div class="col-md-12">
+                        <div class="mcBreadcrumbs">
+                            <a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span>
+                            <a class="mcLink">Territories</a> <span class="breadBrubGap">></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mcRow">
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <div class="mcHeading">{{territoryDefPageTitle}}</div>
+                    </div>
+                </div>
+            </div>-->
+
+            <!-- Breadcrumbs starts -->
+            <div class="container col-sm-12">
+                <div class="mcBreadcrumbsVM">
+                    <a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span>
+                    <a class="mcLink">Territories</a> <span class="breadBrubGap">></span>
+                    <a [routerLink]="[breadCrumbUrl]" class="mcLink">{{toggleTitle}}</a><span class="BCBreak">></span>
+                    <a class="mcLink">{{isEditTerritoryDef ? 'Edit Territory': 'Create Territory'}}</a>
+                </div>
+                <div class="row mcRow">
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <!--<div class="mcHeading">{{territoryDefPageTitle}}</div>-->
+                        <div class="mcHeading">{{(enabledBricksAllocationContent!=true)?this.territoryService.territorySharedData.title:this.territoryService.territorySharedData.task}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Breadcrumbs ends -->
+
+            <div class="territory-view-content" [ngClass]="{'hide-territory-view':!enabledTerritoryContent}">
+                <div class="container noMargin noPadding" id="mktHeadingWrap">
+                    <div id="top-layout">
+                        <div class="row noMargin fullWidth100">
+                            <div class="col-sm-3 col-md-3 col-xs-3 noPadding">
+                                <div class="mktLabelText required">Territory Definition Name</div>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                <div class="mktLabelText">Territory Base</div>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                <div class="mktLabelText">Option</div>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1">
+                                <div class="mktLabelText required">SRA client</div>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1">
+                                <div  class="mktLabelText required" [ngClass]="{'required': !isIMSStandardStructure}">SRA suffix</div>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1">
+                                <div class="mktLabelText required" *ngIf="isLDADVisible">LD</div>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1">
+                                <div class="mktLabelText required" *ngIf="isLDADVisible">AD</div>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1">
+                                <div class="mktLabelText" *ngIf="isInternalClient">Referenced</div>
+                            </div>
+                        </div>
+
+                        <div class="row noMargin fullWidth100">
+                            <div class="col-sm-3 col-md-3 col-xs-3 noPadding" [ngClass]="{'node-disabled': getGlobalDisableFlag()}">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty text-territory" id="territoryName"
+                                    [disabled]="getGlobalDisableFlag()" placeholder="e.g. GP Team" [(ngModel)]="territory.Name"
+                                    (change)="fnChangeDetectionInTerritoryHeaderSection()" />
+                                <div><span id="territoryNameCheckErrorMessage" style="color:red" #territoryNameCheckErrorMessage></span></div>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                <div [ngClass]="{'node-disabled': !enabledTerritoryHeader}">
+                                    <select (change)="getOptions(inputOptionValue.value);" id="ddSelectBase" name="inputOptionValue" #inputOptionValue style="width: 220px;height: 45px;">
+                                    <option *ngFor="let option of this.optionsForBaseFilter;" value="{{option}}">{{option}}</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                <div [ngClass]="{'node-disabled': !enabledTerritoryHeader}">
+                                    <select [(ngModel)]="selectedOption" (change)="getIMSHierarchy(selectedOptionValue.value);" id="ddTerritoryMarketBase" name="selectedOptionValue" style="width: 220px;height: 45px;" #selectedOptionValue>
+                                     <option value="Custom">Custom</option>
+                                    <option *ngFor="let option of this.optionsForTerritoryBase" value="{{option}}" >{{option}}</option>                                   
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1 noPadding">
+                                <input type="text" id="txtSRAClient" [disabled]="!isEditableSRA || getGlobalDisableFlag()" class="form-control ng-pristine ng-untouched ng-valid text-territory"
+                                    [(ngModel)]="territory.SRA_Client" (change)="fnChangeDetectionInTerritoryHeaderSection()"
+                                />
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1 noPadding">
+                                <input type="text" id="txtSRASuffix" [disabled]="!isEditableSRA || getGlobalDisableFlag()" class="form-control ng-pristine ng-untouched ng-valid text-territory"
+                                    [(ngModel)]="territory.SRA_Suffix" style="text-transform: uppercase;" maxlength="1" (change)="fnChangeDetectionInTerritoryHeaderSection()"
+                                />
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1 noPadding">
+                                <div *ngIf="isLDADVisible">
+                                    <input type="text" [disabled]="(!isEditableSRA || getGlobalDisableFlag())&& !IsReferenceStrucute && !IsPermitedADLDEdit" id="txtLD" class="form-control ng-pristine ng-untouched ng-valid small-text-territory"
+                                        [(ngModel)]="territory.LD" (change)="fnChangeDetectionInTerritoryHeaderSection()" /></div>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1 noPadding">
+                                <div *ngIf="isLDADVisible">
+                                    <input type="text" [disabled]="(!isEditableSRA || getGlobalDisableFlag())&& !IsReferenceStrucute && !IsPermitedADLDEdit" id="txtAD" class="form-control ng-pristine ng-untouched ng-valid small-text-territory"
+                                        [(ngModel)]="territory.AD" (change)="fnChangeDetectionInTerritoryHeaderSection()" />
+                                </div>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-xs-1 noPadding">
+                                &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" [disabled]="savedTerritory.IsReferenced" *ngIf="isInternalClient" [(ngModel)]="territory.IsReferenced"/>
+                                <!--<div *ngIf="isEditTerritoryDef && !getGlobalDisableFlag()"> <button type="button" class="mcButtonNext" (click)="fnUpdateTerritoryHeaderInfo()">Save</button></div>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <div class="territory-content col-sm-12" id="territory_content_div">
+                        <div class="row">
+                            <div class="levelWidth" *ngFor="let level of territory.Levels;">
+                                <!--<div class="col-sm-12 filCountShadowBox" [ngStyle]="{'border-bottom-color': level?.LevelColor}" style="" [id]="'level-id-'+level.LevelNumber">-->
+                                <div class="col-sm-12 filCountShadowBox" [ngStyle]="{'border-bottom-color': level?.LevelColor}">
+                                    <div class="row">
+                                        <div class="col-sm-8 countryHeading">Level {{level.LevelNumber}}: {{level.Name}}</div>
+                                        <div class="col-sm-3 iconWrapper">
+                                            <div class="col-sm-6 noPadding" *ngIf="level.LevelNumber>1">
+                                                <a (click)="fnActionOnLevel('edit',level)" [ngClass]="{'node-disabled': getGlobalDisableFlag()}">
+                                                    <!--<img src="app/content/images/nEdit.png" width="16" height="16" alt="">-->
+                                                    <a class="glyphicon glyphicon-edit edit-icon" width="17" height="16"></a>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6 noPadding" *ngIf="level.LevelNumber>1">
+                                                <a (click)="fnActionOnLevel('delete',level)" [ngClass]="{'node-disabled': getGlobalDisableFlag()}">
+                                                    <!--<img src="app/content/images/nDelete.png" width="16" height="16" alt="">-->
+                                                    <a class="glyphicon glyphicon-trash delete-icon" width="17" height="16"></a>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-9 width76">
+                                            <div class="smallHeadingGrey" [ngStyle]="{'visibility': level.LevelNumber<2?'hidden':'visible'}">Group ID Length</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8 noPadding">
+                                            <div class="filShadowBoxText" [ngStyle]="{'visibility': level.LevelNumber<2?'hidden':'visible'}">{{level.LevelIDLength}}</div>
+                                        </div>
+                                        <div class="col-sm-3 custLevelWrapper"><a (click)="fnActionOnLevel('add',level,territory.Levels.length>5)" class="purpleBiglink pointer"
+                                                [ngStyle]="{'color': getNextLevelFromLevel(level.LevelNumber)}" [ngClass]="{'node-disabled': territory.Levels.length>5||level.LevelNumber>5 || isImsTerritory || getGlobalDisableFlag()}">Add Level</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Group Draw-->
+                        <div class="row levelsFooter" id="firstColumn">
+                            <div class="col-sm-12 lBlueBG levelWidth zind99 column-1">
+                                <div>
+                                    <ul class="tree">
+                                        <li id="Group_{{territory.RootGroup.GroupNumber}}">
+                                            <div>
+                                                <div class="nodeLevOneBoxWrapper">
+                                                    <div class="row">
+                                                        <div class="col-sm-9 nodeLevelOneHeading">{{territory.RootGroup.Name}}</div>
+                                                        <div class="col-sm-3 arrowIconWrapper">
+                                                            <div class="col-sm-4"></div>
+                                                            <div class="col-sm-4"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row padTop5">
+                                                        <div class="col-sm-2 arrowIcon noPadding">
+                                                            <img src="app/content/images/down_arrow.png" width="17" height="10" alt="" style="visibility: hidden" />
+                                                        </div>
+                                                        <div class="col-sm-3 noPadding">
+                                                            <div class="groupIdTxt" style="display: none">Group ID</div>
+                                                        </div>
+                                                        <div class="col-sm-4 noPadding">
+                                                            <div class="levlNameTxt">Level Name</div>
+                                                        </div>
+                                                        <div class="col-sm-2 noPadding"></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-2 noPadding"></div>
+                                                        <div class="col-sm-3 noPadding">
+                                                            <div class="grpIdTxt" style="display: none">{{territory.RootGroup.CustomGroupNumberSpace}}</div>
+                                                        </div>
+                                                        <div class="col-sm-4 noPadding">
+                                                            <div class="levlNameTextBig">Country</div>
+                                                        </div>
+                                                        <div class="col-sm-2 noPadding"><a (click)="fnActionOnGroup('add',territory.RootGroup, orphanGroupsCountInNextLevel(getLevelFromGroup(territory.RootGroup.GroupNumber).LevelNumber),isNodeDisabled())"
+                                                                class="purpLink pointer" [ngClass]="{'node-disabled': isNodeDisabled() || getGlobalDisableFlag()}">Add Group</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <groupview [rootgroup]="territory.RootGroup"></groupview>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="levelWidth dynamic-height-col" *ngFor="let level of extraLevels;" [ngStyle]="{'height':getFootHeight().toString()+'px'}">
+                                <div class="col-sm-12 levelsFooter lBlueBG" [ngStyle]="{'background-color': level.BackgroundColor, 'height':'100%'}">
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of Group-->
+                    </div>
+
+                </div>
+                <!-- End Level -->
+                <!--Next button-->
+                <div class="row fullWidth100 martop20 fixed-footer-buttons">
+                    <div class="col-sm-6" style="margin-left:20px">
+                        <div class="box pull-left"><button type="button" class="mcButtonPScancel" (click)="fnBackToPreviousState()" [disabled]="isIMSStandardStructure">Cancel</button></div>
+                        <div class="box pull-left"><button type="button" class="mcButtonPScancel" (click)="fnBackToClientTiles()" title="Click here to back available Territories">Close</button></div>
+                        <div class="box pull-left" *ngIf="isEditTerritoryDef &&( !getGlobalDisableFlag() || isEditableSRA)"> <button type="button" class="mcButtonPScancel" [disabled]="!IsTerritoryHeaderSectionChanged" (click)="fnUpdateTerritoryHeaderInfo()">Save</button></div>
+                        <div class="box pull-left" *ngIf="(!isEditTerritoryDef && isIMSStandardStructure)"><button type="button" class="mcButton" (click)="fnSaveStructuredBasedTerritory()">Save</button></div>
+                        <div class="box pull-left"><button type="button" class="mcButton" (click)="btnNext_Click()">Next</button></div>
+                    
+                    </div>
+                    <!--<div class="col-sm-2 marLeftm22">
+                        <div class="box pull-right"><button type="button" class="mcButton" (click)="fnTerritoryViewSave()" [disabled]="isIMSStandardStructure" style="display: none">Save</button></div>
+                    </div>-->
+                </div>
+                <!--End of Next button-->
+            </div>
+        </div>
+
+        <div class="bricks-allocation-content" *ngIf="enabledBricksAllocationContent">
+            <bricks-allocation [territory]="territory" [levelName]="lastLevelName" [isEditTerritoryDef]="isEditTerritoryDef" [isNewBrickCreation]="isNewBrickCreation"
+                [territoryCurrentNodes]="territoryLastLevelNodes" [territoryNodes]="getTerritoryNodes()" [brickOutletType]="brickOutletType"
+                [brickDetailsUnderTerritory]="getBrickDetailsUnderTerritory()" [isIMSStandardStructure]="isIMSStandardStructure"
+                [availbleBricks]="availbleBricks" (fnTerritoryCallBack)="fnTerritoryCallBack($event)"
+                [isInternalClientAccess]="isInternalClient && this.canEditTerritoryPermission"></bricks-allocation>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+<!--start  Modal -->
+<div class="modal fade" id="addLevelModal" role="dialog">
+    <div class="modal-dialog row">
+        <!-- Modal content-->
+        <div class="modal-content col-xs-4 col-md-4  col-sm-6">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="clearLevelModal()">&times;</button>
+                <h4 class="modal-title">{{levelModalTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="inputLevelName1">Level Name:</label>
+                    <input type="text" class="form-control" id="inputLevelName" autofocus value="" #inputLevelName>
+                </div>
+                <div class="form-group">
+                    <label for="inputIDLength">Group ID Length:</label>
+                    <select name="inputIDLength" id="idLength" #inputIDLength>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                <div *ngIf="!(territory.Levels.length>5 && levelModalAction=='add')"><span id="addLevelErrorMessage" style="color:red"></span></div>
+                <div *ngIf="territory.Levels.length>5 && levelModalAction=='add'"><span id="" style="color:red">You have already created all levels.</span></div>
+            </div>
+            <div class="modal-footer" [ngStyle]="{'text-align':'left'}">
+                <button type="button" class="btn btn-info" [disabled]="territory.Levels.length>5 && levelModalAction=='add'" (click)="addLevel(levelModalAction,clickedLevel,inputLevelName.value, inputIDLength.value)">Save </button>
+                <button type="button" class="btn btn-default" (click)="clearLevelModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addGroupModal" role="dialog">
+    <div class="modal-dialog row">
+        <!-- Modal content-->
+        <div class="modal-content col-xs-8 col-md-8  col-sm-8">
+            <div class="modal-header col-xs-12 col-md-12  col-sm-12">
+                <button type="button" class="close" data-dismiss="modal" (click)="clearGroupModal()">&times;</button>
+                <h4 class="modal-title">Add Group to {{groupParentName}}</h4>
+            </div>
+            <div class="modal-body col-xs-12 col-md-12  col-sm-12">
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-6  col-sm-6">
+                        <label for="inputGroupName1">Group Name:</label>
+                        <input type="text" class="form-control" id="inputGroupName" autofocus="autofocus" value="" #inputGroupName>
+                    </div>
+                    <div class="form-group col-xs-6 col-md-6  col-sm-6">
+                        <label for="inputGroupID">Group ID:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="">{{defaultGroupPrefixID}}</span>
+                            <input type="text" class="form-control" id="inputGroupID" [(ngModel)]="this.defaultGroupNumber" value="" #inputGroupID>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6 col-md-6  col-sm-6">
+                        <div class="checkbox checkbox-primary">
+                            <label for="checkbox2">
+                                 <input id="checkbox2" type="checkbox" [checked]="isMultiGroupAddChecked" (click)="fnEnabledMultiGroup($event)">
+                          <span> Add more groups to <b>{{groupParentName}}</b> </span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6 col-md-6  col-sm-6">
+                        <!--<div class="input-group" *ngIf="isMultiGroupAddChecked" style="float: left">
+                             <span class="input-group-addon" id="basic-addon2">Parent Name</span>                           
+                            <select class="form-control" (change)="fnChangeGroupListDD($event)">
+                              <option *ngFor="let group of listOfGroups" [value]="stringify(group)">{{group.Name}}</option>
+                           </select>
+                        </div>-->
+                    </div>
+                </div>
+
+                <div class="row"><span id="groupIdCheckErrorMessage" style="color:red" #groupIdCheckErrorMessage></span></div>
+            </div>
+            <div class="modal-footer col-xs-12 col-md-12  col-sm-12" [ngStyle]="{'text-align':'left'}">
+                <button type="button" class="btn btn-info" (click)="addMultiGroup(inputGroupName.value, inputGroupID.value)">Save</button>
+                <button type="button" class="btn btn-default" (click)="clearGroupModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteGroupModal" role="dialog">
+    <div class="modal-dialog row">
+        <!-- Modal content-->
+        <div class="modal-content col-xs-4 col-md-4  col-sm-6">
+            <div class="modal-header col-xs-12 col-md-12  col-sm-12">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{getModalTitle()}}</h4>
+            </div>
+            <div class="modal-footer col-xs-12 col-md-12  col-sm-12" [ngStyle]="{'text-align':'left'}">
+                <button type="button" class="btn btn-danger" (click)="deleteGroup()">Delete</button>
+                <button type="button" class="btn btn-default" (click)="clearGroupModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editGroupModal" role="dialog">
+    <div class="modal-dialog row">
+        <!-- Modal content-->
+        <div class="modal-content col-xs-8 col-md-8  col-sm-8">
+            <div class="modal-header col-xs-12 col-md-12  col-sm-12">
+                <button type="button" class="close" data-dismiss="modal" (click)="clearGroupModal()">&times;</button>
+                <h4 class="modal-title">Edit Group</h4>
+            </div>
+            <div class="modal-body col-xs-12 col-md-12  col-sm-12">
+                <div class="form-group col-xs-6 col-md-6  col-sm-6">
+                    <label for="editedGroupName">Group Name:</label>
+                    <input type="text" class="form-control" id="editedGroupName" autofocus="autofocus" #editedGroupName>
+                </div>
+                <div class="form-group col-xs-6 col-md-6  col-sm-6">
+                    <label for="editedGroupID">Group ID:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="inputGroupPrefixID"></span>
+                        <input type="text" class="form-control" id="editedGroupID" #editedGroupID>
+                    </div>
+
+                </div>
+                <div class="col-sm-12"><span id="groupIdEditCheckErrorMessage" style="color:red" #groupIdEditCheckErrorMessage></span></div>
+            </div>
+            <div class="modal-footer col-xs-12 col-md-12  col-sm-12" [ngStyle]="{'text-align':'left'}">
+                <button type="button" class="btn btn-info" (click)="editGroup(editedGroupName.value, editedGroupID.value)">Update</button>
+                <button type="button" class="btn btn-default" (click)="clearGroupModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="linkToParentModal" role="dialog">
+    <div class="modal-dialog row">
+        <!-- Modal content-->
+        <div class="modal-content col-xs-4 col-md-4  col-sm-6">
+            <div class="modal-header col-xs-12 col-md-12  col-sm-12">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Link To Parent</h4>
+            </div>
+
+            <div class="form-group">
+                <label for="inputIDLength">Parent:</label>
+                <select name="inputGroupNumber" id="ddParentList" #inputGroupNumber>
+                    <option *ngFor="let grp of getParentList();" value="{{grp.GroupNumber}}">{{grp.Name+' - '+grp.CustomGroupNumberSpace}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <span><input type="checkbox" [(ngModel)]="isCheckedMultiNodeShift" /></span>
+                <span>Move all groups of <b>{{this.parentNodeNameOfSelectedNode}} </b></span>
+            </div>
+            <!--<div class="form-group">
+                <label for="selectChild">Child:</label>
+                <div id="selectChild">
+                    {{getClickedGroup().GroupNumber}} <span>---</span> {{getClickedGroup().Name}}
+                </div>
+
+            </div>-->
+            <div class="modal-footer col-xs-12 col-md-12  col-sm-12" [ngStyle]="{'text-align':'left'}">
+                <button type="button" class="btn btn-info" (click)="linkToParentGroup(inputGroupNumber.value)">Save</button>
+                <button type="button" class="btn btn-default" (click)="clearlinkToParentModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal -->
+<div bsModal #tErrorModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:0px solid">
+                <h4 class="modal-title pull-left">Everest Portal</h4>
+                <button type="button" class="close pull-right" (click)="tErrorModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Application Error has occurred. Please contact support.
+            </div>
+        </div>
+    </div>
+</div>

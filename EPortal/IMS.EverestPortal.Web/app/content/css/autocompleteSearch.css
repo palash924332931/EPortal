@@ -1,0 +1,44 @@
+/*Auto COmpleate */
+
+
+
+.twitter-typeahead{
+
+}
+
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+  margin-bottom: 0;
+}
+.tt-dropdown-menu {
+  min-width: 390px;
+  font-size: 14px;  font-weight: normal;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.2);
+ 
+        
+}
+
+.tt-suggestion {
+  display: block;
+  
+}
+
+.tt-suggestion.tt-is-under-cursor {
+  color: #fff;
+  background-color: #0081c2;
+ 
+
+.tt-suggestion.tt-is-under-cursor a {
+  color: #fff;
+}
+
+.tt-suggestion p {
+  margin: 0;
+}	
+
+
+
+
+/* Auto Compleate */

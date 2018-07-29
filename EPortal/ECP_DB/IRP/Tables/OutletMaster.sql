@@ -1,0 +1,26 @@
+﻿CREATE TABLE [IRP].[OutletMaster] (
+    [Postcode]           SMALLINT        NOT NULL,
+    [Outlet]             SMALLINT        NOT NULL,
+    [name]               VARCHAR (40)    NULL,
+    [Addr1]              VARCHAR (30)    NULL,
+    [Addr2]              VARCHAR (30)    NULL,
+    [Suburb]             VARCHAR (30)    NULL,
+    [FullAddress]        VARCHAR (89)    NULL,
+    [Phone]              CHAR (15)       NULL,
+    [FaxNo]              CHAR (15)       NULL,
+    [BedCount]           SMALLINT        NULL,
+    [inactive_date]      SMALLDATETIME   NULL,
+    [sbrick]             CHAR (5)        NOT NULL,
+    [sbrick_desc]        VARCHAR (50)    NOT NULL,
+    [out_type]           CHAR (2)        NULL,
+    [entity_type]        CHAR (2)        NULL,
+    [BannerGroup]        VARCHAR (10)    NULL,
+    [Outl_Brk]           VARCHAR (8)     NOT NULL,
+    [Retail_Sbrick]      CHAR (5)        NOT NULL,
+    [Retail_Sbrick_Desc] VARCHAR (50)    NOT NULL,
+    [XCoord]             DECIMAL (11, 6) NULL,
+    [YCoord]             DECIMAL (11, 6) NULL,
+    [Active_date]        SMALLDATETIME   NULL,
+    [State_Code]         VARCHAR (3)     NULL
+);
+

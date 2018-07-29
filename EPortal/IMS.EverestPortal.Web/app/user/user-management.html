@@ -1,0 +1,233 @@
+﻿<div bsModal #lgUserModal="bs-modal" [config]="{'backdrop':'static', 'keyboard': false}" class="modal fade subModalWrapper" id="modeluser" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="">
+
+            <div class="row margintop22" style="margin-left:5px;">
+                <div class="col-sm-12 col-md-12 col-xs-12"><div class="" style="font-family: Roboto; font-size: 24px; font-style: normal; font-variant: normal; padding-top: 10px; padding-bottom: 20px;
+    color: #3A4F5A;">{{usrTitle}}</div></div>
+            </div>
+            <!--<div>{{model|json}}</div>-->
+
+            <div class="row marginTop5">
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <form #f="ngForm" (ngSubmit)="SaveUser(model, f.valid)" novalidate>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="fname">First Name</label>
+                                <input type="text" class="form-control" id="fname" required [(ngModel)]="model.FirstName" name="FirstName" #fname="ngModel" >
+                                <!--<div *ngIf="fname.errors?.required" class="error">
+                                    Name is required
+                                </div>-->
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="lname">Last Name</label>
+                                <input type="text" class="form-control" id="lname" [(ngModel)]="model.LastName" name="LastName">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="email">User Name</label>
+                                <input type="text" class="form-control" id="Username" required [(ngModel)]="model.UserName" name="UserName">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="email">Email ID</label>
+                                <input type="text" class="form-control" id="email" required [(ngModel)]="model.Email" name="Email"
+                                       pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$" #Email="ngModel">
+                            </div>
+                            <!--<div class="col-xs-6" *ngIf="!EditMode">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" id="password" required [(ngModel)]="model.Password" name="Password">
+
+                            </div>-->
+                            <div class="col-xs-6">
+                                <label for="role">Role</label>
+                                <select class="form-control" id="role" required [(ngModel)]="model.RoleID" name="RoleID" #RoleID="ngModel" 
+                                        [disabled]="!isModifyInternalRole && !IsExternalRole && isEditModal"
+                                        (change)="roleChange(model.RoleID)">
+                                    <option *ngFor="let r of roles" [value]="r.RoleID" [selected]="r.RoleID == model.RoleID">{{r.RoleName}}</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6" *ngIf="IsExternalRole">
+                                <label for="role">Client</label>
+                                <select class="form-control" id="client" required [(ngModel)]="model.ClientID" name="ClientID" #RoleID="ngModel">
+                                    <option *ngFor="let client of clients" [value]="client.ClientID" [selected]="client.ClientID == model.ClientID">{{client.ClientName}}</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6">
+                                <br />
+                                <a *ngIf="(EditMode && !model.IsPasswordVerified)" (click)="ResendAccountVerificationEmail(model)">Resend account verification email</a>
+                                <br />
+                                <span *ngIf="(EditMode && !model.IsPasswordVerified && IsVerificationEmailSent)" style="color:green;">Password verification email has been sent.</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="MaintenancePeriodEmail">Maintenance Period Reminder </label>
+                                <input type="checkbox" class="" id="MaintenancePeriodEmail" [(ngModel)]="model.MaintenancePeriodEmail" name="MaintenancePeriodEmail">
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="NewsAlertEmail">News Alert Reminder</label>
+                                <input type="checkbox" class="" id="NewsAlertEmail" [(ngModel)]="model.NewsAlertEmail" name="NewsAlertEmail">
+                            </div>
+                        </div>
+                        <!--<div class="col-xs-12"></div>
+                        <div class="col-xs-12"></div>-->
+                        <div class="row"></div>
+                        <div class="row" *ngIf="validMsg.length>0" style="margin-left:10px;color:red;">{{validMsg}}</div>
+
+
+                        <div class="row margintop22 " style="margin-left:5px;">
+                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                <button type="submit" class="mcButton" [disabled]="!f.valid">Submit</button>
+                            </div>
+                            <!--<div class="col-sm-2 col-md-2 col-xs-2">
+                                <button type="submit" class="mcButton">Reset</button>
+                            </div>-->
+                            <div class="col-sm-4 col-md-4 col-xs-4">
+                                <button type="button" class="mcButtonCancel" (click)="Close()">Cancel</button>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="row margintop22 "></div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+<div bsModal #deleteUserModal="bs-modal" [config]="{'backdrop':'static', 'keyboard': false}" class="modal fade subModalWrapper" id="deleteuser" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="">
+
+            <div class="row margintop22" style="margin-left:5px;">
+               
+            </div>
+
+            <div class="row marginTop5">
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <form #f="ngForm" (ngSubmit)="DeleteUser(model)" novalidate>
+
+                        <div class="row">
+                            <ng-content></ng-content>
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 filHeadingMod" style="padding-top: 5px;padding-bottom: 5px;"><span class=""> <div>Would you like to delete user "{{model.UserName}}" ?></div></span></div>
+                            </div>
+                        </div>
+
+
+                        <!--<div class="col-xs-12"></div>-->
+
+
+                        <div class="row margintop22 " style="margin-left:5px;">
+                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                <button type="submit" class="mcButton">Yes</button>
+                            </div>
+                            <!--<div class="col-sm-2 col-md-2 col-xs-2">
+                                <button type="submit" class="mcButton">Reset</button>
+                            </div>-->
+                            <div class="col-sm-4 col-md-4 col-xs-4">
+                                <button type="button" class="mcButtonCancel" (click)="CloseDelete()">Cancel</button>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="row margintop22 "></div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+<div id="content">
+
+    <div class="jumbotron noBG">
+        <div class="container-fluid">
+            <div class="container noMargin noPadding" id="mktHeadingWrap">
+                <div class="row">
+                    <div class="subWhiteBoxShadow">
+                        <div class="row" style="height: 650px;">
+                            <!--<div><div class="HeadingCharcoal">Users</div></div>-->
+                            <!--<div>{{userByPage | json}}</div>-->
+                            <div>
+                                <button type="submit" class="mcButton" (click)="AddUser()">Add New User</button>
+                            </div>
+                            <!--<div class="row margintop22 "></div>-->
+                            <!--<div class="row noMargin fullWidth100">
+                                <div class="col-sm-4 col-md-4 col-xs-4 noPadding">
+                                    <div class="form-group">
+                                        <div class="icon-addonBA addon-lgBA padLeft15">
+                                            <input type="text" placeholder="Search by User Name" [(ngModel)]="searchUser" (keyup)="searchUsers()" class="form-control" id="txtSearchUser">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->  
+                            <app-p-table [pTableSetting]="userManagementTableBind" [pTableMasterData]="userList" (customActivityOnRecord)="fnActivityOnRecord($event)" (cellClickCallbackFn)="fnIndividualCheckboxAction($event)"></app-p-table>                         
+                            <div class="table-responsive">
+                                
+
+                                <!--<table id="mytable" class="table table-striped">
+                                    <thead class="theaddark">
+                                        <tr>
+                                            <th class="text-center">First Name</th>
+                                            <th class="text-center">Last Name</th>
+                                            <th class="text-center">User Name</th>
+                                            <th class="text-center">Email</th>
+                                            <th class="text-center">Role</th>
+                                            <th class="text-center">Maintenance Period<br /> Reminder</th>
+                                            <th class="text-center">News Alert<br /> Reminder</th>
+                                            <th class="text-center">Active</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of userByPage">
+                                            <td style="padding: 2px;"><span class="padLeft8">{{user.FirstName}}</span></td>
+                                            <td style="padding: 2px;"><span class="padLeft8">{{user.LastName}}</span></td>
+                                            <td style="padding: 2px;"><span class="padLeft8">{{user.UserName}}</span></td>
+                                            <td style="padding: 2px;"><span class="padLeft8">{{user.Email}}</span></td>
+                                            <td style="padding: 2px;"><span class="padLeft8">{{user.RoleName}}</span></td>
+                                            <td style="padding: 2px;"><span class="padLeft8">{{user.ClientNames}}</span></td>
+                                            <td style="padding: 2px;"><span class="padLeft8">{{user.MaintenancePeriodEmail}}</span></td>
+                                            <td style="padding: 2px;"><span class="padLeft8">{{user.NewsAlertEmail}}</span></td>
+                                            --<td style="padding: 2px;"><span class="padLeft8">{{user.IsActive?'Active': 'In Active'}}</span></td>
+                                            <td style="padding: 2px; text-align:center;"><span class="padLeft8" ><input type="checkbox" (click)="UpdateUserStatus(user)" [(checked)]="user.IsActive"  ></span></td>
+                                            <td style="padding: 2px; text-align:center;" >
+                                                <span class="padLeft8">
+                                                    <button type="submit" class="btn btn-success" (click)="EditUser(user)">Edit</button>
+                                                    <a class="glyphicon glyphicon-edit subEditIcon"  (click)="EditUser(user)" title="Edit user" >
+                                                    </a>
+                                                </span>
+                                                
+                                            </td>
+                                            <td style="padding: 2px;">
+                                                <span class="padLeft8">
+                                                    <button type="submit" class="btn btn-success" (click)="UpdateUserStatus(user)">{{user.IsActive? 'Deactivate':'Activate'}}</button>
+
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>-->
+                            </div>
+                            <!--<pagination *ngIf="userByPage.length > 0" [boundaryLinks]="true" [totalItems]="usertotalItems" [(ngModel)]="userCurrentPage" (pageChanged)="userPageChanged($event)" [itemsPerPage]="itemsPerPage" class="pagination-sm"
+                                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>-->
+
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<ng-modal (fnActionOnSaveBtn)="btnModalSaveClick($event,breadCrumbLink)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="modalBtnCapton" [closeBtnCaption]="modalCloseBtnCaption" [title]="modalTitle" [saveBtnVisibility]="modalSaveBtnVisibility" [modalSaveFnParam]="modalSaveFnParameter"> </ng-modal>

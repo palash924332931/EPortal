@@ -1,0 +1,283 @@
+﻿
+
+<div bsModal #createCustomFilterModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content packSearchModalPanel filPSMod">
+            <div class="row">
+                <div class="col-sm-12"><div class="col-sm-12 "><div class="HeadingCharcoal">Create Filter</div></div></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" style="padding-left: 30px; padding-right: 30px;">
+                    <div class="charcText">Enter Filter name (max 100 characters)</div>
+                    <div class="raBrick-select fa-caret-down marTop10 charcText">
+                        <input #txtFilterName  (keypress)="_keyPress($event)"  (ngModelChange)="isFilterAlreadyExists=false;isValidNameContainCustom= false;"
+                                type="text"  [(ngModel)]="newFilterName" style="padding: 6px; padding-right: 0px; width: 100%;color:#3a4f5a">
+                    </div>
+                    <div *ngIf="isFilterAlreadyExists"><p style="color:red">Filter name is already in use, please use a different name.</p></div>
+                    <div *ngIf="isValidNameContainCustom"><p style="color:red">Invalid name. Filter name should not contains 'Custom'</p></div>
+                </div>
+            </div>
+
+            <div class="row padTop20" style="padding-left:16px">
+                <div class="col-sm-2">
+                    <button [disabled]="!newFilterName" [style.backgroundColor]="newFilterName ? '#25B4FF' : none"
+                            [ngClass]="{mcButtonDisabled:!newFilterName}" (click)="CreateCustomFilter(newFilterName)" class="mcButton">
+                        Save
+                    </button>
+                </div>
+                <div class="col-sm-3 box">
+                    <button type="submit" class="mcButtonBricancel" (click)="onCreateFilterCancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #updateCustomFilterModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 50%;">
+        <div class="modal-content packSearchModalPanel filPSMod" style="margin-top:10%">
+            <div class="row">
+                <div class="col-sm-12">
+                  <div class="col-sm-12 filHeadingMod">
+                    <span>Would you like to update the {{isDefaultFilterSelected ? 'default' : 'custom'}} filter {{selectedFilterName}} settings?</span>
+                  </div>
+                </div>
+            </div>
+            <div class="row padTop20" style="padding-left:20px">
+                <button (click)="UpdateCustomFilter()" [disabled]="isDefaultFilterSelected && !isModifyDefaultFilter" class="mcButton">Yes</button>                
+                <button type="submit" class="mcButtonBricancel" (click)="updateCustomFilterModal.hide()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #deleteCustomFilterModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 50%;">
+        <div class="modal-content packSearchModalPanel filPSMod" style="margin-top:10%">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-12 filHeadingMod">
+                        <span>Would you like to delete the custom filter {{selectedFilterName}}?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row padTop20" style="padding-left:20px">
+                <button (click)="DeleteCustomFilter()" class="mcButton">Yes</button>
+                <button type="submit" class="mcButtonBricancel"  (click)="deleteCustomFilterModal.hide()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="wrapper">
+    <div id="content">
+        <!-- Content starts-->
+        <div class="jumbotron noBG">
+            <div class="container-fluid">
+                <!-- Breadcrumbs starts -->
+                <div class="container mcContainer">
+                    <div class="row newsRowPadTop" style="margin-left: 0px;">
+                        <div class="col-md-12" style="padding-left: 10px;"><div class="mcBreadcrumbs"><a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span> <a [routerLink]="['/report']" class="mcLink">Reports</a></div></div>
+                    </div>
+                    <div class="row" style="margin-left: 0px;">
+                        <div class="col-sm-12 col-md-12 col-xs-12"><div class="mcHeadingVM" style="padding-left: 0px;">Reports</div></div>                        
+                    </div>
+                </div>
+
+                
+
+                <div class="container mcContainer">
+                    <div class="row">
+                        <div class="col-sm-4" style="margin-left: 15px; margin-top: 25px;">
+                            <div class="charcText">Section</div>
+                            <div class="raBrick-select fa-caret-down marTop10" style="width: 55%;">
+                                <select [disabled]="!isSelectSectionType" [(ngModel)]="selectedSection" (change)="onSectionChange(selectedSection = $event.target.value,true)" style="width: 100%;">
+                                    <option *ngFor="let s of sections" [value]="s.ReportSectionID">{{s.ReportSectionName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breadcrumbs ends -->
+                <!-- Container section-->
+
+                <div class="container noMargin noPadding" id="mktHeadingWrap">
+                    <!--Market Base Type & Criteria-->
+                    <div class="row padleftright20 ">
+                        <div class="col-sm-12 noPadding">
+                            <div class="subCrtMB">
+                                <div class="row">
+                                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Report Criteria</div></div>
+                                </div>
+                                <div class="row marTop20" style="padding-right: 20px;">
+                                    <div class="col-sm-3 noPadding" style="width: 45%">
+                                        <div class="charcText">Filter Applied</div>
+                                        <div class="raBrick-select fa-caret-down marTop10">
+                                            <select [(ngModel)]="selectedFilter" (ngModelChange)="onChangeFilter($event,1);selectAllShowColumn = false"  style="width: 100%;">
+                                                <option *ngFor="let f of filters" [value]="f.FilterID">{{f.FilterName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-2 noPadding" style="margin-top: 20px; padding-left: 20px; width: 13%">
+                                        <button class="mcButtonReport" [disabled]="!selectedFilter || (isDefaultFilterSelected && !isModifyDefaultFilter)" 
+                                                [ngClass]="{mcButtonReportDisabled:(!selectedFilter || (isDefaultFilterSelected && !isModifyDefaultFilter))}" (click)="confirmUpdate()"
+                                                 style="margin-top: 20px; height: 32px; padding-left: 20px; padding-right: 20px;">Save Filter</button>
+                                    </div>
+
+
+
+                                    <div class="col-sm-3 noPadding" style="margin-top: 20px; width: 21.2%;">
+                                        <button type="submit" class="mcButton" (click)="showCreateFilter()"
+                                                
+                                                style="margin-top: 20px; height: 32px; padding-left: 20px; padding-right: 20px;">
+                                            Save current selection as a custom filter
+                                        </button>
+                                    </div>
+
+                                    <div class="col-sm-2 noPadding" style="margin-top: 20px; width: 14.5%;">
+                                        <button type="submit"  [disabled]="!selectedFilter || isDefaultFilterSelected" (click)="deleteCustomFilterModal.show();" class="mcReportDelete"
+                                                [ngClass]="{mcReportDeleteDisabled:(!selectedFilter || isDefaultFilterSelected)}"
+                                                style="margin-top: 20px; height: 32px;  font-weight: normal;">
+                                            Delete Filter
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+
+                                   
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-sm-1 col-md-1 col-xs-1 SubTBTopWrap" style="">
+                                                    <button type="submit" class="mcButtonReport" [disabled]="!canViewReport"
+                                                            [ngClass]="{mcButtonReportDisabled :!canViewReport}" (click)="view()" style="width: 155px;  height: 32px;">
+                                                        View
+                                                    </button>
+                                                </div>
+                                                <div class="col-sm-1 col-md-1 col-xs-1 SubTBTopWrap" style="">
+                                                    <button type="submit" class="mcButtonCancel" (click)="reset()" style="width: 155px; height: 32px; margin-left: 60px;">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                
+                                <div class="row marTop40">
+                                    <div class="col-sm-12 noPadding" style="padding-right: 20px;">
+                                        <div class="table-responsive">
+                                            <table id="mytable" class="table table-stripedSub table-borderlessSub">
+
+                                                <thead class="theaddark" style="padding: 0px;">
+                                                    <tr>
+                                                        <th class="" style="width:50px !important;">
+                                                            <input type="checkbox" (ngModelChange)="onSelectAll(selectAllShowColumn=$event)" [(ngModel)]="selectAllShowColumn" style="width:12px;margin-left:7px;">
+                                                        </th>
+                                                        <th class="text-center" style="width: 20%; padding: 4px;">Field</th>
+                                                        <th class="" style="padding: 4px; padding-left: 10px;">Filter</th>
+                                                        <th class="text-center" style="width: 10%; padding: 4px;">Contains / Excludes</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr *ngFor="let field of fieldsByModule">
+                                                        <td class="text-center" style="vertical-align: middle;width:50px !important;">
+                                                            <span><input type="checkbox" (ngModelChange)="onShowColumnsChange(field.selected = $event)" [(ngModel)]="field.selected" style="width:12px"></span>
+                                                        </td>
+                                                        <td style="vertical-align: middle">
+                                                            <span class="padLeft8" style="">{{field.FieldDescription}}</span>
+                                                        </td>
+                                                        <td class="padLeft8" style="padding-left: 10px;">
+                                                            <div style="width:600px" *ngIf="field.FieldType !='Date'">
+                                                                <p-multiselect [(ngModel)]="field.fieldValues" (onValueSelection)="setClient($event,field.FieldName)" [params]="params" [fieldName]="field.FieldName" [tableName]="field.TableName" [filterName]="selectedFilterName"></p-multiselect>
+                                                                <!--<div>{{field.fieldValues|json}}</div>-->
+                                                            </div>
+                                                            <div style="width:600px" *ngIf="field.FieldType =='Date'">
+                                                                <span *ngIf="field.fieldValues.length > 0" >{{field.fieldValues[0].Text}}</span>
+                                                            <p-monthpicker [selectedValue]="field.fieldValues.length > 0 ? field.fieldValues[0].Text : ''" (onSave)="updateDateFieldValues(field.FieldName,field.TableName,$event)"></p-monthpicker>
+                                                                <!--<button type="submit" class="btn" 
+                                                                        (click)="clearDateValue(field.FieldName,field.TableName,$event)" style="width: 20px; height: 12px; margin-left: 100px;">clear</button>-->
+
+                                                                <a *ngIf="field.fieldValues.length > 0" class="glyphicon glyphicon-remove" (click)="clearDateValue(field.FieldName,field.TableName,$event)"></a>
+                                                        </div>
+                                                                    
+                                                       
+                                                        
+                                                        <td class="text-center" style="vertical-align: middle">
+                                                            <div  class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                                <input type="checkbox" [(ngModel)]="field.include">
+                                                                <label (click)="updateIncludeValues(field.include,field)" class="switcher"></label>
+                                                            </div>
+
+                                                            <!--<div *ngIf="!field.fieldValues.length > 0" class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                                <input type="checkbox" [(ngModel)]="field.include" disabled>
+                                                                <label class="switcher"></label>
+                                                            </div>-->
+                                                        </td>
+                                                    </tr>
+
+
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-1 col-md-1 col-xs-1 SubTBTopWrap" style="">
+                                                <button type="submit" class="mcButtonReport" [disabled]="!canViewReport" 
+                                                       [ngClass]="{mcButtonReportDisabled :!canViewReport}" (click)="view()" style="width: 155px;  height: 32px;">View</button>
+                                            </div>
+                                            <div class="col-sm-1 col-md-1 col-xs-1 SubTBTopWrap" style="">
+                                                <button type="submit" class="mcButtonCancel" (click)="reset()"  style="width: 155px; height: 32px; margin-left: 60px;">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div bsModal #warningAboutReportModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" style="width: 50%;">
+                                        <div class="modal-content packSearchModalPanel filPSMod" style="margin-top:10%">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-12 filHeadingMod">
+                                                        <span>There are no Filters applied for this request and  might return more number of records than the System can handle. Please apply the filter(s) to proceed further. </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row padTop20" style="padding-left:20px">
+                                                <!--<button (click)="view(false)" class="mcButton">Yes</button>-->
+                                                <button type="submit" class="mcButton" (click)="clickedOK()">OK</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+            <!--Market Base Type & Criteria ends-->
+        </div>
+    </div><!-- #containerfluid -->
+
+
+
+
+</div><!-- #wrapper -->

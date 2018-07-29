@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[RAW_TDW-ECP_DIM_OUTLET] (
+    [OTLT_CD]            INT            NULL,
+    [POSTCODE]           INT            NULL,
+    [AID]                TINYINT        NULL,
+    [NAME]               VARCHAR (80)   NULL,
+    [FULLADDR]           VARCHAR (400)  NULL,
+    [ADDR1]              VARCHAR (200)  NULL,
+    [ADDR2]              VARCHAR (100)  NULL,
+    [SUBURB]             VARCHAR (100)  NULL,
+    [PHONE]              VARCHAR (15)   NULL,
+    [XCORD]              DECIMAL (9, 6) NULL,
+    [YCORD]              DECIMAL (9, 6) NULL,
+    [ENTITY_TYPE]        VARCHAR (30)   NULL,
+    [DISPLAY]            VARCHAR (30)   NULL,
+    [BANNERGROUP_DESC]   VARCHAR (500)  NULL,
+    [RETAIL_SBRICK]      VARCHAR (30)   NULL,
+    [RETAIL_SBRICK_DESC] VARCHAR (80)   NULL,
+    [SBRICK]             VARCHAR (30)   NULL,
+    [SBRICK_DESC]        VARCHAR (80)   NULL,
+    [STATE_CODE]         VARCHAR (40)   NULL,
+    [OUT_TYPE]           VARCHAR (20)   NULL,
+    [OUTLET_TYPE_DESC]   VARCHAR (80)   NULL,
+    [INACTIVE_DATE]      DATETIME2 (7)  NULL,
+    [ACTIVE_DATE]        DATETIME2 (7)  NULL,
+    [OTLT_LOC_CD]        VARCHAR (30)   NULL,
+    [OUTLET]             SMALLINT       NULL
+);
+

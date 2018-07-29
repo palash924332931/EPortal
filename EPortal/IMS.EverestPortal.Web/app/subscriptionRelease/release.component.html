@@ -1,0 +1,353 @@
+﻿<div id="content">
+    <div class="jumbotron noBG">
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs starts -->
+            <div class="container mcContainer">
+                <div class="row newsRowPadTop">
+                    <div class="col-md-12">
+                        <div class="mcBreadcrumbs">
+                            <a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span>
+                            <a class="mcLink">Subscription</a> <span class="breadBrubGap">></span>
+                            <a class="mcLink">Releases</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mcRow">
+                    <div class="mcHeadingVM">Data Releases</div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Breadcrumbs starts -->
+        <!-- Container section-->
+
+
+
+
+
+
+
+        <div class="container noMargin noPadding" id="mktHeadingWrap">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="RelWhiteBoxShadow">
+                        <div class="row">
+                            <!--<div class="col-sm-7 col-md-7 col-xs-7 noPadding"><div class="HeadingCharcoal">Data Releases Applied to Clients</div></div>-->
+                            <div class="col-sm-8 col-xs-8 col-md-8 marTop10 RelWhiteBoxInnerLeft">
+                                <div class="HeadingCharcoal">Data Releases Applied to Clients</div>
+                                <div class="row noMargin fullWidth100">
+                                    <div class="col-sm-6 col-md-6 col-xs-6 noPadding">
+                                        <div class="form-group">
+                                            <div class="icon-addonBA addon-lgBA">
+                                                <div id="tags_addTag" class="input-group" style="width:100%;">
+                                                    <input type="text" style="height:40px;width:400px;" placeholder="Search by Client name" [(ngModel)]="txtSearchRelease" (keyup)="searchReleases()" class="PSTBNew" id="txtReleasesSearch">
+                                                    <span class="input-group-btn">
+                                                        <a class="glyphicon glyphicon-remove cusGlyphClose" (click)="txtSearchRelease = '';searchReleases()"
+                                                           style="color: #C6D7DF; font-size: 16px; margin-left: -30px;margin-top:8px; background: none; border: none;"></a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive marTop30">
+                                    <table id="mytable" class="table table-stripedSub table-borderlessSub">
+                                        <thead class="">
+                                            <tr>
+                                                <th class="text-center width45 vAlignMiddle"></th>
+                                                <th class="text-center probText" colspan="3">PROBE Data Release</th>
+                                                <th class="text-center ReldataText" colspan="2">Other Data Release</th>
+                                            </tr>
+                                        </thead>
+                                        <thead class="ReleaseDarkBG">
+                                            <tr>
+                                                <th class="text-center width45" style="vertical-align: middle">Client</th>
+                                                <th class="text-center mfrBG" style="vertical-align: middle">MFR</th>
+                                                <th class="text-center packExBG">Pack Exception</th>
+                                                <th class="text-center capChemBG">Capital Chemist</th>
+                                                <th class="text-center cenBG" style="vertical-align: middle">Census</th>
+                                                <th class="text-center oneKeyBG" style="vertical-align: middle">OneKey</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let rel of releasesByPage">
+                                                <td class="pad4">
+                                                    <span class="padLeft8">
+                                                        <input [disabled]=!rel.isMyClient type="radio" (ngModelChange)="updateSelection(client=$event)"
+                                                               [(ngModel)]="client" [value]="rel" /><span style="margin-left:10px">{{rel.clientName}}</span>
+                                                    </span>
+                                                </td>
+
+                                                <td class="text-center pad4">
+                                                    <a *ngIf="rel.MfrCount > 0" style="text-decoration:underline;cursor:pointer" (click)="getMfrsByClient(rel)">{{rel.MfrCount}}</a>
+                                                    <span *ngIf="!rel.MfrCount > 0">0</span>
+                                                </td>
+
+                                                <td class="text-center pad4">
+                                                    <a *ngIf="rel.packCount > 0" style="text-decoration:underline;cursor:pointer" (click)="getPackExceptionsByClient(rel)">{{rel.packCount}}</a>
+                                                    <span *ngIf="!rel.packCount > 0">0</span>
+                                                </td>
+                                                <td class="pad4">
+                                                    <div *ngIf="rel.isMyClient" class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                        <input type="checkbox" [(ngModel)]="rel.CapitalChemist">
+                                                        <label (click)="setCapitalChemist(rel.CapitalChemist,rel)" class="switcher"></label>
+                                                    </div>
+                                                    <div *ngIf="!rel.isMyClient" class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                        <input type="checkbox" [(ngModel)]="rel.CapitalChemist" disabled>
+                                                        <label class="switcher"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="pad4">
+                                                    <div *ngIf="isCensusAccessible && rel.isMyClient" class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                        <input type="checkbox" [(ngModel)]="rel.Census">
+                                                        <label (click)="setCensus(rel.Census,rel)" class="switcher"></label>
+                                                    </div>
+                                                    <div *ngIf="!isCensusAccessible || !rel.isMyClient" class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                        <input type="checkbox" [(ngModel)]="rel.Census" disabled>
+                                                        <label class="switcher"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="pad4">
+                                                    <div *ngIf="isOneKeyAccessible && rel.isMyClient" class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                        <input type="checkbox" [(ngModel)]="rel.OneKey">
+                                                        <label (click)="setOneKey(rel.OneKey,rel)" class="switcher"></label>
+                                                    </div>
+
+                                                    <div *ngIf="!isOneKeyAccessible || !rel.isMyClient" class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                        <input type="checkbox" [(ngModel)]="rel.OneKey" disabled>
+                                                        <label class="switcher"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <pagination [boundaryLinks]="true" [totalItems]="releasesTotalItems" [rotate]="false" [maxSize]="3" [(ngModel)]="releasesCurrentPage" class="pagination-sm" [itemsPerPage]="releasesItemsPerPage"
+                                            (pageChanged)="releasesPageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+
+                                <pre *ngIf="releasesTotalItems > 0" class="card card-block card-header">Showing records {{(releasesCurrentPage - 1) * releasesItemsPerPage + 1 }} to <span *ngIf="(releasesCurrentPage * releasesItemsPerPage)<=releasesTotalItems ">{{releasesCurrentPage * releasesItemsPerPage}} of </span>{{releasesTotalItems}}</pre>
+                            </div>
+                            <div class="col-sm-4 col-xs-4 col-md-4 marTop10 noPadding releaseLeftShadowBG">
+                                <div class="row mcRow">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding marLeft10 padLeft15">
+                                        <ul *ngIf="isPackExceptionAccessible" class="nav nav-tabs mcSideTab">
+                                            <li style="width:50%;" class="active"><a href="#subs" class="" data-toggle="tab">PROBE MFR</a></li>
+                                            <li style="width:50%;"><a href="#deli" data-toggle="tab">PROBE Pack Exceptions</a></li>
+                                        </ul>
+                                        <ul *ngIf="!isPackExceptionAccessible" class="nav nav-tabs mcSideTab">
+                                            <li style="width:100%;" class="active"><a href="#subs" class="" data-toggle="tab">PROBE MFR</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div id="myTabContent" class="tab-content marTopm10">
+                                    <div class="tab-pane active in" id="subs">
+                                        <div class="container myCClientWrapper" id="custWrapper" style="width:100%;">
+                                            <div class="">
+                                                <div class="row fullWidth100">
+                                                    <div class="col-sm-10 col-md-10 col-xs-10">
+                                                        <!--<input  [(ngModel)]="txtSearchMfr" (keyup)="searchMfr()" type="text" placeholder="Search by MFR"
+                                                                class="form-control"  id="txtSearchMfr">-->
+                                                        <div id="tags_addTag" class="input-group" style="width:100%;color:black;">
+                                                            <input type="text" style="height:35px;width:300px;" placeholder="Search by MFR" [(ngModel)]="txtSearchMfr" (keyup)="searchMfr()" id="txtSearchMfr">
+                                                            <span class="input-group-btn">
+                                                                <a class="glyphicon glyphicon-remove cusGlyphClose" (click)="txtSearchMfr = '';searchMfr()"
+                                                                   style="color: #C6D7DF; font-size: 16px; margin-left: -30px; background: none; border: none;"></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="table-responsive charcText marTop10">
+                                                    <input type="checkbox" (ngModelChange)="selectMfrAllItems(selectAllMfrSearchItems=$event)" [(ngModel)]="selectAllMfrSearchItems" /> Select all search items
+                                                    <table id="mytable" class="table table-stripedSub table-borderlessSub">
+                                                        <thead class="theaddark">
+                                                            <tr>
+                                                                <th class="text-center width5"><input type="checkbox" (ngModelChange)="selectMfrCurrentPageItems(selectMfrCurrentPage=$event)" [(ngModel)]="selectMfrCurrentPage"></th>
+                                                                <th class="text-center width60">MFR</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let mfr of mfrs">
+                                                                <td class="pad4"><span><input type="checkbox" (ngModelChange)="updateSelectionMfr(mfr.selected=$event)" [(ngModel)]="mfr.selected"></span></td>
+                                                                <td class="pad4"><span>{{mfr.Org_Long_Name}}</span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <pagination [boundaryLinks]="true" [totalItems]="mfrTotalItems" [(ngModel)]="mfrCurrentPage" [maxSize]="3" [rotate]="false" class="pagination-sm" [itemsPerPage]="mfrItemsPerPage"
+                                                    (pageChanged)="mfrPageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                        <pre *ngIf="mfrTotalItems > 0" class="card card-block card-header">Showing records {{(mfrCurrentPage - 1) * mfrItemsPerPage + 1 }} to <span *ngIf="mfrTotalItems > 10">{{mfrCurrentPage * mfrItemsPerPage}} of </span>{{mfrTotalItems}}</pre>
+                                    </div>
+                                    <div class="tab-pane fade" id="deli">
+                                        <div class="container myCClientWrapper" id="custWrapper" style="width:100%;">
+                                            <div class="">
+                                                <div class="row fullWidth100">
+                                                    <div class="col-sm-10 col-md-10 col-xs-10">
+                                                        <!--<input [(ngModel)]="txtSearchPack" (keyup)="searchPacks()" type="text" placeholder="Search by Packs"
+                                                               class="form-control" id="txtSearchPacks">-->
+
+                                                        <div id="tags_addTag" class="input-group" style="z-index:999;width:100%;color:black;">
+                                                            <input type="text" style="height:35px;width:300px;" placeholder="Search by Packs" [(ngModel)]="txtSearchPack" (keyup)="searchPacks()" id="txtSearchPack">
+                                                            <span class="input-group-btn">
+                                                                <a class="glyphicon glyphicon-remove cusGlyphClose" (click)="txtSearchPack = '';searchPacks()"
+                                                                   style="color: #C6D7DF; font-size: 16px; margin-left: -30px; background: none; border: none;"></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="table-responsive charcText marTop10">
+                                                    <input type="checkbox" (ngModelChange)="selectPackAllItems(selectAllPackSearchItems=$event)" [(ngModel)]="selectAllPackSearchItems" /> Select all search items
+                                                    <table id="mytable" class="table table-stripedSub table-borderlessSub">
+                                                        <thead class="theaddark">
+                                                            <tr>
+                                                                <th class="text-center width5" style="vertical-align: middle"><input type="checkbox" (ngModelChange)="selectPackCurrentPageItems(selectPackCurrentPage=$event)" [(ngModel)]="selectPackCurrentPage"></th>
+                                                                <th class="text-center width70" style="vertical-align: middle">Pack Description</th>
+                                                                <th class="text-center">Product Level</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let pack of packExceptions">
+                                                                <td class="text-center width5 pad4"><span><input type="checkbox" (ngModelChange)="updateSelectionPackException(pack.selected=$event)" [(ngModel)]="pack.selected"></span></td>
+                                                                <td class="width80 pad4"><span>{{pack.ProductName}}</span></td>
+                                                                <td class="text-center pad4">
+                                                                    <div class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                                        <input type="checkbox" [(ngModel)]="pack.ProductLevel">
+                                                                        <label (click)="pack.ProductLevel=!pack.ProductLevel" class="switcher"></label>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <pagination [boundaryLinks]="true" [totalItems]="packsTotalItems" [(ngModel)]="packsCurrentPage" [maxSize]="3" [rotate]="false" class="pagination-sm" [itemsPerPage]="packsItemsPerPage"
+                                                    (pageChanged)="packsPageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                        
+                                        <pre *ngIf="packsTotalItems > 0" class="card card-block card-header">Showing records {{(packsCurrentPage - 1) * packsItemsPerPage + 1 }} to <span *ngIf="packsTotalItems > 10">{{packsCurrentPage * packsItemsPerPage}} of </span>{{packsTotalItems}}</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 box  marTopBot20">
+                                <button [disabled]="!isReleaseValueChanged"
+                                        [ngClass]="{releaseButtondisabled: !isReleaseValueChanged}"
+                                        type="button" id="btnSaveReleaseDetails" class="releaseSaveButton noMargin"
+                                        (click)="saveReleaseDetails()">
+                                    Save
+                                </button>
+
+                                <button class="allocationcancelbtn" (click)="clearReleasesChanges()">
+                                    Cancel
+                                </button>
+
+                                <button [disabled]="!(client && (selectedPacks.length > 0 || selectedMfrs.length > 0 ))"
+                                        type="button" id="btnAllocate"
+                                        [ngClass]="{releaseButtondisabled: !(client && (selectedPacks.length > 0 || selectedMfrs.length > 0 ))}"
+                                        class="releaseAllocationButton noMargin" (click)="Allocate()">
+                                    Allocate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="RelWhiteBoxShadow" *ngIf="showMfrDetails && showDetails">
+                        <div class="row">
+                            <h2>{{selectedClient.clientName}}</h2>
+                            <div class="col-sm-12 col-xs-12 col-md-12 marTop10 releaseRightShadowBG">
+                                <div class="table-responsive">
+                                    <table id="mytable" class="table table-stripedSub table-borderlessSub">
+                                        <thead class="theaddark">
+                                            <tr>
+                                                <th class="text-center width5" style="vertical-align: middle"><input type="checkbox" (ngModelChange)="selectAllMfrDetailChange(selectAllMfrDetail=$event)" [(ngModel)]="selectAllMfrDetail"></th>
+                                                <th class="text-center width70" style="vertical-align: middle">MFR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cMfrs of clientMfrsByPage">
+                                                <td class="pad4"><span><input type="checkbox" (ngModelChange)="updateClientMfrSelection(cMfrs.selected=$event)" [(ngModel)]="cMfrs.selected"></span></td>
+                                                <td class="pad4"><span>{{cMfrs.Org_Long_Name}}</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <pagination [boundaryLinks]="true" [totalItems]="clientMfrTotalCount" [(ngModel)]="clientMfrCurrentPage" [maxSize]="3" [rotate]="false" class="pagination-sm" [itemsPerPage]="clientMfrItemsPerPage"
+                                                (pageChanged)="clientMfrPageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                    
+                                    <pre *ngIf="clientMfrTotalCount > 0" class="card card-block card-header">Showing records {{(clientMfrCurrentPage - 1) * clientMfrItemsPerPage + 1 }} to <span *ngIf="(clientMfrCurrentPage * clientMfrItemsPerPage) <= clientMfrTotalCount">{{clientMfrCurrentPage * clientMfrItemsPerPage}} of </span>{{clientMfrTotalCount}}</pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12 noPadding marTop20">
+                                <button type="button" id="remGroup" [disabled]="isMfrDeleteDisabled ||!selectedClient.isMyClient" [ngClass]="{allocationButtondisabled: isUserDeleteDisabled}"
+                                        (click)="RemoveMfrsFromClient(selectedClient)" class="mcSmallButtonCancel">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="RelWhiteBoxShadow" *ngIf="!showMfrDetails && showDetails">
+                        <div class="row">
+                            <h2>{{selectedClient.clientName}}</h2>
+                            <div class="col-sm-12 col-xs-12 col-md-12 marTop10 releaseRightShadowBG">
+                                <div class="table-responsive" style="height:80%">
+                                    <table id="mytable" class="table table-stripedSub table-borderlessSub">
+                                        <thead class="theaddark">
+                                            <tr>
+                                                <th class="text-center width5" style="vertical-align: middle"><input type="checkbox" (ngModelChange)="selectAllPackExceptionDetailsChange(selectAllPackExceptionDetails=$event)" [(ngModel)]="selectAllPackExceptionDetails"></th>
+                                                <th class="text-center width30" style="vertical-align: middle">Product</th>
+                                                <th class="text-center" style="vertical-align: middle">Pack Description</th>
+                                                <th class="text-center" style="vertical-align: middle">Product Level</th>
+                                                <th class="text-center">Expiry Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cPack of clientPackExceptionsByPage">
+                                                <td class="width5" style="padding-left:10px;"><span><input type="checkbox" (ngModelChange)="updateClientPackSelection(cPack.selected=$event)" [(ngModel)]="cPack.selected"></span></td>
+                                                <td class="width20 pad4"><span>{{cPack.ProductGroupName}}</span></td>
+                                                <td class="pad2"><span>{{cPack.ProductName}}</span></td>
+                                                <td class="text-center pad4">
+                                                    <div class="form-switcher form-switcher-sm form-switcher-lg-phone marLeft20">
+                                                        <input type="checkbox" [(ngModel)]="cPack.ProductLevel" disabled>
+                                                        <label class="switcher"></label>
+                                                    </div>
+                                                </td>
+                                                <!--<td class="pad2"><span>{{cPack.ExpiryDate}}<a class="glyphicon glyphicon-edit"></a></span></td>-->
+                                                <td class="pad2" style="font-size:13px;width:19%"><span>{{cPack.ExpiryDate}} </span><p-monthpicker *ngIf="isPackExceptionAccessible" [selectedValue]="cPack.ExpiryDate" (onSave)="updateExpiryDate($event,cPack)"></p-monthpicker></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="row" style="padding-left:15px;">
+                                    <pagination [boundaryLinks]="true" [totalItems]="clientPackExceptionsTotalCount" [(ngModel)]="clientPackCurrentPage" [maxSize]="3" [rotate]="false" class="pagination-sm" [itemsPerPage]="clientPacksItemsPerPage"
+                                                (pageChanged)="clientPacksPageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+
+                                    <pre *ngIf="clientPackExceptionsTotalCount > 0" class="card card-block card-header">Showing records {{(clientPackCurrentPage - 1) * clientPacksItemsPerPage + 1 }} to <span *ngIf="(clientPackCurrentPage * clientPacksItemsPerPage)<= clientPackExceptionsTotalCount">{{clientPackCurrentPage * clientPacksItemsPerPage}} of </span>{{clientPackExceptionsTotalCount}}</pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12 noPadding" style="padding-bottom:20px;">
+                                <button type="button" id="remGroup" [disabled]="isPackDeleteDisabled ||!isPackExceptionAccessible||!selectedClient.isMyClient"
+                                        [ngClass]="{allocationButtondisabled: isPackDeleteDisabled || !isPackExceptionAccessible}"
+                                        (click)="RemovePackFromClient(selectedClient)" class="mcSmallButtonCancel">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

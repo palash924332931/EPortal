@@ -1,0 +1,74 @@
+﻿<div bsModal #groupingModal="bs-modal" [config]="{'backdrop':'static', 'keyboard': false}" class="modal fade treeModalWrapper" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="z-index:99999">
+    <div class="modal-dialogGroup">
+        <div class="modal-content terModalEditGrp" style="width: 400px; padding: 0px;">
+            <div class="modal-header borShadowNone" style="padding-top: 5px;">
+                <div class="row">
+                    <div class="col-sm-12" style="border-bottom: 1px solid #8EAFBF; padding-bottom: 10px; padding-top: 0px;">
+                        <div class="packGroupHeading" style="color: #3A4F5A;  font-size: 18px;">{{isEditForm ? 'Edit' : 'Add'}} Group to {{marketGroup.Name}}</div>
+                    </div>
+                </div>
+            </div>
+            <form #groupingModalForm="ngForm" (submit)="onSubmit(groupingModalForm)" novalidate>
+                <div style="padding: 0 15px 0 15px;">
+
+                    <div class="row" style="padding-top: 0px;">
+                        <div class="col-sm-6">
+                            <span class="font12">Group Name</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div>
+                                <div class="row" style="padding-top: 5px;">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 noPadTopBottom">
+                                        <div class="box noPadding">
+                                            <input type="text" [(ngModel)]="groupingName" id="groupingName" name="groupingName" #groupName="ngModel" required
+                                                   style="width: 100%; border: 1px solid #8EAFBF; padding: 5px;">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row" style="padding-top: 0px; color:red;" *ngIf="groupName.invalid && (groupName.dirty || groupName.touched)">
+                                    <div *ngIf="groupName.errors.required" class="col-sm-12 col-md-12 col-xs-12">
+                                        <span class="font12">Group name cannot be blank, please review.</span>
+                                    </div>
+                                    <div *ngIf="groupName.errors.maxlength" class="col-sm-12 col-md-12 col-xs-12">
+                                        <span class="font12">Group name is longer than 25 characters, please review.</span>
+                                    </div>
+                                </div>
+                                <div *ngIf="isGroupNameExist && groupingName != null && groupingName != ''" class="row" style="padding-top: 0px; color:red;">
+                                    <div class="col-sm-12 col-md-12 col-xs-12">
+                                        <span class="font12">Group name is already in use, please use a different name.</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 noPadTopBottom">
+                                        <div class="box noPadding">
+                                            <input type="checkbox" name="vehicle" value="Bike"> Add more groups to Colour
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row " style="padding-top: 25px; padding-bottom: 25px;">
+                                    <div class="col-sm-4 col-md-4 col-xs-4">
+                                        <button type="submit" [disabled]="groupingModalForm.form.invalid" class="" style="color: #ffffff; background-color: #25B4FF; border-color: none;  font-size:14px; border:none; font-family:Roboto; font-weight:normal; font-size:14px; width:100%; padding-top: 7px; padding-bottom: 7px;">Save</button>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-xs-4">
+                                        <div class="box noPadding">
+                                            <button type="button" (click)="hide()" data-dismiss="modal" 
+                                                    style="color:#25B4FF;background-color: #ffffff;border: 1px solid #25B4FF;font-size: 14px;font-family: Roboto;font-weight: normal;font-size: 14px;width: 100%;padding-top: 2px;padding-bottom: 7px;">
+                                            Cancel</button>
+                                            <br class="clearAll" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

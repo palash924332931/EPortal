@@ -1,0 +1,847 @@
+﻿
+<div class="modal fade treeModalWrapper" id="editGroup" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialogGroup">
+        <div class="modal-content terModalEditGrp" style="padding-left:130px; padding-top:20px;">
+            <div class="modal-header borShadowNone">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="packGroupHeading">Edit Group</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- content goes here -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="font12">Group Name</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="font12">Group ID</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div>
+                            <div class="row martop15">
+                                <div class="col-sm-6 col-md-6 col-xs-6 noPadTopBottom">
+                                    <div class="box noPadding">
+                                        <input type="text" class="TBPackSearch" id="" value="">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6 noPadTopBottom">
+                                    <div class="box noPadding">
+                                        <input type="text" class="TBPackSearch" id="" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row saveCancelWrap">
+                                <div class="col-sm-3 col-md-3 col-xs-3">
+                                    <button type="submit" class="mcButton">Save</button>
+                                </div>
+                                <div class="col-sm-2 col-md-2 col-xs-2">
+                                    <div class="box noPadding">
+                                        <button type="submit" class="mcButtonBricancel" data-dismiss="modal">Cancel</button>
+                                        <br class="clearAll" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Edit group popup ends-->
+<!--Content starts-->
+<div class="jumbotron noBG">
+    <div class="container-fluid">
+
+
+        <div class="container mcContainer">
+            <!--Bread crumbs section -->
+            <div class="row newsRowPadTop">
+                <div class="col-md-12">
+                    <div class="mcBreadcrumbsVM">
+                        <a href="Home.html" class="mcLink">Home</a>
+                        <span class="BCBreak">></span>
+                        <a href="myClients_territories.html" class="mcLink">Territories</a>
+                        <span class="BCBreak">></span> <a href="myClients_territories.html" class="mcLink">My Clients</a> <span class="BCBreak">></span> <a href="createTerrritories.html" class="mcLink">Create New Territory</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--Bread crumbs section ends -->
+            <!--Page Heading-->
+            <div class="row mcRow">
+                <div class="col-sm-12 col-md-12 col-xs-12"><div class="mcHeadingVM">Create New Territory </div></div>
+
+
+            </div>
+
+            <!--Page Heading ends-->
+
+        </div>
+
+
+
+
+        <!--1Box Starts-->
+        <!--Tree Structure Starts-->
+
+        <div class="container noMargin noPadding" id="mktHeadingWrap">
+
+            <div class="row noMargin fullWidth100">
+                <div class="col-sm-3 col-md-3 col-xs-3 noPadding">
+                    <div class="mktLabelText">Territory Definition Name</div>
+                </div>
+
+
+                <div class="col-sm-3 col-md-3 col-xs-3">
+                    <div class="mktLabelText">Select Territory Base</div>
+                </div>
+
+
+                <div class="col-sm-3 col-md-3 col-xs-3">
+                    <div class="mktLabelText">Option</div>
+                </div>
+            </div>
+
+            <div class="row noMargin fullWidth100">
+                <div class="col-sm-3 col-md-3 col-xs-3 noPadding">
+                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty mktDefTB"
+                           id="territoryName" value="{{territory.Name}}">
+                </div>
+
+                <div class="col-sm-3 col-md-3 col-xs-3">
+                    <div class="territ-select fa-caret-down">
+                        <select name="" id="">
+                            <option value="">Outlet Base</option>
+                            <option value="">Market Base</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-3 col-md-3 col-xs-3">
+                    <div class="territ-select fa-caret-down">
+                        <select name="" id="">
+                            <option value="">Custom</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-xs-12 noPadding">
+                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding mcWbHeading"><div class="mktHeadingBlue"></div></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div *ngIf="territory.RootLevel!=undefined">
+                    <levelview [rootlevel]="territory.RootLevel"></levelview>
+                    <div *ngIf="territory.RootLevel.Child!=undefined">
+                        <levelview [rootlevel]="territory.RootLevel.Child"></levelview>
+                        <div *ngIf="territory.RootLevel.Child.Child!=undefined">
+                            <levelview [rootlevel]="territory.RootLevel.Child.Child"></levelview>
+                            <div *ngIf="territory.RootLevel.Child.Child.Child!=undefined">
+                                <levelview [rootlevel]="territory.RootLevel.Child.Child.Child"></levelview>
+                                <div *ngIf="territory.RootLevel.Child.Child.Child.Child!=undefined">
+                                    <levelview [rootlevel]="territory.RootLevel.Child.Child.Child.Child"></levelview>
+                                    <div *ngIf="territory.RootLevel.Child.Child.Child.Child.Child!=undefined">
+                                        <levelview [rootlevel]="territory.RootLevel.Child.Child.Child.Child.Child"></levelview>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row equal zind10">
+                <div class="col-sm-3 width23" style="z-index: 99;">
+                    <div class="col-sm-12 lBlueBG">
+
+                        <div *ngIf="territory != undefined && territory.RootGroup!=undefined">
+                            <ul class="tree">
+                                <li>
+                                    {{territory.RootGroup.Name}}
+                                    <div>
+                                        <div class="nodeLevOneBoxWrapper">
+                                            <div class="row">
+                                                <div class="col-sm-9 nodeLevelOneHeading">{{territory.RootGroup.Name}}</div>
+                                                <div class="col-sm-3 arrowIconWrapper">
+                                                    <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                    <div class="col-sm-4"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row padTop5">
+                                                <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                                <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                                <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3 width40"><div class="grpIdTxt">{{GroupId(territory.RootGroup)}}</div></div>
+                                                <div class="col-sm-4 width38"><div class="levlNameTextBig">{{territory.RootLevel.Name}}</div></div>
+                                                <div class="col-sm-4 width22"><a href="#" class="purpLink">Add Group</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <groupview [rootgroup]="territory.RootGroup"></groupview>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 width23">
+                    <div class="col-sm-12 lPurpleBG">
+                    </div>
+                </div>
+                <div class="col-sm-3 width23">
+                    <div class="col-sm-12 lGreenBG">
+                    </div>
+                </div>
+                <div class="col-sm-3 width23">
+                    <div class="col-sm-12 lYellowBG">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row"></div>
+
+            <div class="row">
+                <div class="col-sm-3 col-md-4 width23">
+                    <div class="col-sm-12 filCountShadowBox">
+                        <div class="row">
+                            <div class="col-sm-8 countryHeading">Level 1: {{territory.RootLevel.Name}}</div>
+                            <div class="col-sm-3 iconWrapper">
+                                <div class="col-sm-3 noPadding">
+                                    <a href="#" data-toggle="modal" data-target="#editGroup">
+                                        <img src="app/content/images/nEdit.png" width="16" height="16" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 pull-right custLevelWrapper"><a href="javascript:showState()" class="purpleBiglink">Add Level</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3 col-md-4 width23">
+                    <div class="col-sm-12 filStateShadowBox">
+                        <div class="row">
+                            <div class="col-sm-8 countryHeading">Level 2: State</div>
+                            <div class="col-sm-3 iconWrapper">
+                                <div class="col-sm-6 noPadding"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                <div class="col-sm-6 noPadding"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9 width76"><div class="smallHeadingGrey">ID</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 noPadding"><div class="filShadowBoxText">00-00-02</div></div>
+                            <div class="col-sm-3 custLevelWrapper"><a href="javascript:showState()" class="greenBigLink">Add Level</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-4 width23">
+                    <div class="col-sm-12 filTerShadowBox">
+
+                        <div class="row">
+                            <div class="col-sm-8 countryHeading">Level 3: Territory</div>
+                            <div class="col-sm-3 iconWrapper">
+                                <div class="col-sm-6 noPadding"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                <div class="col-sm-6 noPadding"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9 width76"><div class="smallHeadingGrey">ID</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 noPadding"><div class="filShadowBoxText">00-00-03</div></div>
+                            <div class="col-sm-3 custLevelWrapper"><a href="javascript:showState()" class="yellowBigLink">Add Level</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3 col-md-4 width23">
+                    <div class="col-sm-12 fillSubTerShadowBox">
+                        <div class="row">
+                            <div class="col-sm-8 countryHeading">Level 4: Sub-Territory</div>
+                            <div class="col-sm-3 iconWrapper">
+                                <div class="col-sm-6 noPadding"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                <div class="col-sm-6 noPadding"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9 width76"><div class="smallHeadingGrey">ID</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 noPadding"><div class="filShadowBoxText">00-00-04</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<levelview [rootlevel]="territory.RootLevel"></levelview>-->
+
+
+
+            <div class="row equal zind10">
+                <div class="col-sm-3 width23" style="z-index: 99;">
+                    <div class="col-sm-12 lBlueBG" style="padding-left:130px; padding-top:20px;">
+
+                        <ul class="tree">
+                            <li>
+                                <div>
+                                    <div class="nodeLevOneBoxWrapper">
+                                        <div class="row">
+                                            <div class="col-sm-9 nodeLevelOneHeading">{{territory.RootGroup.Name}}</div>
+                                            <div class="col-sm-3 arrowIconWrapper">
+                                                <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                <div class="col-sm-4"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row padTop5">
+                                            <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                            <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                            <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="col-sm-3 width40"><div class="grpIdTxt">{{territory.RootGroup.GroupIdPrefix}}</div></div>
+                                            <div class="col-sm-4 width38"><div class="levlNameTextBig">{{territory.RootLevel.Name}}</div></div>
+                                            <div class="col-sm-4 width22"><a href="#" class="purpLink">Add Group</a></div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+                                </div>
+
+
+                                <ul>
+                                    <li style="padding-left: 130px; padding-top: 15px;">
+
+
+                                        <div class="">
+
+                                            <div class="nodeLevTwoBoxWrapper">
+
+                                                <div class="row">
+
+                                                    <div class="col-sm-9 nodeLevelOneHeading">NSW</div>
+                                                    <div class="col-sm-3 arrowIconWrapper">
+
+                                                        <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                        <div class="col-sm-4"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row padTop5">
+                                                    <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                                    <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                                    <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+
+
+                                                </div>
+
+
+
+                                                <div class="row">
+                                                    <div class="col-sm-3 width40"><div class="grpIdTxt">02-01</div></div>
+                                                    <div class="col-sm-4 width38"><div class="levlNameTextBig">State</div></div>
+                                                    <div class="col-sm-4 width22"><a href="#" class="greenLink">Add Group</a></div>
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+
+                                        <ul>
+                                            <li style=" padding-left 130px; padding-top 15px;">
+
+
+
+                                                <div class="">
+
+                                                    <div class="nodeLevThreeBoxWrapper">
+
+                                                        <div class="row">
+
+                                                            <div class="col-sm-9 nodeLevelOneHeading">NSW - North</div>
+                                                            <div class="col-sm-3 arrowIconWrapper">
+
+                                                                <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                                <div class="col-sm-4"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row padTop5">
+                                                            <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                                            <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                                            <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+
+
+                                                        </div>
+
+
+
+                                                        <div class="row">
+                                                            <div class="col-sm-3 width40"><div class="grpIdTxt">03-01</div></div>
+                                                            <div class="col-sm-4 width38"><div class="levlNameTextBig">Territory</div></div>
+                                                            <div class="col-sm-4 width22"><a href="#" class="yellowLink">Add Group</a></div>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+                                            </li>
+                                            <li style=" padding-left 130px; padding-top 15px;">
+
+
+
+                                                <div class="">
+
+                                                    <div class="nodeLevThreeBoxWrapper">
+
+                                                        <div class="row">
+
+                                                            <div class="col-sm-9 nodeLevelOneHeading">NSW - South</div>
+                                                            <div class="col-sm-3 arrowIconWrapper">
+
+                                                                <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                                <div class="col-sm-4"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row padTop5">
+                                                            <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                                            <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                                            <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+
+
+                                                        </div>
+
+
+
+                                                        <div class="row">
+                                                            <div class="col-sm-3 width40"><div class="grpIdTxt">03-02</div></div>
+                                                            <div class="col-sm-4 width38"><div class="levlNameTextBig">Territory</div></div>
+                                                            <div class="col-sm-4 width22"><a href="#" class="yellowLink">Add Group</a></div>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li style=" padding-left 130px; padding-top 15px;">
+
+
+
+                                        <div class="">
+
+                                            <div class="nodeLevTwoBoxWrapper">
+
+                                                <div class="row">
+
+                                                    <div class="col-sm-9 nodeLevelOneHeading">VIC</div>
+                                                    <div class="col-sm-3 arrowIconWrapper">
+
+                                                        <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                        <div class="col-sm-4"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row padTop5">
+                                                    <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                                    <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                                    <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+
+
+                                                </div>
+
+
+
+                                                <div class="row">
+                                                    <div class="col-sm-3 width40"><div class="grpIdTxt">02-02</div></div>
+                                                    <div class="col-sm-4 width38"><div class="levlNameTextBig">State</div></div>
+                                                    <div class="col-sm-4 width22"><a href="#" class="greenLink">Add Group</a></div>
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+
+
+                                        <ul>
+                                            <li >
+
+
+
+                                                <div class="">
+
+                                                    <div class="nodeLevThreeBoxWrapper">
+
+                                                        <div class="row">
+
+                                                            <div class="col-sm-9 nodeLevelOneHeading">VIC - South</div>
+                                                            <div class="col-sm-3 arrowIconWrapper">
+
+                                                                <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                                <div class="col-sm-4"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row padTop5">
+                                                            <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                                            <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                                            <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+
+
+                                                        </div>
+
+
+
+                                                        <div class="row">
+                                                            <div class="col-sm-3 width40"><div class="grpIdTxt">03-03</div></div>
+                                                            <div class="col-sm-4 width38"><div class="levlNameTextBig">Territory</div></div>
+                                                            <div class="col-sm-4 width22"><a href="#" class="yellowLink">Add Group</a></div>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+                                                <ul>
+                                                    <li style=" padding-left 130px; padding-top 15px;">
+
+
+                                                        <div class="">
+
+                                                            <div class="nodeLevFourBoxWrapper">
+
+                                                                <div class="row">
+
+                                                                    <div class="col-sm-9 nodeLevelOneHeading">William Stryker</div>
+                                                                    <div class="col-sm-3 arrowIconWrapper">
+
+                                                                        <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                                        <div class="col-sm-4"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="row padTop5">
+                                                                    <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                                                    <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                                                    <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+
+
+                                                                </div>
+
+
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-3 width40"><div class="grpIdTxt">04-01</div></div>
+                                                                    <div class="col-sm-4 width38"><div class="levlNameTextBig">Sub-Territory</div></div>
+
+
+                                                                </div>
+
+
+                                                            </div>
+
+
+
+
+                                                        </div>
+
+
+
+                                                    </li>
+                                                </ul>
+
+                                            </li>
+                                            <li style=" padding-left 130px; padding-top 15px;">
+
+
+                                                <div class="">
+
+                                                    <div class="nodeLevThreeBoxWrapper">
+
+                                                        <div class="row">
+
+                                                            <div class="col-sm-9 nodeLevelOneHeading">VIC - North</div>
+                                                            <div class="col-sm-3 arrowIconWrapper">
+
+                                                                <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                                <div class="col-sm-4"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row padTop5">
+                                                            <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                                            <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                                            <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+
+
+                                                        </div>
+
+
+
+                                                        <div class="row">
+                                                            <div class="col-sm-3 width40"><div class="grpIdTxt">03-04</div></div>
+                                                            <div class="col-sm-4 width38"><div class="levlNameTextBig">Territory</div></div>
+                                                            <div class="col-sm-4 width22"><a href="#" class="yellowLink">Add Group</a></div>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+                                                <ul>
+                                                    <li style="padding-left:130px; padding-top:15px;">
+
+
+                                                        <div class="">
+
+                                                            <div class="nodeLevFourBoxWrapper">
+
+                                                                <div class="row">
+
+                                                                    <div class="col-sm-9 nodeLevelOneHeading">William Stryker</div>
+                                                                    <div class="col-sm-3 arrowIconWrapper">
+
+                                                                        <div class="col-sm-4"><a href="#" data-toggle="modal" data-target="#editGroup"><img src="app/content/images/nEdit.png" width="16" height="16" alt="" /></a></div>
+                                                                        <div class="col-sm-4"><img src="app/content/images/nDelete.png" width="12" height="16" alt="" /></div>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="row padTop5">
+                                                                    <div class="col-sm-1 arrowIcon"><img src="app/content/images/down_arrow.png" width="17" height="10" alt="" /></div>
+                                                                    <div class="col-sm-5 width30"><div class="groupIdTxt">Group ID</div></div>
+                                                                    <div class="col-sm-5 noPadding"><div class="levlNameTxt">Level Name</div></div>
+
+
+                                                                </div>
+
+
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-3 width40"><div class="grpIdTxt">04-01</div></div>
+                                                                    <div class="col-sm-4 width38"><div class="levlNameTextBig">Sub-Territory</div></div>
+
+
+                                                                </div>
+
+
+                                                            </div>
+
+
+
+
+                                                        </div>
+
+
+
+                                                    </li>
+
+
+
+
+                                                </ul>
+
+
+
+                                            </li>
+                                        </ul>
+
+
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="col-sm-3 width23">
+                    <div class="col-sm-12 lPurpleBG">
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="col-sm-3 width23">
+                    <div class="col-sm-12 lGreenBG">
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="col-sm-3 width23">
+                    <div class="col-sm-12 lYellowBG">
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row fullWidth100 martop20">
+
+        <div class="col-sm-2 marLeftm22"><div class="box pull-right"><button type="submit" class="mcButton" onclick="location.href='allocateBricks.html';">Next</button></div></div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<!--Tree Structure ends ends-->

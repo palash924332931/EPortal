@@ -1,0 +1,17 @@
+﻿<div class="col-sm-3 col-md-4 width23" *ngIf="rootlevel!=null && rootlevel!=null">
+    <div class="col-sm-12 filCountShadowBox">
+        <div class="row">
+            <div class="col-sm-8 countryHeading">Level 1: {{rootlevel.Name}}</div>
+            <div class="col-sm-3 iconWrapper">
+                <div class="col-sm-3 noPadding">
+                    <a href="#" data-toggle="modal" data-target="#editGroup">
+                        <img src="app/content/images/nEdit.png" width="16" height="16" alt="" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 pull-right custLevelWrapper"><a href="javascript:showState()" class="purpleBiglink">Add Level</a></div>
+        </div>
+    </div>
+</div>

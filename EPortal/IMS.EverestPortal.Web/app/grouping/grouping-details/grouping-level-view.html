@@ -1,0 +1,43 @@
+﻿<div *ngIf="marketgroup!= undefined && marketgroup!=null && marketgroup.length>0">
+    <div *ngFor="let marketGroup of marketgroup|order:'GroupOrderNo':'asc'"
+         class="col-sm-12 col-xs-12 col-md-12" style="margin-left: 2px;">
+        <div class="row">
+            <div style="float:left">
+                <div style="padding-left: 34px; float: left" class="">
+                    <label><input type="radio" name="group" style="margin-right:10px;" (click)="selectGroup(marketGroup,marketattribute, levelorder)">&nbsp;<span>{{marketGroup.Name}}</span></label>
+                </div>
+            </div>
+
+            <div style="float:right;" [style.margin-right.px]="(24 - (levelorder * 13))">
+                <a *ngIf="levelorder<1" (click)="fnGenerateFilter(marketGroup,marketattribute)">
+                <span class="glyphicon glyphicon-filter" 
+                      [ngStyle]="{'color': isFilterApplied(marketGroup,marketattribute) ? '#FF940C' : '#25B4FF'}" 
+                      style="font-size: 15px; cursor:pointer;"></span>
+                </a>
+                <a *ngIf="levelorder<1"  (click)="editGroup(marketGroup, marketattribute)" class="glyphicon glyphicon-edit" style="font-size: 15px; color: #25B4FF; margin-left: 10px; " [ngClass]="{'node-disabled':islockDef}"></a>
+                <a (click)="removeGroup(marketGroup, marketattribute)"   class="glyphicon glyphicon-trash" style="font-size: 14px; color: #FB4F39; margin-left: 10px;" [ngClass]="{'node-disabled':islockDef}"></a>
+            </div>
+        </div>
+        <groupinglevelview [marketattribute]="marketattribute" 
+                           [marketgroup]="marketGroup.MarketGroups"
+                           [levelorder]="levelorder + 1"
+                           (selectGroupEvent)="fnSelectGroup($event)"
+                           (editGroupEvent)="fnEditGroup($event)"
+                           (removeGroupEvent)="fnRemoveGroup($event)"
+                           (applyFilterOnGroup)="fnApplyFilterOnGroup($event)"
+                           >
+        </groupinglevelview>
+        <!--<div *ngFor="let childMarketGroup of marketGroup?.MarketGroups" class="row">
+            <div style="float:left">
+                <div style="padding-left: 58px; float: left">
+                    <label> <input type="radio" name="group" (click)="fnSelectGroup(childMarketGroup,marketGroup)">&nbsp;<span>{{childMarketGroup.Name}}</span></label>
+                </div>
+            </div>
+            <div style="float:right;margin-right:18px;">
+                <a href="#"> <span class="glyphicon glyphicon-filter" style="font-size: 15px; color: #FF940C;"></span>                                                                        </a>
+                <span class="glyphicon glyphicon-edit" style="font-size: 15px; color: #25B4FF; margin-left: 10px; cursor:pointer;"></span>
+                <a href="#"> <span class="glyphicon glyphicon-trash" style="font-size: 14px; color: #FB4F39; margin-left: 10px;"></span>                                                                        </a>
+            </div>
+        </div>-->
+    </div>
+</div>

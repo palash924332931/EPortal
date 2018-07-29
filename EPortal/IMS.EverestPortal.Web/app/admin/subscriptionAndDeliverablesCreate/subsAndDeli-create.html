@@ -1,0 +1,455 @@
+﻿
+
+
+
+<div class="container noMargin noPadding" id="mktHeadingWrap">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="subCrtMB">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Subscription</div></div>
+
+                    <div class="col-sm-12 noPadding">
+                        <div>
+                            <tabset [justified]="true">
+                                <tab heading="Create" (select)="subTabClick(false)">
+                                </tab>
+                                <tab heading="Update" (select)="subTabClick(true)">
+                                </tab>
+                            </tabset>
+                        </div>
+                    </div>
+
+                    <div style="font-size:18px" [style.color]="isSuccess ?'green':'red'" class="col-sm-9 col-md-9 col-xs-9 noPadding"
+                         *ngIf="subcriptionMessage"><p>{{subcriptionMessage}}</p></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 padRt25">
+                        <div class="row">
+                            <div class="col-sm-8 noPaddingLeft">Client</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="subscriptionClient" (ngModelChange)="onSubscriptionClientChange($event)" style="height: 33px;">
+                                        <option *ngFor="let i of clients" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="isSubUpdate" class="col-sm-6 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Existing Subscription</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="selectedSubscription" (ngModelChange)="onSubscriptionChange($event)" style="height: 33px;">
+                                        <option *ngFor="let i of subscriptions" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row marTop5">
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-8 noPaddingLeft">Country</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="country" style="height: 33px;">
+                                        <option *ngFor="let i of countries" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Service</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="service" style="height: 33px;">
+                                        <option *ngFor="let i of services" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Territory Base</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <!--<input type="text" class="SubTBMktBse"
+                                        id="" value="" style="min-height: 10px; padding-top: 5px; padding-bottom: 5px;">-->
+                                <select [(ngModel)]="territoryBase" style="height:33px;width:100%;">
+                                    <option *ngFor="let i of territoryBases" [ngValue]="i">{{i.Value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row marTop5">
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-8 noPaddingLeft">Data Type</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="dataType" style="height: 33px;">
+                                        <option *ngFor="let i of dataTypes" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Source</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="source" style="height: 33px;">
+                                        <option *ngFor="let i of sources" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>                
+
+                <div class="row marTop5">
+                    <div class="col-sm-8 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Duration</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-xs-6 SubTBTopWrap">
+                                From
+                                <my-date-picker name="durationStartDate" [options]="myDatePickerOptions"
+                                                [(ngModel)]="durationStartDate" required></my-date-picker>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-xs-6 SubTBTopWrap">
+                                To
+                                <my-date-picker name="durationStartDate" [options]="myDatePickerOptions"
+                                                [(ngModel)]="durationEndDate" required></my-date-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:10px">
+                    <button *ngIf="!isSubUpdate" type="button" class="mcButton btn" (click)="createSubcriptions()"
+                            style="margin-top: 0px;
+                                                 min-height: 0px;
+                                                 padding-left: 10px;
+                                                 padding-right: 10px;
+                                                 min-width: 130px;
+                                                 padding-top: 5px;
+                                                 padding-bottom: 7px;"
+                            [disabled]="!(durationEndDate && durationStartDate && source && dataType
+                                                 && territoryBase && service && country && subscriptionClient)">
+                        Create
+                    </button>
+                    <button *ngIf="isSubUpdate" type="button" class="mcButton btn" (click)="updateSubcriptions()"
+                            style="margin-top: 0px;
+                                                 min-height: 0px;
+                                                 padding-left: 10px;
+                                                 padding-right: 10px;
+                                                 min-width: 130px;
+                                                 padding-top: 5px;
+                                                 padding-bottom: 7px;"
+                            [disabled]="!(durationEndDate && durationStartDate && source && dataType
+                                                 && territoryBase && service && country && subscriptionClient && selectedSubscription)">
+                        update
+                    </button>
+                    <button class="mcButtonPScancel btn" (click)="clearSelectionSubcription();subcriptionMessage = null"
+                            style="margin-top: 0px; min-height: 0px; padding-left: 10px; padding-right: 10px;
+                                                 min-width: 100px; padding-top: 5px; padding-bottom: 5px;">
+                        Cancel
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="subCrtMB">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9 col-xs-9 noPadding"><div class="HeadingCharcoal">Deliverables</div></div>
+                    <div class="col-sm-12 noPadding">
+                        <div>
+                            <tabset [justified]="true">
+                                <tab heading="Create" (select)="deliTabClick(false)">
+                                </tab>
+                                <tab heading="Update" (select)="deliTabClick(true)">
+                                </tab>
+                            </tabset>
+                        </div>
+                    </div>
+                    <div style="font-size:18px" [style.color]="isSuccessDeli ?'green':'red'" class="col-sm-12 col-md-12 col-xs-12 noPadding"
+                         *ngIf="deliverableMessage"><p>{{deliverableMessage}}</p></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-8 noPaddingLeft">Client</div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="deliverableClient" (ngModelChange)="onDeliClientChange($event)" style="height: 33px;">
+                                        <option *ngFor="let i of clients" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Subscription</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="selectedDeliSubscription" (ngModelChange)="onDeliSubcriptionChange($event)" style="height: 33px;">
+                                        <option *ngFor="let i of deliverablesSubscriptions" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div *ngIf="isDeliUpdate" class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Existing Deliverables</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <select [(ngModel)]="selectedDeliverable" (ngModelChange)="onDeliverableChange($event)" style="height: 33px;width:100%">
+                                    <option *ngFor="let i of deliverables" [ngValue]="i">{{i.Value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row marTop5">
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-8 noPaddingLeft">Delivery Type</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="deliveryType" (ngModelChange)="onDeliveryTypeChange($event)" style="height: 33px;width:100%">
+                                        <option *ngFor="let i of deliveryTypes" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Report Writer</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="reportWriter" style="height: 33px;width:100%">
+                                        <option *ngFor="let i of reportWriters" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Period</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="period" style="height: 33px;width:100%">
+                                        <option *ngFor="let i of periods" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row marTop5">
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Frequency Type</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="frequencyType" (ngModelChange)="onFrequencyTypeChange($event)" style="height: 33px;width:100%">
+                                        <option *ngFor="let i of frequencyTypes" [ngValue]="i">{{i.Value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-8 noPaddingLeft">Frequency</div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <div class="raBrick-select fa-caret-down">
+                                        <select [(ngModel)]="frequency" style="height: 33px;width:100%">
+                                            <option *ngFor="let i of frequencies" [ngValue]="i">{{i.Value}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-8 noPaddingLeft">Restriction</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <div class="raBrick-select fa-caret-down">
+                                    <select [(ngModel)]="restriction" style="height: 33px;width:100%">
+                                        <option *ngFor="let i of restrictions" [ngValue]="i">{{i.Id}}-{{i.Name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="row marTop5">
+
+
+                    <div class="col-sm-4 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Deliver To</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                <input type="text" class="SubTBMktBse" id="" value="" style="min-height: 10px; padding-top: 5px; padding-bottom: 5px;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>-->
+
+                <!--DURATION-->
+                <div class="row marTop5">
+                    <div class="col-sm-8 padRt25">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Duration</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-xs-6 SubTBTopWrap">
+                                From
+                                <my-date-picker name="durationStartDateDeli" [options]="myDatePickerOptions"
+                                                [(ngModel)]="durationStartDateDeli" required></my-date-picker>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-xs-6 SubTBTopWrap">
+                                To
+                                <my-date-picker name="durationStartDateDeli" [options]="myDatePickerOptions"
+                                                [(ngModel)]="durationEndDateDeli" required></my-date-picker>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--REPORT NUMBER-->
+                    <div class="col-sm-4 padRt25" *ngIf="!isDeliUpdate">
+                        <div class="row">
+                            <div class="col-sm-12 noPaddingLeft">Report Number</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-xs-6 SubTBTopWrap">
+                                <input name="reportNo"
+                                       [(ngModel)]="reportNo" required />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+               
+                <div class="row" style="margin-top:10px">
+
+                    <button *ngIf="!isDeliUpdate" type="button" class="mcButton btn" (click)="createDeliverables()"
+                            style="margin-top: 0px;
+                                                 min-height: 0px;
+                                                 padding-left: 10px;
+                                                 padding-right: 10px;
+                                                 min-width: 130px;
+                                                 padding-top: 5px;
+                                                 padding-bottom: 7px;"
+                            [disabled]="!(durationEndDateDeli && durationStartDateDeli && period && selectedDeliSubscription
+                                                 && frequencyType && frequency && deliveryType && reportWriter && restriction && reportNo)">
+                        Create
+                    </button>
+
+
+                    <button *ngIf="isDeliUpdate" type="button" class="mcButton btn" (click)="updateDeliverables()"
+                            style="margin-top: 0px;
+                                                 min-height: 0px;
+                                                 padding-left: 10px;
+                                                 padding-right: 10px;
+                                                 min-width: 130px;
+                                                 padding-top: 5px;
+                                                 padding-bottom: 7px;"
+                            [disabled]="!(durationEndDateDeli && durationStartDateDeli && period && restriction
+                                                 && frequencyType && frequency && deliveryType && reportWriter && selectedDeliverable)">
+                        update
+                    </button>
+
+
+                    <button class="mcButtonPScancel btn" (click)="clearSelectionDeliverables();deliverableMessage = null"
+                            style="margin-top: 0px; min-height: 0px; padding-left: 10px; padding-right: 10px;
+                                                 min-width: 100px; padding-top: 5px; padding-bottom: 5px;">
+                        Cancel
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

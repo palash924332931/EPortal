@@ -1,0 +1,70 @@
+ID,Status,Date,Message
+--,------,----,-------
+1,Info,2017-12-07 03:35:31.340,Function Check Start.
+2,OK,2017-12-07 03:35:31.363,No Function is missing
+3,Info,2017-12-07 03:35:31.367,Function Check End.
+4,Info,2017-12-07 03:35:31.587,Job Check Start.
+5,OK,2017-12-07 03:35:31.640,No Job missing.
+6,Info,2017-12-07 03:35:31.640,Job Check End.
+7,Info,2017-12-07 03:35:32.100,Stored Procedure Check Start.
+8,OK,2017-12-07 03:35:32.130,No Stored Procedure is missing.
+9,Info,2017-12-07 03:35:32.133,Stored procedure Check End.
+10,Info,2017-12-07 03:35:32.570,Table Check Start.
+11,OK,2017-12-07 03:35:32.603,No Table is missing.
+12,Info,2017-12-07 03:35:32.607,Table Check End.
+13,Info,2017-12-07 03:35:32.780,View Check Start.
+14,Info,2017-12-07 03:35:32.803,No View is missing.
+15,Info,2017-12-07 03:35:32.803,View Check End.
+16,Info,2017-12-07 03:35:32.930, Deliverables column Check Start.
+17,Error,2017-12-07 03:35:32.937,There is no data in the column RestrictionId of table Deliverables
+18,Info,2017-12-07 03:35:32.937,Deliverables Table column Check End.
+19,Info,2017-12-07 03:35:33.070,DIMOutlet column Check Start.
+20,Error,2017-12-07 03:35:33.333,There is no data in the column Outlet of tabel DIMOutlet
+21,Error,2017-12-07 03:35:33.333,There is no data in the column AID of tabel DIMOutlet
+22,Error,2017-12-07 03:35:33.333,There is no data in the column Phone of tabel DIMOutlet
+23,Error,2017-12-07 03:35:33.337,There is no data in the column Out_Type of tabel DIMOutlet
+24,Error,2017-12-07 03:35:33.337,There is no data in the column Outlet_Type_Desc of tabel DIMOutlet
+25,Info,2017-12-07 03:35:33.337,DIMOutlet column Check End.
+26,Info,2017-12-07 03:35:33.460,DIMProduct_Expanded column Check Start.
+27,Error,2017-12-07 03:35:34.553,There is no data in the column CH_Segment_Code of tabel DIMProduct_Expanded
+28,Error,2017-12-07 03:35:34.553,There is no data in the column WHO1_Code of tabel DIMProduct_Expanded
+29,Error,2017-12-07 03:35:34.557,There is no data in the column WHO1_Desc of tabel DIMProduct_Expanded
+30,Error,2017-12-07 03:35:34.557,There is no data in the column WHO2_Code of tabel DIMProduct_Expanded
+31,Error,2017-12-07 03:35:34.557,There is no data in the column WHO2_Desc of tabel DIMProduct_Expanded
+32,Error,2017-12-07 03:35:34.560,There is no data in the column WHO3_Code of tabel DIMProduct_Expanded
+33,Error,2017-12-07 03:35:34.560,There is no data in the column WHO3_Desc of tabel DIMProduct_Expanded
+34,Error,2017-12-07 03:35:34.560,There is no data in the column WHO4_Code of tabel DIMProduct_Expanded
+35,Error,2017-12-07 03:35:34.560,There is no data in the column WHO4_Desc of tabel DIMProduct_Expanded
+36,Error,2017-12-07 03:35:34.563,There is no data in the column WHO5_Code of tabel DIMProduct_Expanded
+37,Error,2017-12-07 03:35:34.563,There is no data in the column WHO5_Desc of tabel DIMProduct_Expanded
+38,Error,2017-12-07 03:35:34.563,There is no data in the column FRM_Flgs4 of tabel DIMProduct_Expanded
+39,Error,2017-12-07 03:35:34.567,There is no data in the column FRM_Flgs4_Desc of tabel DIMProduct_Expanded
+40,Error,2017-12-07 03:35:34.567,There is no data in the column PBS_Formulary of tabel DIMProduct_Expanded
+41,Error,2017-12-07 03:35:34.567,There is no data in the column PBS_Formulary_Date of tabel DIMProduct_Expanded
+42,Error,2017-12-07 03:35:34.570,There is no data in the column Stdy_Ind6_Code of tabel DIMProduct_Expanded
+43,Error,2017-12-07 03:35:34.570,There is no data in the column Study_Indicators6 of tabel DIMProduct_Expanded
+44,Error,2017-12-07 03:35:34.570,There is no data in the column Conc_Unit of tabel DIMProduct_Expanded
+45,Error,2017-12-07 03:35:34.570,There is no data in the column Conc_Meas of tabel DIMProduct_Expanded
+46,Error,2017-12-07 03:35:34.573,There is no data in the column Additional_Pack_Info of tabel DIMProduct_Expanded
+47,Error,2017-12-07 03:35:34.573,There is no data in the column Recommended_Retail_Price of tabel DIMProduct_Expanded
+48,Error,2017-12-07 03:35:34.577,There is no data in the column Ret_Price_Effective_Date of tabel DIMProduct_Expanded
+49,Error,2017-12-07 03:35:34.577,There is no data in the column Trade_Product_Pack_ID of tabel DIMProduct_Expanded
+50,Error,2017-12-07 03:35:34.580,There is no data in the column Price_Effective_Date of tabel DIMProduct_Expanded
+51,Error,2017-12-07 03:35:34.580,There is no data in the column Last_amd of tabel DIMProduct_Expanded
+52,Error,2017-12-07 03:35:34.587,There is no data in the column Supplier_Code of tabel DIMProduct_Expanded
+53,Error,2017-12-07 03:35:34.590,There is no data in the column Supplier_Product_Code of tabel DIMProduct_Expanded
+54,Error,2017-12-07 03:35:34.593,There is no data in the column highlighter of tabel DIMProduct_Expanded
+55,Error,2017-12-07 03:35:34.593,There is no data in the column highlighterFrom of tabel DIMProduct_Expanded
+56,Error,2017-12-07 03:35:34.593,There is no data in the column highlighterTo of tabel DIMProduct_Expanded
+57,Info,2017-12-07 03:35:34.597,DIMProduct_Expanded column Check End.
+58,Info,2017-12-07 03:35:34.733,DMMolecule column Check Start.
+59,Info,2017-12-07 03:35:34.823,DMMolecule column Check End.
+60,Info,2017-12-07 03:35:34.947,IRP Master data Check Start.
+61,OK,2017-12-07 03:35:35.023,All IRP schema tables have data.
+62,Info,2017-12-07 03:35:35.027,IRP Master data Check End.
+63,Info,2017-12-07 03:35:35.303,ECP Master Data Check Start.
+64,Info,2017-12-07 03:35:35.307,ECP Master Data Check End.
+65,Info,2017-12-07 03:35:35.423,Subscriptions column Check Start.
+66,Info,2017-12-07 03:35:35.430,Subscription Table column Check End.
+
+(66 rows affected)

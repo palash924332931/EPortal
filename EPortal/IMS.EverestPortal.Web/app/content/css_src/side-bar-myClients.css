@@ -1,0 +1,233 @@
+
+
+.tab-content{
+    font-family:Roboto;
+  font-size: 14px;
+    color:#fff;
+    padding:5px;
+	
+	
+	
+}
+
+.Crt{
+    font-family:Roboto;
+  font-size: 14px;
+    color:#fff;
+    padding:5px;
+	padding: 0px; padding-top: 30px; padding-bottom: 0px;
+	
+	
+}
+
+.nav-side-menu {
+  overflow: auto;
+  font-family:Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  background-color: #3A4F5A;
+  position:absolute;
+  right:0;
+  top: 0%;
+  padding-top:5.2%;
+  padding-right:1.5%;
+  width: 18%;
+  height: 100%;
+  /*added*/	
+  /*min-height: 768px;*/
+  color: #e1ffff;
+  
+}
+
+.mcSideWell
+{
+	margin-left:12px; width:100%; background:none; padding-left:0px; padding-right:0px; border:none; box-shadow:none;	
+}
+
+.mcSideTab
+{
+	border: 3px solid #25B4FF; padding-right:0px; 
+}
+
+
+.mcSideTab1
+{
+	border: 3px solid #25B4FF; padding-right:0px; border-bottom: none; width: 35%; 
+}
+
+
+.nav-tabs{
+  
+}
+
+
+
+
+.nav-tabs > li > a{
+  height:40px;
+  text-align:center;
+  font-family:Roboto;
+  font-size: 14px;
+  font-weight: normal;
+}
+.nav-tabs > li > a:hover{
+  background:none; 
+   width:100%;
+   border:none;
+   color:#25B4FF;
+   height:40px;
+   padding-top:11px;
+   text-align:center;
+   padding-left:13px;
+   font-family:Roboto;
+  font-size: 14px;
+  font-weight: normal;
+	
+	
+}
+
+
+
+
+
+.nav-tabs > li.active > a,
+        .nav-tabs > li.active > a:hover,
+        .nav-tabs > li.active > a:focus{
+            color: #fff;
+            background-color: #25B4FF;
+			border:none; 
+			width:100%;
+			border-radius:0px;
+			padding-left:13px;
+			padding-top:11px;
+			font-family:Roboto;
+			font-size: 14px;
+  			font-weight: normal;
+        } 
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.nav-tabsPS{
+  
+}
+
+
+
+
+.nav-tabsPS > li > a{
+  height:40px;
+  text-align:center;
+  font-family:Roboto;
+  font-size: 14px;
+  font-weight: normal;
+}
+.nav-tabsPS > li > a:hover{
+  background:none; 
+   width:100%;
+   border:none;
+   color:#25B4FF;
+   height:40px;
+   padding-top:11px;
+   text-align:center;
+   padding-left:13px;
+   font-family:Roboto;
+  font-size: 14px;
+  font-weight: normal;
+	
+	
+}
+
+
+
+
+
+.nav-tabsPS > li.active > a,
+        .nav-tabsPS > li.active > a:hover,
+        .nav-tabsPS > li.active > a:focus{
+            color: #fff;
+            background-color: #25B4FF;
+			border:none; 
+			width:100%;
+			border-radius:0px;
+			padding-left:13px;
+			padding-top:11px;
+			font-family:Roboto;
+			font-size: 14px;
+  			font-weight: normal;
+        } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mcSideTabPS
+{
+	border: 3px solid #25B4FF; padding-right:0px; border-bottom: none; width: 35%;
+}
+
+
+
+
+
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+	
+	
+
+	
+
+.nav-side-menu 
+{
+	width:280px;
+	padding-top: 80PX;
+	
+}
+
+.nav-tabs{
+  width:255px;
+}
+
+.mcSideTabPS
+{
+	border: 3px solid #25B4FF; padding-right:0px; border-bottom: none; width: 45%; 
+}
+
+
+
+}

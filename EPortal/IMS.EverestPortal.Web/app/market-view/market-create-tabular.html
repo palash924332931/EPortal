@@ -1,0 +1,1074 @@
+﻿<div id="content">
+    <!-- Content starts-->
+    <div class="jumbotron noBG">
+        <div class="container-fluid">
+            <!-- Breadcrumbs starts -->
+            <div class="container mcContainer">
+                <div class="mcBreadcrumbsVM">
+                    <a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span>
+                    <a class="mcLink">Markets</a> <span class="breadBrubGap">></span>
+                    <a [routerLink]="[breadCrumbUrl]" class="mcLink">{{toggleTitle}}</a><span class="BCBreak">></span>
+                    <a class="mcLink">{{isEditMarketDef ? 'Edit Market': 'Create Market'}}</a>
+                </div>
+                <div class="row mcRow">
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <div class="mcHeadingVM"><span class="market-title">Create Market</span> : {{newsTitle}} </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Breadcrumbs ends -->
+            <!-- Container section  *ngIf="marketCreationStep1"-->
+            <ng-modal (fnActionOnSaveBtn)="btnModalSaveClick($event)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="modalBtnCapton"
+                [closeBtnCaption]="modalCloseBtnCaption" [title]="modalTitle" [saveBtnVisibility]="modalSaveBtnVisibility" [modalSaveFnParam]="modalSaveFnParameter">
+            </ng-modal>
+
+            <ng-modal (fnActionOnSaveBtn)="btnModalSaveClick($event)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="modalBtnCapton"
+                [closeBtnCaption]="modalCloseBtnCaption" [title]="modalTitle" [modalID]="'customModal'" [saveBtnVisibility]="modalSaveBtnVisibility"
+                [modalSaveFnParam]="modalSaveFnParameter">
+            </ng-modal>
+
+
+            <div bsModal #marketbaseListModal="bs-modal" class="modal fade subModalWrapper" id="MarketbaseListModal" tabindex="-1" role="dialog"
+                aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-market-base">
+                    <div class="modal-content subModDivWrap" style="">
+                        <!--<div class="row" style="margin-top: 20px;margin-right: 0px;">
+                            <div class="col-sm-12"><button type="submit" class="subaltButton pull-right" (click)="fnRouteToMarketBase()">Create New Market Base</button></div>
+                        </div>-->
+                        <div class="row marTop30">
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <app-p-table [pTableSetting]="marketbaseTableBind" [pTableMasterData]="marketBasesForView" (cellClickCallbackFn)="fnMarketBaseTableCellClick($event)"></app-p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row marTop20">
+                            <div class="col-sm-6">
+                                <!--<button type="submit" class="mcButton" [disabled]="buttonState()" (click)="AddToService()">Add to Service</button>-->
+                            </div>
+                            <div class="col-sm-6 pull-right" style="margin-right: 15px;margin-bottom: 20px">
+                                <button type="submit" class="mcButtonCancel pull-right" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="container createMarketViewWrap" id="marketCreationStep1" [ngStyle]="{display:marketCreationStep1}">
+                <!-- Text section-->
+                <div class="row noMargin fullWidth100">
+                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding">
+                        <div class="mktLabelText control-label required">Market Definition Name</div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12 noPadding marBottom20">
+                        <input [disabled]="!canEditMarket ||  this.lockType=='View Lock'" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty mktDefTB "
+                            placeholder="e.g. Pain Market" id="newsTitle" [(ngModel)]="newsTitle" ng-model="newsAlert.NewsAlertTitle"
+                            (change)="fnDetectMarketDefNameChanged()" Value="" />
+                        <span class="required-error-mgs"></span>
+                    </div>
+
+                </div>
+                <!-- Text section-->
+
+
+                <!--Filter begin-->
+                <div class="container crtMarkTabWrapper">
+                    <!--Tab 1 contents-->
+                    <div class="row noMargin">
+                        <div class="col-sm-12 noPadding CrtHeading">Market Base</div><input type="hidden" name="hdnCanFilter" id="hdnCanFilter">
+                    </div>
+
+                    <!--pack search start-->
+                    <!--<div class="row NoMarTop">
+                        <div class="col-sm-12 col-md-12 col-xs-12 packSearchButtWrapper"><button type="submit" [disabled]="isViewMode()" [ngClass]="{'mcButtonSearch': !isViewMode(), 'mcButtonDisabled': isViewMode()}"
+                                data-toggle="modal" data-target="#packDescSearchModal"><div class="pckSrchTextLeft">Pack Search</div>  <div class="floatLeft"><label for="search" class="glyphicon glyphicon-search searchWhiteBig" rel="tooltip" title="search"></label></div></button></div>
+                    </div>-->
+                    <packDescription-search [clientid]="editableClientID"></packDescription-search>
+                    <!--pack search ends-->
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12 fullwidthWithBorder">
+                                <div class="col-sm-12 noPadding BlueBoxHedText">
+                                    <div class="mbText">Select Market Base </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-12 fullwidthWithBorder">
+                                <div class="table-responsive market-setup-table" style="">
+                                    <table id="" class="filTable" style="margin-top: 20px; margin-bottom:0px;">
+                                        <thead>
+                                            <tr>
+                                                <td class="" style="width: 32%; padding-left: 10px;"><span class="blueTextColor">Market Base</span></td>
+                                                <td class="" style="width: 18%; padding-left: 10px;"><span class="greenTextColor">Data Refresh Settings</span></td>
+                                                <td class="" style="width: 50%; padding-left: 10px;"><span class="orrangeTextColor">Base Filter Settings</span></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div style="overflow-y:scroll; max-height:270px; overflow-x: hidden;">
+                                    <div class="table-responsive market-setup-table" style="padding-top:3px;">
+                                        <table id="" class="filTable" style="margin-top: 0px; margin-top:-25px;width: 101.3%">
+                                            <thead style="visibility:hidden;">
+                                            <tr>
+                                                <td class="" style="width: 32%; padding-left: 10px;"><span class="blueTextColor"></span></td>
+                                                <td class="" style="width: 18%; padding-left: 10px;"><span class="greenTextColor"></span></td>
+                                                <td class="" style="width: 50%; padding-left: 10px;"><span class="orrangeTextColor"></span></td>
+                                            </tr>
+                                        </thead>
+                                            <tbody *ngIf="marketBases">
+                                                <tr *ngFor="let marketBase of marketBasesForView" id="row{{marketBase?.Id}}" class="marketID-{{marketBase?.Id}}" title={{marketBase?.MarketBaseName}}>
+                                                    <template [ngIf]="marketBase.UsedMarketBaseStatus=='true'|| marketBase.UsedMarketBaseStatus==true">
+                                                        <td>
+                                                            <div class="col-sm-12 noPadding noMargin">
+                                                                <div class="col-sm-12 NewnodeShadowBox">
+                                                                    <div class="col-sm-11 nodTabWid">
+                                                                        <input id="chkbox_{{marketBase?.Id}}" type="checkbox" class="" (change)="activateMarketBase( ('chkbox_' + marketBase.Id), marketBase?.Id)"
+                                                                            [disabled]="!canFilter">
+                                                                        <span id="mbtext_{{marketBase?.Id}}" class="nodeCBWrap textWeightNormal baseName">{{marketBase?.MarketBaseName}}</span>
+                                                                    </div>
+                                                                    <div class="col-sm-1 nodTabWid1">
+                                                                        <!--<a href="#" class="purpLink">
+                                                                    <i id="icon_{{marketBase?.Id}}" class="glyphicon glyphicon-filter filterDis" data-toggle="modal" data-target="#filterModal"></i>
+                                                                </a>-->
+                                                                        <a id="icon_{{marketBase?.Id}}" href="#" class="filter-setting disab" data-toggle="modal" data-target="#filterModal" (click)="setSelectedMarketBase(marketBase)">Filter</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="'refresh-type'">
+                                                            <div class="col-sm-12 refresh-setting noPadding noMargin userRefreshHidden" id="col2_{{marketBase?.Id}}">
+                                                                <div class="col-sm-12 NewGreennodeShadowBox">
+                                                                    <div class="col-sm-6 noPadding mobWidth">
+                                                                        <input type="radio" name="ref-{{marketBase?.Id}}" id="dynamic-{{marketBase?.Id}}" class="ref-{{marketBase?.Id}}" [disabled]="!canFilter"
+                                                                            (click)="fnMarketSetupChangeDetection()" />
+                                                                        <span class="cbFilter1">Dynamic</span>
+                                                                    </div>
+                                                                    <div class="col-sm-6 noPadding mobWidth"><input type="radio" name="ref-{{marketBase?.Id}}" id="static-{{marketBase?.Id}}"
+                                                                            class="ref-{{marketBase?.Id}}" [disabled]="!canFilter"
+                                                                            (click)="fnMarketSetupChangeDetection()" />
+                                                                        <span class="cbFilter1">Static</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="NewOrrangenodeShadowBox base-filter-info userRefreshHidden basefilter-{{marketBase?.Id}}" id="col3_{{marketBase?.Id}}">
+                                                                <a id="more-{{marketBase?.Id}}" href="#" class="more-less" data-toggle="modal" data-target="#filterModal" (click)="setSelectedMarketBase(marketBase)"
+                                                                    style="display: none">More..</a>
+                                                                <!--<input type="checkbox" id="checkbox-exclude-{{marketBase?.Id}}" />-->
+                                                            </div>
+                                                        </td>
+                                                    </template>
+                                                </tr>
+                                                <tr *ngIf="!enabledMarketBaseTable" style="background-color: white" class="marketID-00">
+                                                    <td colspan="3" align="center" style="background-color:aliceblue;font-size: 14px; color: black;font-weight: bold">There are no market bases available. Please add market base.</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <div> <span id="marketBaseErrorMessage" class="mgs-error" style="color:red">{{marketBaseGenericErrorMgs}}</span>
+
+                                            <div class="row marBottom10">
+                                                <div class="col-sm-12 col-md-12 col-xs-12 padLeft20" style="margin-left: 15px; padding-bottom: 20px;">
+                                                    <button type="submit" class="mcButton" data-toggle="modal" (click)="ShowMarketBaseDialog()" [disabled]="lockType=='View Lock'">Add Market Base  </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row noMargin padLeft20 fixed-footer-buttons market-button-groups">
+                                    <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper" style="display: none">
+                                        <button type="button" [ngClass]="{'mcButton': !isViewMode(), 'mcButtonDisabled': isViewMode()}" [disabled]="isViewMode()"
+                                            (click)="fnCreateMarketStep1('No')">Save </button>
+                                    </div>
+                                    <!--<div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper padTop20"><button type="button" class="mcButtonSearch" data-toggle="modal" data-target="#SaveModal">Save </button></div>-->
+                                    <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width">
+                                        <button type="button" [ngClass]="{'mcButtonPScancel': !isViewMode(), 'mcButtonDisabled': isViewMode()}" [disabled]="isViewMode()||!enabledMarketBaseTable || !isChangeDetectedInMarketSetup"
+                                            (click)="fnBacktoPreviousState()">Cancel </button>
+                                    </div>
+                                    <!--<div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper padTop20"><button type="button" class="mcButtonNext" data-toggle="modal" data-target="#nextModal">Next </button></div>-->
+                                    <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width">
+                                        <button type="button" class="mcButtonPScancel" (click)="fnBackToClientTiles('first screen')" title="Click here back to available Market">Close </button>
+                                    </div>
+                                    <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width" *ngIf="isEditMarketDef">
+                                        <button type="button" class="mcButtonPScancel" (click)="fnSaveMarketName()" [disabled]="!marketDefNameChangedDetected" title="Click here to save Market Name">Save </button>
+                                    </div>
+                                    <!--<div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width" *ngIf="isEditMarketDef">
+                                        <button type="button" class="mcButtonPScancel" (click)="SubmitMarketDef()" title="Click here to submit Market Name">Submit </button>
+                                    </div>-->
+                                    <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width">
+                                        <button type="button" [disabled]="!enabledMarketBaseTable" class="mcButton" (click)="fnNextStepGenerator('Step2')">Next </button>
+                                    </div>
+
+                                </div>
+                                <!--</div>-->
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Tab 1 Content ends-->
+                </div>
+                <div class="container noMargin noPadding fullWidth100" id="">
+                    <div class="row"></div>
+                </div>
+
+                <!-- Filter ends -->
+                <!--white Box Table-->
+                <!--News section ends-->
+            </div>
+
+            <!-- Save Market starts -->
+            <!-- Save Market starts ends -->
+            <!--Filter ends-->
+            <!--White Shadow Box starts -->
+            <div class="container noMargin noPadding" id="marketCreationStep2" [ngStyle]="{display:marketCreationStep2}">
+                <div class="modal fade packSearchModalWrapper" id="SearchMarketbaseModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog noPadding modalHorizont">
+                        <div class="modal-content packSearchModalPanel">
+                            <div class="modal-header borShadowNone">
+
+                                <div class="packSearchHeading">Pack Description Search</div>
+                            </div>
+                            <div class="modal-body borShadowNone">
+
+                                <!-- content goes here -->
+                                <form>
+                                    <div class="form-group">
+                                        <input type="radio" name="ref2" /><span class="cbFilterSrch">Starts with</span>
+                                        <span class="cbFilterSrch"> </span><input type="radio" name="ref2" /><span class="cbFilterSrch">Contains</span>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="row">
+                                            <div class="col-sm-5 box">
+
+                                                <div class="icon-addon addon-lg padLeft5">
+
+                                                    <input type="text" placeholder="Search" class="form-control ETBPackSearch" id="" name="" autocomplete="off" spellcheck="false">
+                                                    <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
+                                                </div>
+                                                <!--<script type="text/javascript" src="js/searchAutoCom.js"></script>-->
+
+                                            </div>
+
+                                            <div class="col-sm-2 box">
+                                                <button type="submit" class="mcButtonSearchNw" data-toggle="modal" data-target="#SearchMarketbaseModal">Search</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-sm-12">
+                                            <div>
+                                                <div class="row pckSearchResultWrapper">
+
+
+                                                    <div class="col-sm-12 col-md-12 col-xs-12">
+                                                        <div class="mcHeadingBluePS">Results</div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-xs-12 col-md-12">
+                                                        <div class="table-responsive">
+                                                            <table id="mytable" class="table table-bordred table-striped">
+                                                                <thead class="theaddark">
+                                                                    <th class="text-center">Pack Name</th>
+                                                                    <th class="text-center">Market Base</th>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><span class="paddLeft50">Pack 2</span></td>
+                                                                        <td><span class="paddLeft50">ATC N02B</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span class="paddLeft50">Pack 3</span></td>
+                                                                        <td><span class="paddLeft50">ATC N02B</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span class="paddLeft50">Pack 4</span></td>
+                                                                        <td><span class="paddLeft50">ATC N02B</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span class="paddLeft50">Pack 5</span></td>
+                                                                        <td><span class="paddLeft50">ATC N02B</span></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row noMargin">
+                                                        <button type="submit" class="mcButtonModClose pull-right" data-dismiss="modal">Close</button>
+                                                        <br class="clearAll" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="container crtMarkTabWrapper">
+                    <div class="row padleftright20 MDequal">
+                        <!--Available Pack List Table-->
+                        <div class=" noPadding mob4col" style="width: 34%">
+                            <div [ngClass]="{'custom-reflow-modal': activeReflowAvailablePackContent}">
+                                <div class="greyShadowBox" style="padding-left:15px;padding-right: 15px;padding-top: 0px;padding-bottom: 0px" [ngClass]="{'custom-reflow-market-definition-content': activeReflowAvailablePackContent}">
+                                    <div class="row">
+                                        <!-- Adding p-table-->
+                                        <div class="table-responsive viewTable">
+                                            <app-p-table [pTableSetting]="staticTableBind" [pTableMasterData]="staticPackMarketBase" (checkboxCallbackFn)="fnCheckboxStaticTableClick($event)"
+                                                (callbackFnOnPageChange)="fnStaticTablePageChange($event)" (customReflowFn)="fnCustomReflowSetting($event)"
+                                                (callbackFnOnPageChange)="fnStaticTablePageChange($event)"></app-p-table>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-left: 60px;padding-top: 5px;">
+                                        <div class="col-sm-8 box noPadding">
+                                            <button type="button" id="AddMktDef" [ngClass]="{'mcBigButton': canpackListFromMarketbase, 'mcButtonDisabled': !canpackListFromMarketbase,'mcButton':true}"
+                                                [disabled]="!canpackListFromMarketbase || !enabledStaticTableFooterBtns || lockType=='View Lock'"
+                                                (click)="fnAddtoMktDef()">Add to Market Definition</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Available Pack List Table ends-->
+                        <!--Market Definition Table-->
+
+                        <div class="noPadding mob12col" style="width: 66%">
+                            <div [ngClass]="{'custom-reflow-modal': activeReflowMarketDefContent}">
+                                <div class="availPackWhhiteBox" style="width: 100%;padding-left: 15px; padding-right: 15px;padding-top: 0px;padding-bottom: 0px;" [ngClass]="{'custom-reflow-market-definition-content': activeReflowMarketDefContent}">
+                                    <div class="row">
+                                        <div class="table-responsive viewTable">
+                                            <app-p-table [pTableSetting]="dynamicTableBind" [pTableMasterData]="dynamicPackMarketBase" (checkboxCallbackFn)="fnCheckboxDynamicTableClick($event)"
+                                                (callbackFnOnPageChange)="fnDynamicTablePageChange($event)" (customReflowFn)="fnCustomReflowSetting($event)"></app-p-table>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-left: 28px;padding-top: 5px;">
+                                        <div class="col-sm-4 box noPadding">
+                                            <button type="button" id="groupFac" [ngClass]="{'mcBigButtonGrpng': canfactorToGroup, 'mcButtonDisabled': !canfactorToGroup,mcButton:true}"
+                                                (click)="fnAddOrEditGroupInfo()" [disabled]="!canfactorToGroup || !enabledDynamicTableFooterBtns || lockType=='View Lock'">Add or Edit Grouping/Factor </button>
+                                        </div>
+                                        <div class="col-sm-3 box ">
+                                            <button type="button" id="remGroup" [ngClass]="{'mcSmallButtonCancel': canfactorToGroup, 'mcButtonDisabled': !canfactorToGroup,mcButton:true}"
+                                                col60disabled (click)="fnPackGroupRemove()" [disabled]="!canfactorToGroup || !enabledDynamicTableFooterBtns || lockType=='View Lock'">Remove from Group </button>
+                                        </div>
+                                        <div class="col-sm-5 noPadding">
+                                            <button type="button" id="delMktDef" [ngClass]="{'mcBigButtonRemove': canpackListFromMarketbase, 'mcButtonDisabled': !canpackListFromMarketbase}"
+                                                (click)="fnDeleteFromMktDef()" [disabled]="!canpackListFromMarketbase || !enabledDynamicTableFooterBtns|| lockType=='View Lock'">Delete From Market Definition </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Market Definition Table ends-->
+                        <!--Grouping Modal Begins -->
+
+
+
+
+                        <div class="modal fade packSearchModalWrapper" id="grouping" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialogGroup noPadding grouping-factoring">
+                                <div class="modal-content packSearchModalPanel">
+                                    <div class="modal-header borShadowNone">
+                                        <div class="packGroupHeading">Grouping / Factor</div>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <!-- content goes here -->
+                                        <form>
+                                            <div class="form-group">
+                                                <span class="" id="selectedPackInfo"></span>
+                                                <span class="" id="factorNote" style="color: red" *ngIf="isNAGroupMessageShow"><br/>[Note: Adding this pack to another group will <b>overwrite its cuttent factor</b>]</span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div>
+                                                        <div class="row martop20">
+                                                            <div class="col-sm-3 col-md-3 col-xs-3">
+                                                                <div class="box noPadding"><span>Created Group</span></div>
+
+                                                            </div>
+                                                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                                                <div class="box noPadding required"><span>Group #</span></div>
+
+                                                            </div>
+                                                            <div class="col-sm-5 col-md-5 col-xs-5">
+                                                                <div class="box noPadding required"><span>Group Name</span></div>
+                                                            </div>
+                                                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                                                <div class="box noPadding"><span>Factor</span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row martop20">
+                                                            <div class="col-sm-3 col-md-3 col-xs-3">
+                                                                <div class="box noPadding">
+                                                                    <dropdown [values]="dropdownGroupValues" (ddOnChange)="actionOnDDChange($event)"></dropdown>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                                                <div class="box noPadding">
+                                                                    <input type="text" class="TBNormSmall" id="txtGroupID" [disabled]="!enabledGroupDetails" #GroupID value="" (keyup)="fnChangeFactoringModel('GroupID',GroupID.value)">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5 col-md-5 col-xs-5">
+                                                                <div class="box noPadding">
+                                                                    <input type="text" class="TBNormBig group-name" id="txtGroupName" #GroupName [disabled]="!enabledGroupDetails" placeholder="Enter group name"
+                                                                        value="" (keyup)="fnChangeFactoringModel('GroupName',GroupName.value)">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                                                <div class="box noPadding">
+                                                                    <input type="text" class="TBNormSmall" id="txtFactorValue" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row martop20">
+                                                            <div class="col-sm-2 col-md-2 col-xs-2"></div>
+                                                            <div class="col-sm-10 col-md-10 col-xs-10">
+                                                                <div class="error-mgs groupNameError Group-name-error"></div>
+                                                                <div class="error-mgs">{{groupIdErrorMgs}}</div>
+                                                                <div class="error-mgs">{{groupNameErrorMgs}}</div>
+                                                                <div class="error-mgs">{{factorOrGroupGenericErrorMgs}}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row saveCancelWrap">
+                                                            <div class="col-sm-3 col-md-3 col-xs-3 width20">
+                                                                <input type="button" class="mcButtonSearch factor-save" [disabled]="!canpacksToGroup || !saveBtnEnabledForGroupId || !saveBtnEnabledForGroupName"
+                                                                    (click)="fnPackGroupCreation()" value="Save" />
+                                                            </div>
+                                                            <div class="col-sm-2 col-md-2 col-xs-2">
+                                                                <div class="box noPadding">
+                                                                    <button type="button" class="mcButtonCancel" data-dismiss="modal">Cancel</button>
+                                                                    <br class="clearAll" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grouping Modal ends-->
+                        <!--Tab 1 Content ends-->
+                    </div>
+                    <div class="row noMargin fixed-footer-buttons col-sm-12">
+                        <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width"><button type="button" class="mcButtonNext" (click)="fnNextStepGenerator('backFromMktDef')" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event) ">Back </button></div>
+                        <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width"><button type="button" [ngClass]="{'mcButtonPScancel': !isViewMode(), 'mcButtonDisabled noMargin': isViewMode()}"
+                                (click)="fnBacktoPreStateMarketDef()" [disabled]="isViewMode()|| !isChangeDetectedInMarketDefinition">Cancel</button></div>
+                        <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width"><button type="button" class="mcButtonPScancel" (click)="fnBackToClientTiles('second screen')" title="Click here back to available Market">Close </button></div>
+                        <div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper button-width"><button type="button" [ngClass]="{'mcButton': !isViewMode(), 'mcButtonDisabled noMargin': isViewMode()}"
+                                (click)="fnSaveMarketDef()" [disabled]="isViewMode()|| lockType=='View Lock'">Save </button></div>
+
+                        <!--<div class="col-sm-1 col-md-1 col-xs-1 packSearch3ButtWrapper padTop20"><button type="button" class="mcButtonNext" (click)="fnBackStepOne()">Back </button></div>-->
+
+                    </div>
+
+                    <!-- Filter ends -->
+                    <!--white Box Table-->
+                    <!--News section ends-->
+                </div>
+
+                <!-- Save Market starts -->
+                <!-- Save Market starts ends -->
+                <!--Filter ends-->
+                <!--White Shadow Box starts -->
+
+
+            </div>
+
+        </div>
+        <!-- Save Market starts -->
+        <!-- Save Market starts ends -->
+        <!--Filter ends-->
+        <!--White Shadow Box starts -->
+        <!--</div>-->
+        <!-- #content -->
+        <!-- #footer starts-->
+        <div id="footer">
+            <div class="footerBar">
+                <div class="box col-md-16">
+                    <div class="footerText">IQVIA. Copyright 2016</div>
+                </div>
+            </div>
+        </div>
+        <!-- #footer -->
+    </div>
+</div>
+
+
+
+
+<!-- new-->
+
+<!--New Pack Description Search Modal Begins -->
+<div class="modal fade packSearchModalWrapper" id="packDescSearchModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog noPadding">
+        <div class="modal-content packDescSearchModalPanel" style="border-radius: 0px; overflow:hidden;">
+            <div class="modal-header borShadowNone" style="padding-bottom:10px;">
+                <div class="packSearchHeading">Pack Description Search</div>
+            </div>
+            <div class="modal-body borShadowNone">
+                <!-- content goes here -->
+                <form #form="ngForm">
+                    <div style="margin-top:-10px;">
+                        <div class="form-group">
+                            <input type="radio" name="searchOptions" id="searchOptions" [(ngModel)]="model.searchOptions" value="0" />
+                            <span class="cbFilterSrch">Starts with</span><span class="cbFilterSrch"> </span>
+                            <input type="radio" name="searchOptions" id="searchOptions2" [(ngModel)]="model.searchOptions" value="1" />
+                            <span class="cbFilterSrch">Contains</span>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-5 box">
+                                    <div class="icon-addon addon-lg padLeft5">
+                                        <input type="text" placeholder="Search" class="form-control ETBPackSearch" id="txtSearch" name="txtSearch" [(ngModel)]="model.searchString"
+                                            autocomplete="off" spellcheck="false">
+                                    </div>
+                                    <!--<script type="text/javascript" src="js/searchAutoCom.js"></script>-->
+
+                                </div>
+
+                                <div class="col-sm-2 box">
+
+                                    <button (click)="performSearch(form.value)" class="mcButtonSearch">Search</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div>
+                                <div *ngIf="packDescCount <=0" class="packSearchHeading" style="color:red;font-size:14px;font-weight:normal;">
+                                    <div>
+                                        <b> No pack found, please review your search criteria</b>
+                                    </div>
+                                </div>
+                                <div class="row pckSearchResultWrapper">
+                                    <div *ngIf="packDescription.length > 0" class="col-sm-12 col-md-12 col-xs-12">
+                                        <div class="mcHeadingBluereg">Results</div>
+                                    </div>
+
+                                    <div *ngIf="packDescription.length > 0" class="col-sm-12 col-xs-12 col-md-12">
+
+                                        <div class="table-responsive">
+                                            <table id="mytable" class="table table-bordred table-striped">
+                                                <thead class="theaddark">
+                                                    <th class="text-center" style="padding-top:8px; padding-bottom:8px; border-right:1px solid #fff; ">Pack Name</th>
+                                                    <th class="text-center">Market Base</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let res of packDescriptionByPage">
+                                                        <td>{{res.Pack}}</td>
+                                                        <td>{{res.MarketBase}}</td>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <pagination *ngIf="packDescription.length > 0" [ngModelOptions]="{standalone: true}" [itemsPerPage]="itemsPerPage" [boundaryLinks]="true"
+                                            [maxSize]="5" [totalItems]="totalItems" [(ngModel)]="currentPage" class="pagination-sm"
+                                            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" (pageChanged)="pageChanged($event)"
+                                            lastText="&raquo;" style="margin-left:15px;"></pagination>
+                                        <pre *ngIf="packDescription.length > 0" class="card card-block card-header" style="margin-right:15px; margin-left:15px;">Showing records {{(currentPage - 1) * itemsPerPage + 1 }} to <span *ngIf="packDescription.length > 10">{{currentPage * itemsPerPage}} of </span>{{packDescription.length}}</pre>
+                                        <!--<button type="submit" class="mcButtonSearch pull-right margin5px" data-dismiss="modal">Close</button>-->
+                                        <button (click)="Close()" class="mcButtonSearch pull-right margin5px" data-dismiss="modal" style="margin-right:15px;">Close</button>
+                                        <br class="clearAll" />
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!--Filter Modal ends-->
+
+
+<!--Filter Modal Begins -->
+
+<div class="modal fade packSearchModalWrapper" id="filterModal" width="90%" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="false">
+    <div class="modal-dialog modal-dialog-filter">
+        <div class="modal-content packSearchModalPanel filPSMod">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="col-sm-8 filHeadingMod">
+                        <span class="cbFilter base-market-name">ATC N02B</span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="filtRight pull-right">
+                        <i class="glyphicon glyphicon-filter filterSel"></i> <span class="martop1">Filter</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" value="" [checked]="checkboxatc1" class="checkbox-atc1"><span id="f1"
+                                    class="cbFilter">ATC 1</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-atc1" class="checkbox-exclude-contains" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeATC1']" >
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeATC1']==true?'Contains ':'Excludes'}}{{includeExcludeArray['checkboxExcludeATC1']}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap" style="width:100%">
+                                <p-autocomplete (onSelection)="onATC1Selected($event)" AutoComType="Atc1" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="atcDependencyArray" class=""
+                                    id="v1" name="v1" style="width:100%" valuePropertyName="ATC1_Code" displayPropertyName="ATC1_Desc"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" [checked]="checkboxatc2" value="" class="checkbox-atc2"><span id="f2"
+                                    class="cbFilter">ATC 2</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-atc2" class="checkbox-exclude-contains" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeATC2']" >
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeATC2']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <p-autocomplete (onSelection)="onATC2Selected($event)" AutoComType="Atc2" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="atcDependencyArray" class=""
+                                    id="v2" name="v2" style="width:100%" valuePropertyName="ATC2_Code" displayPropertyName="ATC2_Desc"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" value="" [checked]="checkboxatc3" class="checkbox-atc3"><span id="f3"
+                                    class="cbFilter">ATC 3</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-atc3" class="checkbox-exclude-contains" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeATC3']">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeATC3']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <p-autocomplete (onSelection)="onATC3Selected($event)" AutoComType="Atc3" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="atcDependencyArray" class=""
+                                    id="v3" name="v3" style="width:100%" valuePropertyName="ATC3_Code" displayPropertyName="ATC3_Desc"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" [checked]="checkboxatc4" value="checkboxatc4" class="checkbox-atc4">
+                                <span id="f4" class="cbFilter">ATC 4</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-atc4" class="checkbox-exclude-contains" [checked]="includeExcludeArray[0]['checkboxExcludeATC4']" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeATC4']">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeATC4']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap content-atc4">
+                                <p-autocomplete (onSelection)="onATC4Selected($event)" AutoComType="Atc4" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="atcDependencyArray" class=""
+                                    id="v4" name="v4" style="width:100%" valuePropertyName="ATC4_Code" displayPropertyName="ATC4_Desc"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" [checked]="checkboxmfr" value="" class="checkbox-mfr"><span id="f5"
+                                    class="cbFilter">MFR</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-mfr" class="checkbox-exclude-contains" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeMFR']">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeMFR']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <p-autocomplete (onSelection)="onManufacturerSelected($event)" AutoComType="Manufacturer" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="mfrDependencyArray" class=""
+                                    id="v5" name="v5" style="width:100%" valuePropertyName="Org_Abbr" displayPropertyName="Org_Long_Name"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" value="" [checked]="checkboxnec1" class="checkbox-nec1"><span id="f6"
+                                    class="cbFilter">NEC1</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-nec1" class="checkbox-exclude-contains" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeNEC1']">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeNEC1']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <p-autocomplete (onSelection)="onNEC1Selected($event)" AutoComType="Nec1" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="necDependencyArray" class=""
+                                    id="v6" name="v6" style="width:100%" valuePropertyName="NEC1_Code" displayPropertyName="NEC1_Desc"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" value="" [checked]="checkboxnec2" class="checkbox-nec2"><span id="f7"
+                                    class="cbFilter">NEC2</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-nec2" class="checkbox-exclude-contains" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeNEC2']">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeNEC2']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <p-autocomplete (onSelection)="onNEC2Selected($event)" AutoComType="Nec2" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="necDependencyArray" class=""
+                                    id="v7" name="v7" style="width:100%" valuePropertyName="NEC2_Code" displayPropertyName="NEC2_Desc"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" [checked]="checkboxnec3" value="" class="checkbox-nec3"><span id="f8"
+                                    class="cbFilter">NEC 3</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-nec3" class="checkbox-exclude-contains" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeNEC3']">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeNEC3']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <p-autocomplete (onSelection)="onNEC3Selected($event)" AutoComType="Nec3" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="necDependencyArray" class=""
+                                    id="v8" name="v8" style="width:100%" valuePropertyName="NEC3_Code" displayPropertyName="NEC3_Desc"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" [checked]="checkboxnec4" value="" class="checkbox-nec4"><span id="f9"
+                                    class="cbFilter">NEC 4</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-nec4" class="checkbox-exclude-contains" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeNEC4']">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeNEC4']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <p-autocomplete (onSelection)="onNEC4Selected($event)" AutoComType="Nec4" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="necDependencyArray" class=""
+                                    id="v9" name="v9" style="width:100%" valuePropertyName="NEC4_Code" displayPropertyName="NEC4_Desc"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox"><input type="checkbox" class="checkbox-exclude-contains" [checked]="checkboxmolecule" value=""
+                                    class="checkbox-molecule">
+                                <span id="f10" class="cbFilter">Molecule</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-molecule" class="checkbox-exclude-contains" [(ngModel)]="includeExcludeArray[0]['checkboxExcludeMOLECULE']">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludeMOLECULE']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <p-autocomplete (onSelection)="onMoleculeSelected($event)" AutoComType="Molecule" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="moleculeDependencyArray"
+                                    class="" id="v10" name="v10" style="width:100%" valuePropertyName="MoleculeId" displayPropertyName="Description"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" value="" class="checkbox-flagging"><span id="f11" class="cbFilter">Flagging</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <!--<div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-flagging">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">Exclude</div>-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <div class="custom-selectNwFil fa-caret-down" style="z-index: 0 !important;">
+                                    <select name="" id="v11" class="flagging">
+                                         <option value="">All</option>
+                                        <option value="Ethical">Ethical</option>
+                                        <option value="Proprietary">Proprietary</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" value="" class="checkbox-branding"><span id="f12" class="cbFilter">Branding</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <!--<div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" id="checkbox-exclude-branding">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">Exclude</div>-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <div class="custom-selectNwFil fa-caret-down" style="z-index: 0 !important;">
+                                    <select name="" id="v12" class="branding">
+                                        <option value="">All</option>
+                                        <option value="Branded">Branded</option>
+                                        <option value="Generic">Generic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-5 padding-zero selected-checkbox">
+                                <input type="checkbox" [checked]="checkboxproduct" value="" class="checkbox-product">
+                                <span id="f13" class="cbFilter">Product</span>
+                            </div>
+                            <div class="col-sm-7 padding-zero">
+                                <div class="" style="float: left;">
+                                    <label class="switch">
+                                    <input type="checkbox" class="checkbox-exclude-contains" id="checkbox-exclude-product" [(ngModel)]="includeExcludeArray[0]['checkboxExcludePRODUCT']">
+                                    <span class="slider round"></span>
+                                </label>
+                                </div>
+                                <div style="float: left; font-style: 8px;">{{includeExcludeArray[0]['checkboxExcludePRODUCT']==true?'Contains ':'Excludes'}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <p-autocomplete (onSelection)="onProductSelected($event)" AutoComType="Product" multiSelect="true" [appliedFilters]="filtersApplied"
+                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="productDependencyArray" class=""
+                                    id="v13" name="v13" style="width:100%" valuePropertyName="ProductName" displayPropertyName="ProductName"></p-autocomplete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3"></div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-8"></div>
+                <div class="col-sm-2">
+                    <div class="TwentyPadd">
+                        <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                            <button type="submit" data-dismiss="modal" (click)="applyAdditionalFilters()" [ngClass]="{'mcButton': canFilter, 'mcButtonDisabled': !canFilter}"
+                                [disabled]="!canFilter">Apply / Update Filter</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="TwentyPadd">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 TBTopWrap">
+                                <button type="submit" class="mcButtonNwSearch" data-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Edit Filter Modal ends-->
+<!--Save modal popup
+
+<div class="modal fade packSearchModalWrapperSave" id="SaveModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="false">
+    <div class="modal-dialogSave">
+        <div class="modal-content packSearchModalPanel filPSMod">
+            <div class="">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-12 filHeadingMod"><span class="">Changes made to the market base selection criteria have been saved and will apply to the pack allocation</span></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+<!-- Save modal ends-->
+
+<div bsModal #mmErrModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:0px solid">
+                <h4 class="modal-title pull-left">Everest Portal</h4>
+                <button type="button" class="close pull-right" (click)="mmErrModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Application Error has occurred. Please contact support.
+            </div>
+        </div>
+    </div>
+</div>

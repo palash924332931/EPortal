@@ -1,0 +1,645 @@
+﻿<ng-modal (fnActionOnSaveBtn)="fnModalConfirmationClick($event)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="modalBtnCapton"
+    [closeBtnCaption]="modalCloseBtnCaption" [title]="modalTitle" [saveBtnVisibility]="modalSaveBtnVisibility" [modalSaveFnParam]="modalSaveFnParameter">
+</ng-modal>
+<ng-modal (fnActionOnSaveBtn)="fnModalConfirmationClick($event)" (fnActionOnCloseBtn)="fnModalCloseClick($event)" [btnCaption]="modalBtnCapton"
+    [closeBtnCaption]="modalCloseBtnCaption" [modalID]="'customModal'" [title]="modalTitle" [saveBtnVisibility]="modalSaveBtnVisibility"
+    [modalSaveFnParam]="modalSaveFnParameter">
+</ng-modal>
+<alert></alert>
+<div id="content">
+    <!-- Content starts-->
+    <div class="jumbotron noBG">
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs starts -->
+            <div class="container mcContainer">
+                <div class="row newsRowPadTop">
+                    <div class="col-md-12">
+                        <div class="mcBreadcrumbs">
+                            <a [routerLink]="['']" class="mcLink">Home</a> <span class="breadBrubGap">></span>
+                            <a class="mcLink">Subscription</a> <span class="breadBrubGap">></span>
+                            <a [routerLink]="[breadCrumbUrl]" class="mcLink">{{toggleTitle}}</a><span class="BCBreak">></span>
+                            <a class="mcLink">{{isEditMarketBase ? 'Edit Market Base': 'Create Market Base'}}</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row mcRow">
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <div class="mcHeadingVM">{{marketBaseTitle}}: {{clientName}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Breadcrumbs ends -->
+            <!-- Container section-->
+
+            <div class="container noMargin noPadding" id="mktHeadingWrap">
+                <!--Market Base Type & Criteria-->
+                <div class="row padleftright20 ">
+                    <div class="col-sm-12 noPadding">
+                        <div class="subCrtMB">
+                            <div class="row">
+                                <div class="col-sm-9 col-md-9 col-xs-9 noPadding">
+                                    <div class="HeadingCharcoal">Market Base Criteria</div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row marTop20">
+                                <div class="col-sm-4 noPadding">
+                                    <div class="charcText">Select Market Base Type</div>
+                                    <div class="raBrick-select fa-caret-down marTop10">
+                                        <select name="" id="ddlSelectType" (change)="selectType($event.target.value)">
+                                            <option value="ATC1">ATC1</option>
+                                            <option value="ATC2">ATC2</option>
+                                            <option value="ATC3">ATC3</option>
+                                            <option value="ATC4">ATC4</option>
+                                            <option value="NEC1">NEC1</option>
+                                            <option value="NEC2">NEC2</option>
+                                            <option value="NEC3">NEC3</option>
+                                            <option value="NEC4">NEC4</option>
+                                            <option value="Manufacturer">Manufacturer</option>
+                                            <option value="Molecule">Molecule</option>
+                                            <option value="Product">Product</option>
+                                            <option value="PACK">Packs (Customized)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row marTop20">
+                                <div [hidden]="!showATC">
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [disabled]="disableATC1" [checked]="atc1List.length>0" (click)="fnChangeMarketBaseCheckbox('atc1',$event)">
+                                            <span class="cbFilter">ATC 1</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onATC1Selected($event)" AutoComType="Atc1" multiSelect="true" [appliedFilters]="atc1List"
+                                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="atcDependencyArray"
+                                                    class="SubTBMktBse" id="atc1" name="atc1" style="width:100%;" valuePropertyName="ATC1_Code"
+                                                    displayPropertyName="ATC1_Desc"></p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="atc2List.length>0" (click)="fnChangeMarketBaseCheckbox('atc2',$event)">
+                                            <span class="cbFilter">ATC 2</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onATC2Selected($event)" AutoComType="Atc2" multiSelect="true" [appliedFilters]="atc2List"
+                                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="atcDependencyArray"
+                                                    class="SubTBMktBse" id="atc2" name="atc2" style="width:100%" valuePropertyName="ATC2_Code"
+                                                    displayPropertyName="ATC2_Desc"></p-autocomplete>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="atc3List.length>0" (click)="fnChangeMarketBaseCheckbox('atc3',$event)">
+                                            <span class="cbFilter">ATC 3</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onATC3Selected($event)" AutoComType="Atc3" multiSelect="true" [appliedFilters]="atc3List"
+                                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="atcDependencyArray"
+                                                    class="SubTBMktBse" id="atc3" name="atc3" style="width:100%" valuePropertyName="ATC3_Code"
+                                                    displayPropertyName="ATC3_Desc"></p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="atc4List.length>0" (click)="fnChangeMarketBaseCheckbox('atc4',$event)">
+                                            <span class="cbFilter">ATC 4</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onATC4Selected($event)" AutoComType="Atc4" multiSelect="true" [appliedFilters]="atc4List"
+                                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="atcDependencyArray"
+                                                    class="SubTBMktBse" id="atc4" name="atc4" style="width:100%" valuePropertyName="ATC4_Code"
+                                                    displayPropertyName="ATC4_Desc"></p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div [hidden]="!showNEC">
+                                    <div class="col-sm-3 marTop20">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="nec1List.length>0" (click)="fnChangeMarketBaseCheckbox('nec1',$event)">
+                                            <span class="cbFilter">NEC 1</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onNEC1Selected($event)" AutoComType="nec1" multiSelect="true" [appliedFilters]="nec1List"
+                                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="necDependencyArray"
+                                                    class="SubTBMktBse" id="nec1" name="nec1" style="width:100%" valuePropertyName="NEC1_Code"
+                                                    displayPropertyName="NEC1_Desc"></p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="nec2List.length>0" (click)="fnChangeMarketBaseCheckbox('nec2',$event)">
+                                            <span class="cbFilter">NEC 2</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onNEC2Selected($event)" AutoComType="nec2" multiSelect="true" [appliedFilters]="nec2List"
+                                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="necDependencyArray"
+                                                    class="SubTBMktBse" id="nec2" name="nec2" style="width:100%" valuePropertyName="NEC2_Code"
+                                                    displayPropertyName="NEC2_Desc"></p-autocomplete>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="nec3List.length>0" (click)="fnChangeMarketBaseCheckbox('nec3',$event)">
+                                            <span class="cbFilter">NEC 3</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onNEC3Selected($event)" AutoComType="nec3" multiSelect="true" [appliedFilters]="nec3List"
+                                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="necDependencyArray"
+                                                    class="SubTBMktBse" id="nec3" name="nec3" style="width:100%" valuePropertyName="NEC3_Code"
+                                                    displayPropertyName="NEC3_Desc"></p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 marTop20">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="nec4List.length>0" (click)="fnChangeMarketBaseCheckbox('nec4',$event)">
+                                            <span class="cbFilter">NEC 4</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onNEC4Selected($event)" AutoComType="nec4" multiSelect="true" [appliedFilters]="nec4List"
+                                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="necDependencyArray"
+                                                    class="SubTBMktBse" id="nec4" name="nec4" style="width:100%" valuePropertyName="NEC4_Code"
+                                                    displayPropertyName="NEC4_Desc"></p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row " [hidden]="showPacks">
+                                <div class="col-sm-3 marTop20 padRt25">
+                                    <div class="row">
+                                        <input type="checkbox" [checked]="manufacturerList.length>0" (click)="fnChangeMarketBaseCheckbox('menufacturer',$event)">
+                                        <span class="cbFilter">Manufacturer</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <p-autocomplete (onSelection)="onManufacturerSelected($event)" AutoComType="Manufacturer" multiSelect="true" [appliedFilters]="manufacturerList"
+                                                [marketBaseArray]="selectedMarketBase" [dependencyArray]="mfrDependencyArray"
+                                                class="SubTBMktBse" id="manufacturer" name="manufacturer" style="width:100%;"
+                                                valuePropertyName="Org_Abbr" displayPropertyName="Org_Long_Name"></p-autocomplete>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 marTop20 padRt25">
+                                    <div class="row">
+                                        <input type="checkbox" [checked]="moleculeList.length>0" (click)="fnChangeMarketBaseCheckbox('molecule',$event)">
+                                        <span class="cbFilter">Molecule</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <p-autocomplete (onSelection)="onMoleculeSelected($event)" AutoComType="Molecule" multiSelect="true" [appliedFilters]="moleculeList"
+                                                [marketBaseArray]="selectedMarketBase" [dependencyArray]="moleculeDependencyArray"
+                                                class="SubTBMktBse" id="molecule" name="molecule" style="width:100%" valuePropertyName="Molecule"
+                                                displayPropertyName="Description"></p-autocomplete>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 marTop20 padRt25">
+                                    <div class="row">
+                                        <input type="checkbox" [checked]="productList.length>0" (click)="fnChangeMarketBaseCheckbox('product',$event)">
+                                        <span class="cbFilter">Products</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <p-autocomplete (onSelection)="onProductSelected($event)" AutoComType="Product" multiSelect="true" [appliedFilters]="productList"
+                                                [marketBaseArray]="selectedMarketBase" [dependencyArray]="mfrDependencyArray"
+                                                class="SubTBMktBse" id="product" name="product" style="width:100%" valuePropertyName="ProductName"
+                                                displayPropertyName="ProductName"></p-autocomplete>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 marTop20 padRt25">
+                                    <div class="row">
+                                        <input type="checkbox" value="" [checked]="checkedFlaggingDD" (click)="fnChangeMarketBaseCheckbox('Flagging',$event)">
+                                        <span class="cbFilter">E/P</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <select name="" id="ddFlagging" class="nodeHeightTable filter-container" style="width:100%" (change)="fnChangeDropdonw($event.target.value,'Flagging')">
+                                                <option value="'Ethical','Proprietary'">All</option>
+                                                <option value="'Ethical'">Ethical</option>
+                                                <option value="'Proprietary'">Proprietary</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div [hidden]="showPacks">
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" value="" [checked]="checkedBrandingDD" (click)="fnChangeMarketBaseCheckbox('Branding',$event)">
+                                            <span class="cbFilter">Branding</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <select name="" id="ddBranding" class="branding nodeHeightTable filter-container" style="width:100%" (change)="fnChangeDropdonw($event.target.value,'Branding')">
+                                                    <option value="'Branded','Generic'">All</option>
+                                                    <option value="'Branded'">Branded</option>
+                                                    <option value="'Generic'">Generic</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="poisonScheduleList.length>0" (click)="fnChangeMarketBaseCheckbox('poisonschedule',$event)">
+                                            <span class="cbFilter">Poison Schedule</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onPoisonScheduleSelected($event)" AutoComType="PoisonSchedule" multiSelect="true" [appliedFilters]="poisonScheduleList"
+                                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="moleculeDependencyArray"
+                                                    class="" id="v10" name="v10" style="width:100%" valuePropertyName="Poison_Schedule"
+                                                    displayPropertyName="Poison_Schedule_Desc">
+                                                </p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="formList.length>0" (click)="fnChangeMarketBaseCheckbox('form',$event)">
+                                            <span class="cbFilter">Form</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onFormSelected($event)" AutoComType="form" multiSelect="true" [appliedFilters]="formList"
+                                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="moleculeDependencyArray"
+                                                    class="" id="v10" name="v10" style="width:100%" valuePropertyName="Form_Desc_Abbr"
+                                                    displayPropertyName="Form_Desc_Short">
+                                                </p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="dimentionList.length>0" (click)="fnChangeMarketBaseCheckbox('product',$event)">
+                                            <span class="cbFilter">Dimension</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onDimensionSelected($event)" AutoComType="Dimension" multiSelect="true" [appliedFilters]="dimentionList"
+                                                    [marketBaseArray]="selectedMarketBase" [dependencyArray]="currentClientID"
+                                                    class="SubTBMktBse" id="product" name="dimension" style="width:100%" valuePropertyName="DimensionId"
+                                                    displayPropertyName="DimensionName"></p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                              <div class="row">
+                                <div [hidden]="showPacks">  
+                                    <div class="col-sm-3 marTop20 padRt25">
+                                        <div class="row">
+                                            <input type="checkbox" [checked]="pxrList.length>0" (click)="fnChangeMarketBaseCheckbox('pxrcode',$event)">
+                                            <span class="cbFilter">PxR Code</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                                <p-autocomplete (onSelection)="onPxRSelected($event)" AutoComType="pxrcode" multiSelect="true" [appliedFilters]="pxrList"
+                                                    [marketBaseArray]="selectedMarketBaseForAutoCom" [dependencyArray]="10"
+                                                    class="" id="v10" name="v10" style="width:100%" valuePropertyName="MarketCode"
+                                                    displayPropertyName="MarketName">
+                                                </p-autocomplete>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+
+
+
+                            <div class="row" [hidden]="!showPacks">
+                                <div class="col-sm-12 noPadding marTop20">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <!--Available Pack List Table-->
+                                            <div class="col-sm-6 mob4col" style="">
+                                                <div class="greyShadowBox" style="max-height:600px;">
+                                                    <div class="row" style="max-height:500px;">
+                                                        <!-- Adding p-table-->
+
+                                                        <div class="table-responsive viewTable" style="height:500px;">
+                                                            <app-p-table [pTableSetting]="staticTableBind" [pTableMasterData]="staticPackList" (checkboxCallbackFn)="fnCheckboxStaticTableClick($event)"
+                                                                (callbackFnOnPageChange)="fnStaticTablePageChange($event)" (callbackFnOnPageChange)="fnStaticTablePageChange($event)"></app-p-table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row martop20">
+                                                        <div class="col-sm-8 box noPadding marLeft15">
+                                                            <button type="button" id="AddMktDef" [ngClass]="{'mcBigButton': enabledStaticTableFooterBtns, 'mcButtonDisabled': !enabledStaticTableFooterBtns}"
+                                                                [disabled]="!enabledStaticTableFooterBtns" (click)="fnAddtoMktDef()">
+                                                                Add to Market Base
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--Available Pack List Table ends-->
+                                            <!--Market Base Table-->
+
+                                            <div class="col-sm-6 mob4col">
+                                                <div class="greyShadowBox" style="max-height:600px;">
+                                                    <div class="row" style="max-height:500px;">
+                                                        <div class="table-responsive viewTable" style="height:500px;">
+                                                            <app-p-table [pTableSetting]="dynamicTableBind" [pTableMasterData]="dynamicPackList" (checkboxCallbackFn)="fnCheckboxDynamicTableClick($event)"
+                                                                (callbackFnOnPageChange)="fnDynamicTablePageChange($event)"></app-p-table>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row martop20">
+                                                        <div class="col-sm-5 noPadding marLeft15">
+                                                            <button type="button" id="delMktbase" [ngClass]="{'mcBigButtonRemove': enabledDynamicTableFooterBtns, 'mcButtonDisabled': !enabledDynamicTableFooterBtns}"
+                                                                (click)="fnDeleteFromMktDef()" [disabled]="!enabledDynamicTableFooterBtns">
+                                                                Delete From Market Base
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Market Base Table ends-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" [hidden]="showPacks">
+                                <div class="col-sm-11 padLeft30">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                            <input type="button" class="mcButton" (click)="fnApplyCriteria()" style="width: 175px; margin-top: 20px; height: 52px;" value="Apply"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!----------------------------------------------------------------- -->
+                <div class="row padleftright20 marTop30" *ngIf="this.descDivVisible || this.isEditMarketBase">
+                    <div class="col-sm-12 noPadding">
+                        <div class="subCrtMB">
+                            <div class="row">
+                                <span>All packs from <b>{{this.marketBaseDescription}}</b> </span>
+                                <span *ngIf="this.tempBaseFilterList.length>0"> containing </span>
+                                <span *ngFor="let filter of this.tempBaseFilterList">
+                                    <b>{{filter.Criteria}}</b> = <b>{{filter.Values}}</b>&nbsp;
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!------------------------------------------------------------------ -->
+
+
+                <div class="row padleftright20 marTop30">
+                    <div class="col-sm-12 noPadding">
+                        <div class="subCrtMB">
+                            <div class="row">
+                                <div class="col-sm-9 col-md-9 col-xs-9 noPadding">
+                                    <div class="HeadingCharcoal">Market Base Summary</div>
+                                </div>
+                            </div>
+
+                            <div class="row marTop10">
+                                <div class="col-sm-5 noPadding subCrtMktSummLeft">
+
+                                    <div class="row">
+                                        <div class="col-sm-7 ">
+                                            <div class="charcText">Market Base Type</div>
+                                            <input type="text" class="FullWidthInputBox marTop10" id="inputLebelBase" [(ngModel)]="marketBaseName" disabled>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="charcText">Market Base Label</div>
+                                            <input type="text" class="FullWidthInputBox marTop10" id="inputLebelBaseSuffix" [(ngModel)]="marketBaseSuffix" (change)="fnMarketBaseChangeDetection()">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marTop30">
+                                        <div class="col-sm-12 col-md-12 col-xs-12">
+                                            <div class="charcText">Duration of this Market base</div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12 col-xs-12 marTopM5">
+
+                                            <div id="sla-data-range" class="mrp-container nav navbar-nav">
+                                                <div class="mrp-monthdisplay">
+                                                    <span class="mrp-lowerMonth">{{StartDate | date: 'MMM'}}-{{StartDate | date: 'yyyy'}}</span>
+                                                    <span class="mrp-to"> - </span>
+                                                    <span class="mrp-upperMonth">{{EndDate | date: 'MMM'}}-{{EndDate | date: 'yyyy'}}</span>
+                                                    <a class="glyphicon glyphicon-edit subEditIcon" (click)="UpdateTimeDurationForCancel();">
+                                                        <!--<span class="glyphicon glyphicon-edit subEditIcon">
+                                                        </span>-->
+                                                    </a>
+                                                </div>
+                                                <input type="hidden" value="201702" id="mrp-lowerDate" />
+                                                <input type="hidden" value="201803" id="mrp-upperDate" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div [hidden]="showPacks" class="col-sm-7 noPadding subCrtMktSummRight">
+
+                                    <div class="table-responsive" style="max-height: 235px;overflow: auto;">
+                                        <table id="mytable" class="table table-stripedSub table-borderlessSub">
+
+                                            <thead class="theaddark">
+                                                <th class="text-center width60" style="padding-top:8px; padding-bottom:8px; border-right:1px solid #fff">Selection</th>
+                                                <th class="text-center" style="border-right:1px solid #fff;">Contains</th>
+                                                <th class="text-center">Excludes</th>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr *ngFor="let criteria of this.baseFilterTypeList;">
+                                                    <td *ngIf="criteria.IsBaseFilterType"><span class="padLeft8">{{criteria.Values}}</span></td>
+                                                    <td class="text-center" *ngIf="criteria.IsBaseFilterType">
+                                                        <input type="radio" [disabled]="criteria.IsBaseFilterType" name="{{criteria.Criteria}}" value="" [checked]="!criteria.IsRestricted"
+                                                            (click)="fnChangeRestrictedVal($event,'Add',criteria)" />
+                                                    </td>
+                                                </tr>
+                                                <tr *ngFor="let criteria of this.baseFilterListForView;">
+                                                    <td *ngIf="!criteria.IsBaseFilterType"><span class="padLeft8">{{criteria.Values}}</span></td>
+                                                    <td class="text-center" *ngIf="!criteria.IsBaseFilterType">
+                                                        <input type="radio" [disabled]="criteria.IsBaseFilterType" name="{{criteria.Criteria}}" value="" [checked]="!criteria.IsRestricted"
+                                                            (click)="fnChangeRestrictedVal($event,'Add',criteria)" />
+                                                    </td>
+                                                    <td class="text-center" *ngIf="!criteria.IsBaseFilterType">
+                                                        <input type="radio" [disabled]="criteria.IsBaseFilterType" name="{{criteria.Criteria}}" value="" [checked]="criteria.IsRestricted"
+                                                            (click)="fnChangeRestrictedVal($event,'Restrict',criteria)" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-xs-12 SubTBTopWrap">
+                                    <button type="submit" class="mcButton" (click)="SaveMarketBase()" style="width: 175px; margin-top: 20px; height: 52px;">{{isEditMarketBase==true?'Update':'Save'}}</button>
+                                    <button type="submit" *ngIf="isEditMarketBase" class="mcButton" (click)="fnDeleteMarketbase()" style="width: 175px; margin-top: 20px; height: 52px;">Delete</button>
+                                    <!--<button type="submit" class="mcButton" [disabled]="!isChangeDetectedInMarketBase" (click)="SubmitMarketBase()" style="width: 175px; margin-top: 20px; height: 52px;">Submit</button>-->
+                                    <button *ngIf="isEditMarketBase" type="submit" class="mcButton" style="width: 175px; margin-top: 20px; height: 52px;" (click)="CancelMarketBase()">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="mcButtonCancel" style="width: 175px; margin-top: 20px; height: 52px;" (click)="NavigateToBack()">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!--Market Base Type & Criteria ends-->
+        </div>
+    </div>
+    <!-- #containerfluid -->
+
+    <div id="footer">
+        <div class="footerBar">
+            <div class="box col-md-16">
+                <div class="footerText">IQVIA. Copyright 2016</div>
+            </div>
+        </div>
+    </div>
+    <!-- #footer -->
+
+
+</div>
+<!-- #wrapper -->
+
+<div bsModal #lgDateModal="bs-modal" class="modal fade packSearchModalWrapper" id="SubscriptionDateModal" tabindex="-1" role="dialog"
+    aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content subModDivWrap" style="">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="HeadingCharcoal">Duration of this Market base</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 noPadding subcalStart">
+                    <div class="row noPadding">
+                        <div class="col-sm-12  subCalstartEnd">
+                            START
+                        </div>
+                        <div class="col-sm-12 subCalWrapper">
+                            <div class="header">
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-left" (click)="previousYearFrom()"></i>
+                                </a>
+                                <span>{{curFromYear}}</span>
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-right" (click)="nextYearFrom()"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div style="width: 12%">-->
+                    <div class="mrp-monthdisplayCal" *ngFor="let p of monthsFrom" [ngClass]="{'selectedMonth': p.selected, 'month': !p.selected}"
+                        style="margin-top:-5px">
+                        <!--<div>-->
+                        <div class="col-md-5" (click)="FromMonthClick(p);" style="text-transform:uppercase;width:100%;padding-top:15px;padding-bottom:15px;">
+                            {{p.name}}
+                        </div>
+                        <!--</div>-->
+                    </div>
+                    <!--</div>-->
+                </div>
+
+                <div class="col-sm-6 noPadding subCalEndWrapper" style="">
+                    <div class="row noPadding">
+                        <div class="col-sm-12 subCalstartEnd">
+                            END
+                        </div>
+                        <div class="col-sm-12 subCalWrapper">
+                            <div class="header">
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-left" (click)="previousYearTo()"></i>
+                                </a>
+                                <span>{{curToYear}}</span>
+                                <a>
+                                    <i class="glyphicon glyphicon-chevron-right" (click)="nextYearTo()"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row subCalRowWrap">-->
+                    <div class="mrp-monthdisplayCal" *ngFor="let p1 of monthsTo" [ngClass]="{'selectedMonth': p1.selected, 'month': !p1.selected}">
+                        <div class="col-md-5" (click)="ToMonthClick(p1);" style="text-transform:uppercase;width:100%;padding-top:15px;padding-bottom:15px;">
+                            {{p1.name}}
+                        </div>
+                    </div>
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="row" *ngIf="Invalid" style="color:red;"><b> {{validationMsg}}</b></div>
+            <div class="row marTop10">
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButton" (click)="UpdateTimeDuration();">Save</button>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-4">
+                    <button type="submit" class="mcButtonCancel" (click)="lgDateModal.hide();">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

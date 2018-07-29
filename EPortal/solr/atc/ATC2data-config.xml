@@ -1,0 +1,18 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource"
+              driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              url="jdbc:sqlserver://SYDSCLP100D;DatabaseName=ClientPortal_Dev;"
+              user="ECPUser"
+              password="Gar0mond1#"/>
+  <document>
+    <entity name="atc2"
+      pk="ATC2_Code"
+      query="select distinct(ATC2_Code), ATC2_Desc from [dbo].[DIMProduct_Expanded] WHERE ATC2_Code is not null AND ATC2_Code &lt;&gt; ''"
+      deltaImportQuery="select id, ATC2_Code, ATC2_Desc from dbo.ATC2 WHERE id='${dih.delta.id}'"
+      deltaQuery="select id, ATC2_Code, ATC2_Desc from ATC2 WHERE updated_at > '${dih.last_index_time}'"
+      >
+      <field column="ATC2_Code" name="ATC2_Code"/>
+      <field column="ATC2_Desc" name="ATC2_Desc"/>
+    </entity>
+  </document>
+</dataConfig>

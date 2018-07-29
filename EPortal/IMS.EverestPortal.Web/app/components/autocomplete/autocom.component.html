@@ -1,0 +1,69 @@
+﻿<div class="row noMargin fullWidth100" *ngIf="multiSelect=='true'" ngClick="showTextbox()">
+    <div id="tags_tagsinput" class="tagsinput nodeHeightTable">
+        <span class="tag" *ngFor="let a of autoComSelected">
+            <span [ngSwitch]="AutoComType.toLowerCase()" style="cursor: pointer; cursor: hand;">
+                <span *ngSwitchCase="'atc1'" title="{{a.ATC1_Desc}}">{{a.ATC1_Code}}&nbsp;&nbsp;<a (click)="removeFilter('ATC1_Code', a.ATC1_Code)" title="Remove">x</a></span>
+                <span *ngSwitchCase="'atc2'" title="{{a.ATC2_Desc}}">{{a.ATC2_Code}}&nbsp;&nbsp;<a (click)="removeFilter('ATC2_Code', a.ATC2_Code)">x</a></span>
+                <span *ngSwitchCase="'atc3'" title="{{a.ATC3_Desc}}">{{a.ATC3_Code}}&nbsp;&nbsp;<a (click)="removeFilter('ATC3_Code', a.ATC3_Code)">x</a></span>
+                <span *ngSwitchCase="'atc4'" title="{{a.ATC4_Desc}}">{{a.ATC4_Code}}&nbsp;&nbsp;<a (click)="removeFilter('ATC4_Code', a.ATC4_Code)">x</a></span>
+                <span *ngSwitchCase="'nec1'" title="{{a.NEC1_Desc}}">{{a.NEC1_Code}}&nbsp;&nbsp;<a (click)="removeFilter('NEC1_Code', a.NEC1_Code)">x</a></span>
+                <span *ngSwitchCase="'nec2'" title="{{a.NEC2_Desc}}">{{a.NEC2_Code}}&nbsp;&nbsp;<a (click)="removeFilter('NEC2_Code', a.NEC2_Code)">x</a></span>
+                <span *ngSwitchCase="'nec3'" title="{{a.NEC3_Desc}}">{{a.NEC3_Code}}&nbsp;&nbsp;<a (click)="removeFilter('NEC3_Code', a.NEC3_Code)">x</a></span>
+                <span *ngSwitchCase="'nec4'" title="{{a.NEC4_Desc}}">{{a.NEC4_Code}}&nbsp;&nbsp;<a (click)="removeFilter('NEC4_Code', a.NEC4_Code)">x</a></span>
+                <span *ngSwitchCase="'manufacturer'" title="{{a.Org_Long_Name}}">{{a.Org_Abbr}}&nbsp;&nbsp;<a (click)="removeFilter('Org_Code', a.Org_Code)">x</a></span>
+                <span *ngSwitchCase="'molecule'" title="{{a.Molecule}}">{{a.MoleculeId}}&nbsp;&nbsp;<a (click)="removeFilter('MoleculeId', a.MoleculeId)">x</a></span>
+                <span *ngSwitchCase="'product'">{{a.ProductName}}&nbsp;&nbsp;<a (click)="removeFilter('product', a.PFC)">x</a></span>
+            </span>
+        </span>
+        <div class="tags_clear"></div>
+        <div class="box noPadding" [hidden]="!textVisible" onblur="hideText()">
+            <div id="tags_addTag" class="input-group" style="margin-top:-10px;">
+                <input *ngIf="multiSelect=='true'" class="PSTBNewAuto" ng2-auto-complete [source]="getAutoComList.bind(this)"
+                       [(ngModel)]="selectedItem"
+                       placeholder={{placeHolder}}
+                       (ngModelChange)="onAutoTextSelection($event)"
+                       value-property-name={{valuePropertyName}}
+                       display-property-name={{displayPropertyName}}
+                       max-num-list="20"
+                       min-chars="0" />
+                <input *ngIf="!multiSelect" class="PSTBNewAuto" ng2-auto-complete [source]="autoComList"
+                       [(ngModel)]="selectedItem"
+                       placeholder={{placeHolder}}
+                       (ngModelChange)="onAutoTextSelection($event)"
+                       value-property-name={{valuePropertyName}}
+                       display-property-name={{displayPropertyName}}
+                       max-num-list="20"
+                       min-chars="0" />
+
+                <span class="input-group-btn">
+                    <button class="glyphicon glyphicon-remove cusGlyphClose" type="button" (click)="clearText()" style="color: #C6D7DF; font-size: 16px; margin-left: -45px; background: none; border: none;margin-top:20px;"></button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="box noPadding" *ngIf="multiSelect=='false'" >
+    <div id="tags_tagsinput" class="input-group" style="margin-top:-10px;">
+        <!--<div class="box noPadding" >
+            <div id="tags_addTag" class="input-group" style="margin-top:-10px;">-->
+                <input class="PSTBNewAuto" ng2-auto-complete [source]="getAutoComList.bind(this)"
+                       [(ngModel)]="selectedItem"
+                       placeholder={{placeHolder}}
+                       (ngModelChange)="onAutoTextSelection($event)"
+                       value-property-name={{valuePropertyName}}
+                       display-property-name={{displayPropertyName}}
+                       max-num-list="20"
+                       min-chars="0" />
+               
+
+                <span class="input-group-btn">
+                    <button class="glyphicon glyphicon-remove cusGlyphClose" type="button" (click)="clearText()" style="color: #C6D7DF; font-size: 16px; margin-left: -45px; background: none; border: none;margin-top:20px;"></button>
+                </span>
+            <!--</div>
+        </div>-->
+    </div>
+
+</div>
+
+

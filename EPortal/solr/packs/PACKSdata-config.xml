@@ -1,0 +1,29 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource"
+              driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              url="jdbc:sqlserver://SYDSCLP100D;DatabaseName=ClientPortal_Dev;"
+              user="ECPUser"
+              password="Gar0mond1#"/>
+  <document>
+    <entity name="pack" transformer="RegexTransformer" 
+      pk="PackID"
+      query="SELECT PackID, Prod_cd, Pack_cd, PFC, ProductName, Product_Long_Name, Pack_Description, Pack_Long_Name, FCC, ATC1_Code, ATC1_Desc, ATC2_Code, ATC2_Desc, ATC3_Code, ATC3_Desc, ATC4_Code, ATC4_Desc, NEC1_Code, NEC1_Desc, NEC1_LongDesc, NEC2_Code, NEC2_desc, NEC2_LongDesc, NEC3_Code, NEC3_Desc, NEC3_LongDesc, NEC4_Code, NEC4_Desc, NEC4_LongDesc, CH_Segment_Code, CH_Segment_Desc, WHO1_Code, WHO1_Desc, WHO2_Code, WHO2_Desc, WHO3_Code, WHO3_Desc, WHO4_Code, WHO4_Desc, WHO5_Code, WHO5_Desc, FRM_Flgs1, FRM_Flgs1_Desc, FRM_Flgs2, FRM_Flgs2_Desc, FRM_Flgs3, Frm_Flgs3_Desc, FRM_Flgs4, FRM_Flgs4_Desc, FRM_Flgs5, FRM_Flgs5_Desc, FRM_Flgs6, Compound_Indicator, Compound_Ind_Desc, PBS_Formulary, PBS_Formulary_Date, Poison_Schedule, Poison_Schedule_Desc, Stdy_Ind1_Code, Study_Indicators1, Stdy_Ind2_Code, Study_Indicators2, Stdy_Ind3_Code, Study_Indicators3, Stdy_Ind4_Code, Study_Indicators4, Stdy_Ind5_Code, Study_Indicators5, Stdy_Ind6_Code, Study_Indicators6, PackLaunch, Prod_lch, Org_Code, Org_Abbr, Org_Short_Name, Org_Long_Name, Out_td_dt, Prtd_Price, pk_size, vol_wt_uns, vol_wt_meas, strgh_uns, strgh_meas, Conc_Unit, Conc_Meas, Additional_Strength, Additional_Pack_Info, Recommended_Retail_Price, Ret_Price_Effective_Date, Editable_Pack_Description, APN, Form_Desc_Abbr, Form_Desc_Short, Form_Desc_Long, NFC1_Code, NFC1_Desc, NFC2_Code, NFC2_Desc, NFC3_Code, NFC3_Desc, Price_Effective_Date, Last_amd, PBS_Start_Date, PBS_End_Date, Supplier_Code, Supplier_Product_Code,
+CAST(molecules as varchar(max)) as MOLECULES
+FROM	(
+select [DIMProduct_Expanded].*, 
+  (STUFF(
+         (SELECT distinct '~' + mol.description
+          FROM [DMMolecule] mol
+          inner join [DIMProduct_Expanded] pack
+            on mol.FCC = pack.fcc
+          where mol.FCC = [DIMProduct_Expanded].fcc
+          FOR XML PATH ('')), 1, 1, '')) molecules
+from [DIMProduct_Expanded]
+) packWithMolecules"
+      deltaImportQuery="select id, NEC4_Code, NEC4_Desc from dbo.NEC4 WHERE id='${dih.delta.id}'"
+      deltaQuery="select id, NEC4_Code, NEC4_Desc from NEC4 WHERE updated_at > '${dih.last_index_time}'"      	
+      >
+      <field column="MOLECULES" name="MOLECULES" splitBy="~"/>
+    </entity>
+  </document>
+</dataConfig>

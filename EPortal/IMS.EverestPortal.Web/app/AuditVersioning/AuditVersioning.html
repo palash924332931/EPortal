@@ -1,0 +1,223 @@
+﻿<div class="jumbotron noBG">
+    <alert></alert>
+    <div class="container-fluid">
+        <!-- Breadcrumbs starts -->
+        <div class="container mcContainer">
+            <div class="row newsRowPadTop">
+                <div class="col-md-12">
+                    <div class="mcBreadcrumbs"> <a href="#/" class="mcLink">Home</a><span class="breadBrubGap">></span><a class="mcLink">System Reporting</a>                        <span class="breadBrubGap">></span> <a href="#/AuditVersioning" class="mcLink">Audit Trail</a> </div>
+                </div>
+              
+            </div>
+            <div class="row mcRow">
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="mcHeadingVM">Audit </div>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumbs ends -->
+        <!-- Container section-->
+
+        <div class="container noMargin noPadding" id="mktHeadingWrap">
+            <!--Market Base Type & Criteria-->
+
+            <div class="row">
+
+                <div class="col-sm-2 width20" *ngIf="SectionName != 'User Management' && SectionName != 'Maintenance'" style="">
+                    <div class="row" style="padding-bottom: 5px;">
+                        <div class="col-sm-12">Client</div>
+                    </div>
+
+                    <div class="raBrick-select fa-caret-down" style="height: 33px;">
+                        <select name="client" id="client" style="height: 33px;" [(ngModel)]="ClientID" (ngModelChange)="onClientChange($event, SectionName)">
+                            <option *ngFor="let client of clientDataList " value={{client.clientID}}>
+                                {{client.Name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2 width20">
+
+                    <div class="row" style="padding-bottom: 5px;">
+                        <div class="col-sm-12">Section</div>
+                    </div>
+                    <div class="raBrick-select fa-caret-down" style="height: 33px;">
+
+                        <select name="" id="" style="height: 33px;" [(ngModel)]="SectionName" (ngModelChange)="onSectionChange(ClientID, $event)">
+                          
+                            <option *ngFor="let section of SectionList" value={{section}}>
+                                {{section}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2 width20" style="">
+                    <div class="row" style="padding-bottom: 5px;">
+                        <div class="col-sm-12">Name</div>
+                    </div>
+                    <div class="raBrick-select fa-caret-down" style="height: 33px;">
+                        <select name="contentName" id="contentId" style="height: 33px;" [(ngModel)]="EntityID" (ngModelChange)="GetVersions(ClientID, SectionName, EntityID, null, null)">
+                            <option *ngFor="let content of NameList" [ngValue]="content.ID">
+                                {{content.Name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-2 width20" style="">
+                    <div class="row" style="padding-bottom: 5px;">
+                        <div style="padding-bottom: 4px;" class="col-sm-12">Start</div>
+                        <div class="col-sm-12 col-md-12 col-xs-12 ">
+                            <my-date-picker name="durationStartDateDeli" [options]="myDatePickerOptions" (ngModelChange)="GetVersions(ClientID,SectionName, EntityID,durationStartDateDeli=$event,durationEndDate)"
+                                [(ngModel)]="durationStartDateDeli" required></my-date-picker>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 width20" style="">
+                    <div class="row" style="padding-bottom: 5px;">
+                        <div style="padding-bottom: 4px;" class="col-sm-12">End</div>
+                        <div class="col-sm-12 col-md-12 col-xs-12 ">
+                            <my-date-picker name="durationEndDate" [options]="myEndDatePickerOptions"  (ngModelChange)="GetVersions(ClientID,SectionName, EntityID,durationStartDateDeli,durationEndDate=$event)"
+                                [(ngModel)]="durationEndDate" required></my-date-picker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 20px; padding-bottom: 40px;">
+
+                <div class="col-sm-2 width20" *ngIf="SectionName != 'User Management' && SectionName != 'Maintenance'">
+
+                    <div class="row" style="padding-bottom: 5px;">
+                        <div class="col-sm-12">Version</div>
+                    </div>
+                    <div class="raBrick-select fa-caret-down" style="height: 33px;">
+                        <select name="" id="" style="height: 33px;" [(ngModel)]="startVersionNo">
+                            <option *ngFor="let content of VersionList" value={{content.VersionNo}}>
+                                {{content.VersionNo}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-2 width20" *ngIf="SectionName != 'User Management' && SectionName != 'Maintenance'">
+
+                    <div class="row" style="padding-bottom: 5px;">
+                        <div class="col-sm-12">Version (Compare to)</div>
+
+                    </div>
+                    <div class="raBrick-select fa-caret-down" style="height: 33px;">
+                        <select name="" id="" style="height: 33px;" [(ngModel)]="endVersionNo">
+                            <option *ngFor="let content of VersionList" value={{content.VersionNo}}>
+                                {{content.VersionNo}}
+                            </option>
+                        </select>
+                    </div>
+
+
+                </div>
+
+
+                <div class="col-sm-2 width20" style="">
+                    <div class="row" style="padding-bottom: 5px;">
+                        <div class="col-sm-12">Audit</div>
+                    </div>
+                    <div class="raBrick-select fa-caret-down" style="height: 33px;">
+                        <select name="" id="" style="height: 33px;" [(ngModel)]="reportName" (ngModelChange)="fnChangeReportName()">                          
+                            <option *ngFor="let reptype of reportTypeList" [value]="reptype">
+                                {{reptype}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2 width20" style="padding-top: 25px;">
+                    <button class="mcButton" style="margin-top: 0px; min-height: 0px; padding-left: 10px; padding-right: 10px; min-width: 130px; padding-top: 5px; padding-bottom: 7px;"
+                        (click)="GetAuditReport()">Generate Audit</button>
+                </div>
+
+            </div>
+
+            <div class="row padLeft20" *ngIf="ReportList.length > 0">
+                <div class="col-sm-8 col-md-8 col-xs-8 noPadding">
+                    <div class="HeadingCharcoal">{{FullName}}</div>
+                </div>
+            </div>
+
+            <div class="noMargin noPadding marLeft10" id="" style="padding-right: 20px;">
+               
+
+                <div class="row" >
+                    <div class="col-sm-12" style="padding-left: 20px; padding-right: 0px;" *ngIf="ReportList.length > 0">
+                        <div class="availPackWhhiteBox" style="">
+                            <!--<div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 noPadding" *ngIf="ReportList.length > 0">
+                                    <div class="col-m-12 col-s-12 col-md-12" style="padding-right: 30px;" *ngIf="ReportList.length > 0">
+                                        <div class="table-responsive">
+                                            <table id="" class="apTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="theaddark" style="text-align:center; padding:0 10px;" *ngFor="let key of headerkeys">
+                                                            {{key}}
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let res of ReportList">
+                                                        <td style="text-align:left;" *ngFor="let key of keys">
+                                                            {{res[key]}}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <pagination *ngIf="ReportList.length > 0" [boundaryLinks]="true" [totalItems]="usertotalItems" [(ngModel)]="userCurrentPage"
+                                            (pageChanged)="userPageChanged($event)" [itemsPerPage]="itemsPerPage" class="pagination-sm"
+                                            previousText="&lsaquo;" [rotate]="false" [maxSize]="4" nextText="&rsaquo;" firstText="&laquo;"
+                                            lastText="&raquo;"></pagination>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                            <div class="modal fade packSearchModalWrapper" id="grouping" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialogGroup noPadding">
+                                    <div class="modal-content packSearchModalPanel">
+                                        <div class="modal-header borShadowNone">
+                                            <div class="packGroupHeading">Grouping / Factor</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div *ngIf="enabledReportDetails">
+                        <app-p-table [pTableSetting]="auditReportSettings" [pTableMasterData]="auditReportData">
+                        </app-p-table>
+                    </div>
+                </div>
+
+
+                
+                <div class="row padLeft20" *ngIf="IsParameterNotFound">
+                    <div class="col-sm-2 col-md-8 col-xs-8 noPadding ">
+                        <div style="color:orangered">{{ParamMissingMessage}}</div>
+                    </div>
+                </div>
+
+             
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>

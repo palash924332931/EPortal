@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[Deliverables_History] (
+    [DeliverableId]   INT           NOT NULL,
+    [Version]         INT           NOT NULL,
+    [SubscriptionId]  INT           NULL,
+    [ReportWriterId]  INT           NULL,
+    [FrequencyTypeId] INT           NULL,
+    [RestrictionId]   INT           NULL,
+    [PeriodId]        INT           NULL,
+    [Frequencyid]     INT           NULL,
+    [StartDate]       DATETIME      NULL,
+    [EndDate]         DATETIME      NULL,
+    [probe]           BIT           NULL,
+    [PackException]   BIT           NULL,
+    [Census]          BIT           NULL,
+    [OneKey]          BIT           NULL,
+    [LastModified]    DATETIME      NULL,
+    [ModifiedBy]      INT           NULL,
+    [DeliveryTypeId]  INT           NULL,
+    [ModifiedDate]    DATETIME      NULL,
+    [UserId]          INT           NULL,
+    [IsSentToTDW]     BIT           CONSTRAINT [DC_Constraint] DEFAULT ((0)) NULL,
+    [TDWTransferDate] DATETIME      NULL,
+    [TDWUserId]       INT           NULL,
+    [LastSaved]       DATETIME2 (7) NULL,
+    CONSTRAINT [PK_Deliverables_History] PRIMARY KEY CLUSTERED ([DeliverableId] ASC, [Version] ASC) WITH (FILLFACTOR = 1)
+);
+
